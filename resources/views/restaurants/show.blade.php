@@ -124,44 +124,47 @@
                   <!-- end:Bar -->
                   <div class="col-xs-12 col-md-12 col-lg-3">
                      <div class="sidebar-wrap">
-                        <div class="widget widget-cart">
-                           <div class="widget-heading">
-                              <h3 class="widget-title text-dark">
-                                 Your Shopping Cart
-                              </h3>
-                              <div class="clearfix"></div>
-                           </div>
-                           <div class="order-row bg-white">
+                        <form method="POST" action="/checkout">
+                           @csrf
+                           <div class="widget widget-cart">
+                              <div class="widget-heading">
+                                 <h3 class="widget-title text-dark">
+                                    Your Shopping Cart
+                                 </h3>
+                                 <div class="clearfix"></div>
+                              </div>
+                              <div class="order-row bg-white">
+                                 <div class="widget-body">
+                                    <div class="title-row">Pizza Quatro Stagione <a href="#"><i class="fa fa-trash pull-right"></i></a></div>
+                                    <div class="form-group row no-gutter">
+                                      
+                                          <input class="form-control" type="number" value="2" id="example-number-input"> 
+                                      
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="order-row">
+                                 <div class="widget-body">
+                                    <div class="title-row">Carlsberg Beer <a href="#"><i class="fa fa-trash pull-right"></i></a></div>
+                                    <div class="form-group row no-gutter">
+                                       
+                                          <input class="form-control" value="4" id="quant-input"> 
+                                       
+                                    </div>
+                                 </div>
+                              </div>
+                              <!-- end:Order row -->
+                            
                               <div class="widget-body">
-                                 <div class="title-row">Pizza Quatro Stagione <a href="#"><i class="fa fa-trash pull-right"></i></a></div>
-                                 <div class="form-group row no-gutter">
-                                   
-                                       <input class="form-control" type="number" value="2" id="example-number-input"> 
-                                   
+                                 <div class="price-wrap text-xs-center">
+                                    <p>TOTAL</p>
+                                    <h3 class="value"><strong>&#8377; 25,49</strong></h3>
+                                    <p>Free Shipping</p>
+                                    <button  type="submit" class="btn theme-btn btn-lg">Checkout</button>
                                  </div>
                               </div>
                            </div>
-                           <div class="order-row">
-                              <div class="widget-body">
-                                 <div class="title-row">Carlsberg Beer <a href="#"><i class="fa fa-trash pull-right"></i></a></div>
-                                 <div class="form-group row no-gutter">
-                                    
-                                       <input class="form-control" value="4" id="quant-input"> 
-                                    
-                                 </div>
-                              </div>
-                           </div>
-                           <!-- end:Order row -->
-                         
-                           <div class="widget-body">
-                              <div class="price-wrap text-xs-center">
-                                 <p>TOTAL</p>
-                                 <h3 class="value"><strong>&#8377; 25,49</strong></h3>
-                                 <p>Free Shipping</p>
-                                 <button  type="submit" class="btn theme-btn btn-lg">Checkout</button>
-                              </div>
-                           </div>
-                        </div>
+                        </form>
                      </div>
                   </div>
                   <!-- end:Right Sidebar -->

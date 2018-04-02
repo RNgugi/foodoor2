@@ -1,7 +1,8 @@
 <?php
 
 Route::get('/', function () {
-    return view('welcome');
+	return redirect('/restaurants');
+   // return view('welcome');
 });
 
 Auth::routes();
@@ -15,6 +16,10 @@ Route::get('/restaurants/explore', 'RestaurantsController@get')->name('restauran
 Route::get('/restaurants/explore/cusine:{cuisine}', 'RestaurantsController@getByCuisine')->name('restaurants.list.cuisine');
 
 Route::get('/restaurants/{restaurant}', 'RestaurantsController@show')->name('restaurants.show');
+
+
+Route::post('/checkout', 'CheckoutController@index');
+Route::get('/checkout/success', 'CheckoutController@success');
 
 
 
