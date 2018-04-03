@@ -503,7 +503,7 @@ hr {
 }
 
 .hero h1 {
-    font-family: "Give You Glory", cursive;
+/*    font-family: "Give You Glory", cursive; */
     color: #fff;
     font-size: 3.7em;
     font-weight: 700;
@@ -545,23 +545,23 @@ hr {
 
 .step-item svg {
     display: inline-block;
-    width: 34px;
-    height: 34px;
+    width: 44px;
+    height: 44px;
 }
 
 .step-item img {
     display: block;
-    margin: 0 auto 15px;
+    margin: 0 auto 18px;
 }
 
 .step-item h4 {
-    font-family: "Give You Glory", cursive;
+    /*font-family: "Give You Glory", cursive;*/
     color: #fff;
-    font-size: 21px;
+    font-size: 22px;
 }
 
 .step-item h4 span {
-    color: #f30;
+    color: #fff;
 }
 
 .step1:after,

@@ -52,7 +52,7 @@ class ItemCrudController extends CrudController
                 ],
 
             ['name' => 'name', 'label' => 'Name'],
-            ['name' => 'description', 'label' => 'Decription/Ingredients', 'type' => 'textarea'],
+            ['name' => 'description', 'label' => 'Decription/Ingredients'],
             ['name' => 'slug', 'label' => 'Slug', 'type' => 'hidden', 'value' => 'a'],
             [  // Select2
                'label' => "Cuisine",
