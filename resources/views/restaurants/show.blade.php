@@ -108,7 +108,7 @@
                                     <!-- end:Description -->
                                  </div>
                                  <!-- end:col -->
-                                 <div class="col-xs-12 col-sm-12 col-lg-4 pull-right item-cart-info"> <span class="price pull-left">&#837; {{ $item->price }}</span> <a href="#" class="btn btn-small btn btn-secondary pull-right">+</a> </div>
+                                 <div class="col-xs-12 col-sm-12 col-lg-4 pull-right item-cart-info"> <span class="price pull-left">&#8377; {{ $item->price }}</span> <a href="#" class="btn btn-small btn btn-secondary pull-right">+</a> </div>
                               </div>
                               <!-- end:row -->
                            </div>
