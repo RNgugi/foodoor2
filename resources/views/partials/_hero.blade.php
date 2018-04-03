@@ -2,15 +2,16 @@
             <div class="hero-inner">
                 <div class="container text-center hero-text font-white">
                     <h1>Order Delivery & Take-Out </h1>
-                    <h5 class="font-white space-xs">Find restaurants, specials, and coupons for free</h5>
+                    <h5 class="font-white space-xs">Find restaurants and order multi-cuisine food items with huge offers</h5>
                     <div class="banner-form">
                         <form class="form-inline">
                             <div class="form-group">
-                                <label class="sr-only" for="exampleInputAmount">I would like to eat....</label>
+                                <label class="sr-only" for="exampleInputAmount">Search restaurants...</label>
+                              
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg" id="exampleInputAmount" placeholder="I would like to eat...."> </div>
+                                    <input type="text" class="form-control form-control-lg" id="exampleInputAmount" placeholder="Enter your location"> </div>
                             </div>
-                            <button onclick="location.href='restaurants/explore'" type="button" class="btn theme-btn btn-lg">Search food</button>
+                            <button onclick="location.href='restaurants/explore'" type="button" class="btn theme-btn btn-lg">Find Restaurants</button>
                         </form>
                     </div>
                     <div class="steps">

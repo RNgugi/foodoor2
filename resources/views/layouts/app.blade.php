@@ -22,10 +22,10 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-dark navbar-laravel bg-warning">
+        <nav class="navbar navbar-expand-md navbar-light navbar-laravel bg-white">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                   <img src="/images/food-picky-logo.png" style="width: 180px;">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -41,8 +41,10 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
-                            <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
-                            <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
+                             <li><a class="nav-link" href="/restaurants">{{ __('Home') }}</a></li>
+                             <li><a class="nav-link" href="/restaurants/explore">{{ __('Restaurants') }}</a></li>
+                            <li><a class="nav-link" href="{{ route('login') }}">{{ __('Sign In') }}</a></li>
+                            <li><a class="nav-link" href="{{ route('register') }}">{{ __('Sign Up') }}</a></li>
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
