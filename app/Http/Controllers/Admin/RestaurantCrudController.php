@@ -49,10 +49,10 @@ class RestaurantCrudController extends CrudController
                 ],
 
             
-            ['name' => 'name', 'label' => 'Name'],
+            ['name' => 'name', 'label' => 'Name *'],
             ['name' => 'slug', 'label' => 'Slug', 'type' => 'hidden', 'value' => 'a'],
             [       
-                'label' => "Cuisines",
+                'label' => "Cuisines *",
                 'type' => 'select2_multiple',
                 'name' => 'cuisines', 
                 'entity' => 'cuisines', 
@@ -60,9 +60,9 @@ class RestaurantCrudController extends CrudController
                 'model' => "App\Models\Cuisine", 
                 'pivot' => true, 
             ],
-            ['name' => 'location', 'label' => 'Google Map Location'],
-            ['name' => 'area', 'label' => 'Area'],
-            ['name' => 'pincode', 'label' => 'Pincode'],
+            ['name' => 'location', 'label' => 'Google Map Location *'],
+            ['name' => 'area', 'label' => 'Area *'],
+            ['name' => 'pincode', 'label' => 'Pincode *'],
              [  // Select2
                'label' => "City",
                'type' => 'select2',
@@ -72,9 +72,9 @@ class RestaurantCrudController extends CrudController
                'model' => "App\Models\City" // foreign key model
             ],
 
-            ['name' => 'contact_name', 'label' => 'Contact Person'],
-            ['name' => 'contact_email', 'label' => 'Account Email (Email to access restaurant panel | Default Password : password)'],
-            ['name' => 'contact_phone', 'label' => 'Contact Phone'],
+            ['name' => 'contact_name', 'label' => 'Contact Person *'],
+            ['name' => 'contact_email', 'label' => 'Account Email (Email to access restaurant panel | Default Password : password) *'],
+            ['name' => 'contact_phone', 'label' => 'Contact Phone *'],
             ['name' => 'website', 'label' => 'Website Link'],
 
         ]);

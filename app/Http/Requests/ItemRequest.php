@@ -31,6 +31,7 @@ class ItemRequest extends FormRequest
             'description' => 'required|min:5|max:255',
             'cuisine_id' => 'required',
             'price' => 'required',
+            'restaurant_id' => 'required',
 
         ];
     }
