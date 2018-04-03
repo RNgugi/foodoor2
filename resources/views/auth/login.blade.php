@@ -1,67 +1,69 @@
-@extends('layouts.restaurants')
+@extends('layouts.app')
 
 @section('content')
-<section>
-        <div class="block no-padding  gray">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="inner2">
-                            <div class="inner-title2">
-                                <h3>Login</h3>
-                                <span>Keep up to date with the latest offers</span>
-                            </div>
-                            <div class="page-breacrumbs">
-                                <ul class="breadcrumbs">
-                                    <li><a href="#" title="">Home</a></li>
-                                    <li><a href="#" title="">Account</a></li>
-                                    <li><a href="#" title="">Login</a></li>
-                                </ul>
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card card-default">
+                <div class="card-header">Login</div>
+
+                <div class="card-body">
+                    <form method="POST" action="{{ route('login') }}">
+                        @csrf
+
+                        <div class="form-group row">
+                            <label for="email" class="col-sm-4 col-form-label text-md-right">E-Mail Address</label>
+
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+
+                                @if ($errors->has('email'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <section>
-        <div class="block remove-bottom">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="account-popup-area signin-popup-box static">
-                            <div class="account-popup">
-                                <h3>Login</h3>
-                                <span>Lorem ipsum dolor sit amet consectetur adipiscing elit odio duis risus at lobortis ullamcorper</span>
-                                <form method="post" action="{{ route('login') }}">
-                                     @csrf
-                                    <div class="cfield">
-                                        <input type="text" placeholder="Email" name="email" />
-                                        <i class="la la-user"></i>
-                                    </div>
-                                    <div class="cfield">
-                                        <input type="password" placeholder="********" name="password" />
-                                        <i class="la la-key"></i>
-                                    </div>
-                                    <p class="remember-label">
-                                        <input type="checkbox" name="remember" id="remember"><label for="remember">Remember me</label>
-                                    </p>
-                                    <a href="{{ route('password.request') }}" title="">Forgot Password?</a>
-                                    <button type="submit">Login</button>
-                                </form>
-                                <div class="extra-login">
-                                    <span>Or</span>
-                                    <div class="login-social">
-                                        <a class="fb-login" href="#" title=""><i class="fa fa-facebook"></i></a>
-                                        <a class="tw-login" href="#" title=""><i class="fa fa-google"></i></a>
-                                    </div>
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+
+                                @if ($errors->has('password'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-6 offset-md-4">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
+                                    </label>
                                 </div>
                             </div>
-                        </div><!-- LOGIN POPUP -->
-                    </div>
+                        </div>
+
+                        <div class="form-group row mb-0">
+                            <div class="col-md-8 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    Login
+                                </button>
+
+                                <a class="btn btn-link" href="{{ route('password.request') }}">
+                                    Forgot Your Password?
+                                </a>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</div>
 @endsection
