@@ -31,9 +31,18 @@ class ItemCrudController extends CrudController
         $this->crud->addColumns([
             ['name' => 'name', 'label' => 'Name'],
             ['name' => 'price', 'label' => 'Price'],
-            ['name' => 'restaurantName', 'label' => 'Restaurant Name'],
-            ['name' => 'cuisineName', 'label' => 'Cuisine'],
+            
+            
         ]);
+
+        if(!auth()->user()->isRestaurant())
+           {
+              $this->crud->addColumn(['name' => 'restaurantName', 'label' => 'Restaurant Name']);
+
+            } 
+
+        $this->crud->addColumn(['name' => 'cuisineName', 'label' => 'Cuisine']);
+
 
         $this->crud->addFields([
              [   // Browse
@@ -53,18 +62,38 @@ class ItemCrudController extends CrudController
                'attribute' => 'name', // foreign key attribute that is shown to user
                'model' => "App\Models\Cuisine" // foreign key model
             ],
-            [  // Select2
-               'label' => "Restaurant",
-               'type' => 'select2',
-               'name' => 'restaurant_id', // the db column for the foreign key
-               'entity' => 'restaurant', // the method that defines the relationship in your Model
-               'attribute' => 'name', // foreign key attribute that is shown to user
-               'model' => "App\Models\Restaurant" // foreign key model
-            ],
+
             ['name' => 'price', 'label' => 'Price'],
             
 
         ]);
+
+
+         if(!auth()->user()->isRestaurant())
+           {
+              $this->crud->addField([  // Select2
+                   'label' => "Restaurant",
+                   'type' => 'select2',
+                   'name' => 'restaurant_id', // the db column for the foreign key
+                   'entity' => 'restaurant', // the method that defines the relationship in your Model
+                   'attribute' => 'name', // foreign key attribute that is shown to user
+                   'model' => "App\Models\Restaurant" // foreign key model
+                ]);
+
+            } else {
+                $this->crud->addField([  // Select2
+                   'label' => "Restaurant",
+                   'type' => 'hidden',
+                   'name' => 'restaurant_id', 
+                   'value' => auth()->user()->restaurant->id
+                ]);
+            }
+
+
+       if(auth()->user()->isRestaurant())
+       {
+          $this->crud->addClause('where', 'restaurant_id', '=', auth()->user()->restaurant->id);
+       } 
 
         // ------ CRUD FIELDS
         // $this->crud->addField($options, 'update/create/both');

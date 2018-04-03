@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Restaurant;
 use Illuminate\Notifications\Notifiable;
 use Backpack\CRUD\CrudTrait;
 use Spatie\Permission\Traits\HasRoles;// <---------------------- and this one
@@ -30,4 +31,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function restaurant()
+    {
+        return $this->hasOne(Restaurant::class, 'account_id');
+    }
+
+    public function isRestaurant()
+    {
+        return $this->restaurant != null;
+    }
 }

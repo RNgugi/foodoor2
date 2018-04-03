@@ -38,7 +38,10 @@ class EarningsCrudController extends CrudController
         ]);
 
           
-
+           if(auth()->user()->isRestaurant())
+           {
+              $this->crud->addClause('where', 'restaurant_id', '==', auth()->user()->restaurant->id);
+           } 
 
         // ------ CRUD FIELDS
         // $this->crud->addField($options, 'update/create/both');

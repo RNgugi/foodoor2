@@ -6,11 +6,21 @@
 
 <li><a href="{{ backpack_url('orders') }}"><i class="fa fa-file-text"></i> <span>Orders</span></a></li>
 
-<li><a href="{{ backpack_url('restaurants') }}"><i class="fa fa-building"></i> <span>Restaurants</span></a></li>
+@if(!auth()->user()->isRestaurant())
+ <li><a href="{{ backpack_url('restaurants') }}"><i class="fa fa-building"></i> <span>Restaurants</span></a></li>
+@endif
 
 <li><a href="{{ backpack_url('items') }}"><i class="fa fa-list-ul"></i> <span>Menu Items</span></a></li>
 
-<li><a href="{{ backpack_url('cuisines') }}"><i class="fa fa-th"></i> <span>Cuisines</span></a></li>
+
+@if(auth()->user()->isRestaurant())
+	<li><a href="/admin/restaurants/{{ auth()->user()->restaurant->id}}/edit"><i class="fa fa-user"></i> <span>Manage Profile</span></a></li>
+@endif
+
+
+@if(!auth()->user()->isRestaurant())
+	<li><a href="{{ backpack_url('cuisines') }}"><i class="fa fa-th"></i> <span>Cuisines</span></a></li>
+
 
 <li><a href="{{ backpack_url('cities') }}"><i class="fa fa-map-marker"></i> <span>Cities</span></a></li>
 
@@ -21,6 +31,7 @@
 
 <li class="header">Extras</li>
 <li><a href="{{ backpack_url('backup') }}"><i class="fa fa-hdd-o"></i> <span>Backups</span></a></li>
+
 <li><a href="{{ backpack_url('log') }}"><i class="fa fa-terminal"></i> <span>Logs</span></a></li>
 
 <!-- Users, Roles Permissions -->
@@ -33,3 +44,5 @@
 </ul>
 </li>
 <li><a href="{{  backpack_url("elfinder") }}"><i class="fa fa-files-o"></i> <span>File manager</span></a></li>
+
+@endif
