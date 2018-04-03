@@ -27,7 +27,7 @@ Contact: info@codenpixel.com
 */
 
 body {
-    background: rgba(252, 251, 249, 0.68);
+    /*background: rgba(252, 251, 249, 0.68);*/
     font-size: 16px;
     color: #4d4f56;
     font-weight: 400;
@@ -1317,7 +1317,7 @@ App section
 .app-section:after {
     content: "";
     background: url(../images/city-2.png) center bottom;
-    background-color: #f30;
+    background-color: #c09101;
     display: block;
     position: absolute;
     top: 100px;

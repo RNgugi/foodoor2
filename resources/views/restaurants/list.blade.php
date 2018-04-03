@@ -6,7 +6,28 @@
 
 
             <div class="inner-page-hero bg-image" data-image-src="/images/profile-banner.jpg" style="background: url(&quot;images/profile-banner.jpg&quot;) center center / cover no-repeat;">
-                <div class="container"> </div>
+                <div class="container"> 
+
+                  <div class="row">
+                     <div class="col-md-3">
+                        <img style="width: 280px;" src="/images/adv-img-1.jpg">
+                     </div>
+
+                     <div class="col-md-3">
+                        <img style="width: 280px;" src="/images/adv-img-2.jpg">
+                     </div>
+
+                     <div class="col-md-3">
+                        <img style="width: 280px;" src="/images/adv-img-3.jpg">
+                     </div>
+
+                     <div class="col-md-3">
+                        <img style="width: 280px;" src="/images/adv-img-1.jpg">
+                     </div>
+                  </div>
+
+
+                </div>
                 <!-- end:Container -->
             </div>
 
@@ -29,7 +50,7 @@
             </div>
 
 
-            <section class="restaurants-page">
+            <section class="restaurants-page" style="min-height: 1200px;">
                 <div class="container">
                     <div class="row">
                         <div class="col-xs-12 col-sm-5 col-md-5 col-lg-3">
@@ -65,7 +86,7 @@
                                    <div class="row">
                                        <div class="col-sm-12 col-md-12 col-lg-8 text-xs-center text-sm-left">
                                            <div class="entry-logo">
-                                               <a class="img-fluid" href="#"><img style="height: 90px;" src="{{ url($restaurant->logo) }}" alt="Food logo"></a>
+                                               <a class="img-fluid" href="#"><img style="height: 120px;" src="{{ url($restaurant->logo) }}" alt="Food logo"></a>
                                            </div>
                                            <!-- end:Logo -->
                                            <div class="entry-dscr">

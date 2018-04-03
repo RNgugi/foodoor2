@@ -28,7 +28,6 @@
           @yield('content')
          </div>
         
-        @include('partials._appBanner')
 
    
         @include('partials._footer')

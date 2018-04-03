@@ -54,7 +54,7 @@
             </div>
 
 
-            <div class="container m-t-30">
+            <div class="container m-t-30" style="min-height: 1200px;">
                <div class="row">
                   <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3">
                      <div class="sidebar clearfix m-b-20">

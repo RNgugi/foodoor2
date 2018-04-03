@@ -78,7 +78,10 @@
                     </div>
                 </div>
                 <!-- restaurants listing ends -->
-            
-            @include('partials._restaurantCta')
+
+             @include('partials._restaurantCta')
+
+
+             @include('partials._appBanner')
 
 @endsection
