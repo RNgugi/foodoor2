@@ -5,7 +5,7 @@
          
 
 
-            <div class="inner-page-hero bg-image" data-image-src="/images/profile-banner.jpg" style="background: url(&quot;images/profile-banner.jpg&quot;) center center / cover no-repeat;">
+            <div class="inner-page-hero bg-image" data-image-src="/images/profile-banner2.jpeg" style="background: url(&quot;images/profile-banner2.jpeg&quot;) center center / cover no-repeat;">
                 <div class="container"> 
 
                   <div class="row">
