@@ -24,15 +24,15 @@
                               <i class="fa fa-cutlery pull-right"></i> 
                            </div>
                            <ul>
-                              <li><a href="javascript(void)" class="scroll {{ request('cuisine') ==  '' }}">Most Popular</a></li>
-                              <li><a href="javascript(void)" class="scroll {{ request('cuisine') ==  '' }}">Veg restaurant</a></li>
-                              <li><a href="javascript(void)" class="scroll {{ request('cuisine') ==  '' }}">Non Veg Restaurant</a></li>
-                              <li><a href="javascript(void)" class="scroll {{ request('cuisine') ==  '' }}">Chinese</a></li>
+                              <li><a href="#" class="scroll {{ request('cuisine') ==  '' }}">Most Popular</a></li>
+                              <li><a href="#" class="scroll {{ request('cuisine') ==  '' }}">Veg restaurant</a></li>
+                              <li><a href="#" class="scroll {{ request('cuisine') ==  '' }}">Non Veg Restaurant</a></li>
+                              <li><a href="#" class="scroll {{ request('cuisine') ==  '' }}">Chinese</a></li>
 
-                               <li><a href="javascript(void)" class="scroll {{ request('cuisine') ==  '' }}">Biryani</a></li>
-                              <li><a href="javascript(void)6" class="scroll {{ request('cuisine') ==  '' }}"> All Restaurant</a></li>
-                              <li><a href="javascript(void)" class="scroll {{ request('cuisine') ==  '' }}">Near by you</a></li>
-                              <li><a href="javascript(void)" class="scroll {{ request('cuisine') ==  '' }}">Price</a></li>
+                               <li><a href="#" class="scroll {{ request('cuisine') ==  '' }}">Biryani</a></li>
+                              <li><a href="#" class="scroll {{ request('cuisine') ==  '' }}"> All Restaurant</a></li>
+                              <li><a href="#" class="scroll {{ request('cuisine') ==  '' }}">Near by you</a></li>
+                              <li><a href="#" class="scroll {{ request('cuisine') ==  '' }}">Price</a></li>
 
                            </ul>
                            <div class="clearfix"></div>
