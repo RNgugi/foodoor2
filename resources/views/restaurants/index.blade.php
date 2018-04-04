@@ -45,7 +45,7 @@
                   <div class="col-xs-12 col-sm-8 col-md-8 col-lg-9">
                     <!-- Each popular food item starts -->
                     @foreach($restaurants as $restaurant)
-                       <div class="col-xs-12 col-sm-6 col-md-6 food-item">
+                       <div class="col-xs-12 col-sm-4 col-md-4 food-item">
                            @include('partials._foodItemBig')
                        </div>
                     @endforeach
