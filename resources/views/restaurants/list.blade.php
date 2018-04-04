@@ -9,21 +9,21 @@
                 <div class="container"> 
 
                   <div class="row">
-                     <div class="col-md-3">
+                     <a href="/restaurants/{{ App\Models\Restaurant::first()->id }}" class="col-md-3">
                         <img style="width: 280px;" src="/images/adv-img-1.jpg">
-                     </div>
+                     </a>
 
-                     <div class="col-md-3">
+                     <a  href="/restaurants/{{ App\Models\Restaurant::first()->id }}" class="col-md-3">
                         <img style="width: 280px;" src="/images/adv-img-2.jpg">
-                     </div>
+                     </a>
 
-                     <div class="col-md-3">
+                     <a  href="/restaurants/{{ App\Models\Restaurant::first()->id }}" class="col-md-3">
                         <img style="width: 280px;" src="/images/adv-img-3.jpg">
-                     </div>
+                     </a>
 
-                     <div class="col-md-3">
+                     <a  href="/restaurants/{{ App\Models\Restaurant::first()->id }}" class="col-md-3">
                         <img style="width: 280px;" src="/images/adv-img-1.jpg">
-                     </div>
+                     </a>
                   </div>
 
 
@@ -53,32 +53,28 @@
             <section class="restaurants-page" style="min-height: 1200px;">
                 <div class="container">
                     <div class="row">
-                        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-3">
-                            <div class="sidebar clearfix m-b-20">
-                                <div class="main-block">
-                                    <div class="sidebar-title white-txt">
-                                        <h6>Choose Cusine</h6> <i class="fa fa-cutlery pull-right"></i> </div>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control search-field" placeholder="Search your favorite food"> <span class="input-group-btn"> 
-                                 <button class="btn btn-secondary search-btn" type="button"><i class="fa fa-search"></i></button> 
-                                 </span> </div>
-                                    <form>
-                                        <ul>
-                                          @foreach($cuisines as $cuisine)
-                                            <li>
-                                                <label class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input"> <span class="custom-control-indicator"></span> <span class="custom-control-description">{{ $cuisine->name }}</span> </label>
-                                            </li>
-                                          @endforeach  
-                                        </ul>
-                                    </form>
-                                    <div class="clearfix"></div>
-                                </div>
-                               
-                            </div>
-                           
-                            
+                      <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3">
+                     <div class="sidebar clearfix m-b-20">
+                        <div class="main-block">
+                           <div class="sidebar-title white-txt">
+                              <h6>Choose Cusine</h6>
+                              <i class="fa fa-cutlery pull-right"></i> 
+                           </div>
+                           <ul>
+                              <li><a href="javacript(void)" class="scroll {{ request('cuisine') ==  '' }}">Most Popular</a></li>
+                              <li><a href="javacript(void)" class="scroll {{ request('cuisine') ==  '' }}">All Items</a></li>
+                              <li><a href="javacript(void)" class="scroll {{ request('cuisine') ==  '' }}">Veg Items</a></li>
+                              <li><a href="javacript(void)" class="scroll {{ request('cuisine') ==  '' }}">Non-Veg Items</a></li>
+                              @foreach($cuisines as $cuisine)
+                              <li><a href="javacript(void)" class="scroll {{ request('cuisine') ==  $cuisine->id ? 'active' : '' }}">{{ $cuisine->name }}</a></li>
+                              @endforeach
+                           </ul>
+                           <div class="clearfix"></div>
                         </div>
+                        
+                     </div>
+                     
+                  </div>
                         <div class="col-xs-12 col-sm-7 col-md-7 col-lg-9">
 
                            @foreach($restaurants as $restaurant)
@@ -94,7 +90,7 @@
                                              {{ $cuisine->name }},  
                                            @endforeach<a href="#">...</a></span>
                                                <ul class="list-inline">
-                                                   <li class="list-inline-item"><i class="fa fa-check"></i> Min $ 10,00</li>
+                                                   <li class="list-inline-item"><i class="fa fa-check"></i> Min &#8377; 350</li>
                                                    <li class="list-inline-item"><i class="fa fa-motorcycle"></i> 30 min</li>
                                                </ul>
                                            </div>

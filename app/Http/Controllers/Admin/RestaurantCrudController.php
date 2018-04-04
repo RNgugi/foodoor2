@@ -72,10 +72,33 @@ class RestaurantCrudController extends CrudController
                'model' => "App\Models\City" // foreign key model
             ],
 
+             ['name' => 'open_time', 'label' => 'Open Time', 'type' => 'time'],
+
+             ['name' => 'close_time', 'label' => 'Close Time', 'type' => 'time'],
+
+
             ['name' => 'contact_name', 'label' => 'Contact Person *'],
             ['name' => 'contact_email', 'label' => 'Account Email (Email to access restaurant panel | Default Password : password) *'],
             ['name' => 'contact_phone', 'label' => 'Contact Phone *'],
             ['name' => 'website', 'label' => 'Website Link'],
+
+             ['name' => 'bank_name', 'label' => 'Bank Name'],
+
+             ['name' => 'bank_ifsc', 'label' => 'Bank IFSC Code'],
+
+             ['name' => 'bank_acc_no', 'label' => 'Bank Account No.'],
+
+             ['name' => 'bank_acc_name', 'label' => 'Bank Account Name'],
+
+              [ // select_from_array
+                'name' => 'bank_acc_type',
+                'label' => "Savings or Current?",
+                'type' => 'select2_from_array',
+                'options' => [0 => 'Savings Account', 1 => 'Current Account'],
+                'allows_null' => false,
+                'default' => 1,
+                // 'allows_multiple' => true, // OPTIONAL; needs you to cast this to array in your model;
+            ],
 
         ]);
 

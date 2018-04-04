@@ -21,6 +21,9 @@ Route::get('/restaurants/{restaurant}', 'RestaurantsController@show')->name('res
 Route::post('/checkout', 'CheckoutController@index');
 Route::get('/checkout/success', 'CheckoutController@success');
 
+Route::get('/cart/add/{item}', 'CartController@add');
+Route::get('/cart/remove/{item}/{restaurant}', 'CartController@remove');
+
 
 
 Route::group(['prefix' => 'admin', 'middleware' => ['admin'], 'namespace' => 'Admin'], function()

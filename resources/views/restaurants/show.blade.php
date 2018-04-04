@@ -5,17 +5,16 @@
 @section('content')
 
 
-
-            <section class="inner-page-hero bg-image" data-image-src="/images/profile-banner3.jpg" style="background: url(&quot;/images/profile-banner3.jpg&quot;) center center / cover no-repeat;">
+            <section class="inner-page-hero sticky-top"  style="background: #171a29;">
                <div class="profile">
                   <div class="container">
                      <div class="row">
-                        <div class="col-xs-12 col-sm-12  col-md-4 col-lg-4 profile-img">
+                        <div class="col-xs-12 col-sm-12  col-md-3 col-lg-4 profile-img">
                            <div class="image-wrap">
                               <figure><img src="{{ url($restaurant->logo) }}" style="height: 160px;" alt="Profile Image"></figure>
                            </div>
                         </div>
-                        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 profile-desc">
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 profile-desc">
                            <div class="pull-left right-text white-txt">
                               <h6><a href="#">{{ $restaurant->name }}</a></h6>
                               <a class="btn btn-small btn-green">Open</a>
@@ -23,7 +22,7 @@
                                              {{ $cuisine->name }},  
                                            @endforeach</p>
                               <ul class="nav nav-inline">
-                                 <li class="nav-item"> <a class="nav-link active" href="#"><i class="fa fa-check"></i> Min &#8377 10,00</a> </li>
+                                 <li class="nav-item"> <a class="nav-link active" href="#"><i class="fa fa-check"></i> Min &#8377 350</a> </li>
                                  <li class="nav-item"> <a class="nav-link" href="#"><i class="fa fa-motorcycle"></i> 30 min</a> </li>
                                  <li class="nav-item ratings">
                                     <a class="nav-link" href="#"> <span>
@@ -37,13 +36,21 @@
                               </ul>
                            </div>
                         </div>
+
+                        <div class="col-xs-12 col-sm-12 col-md-3">
+                              <div class="alert alert-success" role="alert" style="margin-top: 40px;">
+                              <b><i class="fa fa-percent"></i>  OFFER</b> <br>
+                                This is a success alert—check it out!
+                              </div>
+                        </div>
                      </div>
                   </div>
                </div>
             </section>
 
+         
 
-            <div class="breadcrumb">
+            <div class="breadcrumb" style="background: #fff;">
                <div class="container">
                   <ul>
                      <li><a href="#" class="active">Home</a></li>
@@ -53,11 +60,12 @@
                </div>
             </div>
 
+            
 
             <div class="container m-t-30" style="min-height: 1200px;">
                <div class="row">
-                  <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3">
-                     <div class="sidebar clearfix m-b-20">
+                  <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3 ">
+                     <div class="sidebar clearfix m-b-20 ">
                         <div class="main-block">
                            <div class="sidebar-title white-txt">
                               <h6>Choose Cusine</h6>
@@ -97,18 +105,24 @@
                            <div class="food-item {{ ($index+1) % 2 == 0 ? 'white' : '' }}">
                               <div class="row">
                                  <div class="col-xs-12 col-sm-12 col-lg-8">
-                                    <div class="rest-logo pull-left">
-                                       <a class="restaurant-logo pull-left" href="#"><img src="{{ url($item->photo) }}" style="width: 110px;height: 80px;" alt="Food logo"></a>
-                                    </div>
-                                    <!-- end:Logo -->
-                                    <div class="rest-descr">
+                                  <div class="rest-logo pull-left">
+                                       <a class="restaurant-logo pull-left" href="#">
+                                          @if($item->is_veg)
+                                           <img src="/images/veg.png" style="width: 15px;height: 15px;margin-top: 3px;" >
+                                          @else
+                                          <img src="/images/nonveg.png" style="width: 15px;height: 15px;margin-top: 3px;" >
+                                          @endif
+                                       </a>
+                                    </div> 
+                                    
+                                    <div class="rest-descr" style="padding-left: 23px;">
                                        <h6><a href="#">{{ $item->name }}</a></h6>
                                        <p>{{ $item->description }}</p>
                                     </div>
                                     <!-- end:Description -->
                                  </div>
                                  <!-- end:col -->
-                                 <div class="col-xs-12 col-sm-12 col-lg-4 pull-right item-cart-info"> <span class="price pull-left">&#8377; {{ $item->price }}</span> <a href="#" class="btn btn-small btn btn-secondary pull-right">+</a> </div>
+                                 <div class="col-xs-12 col-sm-12 col-lg-4 pull-right item-cart-info"> <span class="price pull-left">&#8377; {{ $item->price }}</span> <a href="/cart/add/{{$item->id}}" class="btn btn-small btn btn-secondary pull-right">+</a> </div>
                               </div>
                               <!-- end:row -->
                            </div>
@@ -133,32 +147,25 @@
                                  </h3>
                                  <div class="clearfix"></div>
                               </div>
+                              @foreach(Cart::instance('restaurant-'.$restaurant->id)->content() as $item)
+
                               <div class="order-row bg-white">
                                  <div class="widget-body">
-                                    <div class="title-row">Pizza Quatro Stagione <a href="#"><i class="fa fa-trash pull-right"></i></a></div>
+                                    <div class="title-row">{{ $item->name }} <a href="/cart/remove/{{$item->rowId}}/{{$restaurant->id}}"><i class="fa fa-trash pull-right"></i></a></div>
                                     <div class="form-group row no-gutter">
                                       
-                                          <input class="form-control" type="number" value="2" id="example-number-input"> 
+                                          <input class="form-control" type="number" value="{{ $item->qty }}" id="example-number-input"> 
                                       
                                     </div>
                                  </div>
                               </div>
-                              <div class="order-row">
-                                 <div class="widget-body">
-                                    <div class="title-row">Carlsberg Beer <a href="#"><i class="fa fa-trash pull-right"></i></a></div>
-                                    <div class="form-group row no-gutter">
-                                       
-                                          <input class="form-control" value="4" id="quant-input"> 
-                                       
-                                    </div>
-                                 </div>
-                              </div>
-                              <!-- end:Order row -->
+                              @endforeach
+                            
                             
                               <div class="widget-body">
                                  <div class="price-wrap text-xs-center">
-                                    <p>TOTAL</p>
-                                    <h3 class="value"><strong>&#8377; 25,49</strong></h3>
+                                    <p>SUBTOTAL</p>
+                                    <h3 class="value"><strong>&#8377; {{ Cart::instance('restaurant-'.$restaurant->id)->subtotal() }}</strong></h3>
                                     <p>Free Shipping</p>
                                     <button  type="submit" class="btn theme-btn btn-lg">Checkout</button>
                                  </div>

@@ -65,7 +65,15 @@ class ItemCrudController extends CrudController
 
             ['name' => 'price', 'label' => 'Price *'],
             
-
+            [ // select_from_array
+                'name' => 'is_veg',
+                'label' => "Veg or Non Veg",
+                'type' => 'select2_from_array',
+                'options' => [0 => 'Non Veg', 1 => 'Veg'],
+                'allows_null' => false,
+                'default' => 1,
+                // 'allows_multiple' => true, // OPTIONAL; needs you to cast this to array in your model;
+            ],
         ]);
 
 

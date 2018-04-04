@@ -1525,8 +1525,8 @@ footer li a {
 ============================*/
 
 .inner-page-hero {
-    padding-top: 5%;
-    padding-bottom: 5%;
+    padding-top: 3%;
+    padding-bottom: 3%;
 }
 
 
@@ -2731,3 +2731,8 @@ a[aria-expanded=false] .fa-angle-down {
     padding: 0 5px;
     color: #3a3e47;
 }
+
+
+.sticky-top{position:-webkit-sticky;position:sticky;top:0;z-index:1020000}
+
+
