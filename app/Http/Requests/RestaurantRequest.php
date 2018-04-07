@@ -26,7 +26,6 @@ class RestaurantRequest extends FormRequest
     public function rules()
     {
         return [
-            'rating' => 'required|min:1|max:5',
              'name' => 'required|min:3|max:255',
              'location' => 'required',
              'area' => 'required',
