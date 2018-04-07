@@ -27,9 +27,25 @@ class Cuisine extends Model
     {
         return $this->belongsToMany(Restaurant::class);
     }
+  
+    public function getParentCuisineAttribute()
+    {
+        return isset($this->parent) ? $this->parent->name : '-';
+    }
+
+    public function getNameTreeAttribute()
+    {
+        return isset($this->parent) ? $this->name . ' --> ' . $this->parent->name : $this->name;
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo(Cuisine::class, 'parent_id');
+    }
 
     public function getRestaurantsCountAttribute()
     {
         return count($this->restaurants);
     }
+
 }

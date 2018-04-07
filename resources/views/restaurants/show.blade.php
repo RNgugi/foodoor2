@@ -22,7 +22,7 @@
                                              {{ $cuisine->name }},  
                                            @endforeach</p>
                               <ul class="nav nav-inline">
-                                 <li class="nav-item"> <a class="nav-link active" href="#"><i class="fa fa-check"></i> Min &#8377 350</a> </li>
+                                 <li class="nav-item"> <a class="nav-link active" href="#"><i class="fa fa-check"></i> Min &#8377 {{ $restaurant->min_price }}</a> </li>
                                  <li class="nav-item"> <a class="nav-link" href="#"><i class="fa fa-motorcycle"></i> 30 min</a> </li>
                                  <li class="nav-item ratings">
                                     <a class="nav-link" href="#"> <span>

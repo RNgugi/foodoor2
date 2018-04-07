@@ -56,12 +56,7 @@ class Restaurant extends Model
         return $this->hasMany(Item::class);
     }
 
-    
-
-    public function setSlugAttribute($value)
-    {
-        $this->attributes['slug'] = str_slug($this->attributes['name']);
-    }
+ 
 
     
 }

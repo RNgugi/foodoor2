@@ -30,11 +30,22 @@ class CuisineCrudController extends CrudController
 
         $this->crud->addColumns([
             ['name' => 'name', 'label' => 'Name'],
+            ['name' => 'parentCuisine', 'label' => 'Parent Cuisine'],
             ['name' => 'restaurantsCount', 'label' => 'No. of Restaurants'],
         ]);
 
         $this->crud->addFields([
-            ['name' => 'name', 'label' => 'Name']
+            ['name' => 'name', 'label' => 'Name'],
+
+              [  // Select2
+               'label' => 'Parent Cuisine',
+               'type' => 'select2',
+               'name' => 'parent_id', // the db column for the foreign key
+               'entity' => 'parent', // the method that defines the relationship in your Model
+               'attribute' => 'name', // foreign key attribute that is shown to user
+               'model' => "App\Models\Cuisine", 
+             
+            ],
         ]);
 
         // ------ CRUD FIELDS
