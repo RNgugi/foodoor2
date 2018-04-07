@@ -15,7 +15,6 @@ if (isset($field['value']) && (is_array($field['value']) || is_object($field['va
 
 
 
-    <span>Location:</span>
 
     <div class="input-group">
         <input type="text" name="{{ $field['name'] }}" id="txtPlaces" class="form-control" placeholder="Enter a location"  @include('crud::inc.field_attributes') value="{{ old($field['name']) ? old($field['name']) : (isset($field['value']) ? $field['value'] : (isset($field['default']) ? $field['default'] : '' )) }}" />
