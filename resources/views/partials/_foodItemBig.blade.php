@@ -1,7 +1,7 @@
 <div class="food-item-wrap">
-<div class="figure-wrap bg-image" data-image-src="{{ url($restaurant->logo) }}" style="max-height: 250px;height: 250px;">
+<div class="figure-wrap bg-image" data-image-src="{{ isset($restaurant->logo) ? url($restaurant->logo) : 'http://via.placeholder.com/350x250' }}" style="max-height: 250px;height: 250px;">
     <div class="distance"><i class="fa fa-pin"></i>1240m</div>
-    <div class="rating pull-left"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> </div>
+    <div class="rating pull-left"> {!! getStars($restaurant->rating) !!}</div>
     
 </div>
 <div class="content">

@@ -172,6 +172,7 @@ class RestaurantCrudController extends CrudController
 
         $this->crud->entry->slug = str_slug($this->crud->entry->name);
 
+
         $this->crud->entry->save();
 
         return $redirect_location;

@@ -82,7 +82,7 @@
                                    <div class="row">
                                        <div class="col-sm-12 col-md-12 col-lg-8 text-xs-center text-sm-left">
                                            <div class="entry-logo">
-                                               <a class="img-fluid" href="#"><img style="height: 120px;" src="{{ url($restaurant->logo) }}" alt="Food logo"></a>
+                                               <a class="img-fluid" href="#"><img style="height: 120px;" src="{{ isset($restaurant->logo) ? url($restaurant->logo) : 'http://via.placeholder.com/350x250' }}" alt="Food logo"></a>
                                            </div>
                                            <!-- end:Logo -->
                                            <div class="entry-dscr">
@@ -99,7 +99,7 @@
                                        <div class="col-sm-12 col-md-12 col-lg-4 text-xs-center">
                                            <div class="right-content bg-white">
                                                <div class="right-review">
-                                                   <div class="rating-block"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> </div>
+                                                   <div class="rating-block"> {!! getStars($restaurant->rating) !!} </div>
                                                    <p> 245 Reviews</p> <a href="/restaurants/{{$restaurant->id}}" class="btn theme-btn-dash">View Menu</a> </div>
                                            </div>
                                            <!-- end:right info -->

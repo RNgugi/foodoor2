@@ -25,7 +25,7 @@ class Restaurant extends Model
     // public $timestamps = false;
     // protected $guarded = ['id'];
     protected $fillable = [ 'name', 'slug', 'area', 'pincode', 'location', 'logo','contact_name', 'contact_phone', 'contact_email', 'website', 'city_id', 'open_time',
-        'close_time', 'bank_name', 'bank_ifsc', 'bank_acc_no', 'bank_acc_name', 'bank_acc_type'];
+        'close_time', 'bank_name', 'bank_ifsc', 'bank_acc_no', 'bank_acc_name', 'bank_acc_type', 'rating'];
 
     protected $casts = [
         'photos' => 'array'
@@ -56,7 +56,6 @@ class Restaurant extends Model
         return $this->hasMany(Item::class);
     }
 
- 
 
     
 }
