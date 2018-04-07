@@ -107,9 +107,35 @@ class RestaurantCrudController extends CrudController
                , 'tab' => 'Location'
              ],
 
-             ['name' => 'open_time', 'label' => 'Open Time <span style="color: red;">*</span>', 'type' => 'time', 'tab' => 'General'],
+            
+              [ // select_from_array
+                'name' => 'open_time',
+                'label' => 'Opening Time <span style="color: red;">*</span>',
+                'type' => 'select2_from_array',
+                'options' => [0 => '12:00 AM', 1 => '1:00 AM', 2 => '2:00 AM', 3 => '3:00 AM', 4 => '4:00 AM', 5 => '5:00 AM', 6 => '6:00 AM', 7 => '7:00 AM',
+                              8 => '8:00 AM', 9 => '9:00 AM', 10 => '10:00 AM', 11 => '11:00 AM', 12 => '12:00 PM', 13 => '1:00 PM', 14 => '2:00 PM', 15 => '3:00 PM', 
+                              16 => '4:00 PM', 17 => '5:00 PM', 18 => '6:00 PM', 19 => '7:00 PM',
+                              20 => '8:00 PM', 21 => '9:00 PM', 22 => '10:00 PM', 23 => '11:00 PM' ],
+                'allows_null' => false,
+                'default' => 1
+                , 'tab' => 'General'
+                // 'allows_multiple' => true, // OPTIONAL; needs you to cast this to array in your model;
+             ],
 
-             ['name' => 'close_time', 'label' => 'Close Time <span style="color: red;">*</span>', 'type' => 'time', 'tab' => 'General'],
+              [ // select_from_array
+                'name' => 'close_time',
+                'label' => 'Closing Time <span style="color: red;">*</span>',
+                'type' => 'select2_from_array',
+                'options' => [0 => '12:00 AM', 1 => '1:00 AM', 2 => '2:00 AM', 3 => '3:00 AM', 4 => '4:00 AM', 5 => '5:00 AM', 6 => '6:00 AM', 7 => '7:00 AM',
+                              8 => '8:00 AM', 9 => '9:00 AM', 10 => '10:00 AM', 11 => '11:00 AM', 12 => '12:00 PM', 13 => '1:00 PM', 14 => '2:00 PM', 15 => '3:00 PM', 
+                              16 => '4:00 PM', 17 => '5:00 PM', 18 => '6:00 PM', 19 => '7:00 PM',
+                              20 => '8:00 PM', 21 => '9:00 PM', 22 => '10:00 PM', 23 => '11:00 PM' ],
+                'allows_null' => false,
+                'default' => 1
+                , 'tab' => 'General'
+                // 'allows_multiple' => true, // OPTIONAL; needs you to cast this to array in your model;
+             ],
+
 
              ['name' => 'min_price', 'label' => 'Minimum Price (2 person)', 'type' => 'number' , 'tab' => 'General'],
 

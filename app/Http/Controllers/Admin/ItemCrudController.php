@@ -79,8 +79,20 @@ class ItemCrudController extends CrudController
             ],
 
             [ // Table
+                'name' => 'sizes',
+                'label' => 'Available Sizes',
+                'type' => 'table',
+                'entity_singular' => 'option', // used on the "Add X" button
+                'columns' => [
+                    'name' => 'Name (Ex. Half/13 Inch etc.)',
+                    'price' => 'Price (Rs.)'
+                ],
+                'tab' => 'Available Sizes'
+            ],
+
+            [ // Table
                 'name' => 'toppings',
-                'label' => 'Extra Toppings',
+                'label' => 'Extra Options/Additions',
                 'type' => 'table',
                 'entity_singular' => 'option', // used on the "Add X" button
                 'columns' => [
@@ -88,7 +100,7 @@ class ItemCrudController extends CrudController
                     'desc' => 'Description (optional)',
                     'price' => 'Price (Rs.)'
                 ],
-                'tab' => 'Toppings'
+                'tab' => 'Options/Addition'
             ],
           
         ]);
