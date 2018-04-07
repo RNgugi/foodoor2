@@ -34,7 +34,8 @@ class RestaurantCrudController extends CrudController
         if(auth()->user()->isRestaurant())
         {
 
-             $this->crud->denyAccess('list');   
+             $this->crud->denyAccess('list');
+             $this->crud->denyAccess('create');   
 
         }
 
