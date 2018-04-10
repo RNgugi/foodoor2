@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use App\Http\Requests\Request;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CouponRequest extends FormRequest
+class DriverRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,10 +26,9 @@ class CouponRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'required|min:3|max:7',
-            'discount' => 'required',
-            'min_order' => 'required',
-            'discount_type' => 'required'
+            'contact_name' => 'required|min:2|max:255',
+            'contact_email' => 'required',
+            'phone' => 'required'
         ];
     }
 

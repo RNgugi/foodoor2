@@ -66,10 +66,12 @@ class ItemCrudController extends CrudController
             ],
 
             ['name' => 'price', 'label' => 'Price <span style="color: red;">*</span>', 'tab' => 'General', 'type' => 'number', 'attributes' => ["min" => 1]],
+
+             ['name' => 'discount_price', 'label' => 'Discount Price', 'tab' => 'General', 'type' => 'number', 'attributes' => ["min" => 1]],
             
             [ // select_from_array
                 'name' => 'is_veg',
-                'label' => "Veg or Non Veg",
+                'label' => 'Veg or Non Veg  <span style="color: red;">*</span>',
                 'type' => 'select2_from_array',
                 'options' => [0 => 'Non Veg', 1 => 'Veg'],
                 'allows_null' => false,

@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\CrudTrait;
 
-class Coupon extends Model
+class Driver extends Model
 {
     use CrudTrait;
 
@@ -15,27 +16,26 @@ class Coupon extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'coupons';
+    protected $table = 'drivers';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = [ 'code', 'promo_text', 'discount_type', 'discount', 'restaurant_id', 'valid_from', 'valid_through', 'min_order'];
+    protected $fillable = [ 'user_id', 'phone', 'area' ];
     // protected $hidden = [];
     // protected $dates = [];
 
-     public function restaurant()
+    public function getOrdersCountAttribute()
     {
-        return $this->belongsTo(Restaurant::class);
+        return 0;
     }
 
-    public function getRestaurantNameAttribute()
+    public function user()
     {
-        return $this->restaurant->name;
+        return $this->belongsTo(User::class);
     }
 
-
-    public function getDiscountTypeTextAttribute()
+     public function getFullNameAttribute()
     {
-        return $this->discount_type == 0 ? 'Flat' : 'Percentage';
+        return $this->user->name;
     }
 }

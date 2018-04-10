@@ -50,13 +50,13 @@ class CouponCrudController extends CrudController
                 'default' => 0,
             ],
 
-            ['name' => 'discount', 'label' => 'Discount  <span style="color: red;">*</span>', 'type' => 'number'],
+            ['name' => 'discount', 'label' => 'Discount  <span style="color: red;">*</span>', 'type' => 'number', 'attributes' => ["min" => 1]],
 
-             ['name' => 'valid_from', 'label' => 'Valid From  <span style="color: red;">*</span>', 'type' => 'date_picker'],
+            ['name' => 'min_orders', 'label' => 'Min Order Amount <span style="color: red;">*</span>', 'type' => 'number', 'attributes' => ["min" => 1]],
+  
+            ['name' => 'valid_from', 'label' => 'Valid From  <span style="color: red;">*</span>', 'type' => 'date_picker'],
 
-              ['name' => 'valid_through', 'label' => 'Valid Uptil  <span style="color: red;">*</span>', 'type' => 'date_picker'],
-
-
+            ['name' => 'valid_through', 'label' => 'Valid Uptil  <span style="color: red;">*</span>', 'type' => 'date_picker'],
 
         ]);
 

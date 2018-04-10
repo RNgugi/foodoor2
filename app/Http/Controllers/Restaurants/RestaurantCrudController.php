@@ -166,6 +166,27 @@ class RestaurantCrudController extends CrudController
                 // 'allows_multiple' => true, // OPTIONAL; needs you to cast this to array in your model;
              ],
 
+
+
+             ['name' => 'promo_text', 'label' => 'Promo Text (optional)', 'type' => 'textarea', 'tab' => 'Offer/Discount'],
+            
+            [ // select_from_array
+                'name' => 'discount_type  <span style="color: red;">*</span>',
+                'label' => "Flat or Percentage?",
+                'type' => 'select2_from_array',
+                'options' => [0 => 'Flat Discount', 1 => 'Percentage Base'],
+                'allows_null' => false,
+                'default' => 0,
+                'tab' => 'Offer/Discount'
+            ],
+
+            ['name' => 'discount', 'label' => 'Discount', 'type' => 'number', 'tab' => 'Offer/Discount'],
+
+            
+            ['name' => 'valid_from', 'label' => 'Valid From ', 'type' => 'date_picker', 'tab' => 'Offer/Discount'],
+
+              ['name' => 'valid_through', 'label' => 'Valid Uptil', 'type' => 'date_picker', 'tab' => 'Offer/Discount'],
+
         ]);
 
         

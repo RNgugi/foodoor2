@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
+use App\User;
+use Illuminate\Support\Facades\Hash;
 // VALIDATION: change the requests to match your own file names if you need form validation
-use App\Http\Requests\CouponRequest as StoreRequest;
-use App\Http\Requests\CouponRequest as UpdateRequest;
+use App\Http\Requests\DriverRequest as StoreRequest;
+use App\Http\Requests\DriverRequest as UpdateRequest;
 
-class CouponCrudController extends CrudController
+class DriverCrudController extends CrudController
 {
     public function setup()
     {
@@ -18,9 +20,9 @@ class CouponCrudController extends CrudController
         | BASIC CRUD INFORMATION
         |--------------------------------------------------------------------------
         */
-        $this->crud->setModel('App\Models\Coupon');
-        $this->crud->setRoute(config('backpack.base.route_prefix') . '/coupons');
-        $this->crud->setEntityNameStrings('coupon', 'coupons');
+        $this->crud->setModel('App\Models\Driver');
+        $this->crud->setRoute(config('backpack.base.route_prefix') . '/drivers');
+        $this->crud->setEntityNameStrings('Delivery Boy', 'Delivery Boys');
 
         /*
         |--------------------------------------------------------------------------
@@ -28,50 +30,19 @@ class CouponCrudController extends CrudController
         |--------------------------------------------------------------------------
         */
 
-        
+       
         $this->crud->addColumns([
-            ['name' => 'code', 'label' => 'Coupon Code'],
-            ['name' => 'discount_type_text', 'label' => 'Discount Type'],
-            ['name' => 'discount', 'label' => 'Discount (Rs.)'],
-            ['name' => 'restaurantName', 'label' => 'Restaurant']
+            ['name' => 'fullName', 'label' => 'Full Name'],
+            ['name' => 'area', 'label' => 'Area'],
+            ['name' => 'ordersCount', 'label' => 'Orders Served'],
         ]);
 
         $this->crud->addFields([
-            
-            ['name' => 'code', 'label' => 'Coupon Code  <span style="color: red;">*</span>'],
-
-            ['name' => 'promo_text', 'label' => 'Promo Text (optional)', 'type' => 'textarea'],
-            
-            [ // select_from_array
-                'name' => 'discount_type  <span style="color: red;">*</span>',
-                'label' => "Flat or Percentage?",
-                'type' => 'select2_from_array',
-                'options' => [0 => 'Flat Discount', 1 => 'Percentage Base'],
-                'allows_null' => false,
-                'default' => 0,
-            ],
-
-            ['name' => 'discount', 'label' => 'Discount  <span style="color: red;">*</span>', 'type' => 'number', 'attributes' => ["min" => 1]],
-
-             ['name' => 'min_order', 'label' => 'Min Order Amount <span style="color: red;">*</span>', 'type' => 'number', 'attributes' => ["min" => 1]],
-
-            ['name' => 'valid_from', 'label' => 'Valid From  <span style="color: red;">*</span>', 'type' => 'date_picker'],
-
-              ['name' => 'valid_through', 'label' => 'Valid Uptil  <span style="color: red;">*</span>', 'type' => 'date_picker'],
-
-
+            ['name' => 'contact_name', 'label' => 'Full Name <span style="color: red;">*</span>'],
+            ['name' => 'contact_email', 'label' => 'Email Address (Email to access delivery boy app | Default Password : password) <span style="color: red;">*</span>', 'type' => 'email'],
+            ['name' => 'phone', 'label' => 'Phone No.  <span style="color: red;">*</span>', 'type' => 'number', 'attributes' => ['min' => 1]],
+            ['name' => 'area', 'label' => 'Area'],
         ]);
-
-         $this->crud->addField([  // Select2
-                   'label' => "Restaurant *",
-                   'type' => 'select2',
-                   'name' => 'restaurant_id', // the db column for the foreign key
-                   'entity' => 'restaurant', // the method that defines the relationship in your Model
-                   'attribute' => 'name', // foreign key attribute that is shown to user
-                   'model' => "App\Models\Restaurant",
-                  
-                ]);
-
 
         // ------ CRUD FIELDS
         // $this->crud->addField($options, 'update/create/both');
@@ -148,6 +119,26 @@ class CouponCrudController extends CrudController
         $redirect_location = parent::storeCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
+        $user = User::where('email', $this->crud->entry->contact_email)->first();
+
+        if($user != null)
+        {
+            $this->crud->entry->account_id = $user->id;
+        } else {
+
+            $user = User::create([
+                'name' => $request->get('contact_name'),
+                'email' =>  $request->get('contact_email'),
+                'password' => Hash::make('password'),
+            ]);
+
+            $this->crud->entry->user_id = $user->id;
+        }
+
+
+
+        $this->crud->entry->save();
+
         return $redirect_location;
     }
 
@@ -157,6 +148,27 @@ class CouponCrudController extends CrudController
         $redirect_location = parent::updateCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
+
+        $user = User::where('email', $this->crud->entry->contact_email)->first();
+
+        if($user != null)
+        {
+            $this->crud->entry->account_id = $user->id;
+        } else {
+
+            $user = User::create([
+                'name' => $request->get('contact_name'),
+                'email' => $request->get('contact_email'),
+                'password' => Hash::make('password'),
+            ]);
+
+            $this->crud->entry->user_id = $user->id;
+        }
+
+
+
+        $this->crud->entry->save();
+
         return $redirect_location;
     }
 }

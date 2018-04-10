@@ -38,6 +38,8 @@
 
 <li><a href="{{ backpack_url('coupons') }}"><i class="fa fa-qrcode"></i> <span>Coupons</span></a></li>
 
+<li><a href="{{ backpack_url('drivers') }}"><i class="fa fa-motorcycle"></i> <span>Delivery Boys</span></a></li>
+
 
 <li class="header">General Options</li>
 <li><a href="{{ backpack_url('setting') }}"><i class="fa fa-cog"></i> <span>Settings</span></a></li>

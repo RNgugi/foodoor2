@@ -35,6 +35,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin'], 'namespace' => 'Ad
     CRUD::resource('cuisines', 'CuisineCrudController');
     CRUD::resource('cities', 'CityCrudController');
     CRUD::resource('coupons', 'CouponCrudController');
+    CRUD::resource('drivers', 'DriverCrudController');
 });
 
 
