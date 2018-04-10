@@ -154,7 +154,7 @@ class DriverCrudController extends CrudController
             $user = User::create([
                 'name' => $request->get('contact_name'),
                 'email' =>  $request->get('contact_email'),
-                'password' => Hash::make('password'),
+                'password' => Hash::make(config('settings.default_password')),
             ]);
 
             $this->crud->entry->user_id = $user->id;
