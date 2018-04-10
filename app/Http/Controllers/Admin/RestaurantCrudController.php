@@ -215,7 +215,7 @@ class RestaurantCrudController extends CrudController
                $user = User::create([
                 'name' => $this->crud->entry->contact_name,
                 'email' => $this->crud->entry->contact_email,
-                'password' => Hash::make('password'),
+                'password' => Hash::make(config('settings.default_password')),
             ]);
 
                  $this->crud->entry->account_id = $user->id;

@@ -43,7 +43,7 @@ class DriverCrudController extends CrudController
         $this->crud->addFields([
             [   // Upload
                 'name' => 'profile_pic',
-                'label' => 'Profile Image',
+                'label' => 'Profile Image <span style="color: red;">*</span>',
                 'type' => 'upload',
                 'upload' => true,
                 'driver' => 'uploads' // if you store files in the /public folder, please ommit this; if you store them in /storage or S3, please specify it;
@@ -51,7 +51,7 @@ class DriverCrudController extends CrudController
             
             [   // Upload
                 'name' => 'legal_id',
-                'label' => 'Verification ID',
+                'label' => 'Verification ID <span style="color: red;">*</span>',
                 'type' => 'upload',
                 'upload' => true,
                 'driver' => 'uploads' // if you store files in the /public folder, please ommit this; if you store them in /storage or S3, please specify it;
