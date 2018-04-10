@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Restaurants;
+namespace App\Http\Controllers\Admin;
 
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
-use App\Http\Requests\OrderRequest as StoreRequest;
-use App\Http\Requests\OrderRequest as UpdateRequest;
+use App\Http\Requests\CouponRequest as StoreRequest;
+use App\Http\Requests\CouponRequest as UpdateRequest;
 
-class OrderCrudController extends CrudController
+class CouponCrudController extends CrudController
 {
     public function setup()
     {
@@ -18,9 +18,9 @@ class OrderCrudController extends CrudController
         | BASIC CRUD INFORMATION
         |--------------------------------------------------------------------------
         */
-        $this->crud->setModel('App\Models\Order');
-        $this->crud->setRoute('restaurants-admin'. '/orders');
-        $this->crud->setEntityNameStrings('order', 'orders');
+        $this->crud->setModel('App\Models\Coupon');
+        $this->crud->setRoute(config('backpack.base.route_prefix') . '/coupons');
+        $this->crud->setEntityNameStrings('coupon', 'coupons');
 
         /*
         |--------------------------------------------------------------------------
@@ -28,25 +28,44 @@ class OrderCrudController extends CrudController
         |--------------------------------------------------------------------------
         */
 
-          $this->crud->addColumns([
-            ['name' => 'id', 'label' => 'Order ID'],
-            ['name' => 'customer_name', 'label' => 'Customer Name'],
-            ['name' => 'restaurant_name', 'label' => 'Restaurant Name'],
-            ['name' => 'itemsCount', 'label' => 'Items Count'],
-            ['name' => 'amount', 'label' => 'Amount (Rs.)'],
-            ['name' => 'status_text', 'label' => 'Status'],
+        
+        $this->crud->addColumns([
+            ['name' => 'code', 'label' => 'Coupon Code'],
+            ['name' => 'discount_type', 'label' => 'Discount Type'],
+            ['name' => 'discount', 'label' => 'Discount'],
+            ['name' => 'restaurantName', 'label' => 'Restaurant Name']
         ]);
 
-           $this->crud->addFields([
-             
-            ['name' => 'status', 'label' => 'Order Status', 'type' => 'number'],
+        $this->crud->addFields([
+            
+            ['name' => 'code', 'label' => 'Coupon Code'],
+
+            ['name' => 'promo_text', 'label' => 'Promo Text (optional)', 'type' => 'textarea'],
+            
+            [ // select_from_array
+                'name' => 'discount_type',
+                'label' => "Flat or Percentage?",
+                'type' => 'select2_from_array',
+                'options' => [0 => 'Flat Discount', 1 => 'Percentage Base'],
+                'allows_null' => false,
+                'default' => 0,
+            ],
+
+            ['name' => 'discount', 'label' => 'Discount', 'type' => 'number'],
+
+
         ]);
 
+         $this->crud->addField([  // Select2
+                   'label' => "Restaurant *",
+                   'type' => 'select2',
+                   'name' => 'restaurant_id', // the db column for the foreign key
+                   'entity' => 'restaurant', // the method that defines the relationship in your Model
+                   'attribute' => 'name', // foreign key attribute that is shown to user
+                   'model' => "App\Models\Restaurant",
+                  
+                ]);
 
-           if(auth()->user()->isRestaurant())
-           {
-              $this->crud->addClause('where', 'restaurant_id', '==', auth()->user()->restaurant->id);
-           } 
 
         // ------ CRUD FIELDS
         // $this->crud->addField($options, 'update/create/both');
@@ -74,7 +93,7 @@ class OrderCrudController extends CrudController
 
         // ------ CRUD ACCESS
         // $this->crud->allowAccess(['list', 'create', 'update', 'reorder', 'delete']);
-        $this->crud->denyAccess(['create', 'reorder',]);
+        // $this->crud->denyAccess(['list', 'create', 'update', 'reorder', 'delete']);
 
         // ------ CRUD REORDER
         // $this->crud->enableReorder('label_name', MAX_TREE_LEVEL);

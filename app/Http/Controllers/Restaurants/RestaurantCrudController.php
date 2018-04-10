@@ -22,7 +22,7 @@ class RestaurantCrudController extends CrudController
         |--------------------------------------------------------------------------
         */
         $this->crud->setModel('App\Models\Restaurant');
-        $this->crud->setRoute('restaurants-admin/' . '/restaurants');
+        $this->crud->setRoute('restaurants-admin' . '/restaurants');
         $this->crud->setEntityNameStrings('restaurant', 'restaurants');
 
         /*

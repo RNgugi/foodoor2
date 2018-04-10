@@ -19,7 +19,7 @@ class EarningsCrudController extends CrudController
         |--------------------------------------------------------------------------
         */
         $this->crud->setModel('App\Models\Order');
-        $this->crud->setRoute('restaurants-admin/' . '/earnings');
+        $this->crud->setRoute('restaurants-admin' . '/earnings');
         $this->crud->setEntityNameStrings('earning', 'earnings');
 
         /*

@@ -19,7 +19,7 @@ class ItemCrudController extends CrudController
         |--------------------------------------------------------------------------
         */
         $this->crud->setModel('App\Models\Item');
-        $this->crud->setRoute('restaurants-admin/' . '/items');
+        $this->crud->setRoute('restaurants-admin' . '/items');
         $this->crud->setEntityNameStrings('item', 'items');
 
         /*

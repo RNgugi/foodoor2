@@ -34,6 +34,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin'], 'namespace' => 'Ad
     CRUD::resource('items', 'ItemCrudController');
     CRUD::resource('cuisines', 'CuisineCrudController');
     CRUD::resource('cities', 'CityCrudController');
+    CRUD::resource('coupons', 'CouponCrudController');
 });
 
 
