@@ -4,7 +4,8 @@
 <li><a href="{{ '/restaurants-admin/orders' }}"><i class="fa fa-file-text"></i> <span>Orders</span></a></li>
 <li><a href="{{ '/restaurants-admin/earnings' }}"><i class="fa fa-money"></i> <span>Earnings</span></a></li>
 <li><a href="{{ '/restaurants-admin/items' }}"><i class="fa fa-list-ul"></i> <span>Menu Items</span></a></li>
-<li><a href="{{ '/restaurants-admin/coupons' }}"><i class="fa fa-qrcode"></i> <span>Coupons</span></a></li>
+<li><a href="{{ '/restaurants-admin/coupons' }}"><i class="fa fa-qrcode"></i> <span>Offer Coupons</span></a></li>
+<li><a href="{{ '/restaurants-admin/freedeliveries' }}"><i class="fa fa-qrcode"></i> <span>Free Delivery Coupons</span></a></li>
 <li><a href="/restaurants-admin/restaurants/{{ auth()->user()->restaurant->id}}/edit"><i class="fa fa-user"></i> <span>Manage Restaurant</span></a></li>
 
 @else
@@ -36,7 +37,9 @@
 
 <li><a href="{{ backpack_url('cities') }}"><i class="fa fa-map-marker"></i> <span>Cities</span></a></li>
 
-<li><a href="{{ backpack_url('coupons') }}"><i class="fa fa-qrcode"></i> <span>Coupons</span></a></li>
+<li><a href="{{ backpack_url('coupons') }}"><i class="fa fa-qrcode"></i> <span>Offer Coupons</span></a></li>
+
+<li><a href="{{ backpack_url('freedeliveries') }}"><i class="fa fa-qrcode"></i> <span>Free Delivery Coupons</span></a></li>
 
 <li><a href="{{ backpack_url('drivers') }}"><i class="fa fa-motorcycle"></i> <span>Delivery Boys</span></a></li>
 

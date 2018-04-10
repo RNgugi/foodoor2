@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\CrudTrait;
 
-class Coupon extends Model
+class Freedelivery extends Model
 {
     use CrudTrait;
 
@@ -15,15 +15,15 @@ class Coupon extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'coupons';
+    protected $table = 'freedeliveries';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = [ 'code', 'promo_text', 'discount_type', 'discount', 'restaurant_id', 'valid_from', 'valid_through', 'min_order'];
+    protected $fillable = ['code', 'min_order', 'promo_text', 'valid_from', 'valid_through', 'restaurant_id'];
     // protected $hidden = [];
     // protected $dates = [];
 
-     public function restaurant()
+    public function restaurant()
     {
         return $this->belongsTo(Restaurant::class);
     }
@@ -33,9 +33,4 @@ class Coupon extends Model
         return isset($this->restaurant) ? $this->restaurant->name : 'All Restaurants';
     }
 
-
-    public function getDiscountTypeTextAttribute()
-    {
-        return $this->discount_type == 0 ? 'Flat' : 'Percentage';
-    }
 }

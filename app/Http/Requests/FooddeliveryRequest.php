@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use App\Http\Requests\Request;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CouponRequest extends FormRequest
+class FooddeliveryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,9 +27,7 @@ class CouponRequest extends FormRequest
     {
         return [
             'code' => 'required|min:3|max:10|unique:coupons|unique:freedeliveries',
-            'discount' => 'required',
             'min_order' => 'required',
-            'discount_type' => 'required',
             'valid_from' => 'required',
             'valid_through' => 'required'
         ];
