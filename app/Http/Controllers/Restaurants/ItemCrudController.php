@@ -52,11 +52,11 @@ class ItemCrudController extends CrudController
                     'tab' => 'General'
                 ],
 
-            ['name' => 'name', 'label' => 'Name *', 'tab' => 'General'],
-            ['name' => 'description', 'label' => 'Decription/Ingredients *', 'tab' => 'General'],
+            ['name' => 'name', 'label' => 'Name <span style="color: red;">*</span>', 'tab' => 'General'],
+            ['name' => 'description', 'label' => 'Decription/Ingredients <span style="color: red;">*</span>', 'tab' => 'General'],
             ['name' => 'slug', 'label' => 'Slug', 'type' => 'hidden', 'value' => 'a', 'tab' => 'General'],
             [  // Select2
-               'label' => "Cuisine *",
+               'label' => 'Cuisine  <span style="color: red;">*</span>',
                'type' => 'select2',
                'name' => 'cuisine_id', // the db column for the foreign key
                'entity' => 'cuisine', // the method that defines the relationship in your Model
@@ -65,10 +65,10 @@ class ItemCrudController extends CrudController
                'tab' => 'General'
             ],
 
-            ['name' => 'price', 'label' => 'Price *', 'tab' => 'General', 'type' => 'number', 'attributes' => ["min" => 1]],
+            ['name' => 'price', 'label' => 'Price  <span style="color: red;">*</span>', 'tab' => 'General', 'type' => 'number', 'attributes' => ["min" => 1]],
             
             [ // select_from_array
-                'name' => 'is_veg',
+                'name' => 'is_veg  <span style="color: red;">*</span>',
                 'label' => "Veg or Non Veg",
                 'type' => 'select2_from_array',
                 'options' => [0 => 'Non Veg', 1 => 'Veg'],

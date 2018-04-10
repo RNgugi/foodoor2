@@ -19,7 +19,7 @@ class Coupon extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = [ 'code', 'promo_text', 'discount_type', 'discount', 'restaurant_id' ];
+    protected $fillable = [ 'code', 'promo_text', 'discount_type', 'discount', 'restaurant_id', 'valid_from', 'valid_through'];
     // protected $hidden = [];
     // protected $dates = [];
 
@@ -31,5 +31,11 @@ class Coupon extends Model
     public function getRestaurantNameAttribute()
     {
         return $this->restaurant->name;
+    }
+
+
+    public function getDiscountTypeTextAttribute()
+    {
+        return $this->discount_type == 0 ? 'Flat' : 'Percentage';
     }
 }

@@ -45,5 +45,6 @@ Route::group(['prefix' => 'restaurants-admin', 'middleware' => ['admin'], 'names
 	CRUD::resource('earnings', 'EarningsCrudController');
     CRUD::resource('restaurants', 'RestaurantCrudController');
     CRUD::resource('items', 'ItemCrudController');
+    CRUD::resource('coupons', 'CouponCrudController');
 });
 

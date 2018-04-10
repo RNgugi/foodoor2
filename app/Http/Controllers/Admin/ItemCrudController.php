@@ -53,7 +53,7 @@ class ItemCrudController extends CrudController
                 ],
 
             ['name' => 'name', 'label' => 'Name *', 'tab' => 'General'],
-            ['name' => 'description', 'label' => 'Decription/Ingredients *', 'tab' => 'General'],
+            ['name' => 'description', 'label' => 'Decription/Ingredients <span style="color: red;">*</span>', 'tab' => 'General'],
             ['name' => 'slug', 'label' => 'Slug', 'type' => 'hidden', 'value' => 'a', 'tab' => 'General'],
             [  // Select2
                'label' => "Cuisine *",
@@ -65,7 +65,7 @@ class ItemCrudController extends CrudController
                'tab' => 'General'
             ],
 
-            ['name' => 'price', 'label' => 'Price *', 'tab' => 'General', 'type' => 'number', 'attributes' => ["min" => 1]],
+            ['name' => 'price', 'label' => 'Price <span style="color: red;">*</span>', 'tab' => 'General', 'type' => 'number', 'attributes' => ["min" => 1]],
             
             [ // select_from_array
                 'name' => 'is_veg',
@@ -109,7 +109,7 @@ class ItemCrudController extends CrudController
          if(!auth()->user()->isRestaurant())
            {
               $this->crud->addField([  // Select2
-                   'label' => "Restaurant *",
+                   'label' => 'Restaurant <span style="color: red;">*</span>',
                    'type' => 'select2',
                    'name' => 'restaurant_id', // the db column for the foreign key
                    'entity' => 'restaurant', // the method that defines the relationship in your Model

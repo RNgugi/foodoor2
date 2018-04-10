@@ -31,6 +31,7 @@ class ItemRequest extends FormRequest
             'cuisine_id' => 'required',
             'price' => 'required',
             'restaurant_id' => 'required',
+            'is_veg' => 'required',
 
         ];
     }
