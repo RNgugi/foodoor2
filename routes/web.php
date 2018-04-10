@@ -36,3 +36,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin'], 'namespace' => 'Ad
     CRUD::resource('cities', 'CityCrudController');
 });
 
+
+Route::group(['prefix' => 'restaurants-admin', 'middleware' => ['admin'], 'namespace' => 'Restaurants'], function()
+{
+	Route::get('/', 'DashboardController@dashboard');
+	CRUD::resource('orders', 'OrderCrudController');
+	CRUD::resource('earnings', 'EarningsCrudController');
+    CRUD::resource('restaurants', 'RestaurantCrudController');
+    CRUD::resource('items', 'ItemCrudController');
+});
+
