@@ -45,16 +45,21 @@ class ItemCrudController extends CrudController
 
 
         $this->crud->addFields([
-             [   // Browse
-                    'name' => 'photo',
-                    'label' => 'Item Photo',
-                    'type' => 'browse',
-                    'tab' => 'General'
-                ],
+              [   // Upload
+                'name' => 'photo',
+                'label' => 'Item Logo',
+                'type' => 'upload',
+                'upload' => true,
+                'driver' => 'uploads', // if you store files in the /public folder, please ommit this; if you store them in /storage or S3, please specify it;,
+                'tab' => 'General'
+            ],   
 
             ['name' => 'name', 'label' => 'Name *', 'tab' => 'General'],
+
             ['name' => 'description', 'label' => 'Decription/Ingredients <span style="color: red;">*</span>', 'tab' => 'General'],
+
             ['name' => 'slug', 'label' => 'Slug', 'type' => 'hidden', 'value' => 'a', 'tab' => 'General'],
+
             [  // Select2
                'label' => "Cuisine *",
                'type' => 'select2',

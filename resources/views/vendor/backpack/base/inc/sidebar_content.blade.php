@@ -46,7 +46,6 @@
 
 <li class="header">General Options</li>
 <li><a href="{{ backpack_url('setting') }}"><i class="fa fa-cog"></i> <span>Settings</span></a></li>
-<li><a href="{{  backpack_url("elfinder") }}"><i class="fa fa-files-o"></i> <span>File manager</span></a></li>
 
 <li class="header">Extras</li>
 <li><a href="{{ backpack_url('backup') }}"><i class="fa fa-hdd-o"></i> <span>Backups</span></a></li>
@@ -63,7 +62,6 @@
   <li><a href="{{ url(config('backpack.base.route_prefix', 'admin') . '/permission') }}"><i class="fa fa-key"></i> <span>Permissions</span></a></li>
 </ul>
 </li>
-<li><a href="{{  backpack_url("elfinder") }}"><i class="fa fa-files-o"></i> <span>File manager</span></a></li>
 
 @endif
 

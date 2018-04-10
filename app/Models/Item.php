@@ -77,5 +77,14 @@ class Item extends Model implements Buyable
     {
         return $this->price;
     }
+
+     public function setPhotoAttribute($value)
+    {
+        $attribute_name = "photo";
+        $disk = "public";
+        $destination_path = "uploads/items";
+
+        $this->uploadFileToDisk($value, $attribute_name, $disk, $destination_path);
+    }
   
 }

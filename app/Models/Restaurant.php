@@ -56,6 +56,15 @@ class Restaurant extends Model
         return $this->hasMany(Item::class);
     }
 
+     public function setLogoAttribute($value)
+    {
+        $attribute_name = "logo";
+        $disk = "public";
+        $destination_path = "uploads/restaurants";
+
+        $this->uploadFileToDisk($value, $attribute_name, $disk, $destination_path);
+    }
+
 
     
 }
