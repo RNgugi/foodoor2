@@ -20,3 +20,32 @@ function getStars($rating) {
   return join("",$output);
 
 }
+
+
+function sendSMS($number, $message)
+{
+  // Account details
+  $apiKey = urlencode('PlfU4yW3uc8-Jva0w5EyzaBh3Pbnjye1QIaSBYnN47');
+  
+  // Message details
+  
+  $sender = urlencode('TXTLCL');
+  $message = rawurlencode($message);
+ 
+  $number = '91' . $number;
+  
+  // Prepare data for POST request
+  $data = array('apikey' => $apiKey, 'numbers' => $number, "sender" => $sender, "message" => $message);
+ 
+  // Send the POST request with cURL
+  $ch = curl_init('https://api.textlocal.in/send/');
+  curl_setopt($ch, CURLOPT_POST, true);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  $response = curl_exec($ch);
+  curl_close($ch);
+  
+  // Process your response here
+  return $response;
+}
+
