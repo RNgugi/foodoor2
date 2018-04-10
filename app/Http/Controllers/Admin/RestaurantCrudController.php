@@ -75,7 +75,8 @@ class RestaurantCrudController extends CrudController
                 'name' => 'logo',
                 'label' => 'Restaurant Logo',
                 'type' => 'upload',
-                'upload' => true, // if you store files in the /public folder, please ommit this; if you store them in /storage or S3, please specify it;
+                'upload' => true,
+                'driver' => 'uploads' // if you store files in the /public folder, please ommit this; if you store them in /storage or S3, please specify it;
             ],   
 
             

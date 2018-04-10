@@ -59,7 +59,7 @@ class Restaurant extends Model
      public function setLogoAttribute($value)
     {
         $attribute_name = "logo";
-        $disk = "public";
+        $disk = "local";
         $destination_path = "uploads/restaurants";
 
         $this->uploadFileToDisk($value, $attribute_name, $disk, $destination_path);
