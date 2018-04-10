@@ -68,13 +68,13 @@ class RestaurantCrudController extends CrudController
 
         $this->crud->addFields([
 
-              [   // Browse
-                    'name' => 'logo',
-                    'label' => 'Restaurant Logo',
-                    'type' => 'browse',
-                    'tab' => 'General'
-                ],
-
+              [   // Upload
+                'name' => 'logo',
+                'label' => 'Restaurant Logo',
+                'type' => 'upload',
+                'upload' => true,
+                'driver' => 'uploads' // if you store files in the /public folder, please ommit this; if you store them in /storage or S3, please specify it;
+            ],   
             
              
              
@@ -137,7 +137,7 @@ class RestaurantCrudController extends CrudController
              ],
 
 
-             ['name' => 'min_price', 'label' => 'Minimum Price (2 person)', 'type' => 'number' , 'tab' => 'General'],
+             ['name' => 'min_price', 'label' => 'Minimum Price (2 person)', 'type' => 'number' , 'tab' => 'General', 'attributes' => ['min' => 1]],
 
              ['name' => 'contact_name', 'label' => 'Contact Person <span style="color: red;">*</span>', 'tab' => 'Account'],
 
@@ -180,8 +180,9 @@ class RestaurantCrudController extends CrudController
                 'tab' => 'Offer/Discount'
             ],
 
-            ['name' => 'discount', 'label' => 'Discount', 'type' => 'number', 'tab' => 'Offer/Discount'],
+            ['name' => 'discount', 'label' => 'Discount', 'type' => 'number', 'tab' => 'Offer/Discount', 'attributes' => ['min' => 1]],
 
+            ['name' => 'min_order', 'label' => 'Minimum Order Amount', 'type' => 'number', 'tab' => 'Offer/Discount', 'attributes' => ['min' => 1]],
             
             ['name' => 'valid_from', 'label' => 'Valid From ', 'type' => 'date_picker', 'tab' => 'Offer/Discount'],
 

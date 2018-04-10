@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddFeaturedToItems extends Migration
+class AddMinOrderToRestaurants extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddFeaturedToItems extends Migration
      */
     public function up()
     {
-        Schema::table('items', function (Blueprint $table) {
-            $table->integer('featured')->default(0);
+        Schema::table('restaurants', function (Blueprint $table) {
+            $table->double('min_order')->nullable();
         });
     }
 
@@ -25,8 +25,8 @@ class AddFeaturedToItems extends Migration
      */
     public function down()
     {
-        Schema::table('items', function (Blueprint $table) {
-            $table->dropColumn('featured');
+        Schema::table('restaurants', function (Blueprint $table) {
+             $table->dropColumn('min_order');
         });
     }
 }

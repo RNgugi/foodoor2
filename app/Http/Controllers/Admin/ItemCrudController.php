@@ -85,6 +85,17 @@ class ItemCrudController extends CrudController
                 // 'allows_multiple' => true, // OPTIONAL; needs you to cast this to array in your model;
             ],
 
+            [ // select_from_array
+                'name' => 'featured',
+                'label' => 'Is Featured <span style="color: red;">*</span>',
+                'type' => 'select2_from_array',
+                'options' => [0 => 'No', 1 => 'Yes'],
+                'allows_null' => false,
+                'default' => 0,
+                'tab' => 'General'
+                // 'allows_multiple' => true, // OPTIONAL; needs you to cast this to array in your model;
+            ],
+
             [ // Table
                 'name' => 'sizes',
                 'label' => 'Available Sizes',

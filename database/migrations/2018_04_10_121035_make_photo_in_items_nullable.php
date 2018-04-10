@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddFeaturedToItems extends Migration
+class MakePhotoInItemsNullable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,9 @@ class AddFeaturedToItems extends Migration
     public function up()
     {
         Schema::table('items', function (Blueprint $table) {
+           
             $table->integer('featured')->default(0);
+            $table->string('photo')->nullable()->change();
         });
     }
 
@@ -26,7 +28,9 @@ class AddFeaturedToItems extends Migration
     public function down()
     {
         Schema::table('items', function (Blueprint $table) {
-            $table->dropColumn('featured');
+           
+             $table->dropColumn('featured');
+             $table->string('photo')->change();
         });
     }
 }

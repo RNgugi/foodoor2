@@ -182,7 +182,9 @@ class RestaurantCrudController extends CrudController
                 'tab' => 'Offer/Discount'
             ],
 
-            ['name' => 'discount', 'label' => 'Discount ', 'type' => 'number', 'tab' => 'Offer/Discount'],
+            ['name' => 'discount', 'label' => 'Discount ', 'type' => 'number', 'tab' => 'Offer/Discount', 'attributes' => ['min' => 1]],
+
+             ['name' => 'min_order', 'label' => 'Minimum Order Amount', 'type' => 'number', 'tab' => 'Offer/Discount', 'attributes' => ['min' => 1]],
 
             ['name' => 'valid_from', 'label' => 'Valid From ', 'type' => 'date_picker', 'tab' => 'Offer/Discount'],
 

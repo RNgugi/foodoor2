@@ -45,12 +45,15 @@ class ItemCrudController extends CrudController
 
 
         $this->crud->addFields([
-             [   // Browse
-                    'name' => 'photo',
-                    'label' => 'Item Photo',
-                    'type' => 'browse',
-                    'tab' => 'General'
-                ],
+             [   // Upload
+                'name' => 'photo',
+                'label' => 'Item Logo',
+                'type' => 'upload',
+                'upload' => true,
+                'driver' => 'uploads', // if you store files in the /public folder, please ommit this; if you store them in /storage or S3, please specify it;,
+                'tab' => 'General'
+            ],   
+
 
             ['name' => 'name', 'label' => 'Name <span style="color: red;">*</span>', 'tab' => 'General'],
             ['name' => 'description', 'label' => 'Decription/Ingredients <span style="color: red;">*</span>', 'tab' => 'General'],
@@ -80,6 +83,19 @@ class ItemCrudController extends CrudController
                 // 'allows_multiple' => true, // OPTIONAL; needs you to cast this to array in your model;
             ],
 
+
+             [ // select_from_array
+                'name' => 'featured',
+                'label' => 'Is Featured <span style="color: red;">*</span>',
+                'type' => 'select2_from_array',
+                'options' => [0 => 'No', 1 => 'Yes'],
+                'allows_null' => false,
+                'default' => 0,
+                'tab' => 'General'
+                // 'allows_multiple' => true, // OPTIONAL; needs you to cast this to array in your model;
+            ],
+
+            
             [ // Table
                 'name' => 'sizes',
                 'label' => 'Available Sizes',
