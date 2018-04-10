@@ -42,8 +42,8 @@ class CouponCrudController extends CrudController
             ['name' => 'promo_text', 'label' => 'Promo Text (optional)', 'type' => 'textarea'],
             
             [ // select_from_array
-                'name' => 'discount_type  <span style="color: red;">*</span>',
-                'label' => "Flat or Percentage?",
+                'name' => 'discount_type',
+                'label' => 'Flat or Percentage? <span style="color: red;">*</span>',
                 'type' => 'select2_from_array',
                 'options' => [0 => 'Flat Discount', 1 => 'Percentage Base'],
                 'allows_null' => false,
