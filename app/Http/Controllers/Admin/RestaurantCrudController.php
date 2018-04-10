@@ -9,6 +9,9 @@ use App\Http\Requests\RestaurantRequest as StoreRequest;
 use App\Http\Requests\RestaurantRequest as UpdateRequest;
 
 use App\User;
+use App\Models\Restaurant;
+use App\Mail\RegisteredAsRestaurant;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Hash;
 
 class RestaurantCrudController extends CrudController
@@ -221,6 +224,8 @@ class RestaurantCrudController extends CrudController
 
 
         $this->crud->entry->save();
+
+        Mail::to($user)->send(new RegisteredAsRestaurant(Restaurant::findOrFail($this->crud->entry->id)));
 
         return $redirect_location;
     }
