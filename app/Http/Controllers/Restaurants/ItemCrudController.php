@@ -107,6 +107,8 @@ class ItemCrudController extends CrudController
           
         ]);
 
+        $this->crud->ajax_table = false;
+
 
          if(!auth()->user()->isRestaurant())
            {

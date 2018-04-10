@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Admin;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 use App\User;
+use App\Models\Driver;
+use App\Mail\RegisteredAsDriver;
 use Illuminate\Support\Facades\Hash;
 // VALIDATION: change the requests to match your own file names if you need form validation
+use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\DriverRequest as StoreRequest;
 use App\Http\Requests\DriverRequest as UpdateRequest;
 
@@ -32,17 +35,39 @@ class DriverCrudController extends CrudController
 
        
         $this->crud->addColumns([
-            ['name' => 'fullName', 'label' => 'Full Name'],
+            ['name' => 'contact_name', 'label' => 'Full Name'],
             ['name' => 'area', 'label' => 'Area'],
             ['name' => 'ordersCount', 'label' => 'Orders Served'],
         ]);
 
         $this->crud->addFields([
+            [   // Upload
+                'name' => 'profile_pic',
+                'label' => 'Profile Image',
+                'type' => 'upload',
+                'upload' => true,
+                'driver' => 'uploads' // if you store files in the /public folder, please ommit this; if you store them in /storage or S3, please specify it;
+            ],   
+            
+            [   // Upload
+                'name' => 'legal_id',
+                'label' => 'Verification ID',
+                'type' => 'upload',
+                'upload' => true,
+                'driver' => 'uploads' // if you store files in the /public folder, please ommit this; if you store them in /storage or S3, please specify it;
+            ],    
+
             ['name' => 'contact_name', 'label' => 'Full Name <span style="color: red;">*</span>'],
+
             ['name' => 'contact_email', 'label' => 'Email Address (Email to access delivery boy app | Default Password : password) <span style="color: red;">*</span>', 'type' => 'email'],
+
             ['name' => 'phone', 'label' => 'Phone No.  <span style="color: red;">*</span>', 'type' => 'number', 'attributes' => ['min' => 1]],
+
             ['name' => 'area', 'label' => 'Area'],
         ]);
+
+
+        $this->crud->ajax_table = false;
 
         // ------ CRUD FIELDS
         // $this->crud->addField($options, 'update/create/both');
@@ -123,7 +148,7 @@ class DriverCrudController extends CrudController
 
         if($user != null)
         {
-            $this->crud->entry->account_id = $user->id;
+            $this->crud->entry->user_id = $user->id;
         } else {
 
             $user = User::create([
@@ -139,6 +164,8 @@ class DriverCrudController extends CrudController
 
         $this->crud->entry->save();
 
+         Mail::to($user)->send(new RegisteredAsDriver(Driver::findOrFail($this->crud->entry->id)));
+
         return $redirect_location;
     }
 
@@ -153,7 +180,9 @@ class DriverCrudController extends CrudController
 
         if($user != null)
         {
-            $this->crud->entry->account_id = $user->id;
+            
+            $this->crud->entry->user_id = $user->id;
+
         } else {
 
             $user = User::create([
@@ -163,6 +192,7 @@ class DriverCrudController extends CrudController
             ]);
 
             $this->crud->entry->user_id = $user->id;
+        
         }
 
 

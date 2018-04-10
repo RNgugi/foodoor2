@@ -69,6 +69,8 @@ class CouponCrudController extends CrudController
 
           $this->crud->addClause('where', 'restaurant_id', '=', auth()->user()->restaurant->id);
 
+          $this->crud->ajax_table = false;
+
         // ------ CRUD FIELDS
         // $this->crud->addField($options, 'update/create/both');
         // $this->crud->addFields($array_of_arrays, 'update/create/both');

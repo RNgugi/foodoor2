@@ -42,6 +42,8 @@ class OrderCrudController extends CrudController
             ['name' => 'status', 'label' => 'Order Status', 'type' => 'number'],
         ]);
 
+           $this->crud->ajax_table = false;
+
 
            if(auth()->user()->isRestaurant())
            {

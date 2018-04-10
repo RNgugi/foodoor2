@@ -48,6 +48,7 @@ class CuisineCrudController extends CrudController
             ],
         ]);
 
+        $this->crud->ajax_table = false;
         // ------ CRUD FIELDS
         // $this->crud->addField($options, 'update/create/both');
         // $this->crud->addFields($array_of_arrays, 'update/create/both');

@@ -72,6 +72,8 @@ class CouponCrudController extends CrudController
                   
                 ]);
 
+         $this->crud->ajax_table = false;
+
 
         // ------ CRUD FIELDS
         // $this->crud->addField($options, 'update/create/both');

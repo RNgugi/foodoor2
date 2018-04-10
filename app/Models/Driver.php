@@ -20,7 +20,7 @@ class Driver extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = [ 'user_id', 'phone', 'area' ];
+    protected $fillable = [ 'user_id', 'phone', 'area', 'contact_name', 'contact_email', 'profile_pic', 'legal_id'];
     // protected $hidden = [];
     // protected $dates = [];
 
@@ -37,5 +37,23 @@ class Driver extends Model
      public function getFullNameAttribute()
     {
         return $this->user->name;
+    }
+
+    public function setProfilePicAttribute($value)
+    {
+        $attribute_name = "profile_pic";
+        $disk = "public";
+        $destination_path = "uploads/drivers";
+
+        $this->uploadFileToDisk($value, $attribute_name, $disk, $destination_path);
+    }
+
+    public function setLegalIdAttribute($value)
+    {
+        $attribute_name = "legal_id";
+        $disk = "public";
+        $destination_path = "uploads/drivers";
+
+        $this->uploadFileToDisk($value, $attribute_name, $disk, $destination_path);
     }
 }

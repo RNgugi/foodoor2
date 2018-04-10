@@ -37,6 +37,8 @@ class EarningsCrudController extends CrudController
             ['name' => 'created_at', 'label' => 'Date'],
         ]);
 
+          $this->crud->ajax_table = false;
+
           
            if(auth()->user()->isRestaurant())
            {

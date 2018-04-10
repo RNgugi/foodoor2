@@ -186,6 +186,9 @@ class RestaurantCrudController extends CrudController
 
         ]);
 
+
+        $this->crud->ajax_table = false;
+
         
     }
 
