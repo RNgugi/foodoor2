@@ -170,6 +170,8 @@
                            @csrf
 
                            <input type="hidden" name="restaurant_id" value="{{$restaurant->id}}">
+                            <input type="hidden" name="lat" value="{{request('lat')}}">
+                             <input type="hidden" name="lng" value="{{request('lng')}}">
                            <div class="widget widget-cart">
                               <div class="widget-heading">
                                  <h3 class="widget-title text-dark">
