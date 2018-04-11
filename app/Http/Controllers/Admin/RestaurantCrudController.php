@@ -144,6 +144,16 @@ class RestaurantCrudController extends CrudController
                 // 'allows_multiple' => true, // OPTIONAL; needs you to cast this to array in your model;
              ],
 
+             [ // select_from_array
+                'name' => 'is_veg',
+                'label' => "Pure Veg Restaurant?",
+                'type' => 'select2_from_array',
+                'options' => [0 => 'No', 1 => 'Yes'],
+                'allows_null' => false
+                , 'tab' => 'General'
+                // 'allows_multiple' => true, // OPTIONAL; needs you to cast this to array in your model;
+             ],
+
 
              ['name' => 'min_price', 'label' => 'Minimum Price (2 person)', 'type' => 'number' , 'tab' => 'General'],
 

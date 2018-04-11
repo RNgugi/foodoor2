@@ -7,9 +7,9 @@
 	</div>
 
 	<div class="content">
-	    <h5><a href="/restaurants/{{$restaurant->id}}">{{ $restaurant->name }}</a></h5>
+	    <h5><a href="/restaurants/{{$restaurant->id}}?lat={{request('lat')}}&lng={{request('lng')}}">{{ $restaurant->name }}</a></h5>
 	    <div class="product-name">{{ $restaurant->area }}</div>
-	    <div class="price-btn-block"> <span class="price">&#8377  {{ $restaurant->min_price }} <small>/ 2 persons</small></span> <a href="/restaurants/{{$restaurant->id}}" class="btn theme-btn-dash " style="margin-top: 20px;">Order Now</a> </div>
+	    <div class="price-btn-block"> <span class="price">&#8377  {{ $restaurant->min_price }} <small>/ 2 persons</small></span> <a href="/restaurants/{{$restaurant->id}}?lat={{request('lat')}}&lng={{request('lng')}}" class="btn theme-btn-dash " style="margin-top: 20px;">Order Now</a> </div>
 	</div>
 
 </div>

@@ -107,7 +107,7 @@ function codeLatLng(lat, lng) {
 
                  localStorage.setItem("userLocation", JSON.stringify(userLocation));
 
-                 location.href = '/restaurants/explore?lat='+ position.lat() + '&lng=' + position.lng();
+                 location.href = '/restaurants/explore?lat='+ lat + '&lng=' + lng;
 
           } else {
               alert("No results found");

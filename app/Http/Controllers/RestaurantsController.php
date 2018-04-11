@@ -125,12 +125,16 @@ class RestaurantsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Restaurant $restaurant)
-    {
+    {   
+       $restaurant->distance = ( 3959 * acos( cos( deg2rad(request('lat')) ) * cos( deg2rad( $restaurant->latitude ) ) * cos( deg2rad( $restaurant->longitude ) - deg2rad(request('lng')) ) + sin( deg2rad(request('lat')) ) * sin( deg2rad( $restaurant->latitude ) ) ) );
+
+       $restaurant->delivery_time = $restaurant->distance > 5 ? '45 min' : '40 min';
+       
         $items = $restaurant->items;
          return view('restaurants.show', compact('restaurant', 'items'));
     }
 
-     public function showByCuisine(Restaurant $restaurant, Cuisine $cuisine)
+    public function showByCuisine(Restaurant $restaurant, Cuisine $cuisine)
     {
         $items = $restaurant->items()->where('cuisine_id', $cuisine->id)->get();
         return view('restaurants.show', compact('restaurant', 'items'));

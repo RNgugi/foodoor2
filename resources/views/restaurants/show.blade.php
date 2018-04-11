@@ -17,20 +17,20 @@
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 profile-desc">
                            <div class="pull-left right-text white-txt">
                               <h6><a href="#">{{ $restaurant->name }}</a></h6>
+                              @if($restaurant->is_open)
                               <a class="btn btn-small btn-green">Open</a>
+                              @else
+                               <a class="btn btn-small" style="background: red;">Closed</a>
+                              @endif
                               <p> @foreach($restaurant->cuisines as $cuisine)
                                              {{ $cuisine->name }},  
                                            @endforeach</p>
                               <ul class="nav nav-inline">
                                  <li class="nav-item"> <a class="nav-link active" href="#"><i class="fa fa-check"></i> Min &#8377 {{ $restaurant->min_price }}</a> </li>
-                                 <li class="nav-item"> <a class="nav-link" href="#"><i class="fa fa-motorcycle"></i> 30 min</a> </li>
+                                 <li class="nav-item"> <a class="nav-link" href="#"><i class="fa fa-motorcycle"></i> {{ $restaurant->delivery_time }}</a> </li>
                                  <li class="nav-item ratings">
                                     <a class="nav-link" href="#"> <span>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-o"></i>
+                                   {!! getStars($restaurant->rating) !!}
                                     </span> </a>
                                  </li>
                               </ul>
@@ -38,10 +38,12 @@
                         </div>
 
                         <div class="col-xs-12 col-sm-12 col-md-3">
+                           @if($restaurant->promo_text != '' || $restaurant->promo_text != null)
                               <div class="alert alert-success" role="alert" style="margin-top: 40px;">
                               <b><i class="fa fa-percent"></i>  OFFER</b> <br>
-                                This is a success alert—check it out!
+                                {{ $restaurant->promo_text }}
                               </div>
+                           @endif   
                         </div>
                      </div>
                   </div>
@@ -72,13 +74,27 @@
                               <i class="fa fa-cutlery pull-right"></i> 
                            </div>
                            <ul>
-                              <li><a href="/restaurants/{{ $restaurant->id }}" class="scroll {{ request('cuisine') ==  '' }}">Most Popular</a></li>
-                              <li><a href="/restaurants/{{ $restaurant->id }}" class="scroll {{ request('cuisine') ==  '' }}">All Items</a></li>
-                              <li><a href="/restaurants/{{ $restaurant->id }}" class="scroll {{ request('cuisine') ==  '' }}">Veg Items</a></li>
-                              <li><a href="/restaurants/{{ $restaurant->id }}" class="scroll {{ request('cuisine') ==  '' }}">Non-Veg Items</a></li>
+                              
+                              <li class="{{ request('filter') == 'all' ? 'active' : '' }}">
+                                 <a href="/restaurants/{{ $restaurant->id }}?lat={{request('lat')}}&lng={{request('lng')}}&filter=all" class="scroll">All Items</a>
+                              </li>
+
+                              @if(!$restaurant->is_veg)
+                                 <li class="{{ request('filter') == 'veg' ? 'active' : '' }}">
+                                    <a href="/restaurants/{{ $restaurant->id }}?lat={{request('lat')}}&lng={{request('lng')}}&filter=veg" class="scroll">Veg Items</a>
+                                 </li>
+                                 
+                                 <li class="{{ request('filter') == 'nonveg' ? 'active' : '' }}">
+                                    <a href="/restaurants/{{ $restaurant->id }}?lat={{request('lat')}}&lng={{request('lng')}}&filter=nonveg" class="scroll">Non-Veg Items</a>
+                                 </li>
+                              @endif
+
                               @foreach($restaurant->cuisines as $cuisine)
-                              <li><a href="/restaurants/{{ $restaurant->id }}?cuisine={{$cuisine->id}}" class="scroll {{ request('cuisine') ==  $cuisine->id ? 'active' : '' }}">{{ $cuisine->name }}</a></li>
+                                 <li class="{{ request('cuisine') ==  $cuisine->id ? 'active' : '' }}">
+                                    <a href="/restaurants/{{ $restaurant->id }}?lat={{request('lat')}}&lng={{request('lng')}}&cuisine={{$cuisine->id}}" class="scroll">{{ $cuisine->name }}</a>
+                                 </li>
                               @endforeach
+                          
                            </ul>
                            <div class="clearfix"></div>
                         </div>
@@ -87,51 +103,63 @@
                      
                   </div>
                   <div class="col-xs-12 col-sm-8 col-md-8 col-lg-6">
-                     @foreach($restaurant->cuisines as $cuisine)
-                     @if(request('cuisine') == null || $cuisine->id == request('cuisine'))
-                     <?php $items = $restaurant->items()->where('cuisine_id', $cuisine->id)->get(); ?>
-                     <div class="menu-widget m-b-30">
-                        <div class="widget-heading">
-                           <h3 class="widget-title text-dark">
-                              {{ $cuisine->name }} <a class="btn btn-link pull-right" data-toggle="collapse" href="#cuisine-{{ $cuisine->id }}" aria-expanded="true">
-                              <i class="fa fa-angle-right pull-right"></i>
-                              <i class="fa fa-angle-down pull-right"></i>
-                              </a>
-                           </h3>
-                           <div class="clearfix"></div>
-                        </div>
-                        <div class="collapse in" id="cuisine-{{ $cuisine->id }}">
-                        @foreach($items as $index => $item)
-                           <div class="food-item {{ ($index+1) % 2 == 0 ? 'white' : '' }}">
-                              <div class="row">
-                                 <div class="col-xs-12 col-sm-12 col-lg-8">
-                                  <div class="rest-logo pull-left">
-                                       <a class="restaurant-logo pull-left" href="#">
-                                          @if($item->is_veg)
-                                           <img src="/images/veg.png" style="width: 15px;height: 15px;margin-top: 3px;" >
-                                          @else
-                                          <img src="/images/nonveg.png" style="width: 15px;height: 15px;margin-top: 3px;" >
-                                          @endif
-                                       </a>
-                                    </div> 
-                                    
-                                    <div class="rest-descr" style="padding-left: 23px;">
-                                       <h6><a href="#">{{ $item->name }}</a></h6>
-                                       <p>{{ $item->description }}</p>
-                                    </div>
-                                    <!-- end:Description -->
-                                 </div>
-                                 <!-- end:col -->
-                                 <div class="col-xs-12 col-sm-12 col-lg-4 pull-right item-cart-info"> <span class="price pull-left">&#8377; {{ $item->price }}</span> <a href="/cart/add/{{$item->id}}" class="btn btn-small btn btn-secondary pull-right">+</a> </div>
+
+                     
+
+                        @foreach($restaurant->cuisines as $cuisine)
+                           @if(request('cuisine') == null || $cuisine->id == request('cuisine'))
+                           @if(request()->has('filter') && request('filter') == 'veg')
+                              <?php $items = $restaurant->items()->where('cuisine_id', $cuisine->id)->where('is_veg', 1)->get(); ?>
+                           @elseif(request()->has('filter') && request('filter') == 'nonveg')
+                              <?php $items = $restaurant->items()->where('cuisine_id', $cuisine->id)->where('is_veg', 0)->get(); ?>
+                           @else
+                               <?php $items = $restaurant->items()->where('cuisine_id', $cuisine->id)->get(); ?>
+                           @endif
+                           <div class="menu-widget m-b-30">
+                              <div class="widget-heading">
+                                 <h3 class="widget-title text-dark">
+                                    {{ $cuisine->name }} <a class="btn btn-link pull-right" data-toggle="collapse" href="#cuisine-{{ $cuisine->id }}" aria-expanded="true">
+                                    <i class="fa fa-angle-right pull-right"></i>
+                                    <i class="fa fa-angle-down pull-right"></i>
+                                    </a>
+                                 </h3>
+                                 <div class="clearfix"></div>
                               </div>
-                              <!-- end:row -->
-                           </div>
+                              <div class="collapse in" id="cuisine-{{ $cuisine->id }}">
+                              @foreach($items as $index => $item)
+                                 <div class="food-item {{ ($index+1) % 2 == 0 ? 'white' : '' }}">
+                                    <div class="row">
+                                       <div class="col-xs-12 col-sm-12 col-lg-8">
+                                        <div class="rest-logo pull-left">
+                                             <a class="restaurant-logo pull-left" href="#">
+                                                @if($item->is_veg)
+                                                 <img src="/images/veg.png" style="width: 15px;height: 15px;margin-top: 3px;" >
+                                                @else
+                                                <img src="/images/nonveg.png" style="width: 15px;height: 15px;margin-top: 3px;" >
+                                                @endif
+                                             </a>
+                                          </div> 
+                                          
+                                          <div class="rest-descr" style="padding-left: 23px;">
+                                             <h6><a href="#">{{ $item->name }}</a></h6>
+                                             <p>{{ $item->description }}</p>
+                                          </div>
+                                          <!-- end:Description -->
+                                       </div>
+                                       <!-- end:col -->
+                                       <div class="col-xs-12 col-sm-12 col-lg-4 pull-right item-cart-info"> <span class="price pull-left">&#8377; {{ $item->price }}</span> <a href="/cart/add/{{$item->id}}" class="btn btn-small btn btn-secondary pull-right">+</a> </div>
+                                    </div>
+                                    <!-- end:row -->
+                                 </div>
                           @endforeach
+
                           
-                     </div>
-                     </div>
-                     @endif
+                           </div>
+                           </div>
+                          @endif
                      @endforeach
+
+
                      
                      
                   </div>
@@ -140,6 +168,8 @@
                      <div class="sidebar-wrap">
                         <form method="POST" action="/checkout">
                            @csrf
+
+                           <input type="hidden" name="restaurant_id" value="{{$restaurant->id}}">
                            <div class="widget widget-cart">
                               <div class="widget-heading">
                                  <h3 class="widget-title text-dark">
@@ -151,15 +181,33 @@
 
                               <div class="order-row bg-white">
                                  <div class="widget-body">
-                                    <div class="title-row">{{ $item->name }} <a href="/cart/remove/{{$item->rowId}}/{{$restaurant->id}}"><i class="fa fa-trash pull-right"></i></a></div>
-                                    <div class="form-group row no-gutter">
-                                      
-                                          <input class="form-control" type="number" value="{{ $item->qty }}" id="example-number-input"> 
-                                      
-                                    </div>
+                                    <div class="title-row"><span style="font-size: 14px;">{{ $item->name }}</span> <a href="/cart/remove/{{$item->rowId}}/{{$restaurant->id}}">
+                                     <i class="fa fa-trash pull-right"></i></a> <input style="display: inline;width: 40px;text-align: center;float: right;margin-right: 6px;" 
+                                    type="number" value="2" id="qty-{{$item->id}}"> 
+
+                                     </div>
+                                    
+                                    
                                  </div>
+                                    
+                                
                               </div>
                               @endforeach
+
+                              <div class="order-row">
+                                 <div class="widget-body">
+                                  <div class="form-group row no-gutter">
+                                   
+                                 
+                                       <input class="form-control" name="suggestions" style="background: #fcfcfc;color: #000;" type="text" placeholder="Any suggestions?"> 
+                                
+                                 </div>
+                                    
+                                    
+                                 </div>
+                                    
+                                
+                              </div>
                             
                             
                               <div class="widget-body">
@@ -167,7 +215,7 @@
                                     <p>SUBTOTAL</p>
                                     <h3 class="value"><strong>&#8377; {{ Cart::instance('restaurant-'.$restaurant->id)->subtotal() }}</strong></h3>
                                     <p>Free Shipping</p>
-                                    <button  type="submit" class="btn theme-btn btn-lg">Checkout</button>
+                                    <button  type="submit" class="btn theme-btn btn-lg" {{  $restaurant->is_open ? '' : 'disabled'}}>Checkout</button>
                                  </div>
                               </div>
                            </div>

@@ -74,7 +74,7 @@
                               <li class="{{ request('filter') ==  'veg'  ? 'active' : ''  }}"><a href="{{ currentUrl().'&filter=veg' }}" class="scroll">Veg Items</a></li>
                               <li class="{{ request('filter') ==  'nonveg'  ? 'active' : ''  }}"><a href="{{ currentUrl().'&filter=nonveg' }}" class="scroll">Non-Veg Items</a></li>
                               @foreach($cuisines as $cuisine)
-                              <li class=" {{ request('cuisine') ==  $cuisine->id ? 'active' : '' }}"><a href="{{ currentUrl().'&cuisine=' . $cuisine->id }}" class="scroll">{{ $cuisine->name }}</a></li>
+                              <li class="{{ request('cuisine') ==  $cuisine->id ? 'active' : '' }}"><a href="{{ currentUrl().'&cuisine=' . $cuisine->id }}" class="scroll">{{ $cuisine->name }}</a></li>
                               @endforeach
                            </ul>
                            <div class="clearfix"></div>
