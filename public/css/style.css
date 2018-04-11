@@ -1828,6 +1828,14 @@ footer li a {
     background: #fffdfd;
 }
 
+.main-block ul li.active {
+    background: #fffdfd;
+}
+
+.main-block ul li.active a {
+    color: #f30
+}
+
 .main-block ul li:hover a {
     color: #f30
 }

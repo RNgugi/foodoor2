@@ -65,11 +65,7 @@ class Restaurant extends Model
         $this->uploadFileToDisk($value, $attribute_name, $disk, $destination_path);
     }
 
-    public function getDeliveryTimeAttribute()
-    {
-        return '40 min';
-    }
-
+    
      /*
     |--------------------------------------------------------------------------
     | Methods for storing uploaded files (used in CRUD).

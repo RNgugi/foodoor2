@@ -29,7 +29,63 @@ class RestaurantsController extends Controller
      */
     public function get()
     {
-         $restaurants = Restaurant::paginate(20);
+
+      if(request()->has('filter'))
+      { 
+            if(request('filter') == 'veg')
+            {
+
+              $restaurants = \DB::select("SELECT id,( 3959 * acos( cos( radians(". request('lat') .") ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(". request('lng') .") ) + sin( radians(". request('lat') .") ) * sin( radians( latitude ) ) ) ) AS distance FROM restaurants WHERE is_veg = 1 HAVING distance < 15 ORDER BY distance LIMIT 0 , 20"); 
+
+            } else if(request('filter') == 'nonveg') {
+                $restaurants = \DB::select("SELECT id,( 3959 * acos( cos( radians(". request('lat') .") ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(". request('lng') .") ) + sin( radians(". request('lat') .") ) * sin( radians( latitude ) ) ) ) AS distance FROM restaurants WHERE is_veg = 0 HAVING distance < 15 ORDER BY distance LIMIT 0 , 20"); 
+            } else if(request('filter') == 'all') {
+                $restaurants = \DB::select("SELECT id,( 3959 * acos( cos( radians(". request('lat') .") ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(". request('lng') .") ) + sin( radians(". request('lat') .") ) * sin( radians( latitude ) ) ) ) AS distance FROM restaurants HAVING distance < 15  ORDER BY distance LIMIT 0 , 20"); 
+            } else if(request('filter') == 'popular') {
+
+                $restaurants = \DB::select("SELECT id,( 3959 * acos( cos( radians(". request('lat') .") ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(". request('lng') .") ) + sin( radians(". request('lat') .") ) * sin( radians( latitude ) ) ) ) AS distance FROM restaurants WHERE rating > 3  HAVING distance < 15 ORDER BY distance LIMIT 0 , 20"); 
+            } 
+
+      }  
+      else if(request()->has('cuisine'))
+      {
+          $rids = \DB::select('SELECT restaurant_id from cuisine_restaurant WHERE cuisine_id =' . request('cuisine'));
+
+
+          if(count($rids) > 0) {
+             $resids = [];
+
+
+              foreach ($rids as $key => $rid) {
+                  $resids[] = $rid->restaurant_id;
+              }
+                            
+              $restaurants = \DB::select("SELECT id,( 3959 * acos( cos( radians(". request('lat') .") ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(". request('lng') .") ) + sin( radians(". request('lat') .") ) * sin( radians( latitude ) ) ) ) AS distance FROM restaurants WHERE id IN (". implode(',', $resids) .") HAVING distance < 15 ORDER BY distance LIMIT 0 , 20"); 
+          } else {
+                 $restaurants = [];
+          }
+          
+
+      } 
+      else {
+
+          $restaurants = \DB::select("SELECT id,( 3959 * acos( cos( radians(". request('lat') .") ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(". request('lng') .") ) + sin( radians(". request('lat') .") ) * sin( radians( latitude ) ) ) ) AS distance FROM restaurants HAVING distance < 15 ORDER BY distance LIMIT 0 , 20"); 
+      }
+     
+
+      $filteredRestaurants = [];
+
+      foreach($restaurants as $restaurant)
+      {
+          $res = Restaurant::findOrFail($restaurant->id);
+
+          $res->delivery_time = $restaurant->distance < 5 ? '40 Min' : '45 Min';
+
+          $filteredRestaurants[] = $res;
+      }
+
+      $restaurants = $filteredRestaurants;
+
         $cuisines = Cuisine::limit(8)->get();
         return view('restaurants.list', compact('restaurants', 'cuisines'));
     }

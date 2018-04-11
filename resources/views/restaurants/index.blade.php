@@ -4,8 +4,8 @@
         
         @include('partials._hero')
 
-        
 
+{{-- 
       <section class="popular">
             <div class="container">
                 <div class="title text-xs-center m-b-30">
@@ -54,9 +54,9 @@
                 </div>
             </div>
         </section>
-
+--}}
       
-        
+
         @include('partials._appBanner')
         
 @endsection
@@ -78,14 +78,14 @@
     function geoSuccess(position) {
           var lat = position.coords.latitude;
           var lng = position.coords.longitude;
-          alert("lat:" + lat + " lng:" + lng);
+
 
           codeLatLng(lat, lng);
       }
 
 
       function geoError() {
-    alert("Geocoder failed.");
+    alert("There was some problem fetching your location please try again!");
 }
 
 
@@ -98,7 +98,7 @@ function codeLatLng(lat, lng) {
           if(results[1]) {
               //formatted address
               var address = results[0].formatted_address;
-              alert("address = " + address);
+          
 
               $('#userLocation').html(address);
 
@@ -106,6 +106,8 @@ function codeLatLng(lat, lng) {
              
 
                  localStorage.setItem("userLocation", JSON.stringify(userLocation));
+
+                 location.href = '/restaurants/explore?lat='+ position.lat() + '&lng=' + position.lng();
 
           } else {
               alert("No results found");

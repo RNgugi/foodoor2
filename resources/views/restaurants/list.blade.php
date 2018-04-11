@@ -35,10 +35,10 @@
             <div class="result-show sticky-top" style="background: #fff;">
                 <div class="container">
                     <div class="row">
-                        <div class="col-sm-6">
+                        <div class="col-sm-8">
                           <div class="form-group" style="margin-bottom: 0;">
                                 <div class="input-group" style="display: inline;">
-                                    <input style="width: 250px;border-color: #f30;" type="text" class="form-control" id="txtPlaces" placeholder="Enter your location"> 
+                                    <input style="width: 350px;border-color: #f30;" type="text" class="form-control" id="txtPlaces" placeholder="Enter your location"> 
                                         <i class="fa fa-map-marker" style="position: relative;right: 29px;top: 0px;font-size: 17px; z-index: 10000;color: #848282 !important;" aria-hidden="true"></i>
                                    
                                 </div>
@@ -46,7 +46,7 @@
                             </div>   
                          </div>
                         <p></p>
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
                             <select class="custom-select pull-right">
                                 <option selected="">Sort By</option>
                                 <option value="1">Distance</option>
@@ -69,12 +69,12 @@
                               <i class="fa fa-cutlery pull-right"></i> 
                            </div>
                            <ul>
-                              <li><a href="javacript(void)" class="scroll {{ request('cuisine') ==  '' }}">Most Popular</a></li>
-                              <li><a href="javacript(void)" class="scroll {{ request('cuisine') ==  '' }}">All Items</a></li>
-                              <li><a href="javacript(void)" class="scroll {{ request('cuisine') ==  '' }}">Veg Items</a></li>
-                              <li><a href="javacript(void)" class="scroll {{ request('cuisine') ==  '' }}">Non-Veg Items</a></li>
+                              <li class="{{ request('filter') ==  'popular' ? 'active' : '' }}"><a href="{{ currentUrl().'&filter=popular' }}" class="scroll">Most Popular</a></li>
+                              <li class="{{ request('filter') ==  'all'  ? 'active' : ''  }}"><a href="{{ currentUrl().'&filter=all' }}" class="scroll">All Items</a></li>
+                              <li class="{{ request('filter') ==  'veg'  ? 'active' : ''  }}"><a href="{{ currentUrl().'&filter=veg' }}" class="scroll">Veg Items</a></li>
+                              <li class="{{ request('filter') ==  'nonveg'  ? 'active' : ''  }}"><a href="{{ currentUrl().'&filter=nonveg' }}" class="scroll">Non-Veg Items</a></li>
                               @foreach($cuisines as $cuisine)
-                              <li><a href="javacript(void)" class="scroll {{ request('cuisine') ==  $cuisine->id ? 'active' : '' }}">{{ $cuisine->name }}</a></li>
+                              <li class=" {{ request('cuisine') ==  $cuisine->id ? 'active' : '' }}"><a href="{{ currentUrl().'&cuisine=' . $cuisine->id }}" class="scroll">{{ $cuisine->name }}</a></li>
                               @endforeach
                            </ul>
                            <div class="clearfix"></div>
