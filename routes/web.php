@@ -1,8 +1,8 @@
 <?php
 
 Route::get('/', function () {
-	return redirect('/restaurants');
-   // return view('welcome');
+	//return redirect('/restaurants');
+    return view('welcome');
 });
 
 Auth::routes();

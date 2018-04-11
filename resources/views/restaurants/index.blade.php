@@ -56,28 +56,69 @@
             </div>
         </section>
 
-        @include('partials._process')
+      
 
-        <!-- Featured restaurants starts -->
-        <section class="featured-restaurants">
-            <div class="container">
-                
-                <!-- restaurants listing starts -->
-                <div class="row">
-
-                   
-
-                    <div class="" style="margin-bottom: 20px; margin-top: 80px;" >
-
-                       <img src="/images/hotels/logos.png" style="width: 100%;">
-                       
-                    </div>
-                </div>
-                <!-- restaurants listing ends -->
-
-             @include('partials._restaurantCta')
+        
+@endsection
 
 
-             @include('partials._appBanner')
+
+@section('scripts')
+
+  <script type="text/javascript">
+
+  function getLocation() {
+    if(navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(geoSuccess, geoError, {maximumAge:60000, timeout:5000, enableHighAccuracy:true});
+                } else {
+                    alert("Geolocation is not supported by this browser.");
+                }
+    }
+
+    function geoSuccess(position) {
+          var lat = position.coords.latitude;
+          var lng = position.coords.longitude;
+          alert("lat:" + lat + " lng:" + lng);
+
+          codeLatLng(lat, lng);
+      }
+
+
+      function geoError() {
+    alert("Geocoder failed.");
+}
+
+
+function codeLatLng(lat, lng) {
+   geocoder = new google.maps.Geocoder();
+    var latlng = new google.maps.LatLng(lat, lng);
+    geocoder.geocode({'latLng': latlng}, function(results, status) {
+      if(status == google.maps.GeocoderStatus.OK) {
+          console.log(results)
+          if(results[1]) {
+              //formatted address
+              var address = results[0].formatted_address;
+              alert("address = " + address);
+
+              $('#userLocation').html(address);
+
+                var userLocation = { 'lat' : lat, 'lng' : lng, 'address' : address, 'city' :  results[1].long_name};
+             
+
+                 localStorage.setItem("userLocation", JSON.stringify(userLocation));
+
+          } else {
+              alert("No results found");
+          }
+      } else {
+          alert("Geocoder failed due to: " + status);
+      }
+    });
+}
+
+getLocation();
+   
+  </script>
+
 
 @endsection

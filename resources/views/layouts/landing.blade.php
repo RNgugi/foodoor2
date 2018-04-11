@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,7 +21,7 @@
 <body class="home">
     <div class="site-wrapper animsition" data-animsition-in="fade-in" data-animsition-out="fade-out">
        
-         @include('partials._header')
+         @include('partials.landing._header')
        
          <div class="page-wrapper">
           @yield('content')
@@ -44,21 +43,6 @@
     <script src="/js/jquery.isotope.min.js"></script>
     <script src="/js/headroom.js"></script>
     <script src="/js/foodpicky.min.js"></script>
-
-     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABIlUStLsr84EGUomykEKJeNPIuWbT854&v=3.exp&sensor=false&libraries=places"></script>
-        
-        <script type="text/javascript">
-            google.maps.event.addDomListener(window, 'load', function () {
-                var places = new google.maps.places.Autocomplete(document.getElementById('txtPlaces'));
-                google.maps.event.addListener(places, 'place_changed', function () {
-
-                });
-            });
-
-        </script>
-
-
-        @yield('scripts')
 </body>
 
 </html>
