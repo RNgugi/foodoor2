@@ -70,7 +70,7 @@ class RestaurantCrudController extends CrudController
 
               [   // Upload
                 'name' => 'logo',
-                'label' => 'Restaurant Logo',
+                'label' => 'Restaurant Photo',
                 'type' => 'upload',
                 'upload' => true,
                 'driver' => 'uploads' // if you store files in the /public folder, please ommit this; if you store them in /storage or S3, please specify it;
@@ -92,8 +92,12 @@ class RestaurantCrudController extends CrudController
              ],
              
              ['name' => 'location', 'label' => 'Google Map Location <span style="color: red;">*</span>', 'type' => 'location', 'tab' => 'Location'],
+
+             ['name' => 'latitude',  'label' => 'Latitude:',  'type' => 'text',  'tab' => 'Location', 'attributes' => ['step' => 0.0000000000001]],
+
+             ['name' => 'longitude', 'label' => 'Longitude:', 'type' => 'text', 'tab' => 'Location', 'attributes' => ['step' => 0.00000000000001]],
             
-             ['name' => 'area', 'label' => 'Area <span style="color: red;">*</span>', 'tab' => 'Location'],
+             ['name' => 'area', 'label' => 'Locality <span style="color: red;">*</span>', 'tab' => 'Location'],
             
              ['name' => 'pincode', 'label' => 'Pincode <span style="color: red;">*</span>', 'type' => 'number', 'attributes' => ["step" => 1, "maxlength"=>6, "min" => 1], 'tab' => 'Location'] ,
             

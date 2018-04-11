@@ -4,10 +4,9 @@
         
         @include('partials._hero')
 
-         @include('partials._locationMatch') 
+        
 
-
-        <section class="popular">
+      <section class="popular">
             <div class="container">
                 <div class="title text-xs-center m-b-30">
                     <h2>Our Handpicked Restaurants</h2>
@@ -57,7 +56,8 @@
         </section>
 
       
-
+        
+        @include('partials._appBanner')
         
 @endsection
 
@@ -116,7 +116,27 @@ function codeLatLng(lat, lng) {
     });
 }
 
-getLocation();
+function codeAddress() {
+  geocoder = new google.maps.Geocoder();
+    var address = document.getElementById('txtPlaces').value;
+    geocoder.geocode( { 'address': address}, function(results, status) {
+      if (status == 'OK') {
+      
+          var position = results[0].geometry.location
+        
+          var userLocation = { 'lat' : position.lat(), 'lng' : position.lng(), 'address' : address, 'city' :  results[0].address_components[0].long_name};
+           localStorage.setItem("userLocation", JSON.stringify(userLocation));
+
+         location.href = '/restaurants/explore?lat='+ position.lat() + '&lng=' + position.lng();
+
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
+    });
+  }
+
+
+//getLocation();
    
   </script>
 

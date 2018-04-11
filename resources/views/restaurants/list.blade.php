@@ -32,13 +32,21 @@
             </div>
 
 
-            <div class="result-show">
+            <div class="result-show sticky-top" style="background: #fff;">
                 <div class="container">
                     <div class="row">
-                        <div class="col-sm-3">
-                            <p><span class="primary-color"><strong>{{ count($restaurants) }}</strong></span> Results so far </p></div>
+                        <div class="col-sm-6">
+                          <div class="form-group" style="margin-bottom: 0;">
+                                <div class="input-group" style="display: inline;">
+                                    <input style="width: 250px;border-color: #f30;" type="text" class="form-control" id="txtPlaces" placeholder="Enter your location"> 
+                                        <i class="fa fa-map-marker" style="position: relative;right: 29px;top: 0px;font-size: 17px; z-index: 10000;color: #848282 !important;" aria-hidden="true"></i>
+                                   
+                                </div>
+                                 <button onclick="codeAddress()" style="display: inline-block;" type="button" class="btn theme-btn">Filter restaurants</button>
+                            </div>   
+                         </div>
                         <p></p>
-                        <div class="col-sm-9">
+                        <div class="col-sm-6">
                             <select class="custom-select pull-right">
                                 <option selected="">Sort By</option>
                                 <option value="1">Distance</option>
@@ -78,7 +86,10 @@
                         <div class="col-xs-12 col-sm-7 col-md-7 col-lg-9">
 
                            @foreach($restaurants as $restaurant)
-                               <div class="bg-gray restaurant-entry">
+                            <div class="col-sm-4">
+                               @include('partials._foodItemBig')
+                               </div>
+                              {{--  <div class="bg-gray restaurant-entry">
                                    <div class="row">
                                        <div class="col-sm-12 col-md-12 col-lg-8 text-xs-center text-sm-left">
                                            <div class="entry-logo">
@@ -106,7 +117,7 @@
                                        </div>
                                    </div>
                                    <!--end:row -->
-                               </div>
+                               </div> --}}
                            @endforeach 
                             
                         </div>
@@ -116,4 +127,38 @@
 
 
 @endsection 
+
+
+@section('scripts')
+
+  
+    <script type="text/javascript">
+          var userLocation = JSON.parse(localStorage.getItem('userLocation'));
+
+          $('#txtPlaces').val(userLocation.address);
+
+
+function codeAddress() {
+  geocoder = new google.maps.Geocoder();
+    var address = document.getElementById('txtPlaces').value;
+    geocoder.geocode( { 'address': address}, function(results, status) {
+      if (status == 'OK') {
+      
+          var position = results[0].geometry.location
+        
+          var userLocation = { 'lat' : position.lat(), 'lng' : position.lng(), 'address' : address, 'city' :  results[0].address_components[0].long_name};
+           localStorage.setItem("userLocation", JSON.stringify(userLocation));
+
+         location.href = '/restaurants/explore?lat='+ position.lat() + '&lng=' + position.lng();
+
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
+    });
+  }
+
+    </script>
+
+
+@endsection
 

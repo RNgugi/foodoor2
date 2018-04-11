@@ -5,7 +5,7 @@
 @section('content')
 
 
-            <section class="inner-page-hero sticky-top"  style="background: #171a29;">
+            <section class="inner-page-hero"  style="background: #171a29;">
                <div class="profile">
                   <div class="container">
                      <div class="row">

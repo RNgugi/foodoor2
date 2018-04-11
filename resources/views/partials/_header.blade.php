@@ -7,15 +7,14 @@
                     <div class="collapse navbar-toggleable-md  float-lg-right" id="mainNavbarCollapse" style="margin-top: 10px;">
                         <ul class="nav navbar-nav">
                             
-                            <li class="nav-item"> <a class="nav-link {{ request()->is('restaurants') ? 'active' : '' }}" href="/restaurants">Home</a> </li>
                             
-                            <li class="nav-item"> <a class="nav-link  {{ request()->is('restaurants/*') ? 'active' : '' }}" href="{{ route('restaurants.list') }}">Restaurants </a> </li>
+                           
                             
                             @guest
 
-                                <li class="nav-item"> <a class="nav-link {{ request()->is('login') ? 'active' : '' }}" href="{{ route('login') }}">Sign In</a> </li>
+                                <li class="nav-item"> <a class="nav-link {{ request()->is('login') ? 'active' : '' }} btn btn-border" href="{{ route('login') }}">Sign In</a> </li>
                             
-                            <li class="nav-item"> <a class="nav-link  {{ request()->is('register') ? 'active' : '' }}" href="{{ route('register') }}">Sign Up </a> </li>
+                            <li class="nav-item"> <a class="nav-link  {{ request()->is('register') ? 'active' : '' }} btn" href="{{ route('register') }}">Create Account </a> </li>
 
                             @else 
                             <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{{ auth()->user()->name }}</a>
