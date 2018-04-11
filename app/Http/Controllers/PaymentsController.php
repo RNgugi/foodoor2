@@ -23,7 +23,7 @@ class PaymentsController extends Controller
 	{
 		  $orderId = $order->id;
 
-		  $amount = round($order->total, 2);
+		  $amount = round($order->amount, 2);
 
            $parameters = [
       
@@ -62,11 +62,11 @@ class PaymentsController extends Controller
        
         // $order->status = 1;
 
-        $order->payment_made = 1;
+        $order->payment_status = 1;
 
         $order->save();
 
-        $invoice = \PDF::loadView('orders.download', compact('order'));
+      /*  $invoice = \PDF::loadView('orders.download', compact('order'));
 
         $invoiceData = $invoice->output();
         
@@ -76,15 +76,15 @@ class PaymentsController extends Controller
                     [
                         'mime' => 'application/pdf',
                     ]);
-
-        \Mail::to($order->user)->send($message);
+        */
+        //\Mail::to($order->user)->send($message);
 
        //sendSMS('91' . $order->phone, 'Droghers Luggage Travel booking confirmed and scheduled for pickup. Your Booking ID is ' . $booking->id);
 
 
-        flash('Payment was succesfully made!')->success();
+        //flash('Payment was succesfully made!')->success();
 
-        return redirect('/bookings/' . $order->id);
+        return redirect('/orders/' . $order->id);
     }  
 
 

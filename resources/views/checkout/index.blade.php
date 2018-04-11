@@ -4,84 +4,78 @@
 @section('content')
 	
     <div style="background: #e9ecee;">
-	<div class="top-links" style="margin-top: 15px;background: #fff;border-top: 1px solid #ccc;">
+	
+    <div class="top-links" style="margin-top: 15px;">
                 <div class="container">
                     <ul class="row links">
-                        <li class="col-xs-12 col-sm-3 link-item active"><span>1</span><a href="/restaurants">Choose Your Location</a></li>
-                        <li class="col-xs-12 col-sm-3 link-item active"><span>2</span><a href="/restaurants/explore?lat={{$lat}}&lng={{$lng}}">Choose Restaurant</a></li>
-                        <li class="col-xs-12 col-sm-3 link-item active"><span>3</span><a href="/restaurants/{{$restaurant->id}}?lat={{$lat}}&lng={{$lng}}">Pick Your favorite food</a></li>
-                        <li class="col-xs-12 col-sm-3 link-item"><span>4</span><a href="#">Order and Pay online</a></li>
+                        <li class="col-xs-12 col-sm-3 link-item active"><span>1</span><a href="#">Choose Your Location</a></li>
+                        <li class="col-xs-12 col-sm-3 link-item active"><span>2</span><a href="#">Choose Restaurant</a></li>
+                        <li class="col-xs-12 col-sm-3 link-item active"><span>3</span><a href="#">Pick Your favorite food</a></li>
+                        <li class="col-xs-12 col-sm-3 link-item active"><span>4</span><a href="#">Order and Pay online</a></li>
                     </ul>
                 </div>
             </div>
 
 
      <div class="container m-t-30" style="min-height: 900px;">
+        <form method="POST" action="/orders">
+        @csrf
+         <h3 style="margin-bottom: 18px; font-weight: 600;">Restaurant : <a href="/restaurants/{{$restaurant->id}}?lat={{$lat}}&lng={{$lng}}">{{ $restaurant->name }}</a></h3>
         <div class="row">
             <div class="col-md-8">
+
                 <div class="widget clearfix" style="background: #fff;">
                     <!-- /widget heading -->
                     <div class="widget-heading">
                         <h3 class="widget-title text-dark" style="font-size: 26px;font-weight: bold;">
-                                        Add Delivery Details
+                                        Add Delivery Address
                                     </h3>
                         <div class="clearfix"></div>
                     </div>
-                    <div class="widget-body">
+                    <div class="widget-body checkout-form">
                         <form method="post" action="#">
                             <div class="row">
                                 <div class="col-sm-12 margin-b-30">
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label>First Name *</label>
-                                                <input type="text" class="form-control" placeholder="John"> </div>
-                                            <!--/form-group-->
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label>Last Name *</label>
-                                                <input type="text" class="form-control" placeholder="Doe"> </div>
-                                            <!--/form-group-->
-                                        </div>
-                                    </div>
                                     
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <div class="form-group">
-                                                <label>Full Address *</label>
-                                                <input type="text" class="form-control" placeholder="124, Lorem Street.."> </div>
-                                            <!--/form-group-->
+                                   <div class="row"> 
+                                      <div class="col-sm-12" >
+                                        <div class="form-group">
+
+                                           
                                         </div>
+                                       
+                                        <div id="us3" style="width: 550px; height: 400px;"></div>
+                                        
+                                         <div class="">
+                                                <input type="text" style="width: 550px;margin-top: 0;padding: 18px;color: #000;font-weight: 500;"  class="form-control" id="address" name="address" />
+                                            </div>
+                                       
+                                            
+                                                <input type="hidden" class="form-control" style="width: 110px" id="latitude" name="latitude" />
+                                            
+                                           
+
+                                                <input type="hidden" class="form-control" style="width: 110px" id="longitude" name="longitude" />
+                                           
+                                       <div class="clearfix">&nbsp;</div>
+                                       
                                     </div>
-                                    <div class="row">
+                                    </div>
+                                                                    <div class="row">
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>Door No./ Flat No.</label>
-                                                <input type="text" class="form-control" placeholder="Ex. Flat no. 1"> </div>
+                                                <input type="text" name="door_no" class="form-control" placeholder="Ex. Flat no. 1"> </div>
                                             <!--/form-group-->
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group">
-                                                <label>Pin Code *</label>
-                                                <input type="text" class="form-control" placeholder="302012"> </div>
+                                                <label>Landmark</label>
+                                                <input type="text" name="landmark" class="form-control" placeholder="Nearby place"> </div>
                                             <!--/form-group-->
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label>Email Address *</label>
-                                                <input type="text" class="form-control" placeholder="john@doe.com"> </div>
-                                            <!--/form-group-->
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label>Phone *</label>
-                                                <input type="text" class="form-control" placeholder="123-345-3322"> </div>
-                                            <!--/form-group-->
-                                        </div>
-                                    </div>
+                                   
                                 </div>
                                
                             </div>
@@ -91,12 +85,8 @@
             </div>  
             <div class="col-md-4">
                 <div class="sidebar-wrap" >
-                        <form method="POST" action="/checkout">
-                           @csrf
-
+                        
                            <input type="hidden" name="restaurant_id" value="{{$restaurant->id}}">
-                           <input type="hidden" name="lat" value="{{request('lat')}}">
-                           <input type="hidden" name="lng" value="{{request('lng')}}">
                            <div class="widget widget-cart" style="background: #fff;">
                               <div class="widget-heading">
                                  <h3 class="widget-title text-dark"  style="font-size: 26px;font-weight: bold;">
@@ -110,7 +100,7 @@
                                  <div class="widget-body">
                                     <div class="title-row"><span style="font-size: 14px;">{{ $item->name }}</span> <a href="/cart/remove/{{$item->rowId}}/{{$restaurant->id}}">
                                      <i class="fa fa-trash pull-right"></i></a> <input style="display: inline;width: 40px;text-align: center;float: right;margin-right: 6px;" 
-                                    type="number" value="2" id="qty-{{$item->id}}"> 
+                                    type="number" value="{{ $item->qty }}" id="qty-{{$item->id}}"> 
 
                                      </div>
                                     
@@ -146,15 +136,19 @@
                                                 <tbody>
                                                     <tr>
                                                         <td>Cart Subtotal</td>
-                                                        <td>&#8377 29.00</td>
+                                                        <td>&#8377 {{ Cart::instance('restaurant-'.$restaurant->id)->subtotal() }}</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Shipping &amp; Handling</td>
-                                                        <td>&#8377 2.00</td>
+                                                        <td>GST</td>
+                                                        <td>&#8377 {{ Cart::instance('restaurant-'.$restaurant->id)->subtotal() * (18/100) }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Delivery Charges</td>
+                                                        <td>&#8377 20</td>
                                                     </tr>
                                                     <tr>
                                                         <td class="text-color"><strong>Total</strong></td>
-                                                        <td class="text-color"><strong>&#8377 31.00</strong></td>
+                                                        <td class="text-color"><strong>&#8377 {{ Cart::instance('restaurant-'.$restaurant->id)->subtotal() + Cart::instance('restaurant-'.$restaurant->id)->subtotal() * (18/100) + 20 }}</strong></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -165,25 +159,53 @@
                                         <ul class=" list-unstyled">
                                             <li>
                                                 <label class="custom-control custom-radio  m-b-20">
-                                                    <input id="radioStacked1" name="radio-stacked" type="radio" class="custom-control-input"> <span class="custom-control-indicator"></span> <span class="custom-control-description">Payment on delivery</span>
+                                                    <input id="radioStacked1" value="0" name="payment_mode" type="radio" class="custom-control-input"> <span class="custom-control-indicator"></span> <span class="custom-control-description">Payment on delivery</span>
                                                     </label>
                                             </li>
                                             <li>
                                                 <label class="custom-control custom-radio  m-b-10">
-                                                    <input name="radio-stacked" type="radio" class="custom-control-input"> <span class="custom-control-indicator"></span> <span class="custom-control-description">Pay Online</span><br> <span>Various online payment options like Visa, Mastercard, Rupay, Netbanking, etc. are available.</span>  </label>
+                                                    <input name="payment_mode" type="radio" value="1" class="custom-control-input"> <span class="custom-control-indicator"></span> <span class="custom-control-description">Pay Online</span><br> <span>Various online payment options like Visa, Mastercard, Rupay, Netbanking, etc. are available.</span>  </label>
                                             </li>
                                         </ul>
-                                        <p class="text-xs-center"> <a href="/checkout/success" class="btn btn-outline-success btn-block">Place Order</a> </p>
+                                        <p class="text-xs-center"> <button type="submit" class="btn btn-outline-success btn-block">Place Order</button> </p>
                                     </div>
                               </div>
                            </div>
-                        </form>
+                      
                      </div>
                   </div>
             </div>    
 
-            </div>   
+            </div> 
+           </form>   
 </div>
 	
+
+@endsection
+
+
+@section('scripts')
+
+     <script>
+                                            $('#us3').locationpicker({
+                                                location: {
+                                                    latitude: {{ request('lat') }},
+                                                    longitude: {{ request('lng') }}
+                                                },
+                                                radius: 0,
+                                                inputBinding: {
+                                                    latitudeInput: $('#latitude'),
+                                                    longitudeInput: $('#longitude'),
+                                                    locationNameInput: $('#address')
+                                                },
+                                                enableAutocomplete: true,
+                                                addressFormat: 'street_address',
+                                                onchanged: function (currentLocation, radius, isMarkerDropped) {
+                                                    // Uncomment line below to show alert on each Location Changed event
+                                                    //alert("Location changed. New location (" + currentLocation.latitude + ", " + currentLocation.longitude + ")");
+                                                }
+                                            });
+                                        </script>
+
 
 @endsection

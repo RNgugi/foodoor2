@@ -17,8 +17,12 @@ Route::get('/restaurants/explore/cusine:{cuisine}', 'RestaurantsController@getBy
 
 Route::get('/restaurants/{restaurant}', 'RestaurantsController@show')->name('restaurants.show');
 
+Route::post('/orders', 'OrdersController@store');
+Route::get('/orders/{order}', 'OrdersController@show');
+Route::get('/orders/{order}/pay', 'PaymentsController@addMoney');
+Route::get('/payments/response/', 'PaymentsController@response');
 
-Route::post('/checkout', 'CheckoutController@index');
+Route::get('/checkout', 'CheckoutController@index');
 Route::get('/checkout/success', 'CheckoutController@success');
 
 Route::get('/cart/add/{item}', 'CartController@add');

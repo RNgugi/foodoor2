@@ -2832,5 +2832,86 @@ a[aria-expanded=false] .fa-angle-down {
 }
 
 
+.checkout-form label {
+    color: #000;
+    font-weight: 500 !important;
+}
+
+
+.progressbar {
+      counter-reset: step;
+  }
+
+   .progressbar li:after {
+          width: 100%;
+    height: 3px;
+    content: '';
+    position: absolute;
+    background-color: #7d7d7d;
+    top: 27px;
+    left: -40%;
+    z-index: -1;
+  }
+
+  .progressbar li:first-child:after {
+      content: none;
+  }
+
+  .progressbar li.active + li:after {
+      background-color: #55b776;
+  }
+
+
+  .progressbar li {
+      list-style-type: none;
+      width: 25%;
+      float: left;
+      font-size: 15px;
+      position: relative;
+      text-align: center;
+      text-transform: uppercase;
+      color: #000;
+      font-weight: bold;
+  }
+  .progressbar li:before {
+      width: 60px;
+    height: 60px;
+    content: counter(step);
+    counter-increment: step;
+    line-height: 56px;
+    border: 2px solid #8a8a8a;
+    display: block;
+    text-align: center;
+    margin: 0 auto 10px auto;
+    border-radius: 50%;
+    color: #8a8a8a;
+    font-size: 27px;
+    background-color: #fff;
+    z-index: 1000;
+  }
+
+ 
+
+  .progressbar li.active {
+      color: green;
+  }
+
+  .progressbar li.active:before {
+      border-color: #55b776;
+      color: #fff;
+      background-color: #55b776;
+  }
+
+  
+.table .thead-dark {
+    background: #efefef;
+}
+
+
+.table.order-table {
+    font-size: 20px;
+}
+
+
 
 

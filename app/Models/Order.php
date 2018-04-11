@@ -51,7 +51,7 @@ class Order extends Model
 
     public function getStatusTextAttribute()
     {   
-        $statuses = ['Order Placed', 'Order Picked', 'Order Delivered'];
+        $statuses = ['Order Placed', 'Arrived at Restaurant', 'Order Picked', 'Order Delivered'];
         return $statuses[$this->status];
     }
 

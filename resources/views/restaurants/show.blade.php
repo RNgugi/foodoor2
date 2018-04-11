@@ -166,8 +166,8 @@
                   <!-- end:Bar -->
                   <div class="col-xs-12 col-md-12 col-lg-3">
                      <div class="sidebar-wrap">
-                        <form method="POST" action="/checkout">
-                           @csrf
+                        <form method="GET" action="/checkout">
+                          
 
                            <input type="hidden" name="restaurant_id" value="{{$restaurant->id}}">
                             <input type="hidden" name="lat" value="{{request('lat')}}">
@@ -185,7 +185,7 @@
                                  <div class="widget-body">
                                     <div class="title-row"><span style="font-size: 14px;">{{ $item->name }}</span> <a href="/cart/remove/{{$item->rowId}}/{{$restaurant->id}}">
                                      <i class="fa fa-trash pull-right"></i></a> <input style="display: inline;width: 40px;text-align: center;float: right;margin-right: 6px;" 
-                                    type="number" value="2" id="qty-{{$item->id}}"> 
+                                    type="number" value="{{ $item->qty }}" id="qty-{{$item->id}}"> 
 
                                      </div>
                                     

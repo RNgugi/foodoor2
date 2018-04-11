@@ -47,6 +47,9 @@
 
      <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABIlUStLsr84EGUomykEKJeNPIuWbT854&v=3.exp&sensor=false&libraries=places"></script>
         
+         
+
+           <script src="/js/locationpicker.jquery.js"></script>
         <script type="text/javascript">
             google.maps.event.addDomListener(window, 'load', function () {
                 var places = new google.maps.places.Autocomplete(document.getElementById('txtPlaces'));
@@ -55,7 +58,7 @@
                 });
             });
 
-           
+
         </script>
 
 
