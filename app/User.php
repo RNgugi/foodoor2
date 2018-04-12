@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Models\Restaurant;
+use App\Models\Order;
 use Illuminate\Notifications\Notifiable;
 use Backpack\CRUD\CrudTrait;
 use Spatie\Permission\Traits\HasRoles;// <---------------------- and this one
@@ -40,5 +41,10 @@ class User extends Authenticatable
     public function isRestaurant()
     {
         return $this->restaurant != null;
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
     }
 }

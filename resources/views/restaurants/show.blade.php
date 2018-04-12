@@ -40,8 +40,8 @@
                         <div class="col-xs-12 col-sm-12 col-md-3">
                            @if($restaurant->promo_text != '' || $restaurant->promo_text != null)
                               <div class="alert alert-success" role="alert" style="margin-top: 40px;">
-                              <b><i class="fa fa-percent"></i>  OFFER</b> <br>
-                                {{ $restaurant->promo_text }}
+                                 <b><i class="fa fa-percent"></i>  OFFER</b> <br>
+                                 {{ $restaurant->promo_text }}
                               </div>
                            @endif   
                         </div>

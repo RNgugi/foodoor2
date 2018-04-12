@@ -87,7 +87,17 @@ class Item extends Model implements Buyable
         $this->uploadFileToDisk($value, $attribute_name, $disk, $destination_path);
     }
 
+    public function getPrice()
+    {
+        if($this->discount_price != '' &&  $this->discount_price != null)
+        {
+            return $this->discount_price;
+        } else {
+            return $this->price;
+        }
+    }
      /*
+    }
     |--------------------------------------------------------------------------
     | Methods for storing uploaded files (used in CRUD).
     |--------------------------------------------------------------------------

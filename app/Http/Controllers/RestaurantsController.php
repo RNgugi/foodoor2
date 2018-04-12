@@ -86,6 +86,12 @@ class RestaurantsController extends Controller
 
       $restaurants = $filteredRestaurants;
 
+      if(count($restaurants) == 0)
+      {
+        // flash message
+        return redirect('/restaurants');
+      }
+
         $cuisines = Cuisine::limit(8)->get();
         return view('restaurants.list', compact('restaurants', 'cuisines'));
     }
@@ -129,7 +135,7 @@ class RestaurantsController extends Controller
        $restaurant->distance = ( 3959 * acos( cos( deg2rad(request('lat')) ) * cos( deg2rad( $restaurant->latitude ) ) * cos( deg2rad( $restaurant->longitude ) - deg2rad(request('lng')) ) + sin( deg2rad(request('lat')) ) * sin( deg2rad( $restaurant->latitude ) ) ) );
 
        $restaurant->delivery_time = $restaurant->distance > 5 ? '45 min' : '40 min';
-       
+
         $items = $restaurant->items;
          return view('restaurants.show', compact('restaurant', 'items'));
     }

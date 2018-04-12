@@ -14,7 +14,9 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        //
+        $orders = auth()->user()->orders;
+
+        return view('orders.index', compact('orders'));
     }
 
     /**
@@ -77,7 +79,7 @@ class OrdersController extends Controller
         $order->save();
 
         foreach ($items as $key => $item) {
-            $order->items()->attach($item->id);
+            $order->items()->attach(['item_id' => $item->id, 'qty' => $item->qty, 'price' => $item->getPrice()]);
         }
 
         //$order->load('items');

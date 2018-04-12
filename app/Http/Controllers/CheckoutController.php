@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Restaurant;
+use App\Models\Coupon;
 use Illuminate\Http\Request;
 
 class CheckoutController extends Controller
@@ -18,13 +19,22 @@ class CheckoutController extends Controller
         $this->middleware('auth');
     }
 
-    
+
     public function index()
     {	
     	$lat = request('lat');
     	$lng = request('lng');
     	$restaurant = Restaurant::findOrFail(request('restaurant_id'));
-    	return view('checkout.index', compact('restaurant', 'lat', 'lng'));
+
+    	$sessionName = 'restaurant-' . $restaurant->id . '-coupon';
+
+    	if(session()->has($sessionName))
+    	{
+    		$coupon = Coupon::where('code',session($sessionName) )->first();
+    		$discount = $coupon->discount_type == 0 ? $coupon->discount : (\Cart::instance('restaurant-'.$restaurant->id)->subtotal() * (18/100) + 20) * ($coupon->discount / 100);
+	    }
+
+    	return view('checkout.index', compact('restaurant', 'lat', 'lng', 'sessionName', 'coupon', 'discount'));
     }
 
 

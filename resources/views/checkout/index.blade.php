@@ -5,7 +5,7 @@
 	
     <div style="background: #e9ecee;">
 	
-    <div class="top-links" style="margin-top: 15px;">
+    <div class="top-links" style="margin-top: 15px;background: #fff;border-top: 1px solid #ccc;">
                 <div class="container">
                     <ul class="row links">
                         <li class="col-xs-12 col-sm-3 link-item active"><span>1</span><a href="#">Choose Your Location</a></li>
@@ -117,7 +117,8 @@
                                    
                                  
                                        <input class="form-control" name="suggestions" style="background: #fcfcfc;color: #000;" type="text" placeholder="Any suggestions?"> 
-                                
+
+
                                  </div>
                                     
                                     
@@ -125,6 +126,8 @@
                                     
                                 
                               </div>
+
+                             
                             
                             
                               <div class="widget-body">
@@ -146,12 +149,46 @@
                                                         <td>Delivery Charges</td>
                                                         <td>&#8377 20</td>
                                                     </tr>
+                                                    
+                                                    @if(session()->has($sessionName))
+                                                    <tr>
+                                                        <td class="text-color"><strong>Discount</strong></td>
+                                                        <td class="text-color"><strong>&#8377 {{$discount}}</strong></td>
+                                                    </tr>
+                                                    @endif
+
                                                     <tr>
                                                         <td class="text-color"><strong>Total</strong></td>
-                                                        <td class="text-color"><strong>&#8377 {{ Cart::instance('restaurant-'.$restaurant->id)->subtotal() + Cart::instance('restaurant-'.$restaurant->id)->subtotal() * (18/100) + 20 }}</strong></td>
+                                                        @if(session()->has($sessionName))
+                                                             <td class="text-color"><strong>&#8377 {{ Cart::instance('restaurant-'.$restaurant->id)->subtotal() + Cart::instance('restaurant-'.$restaurant->id)->subtotal() * (18/100) + 20 - $discount}}</strong></td>
+                                                        @else
+                                                             <td class="text-color"><strong>&#8377 {{ Cart::instance('restaurant-'.$restaurant->id)->subtotal() + Cart::instance('restaurant-'.$restaurant->id)->subtotal() * (18/100) + 20 }}</strong></td>
+                                                        @endif
+                                                    </tr>
+                                                    <tr>
+                                                     @if(session()->has($sessionName))
+                                                        <td colspan="2">
+                                                             <div class="alert alert-info" role="alert" style="">
+                                                                 <b> COUPON APPLIED : <i class="fa fa-qrcode"></i>  {{ $coupon->code }}</b> <br>
+                                                                 {{ $coupon->promo_text }}<br>
+                                                                 <a href="javascript:void(0)" style="text-decoration: underline;" onclick="removeCoupon({{ $restaurant->id }})" >Remove Coupon</a>
+                                                              </div>
+                                                            </td>
+
+                                                     @else   
+                                                     <td>
+                                                        <input class="form-control" name="coupon_code" id="coupon_code" style="background: #fcfcfc;color: #000;" type="text" placeholder="Coupon Code"> 
+                                                      </td>
+                                                      <td>  
+                                                          <button onclick="applyCoupon({{ $restaurant->id }})" class="btn btn-warning" type="button">Apply Coupon</button>   
+                                                       </td>
+                                                     @endif     
                                                     </tr>
                                                 </tbody>
                                             </table>
+
+                                       
+                                
                                         </div>
                                     </div>
                                     <!--cart summary-->
@@ -205,6 +242,22 @@
                                                     //alert("Location changed. New location (" + currentLocation.latitude + ", " + currentLocation.longitude + ")");
                                                 }
                                             });
+                                        </script>
+
+
+                                        <script type="text/javascript">
+                                                
+                                                function applyCoupon(restaurantId)
+                                                {
+                                                    location.href = '/coupons/apply/' + restaurantId + '/coupon:' + $('#coupon_code').val();
+                                                }
+
+                                                function removeCoupon(restaurantId)
+                                                {
+                                                    location.href = '/coupons/apply/' + restaurantId + '/coupon:' + $('#coupon_code').val() + '/remove';
+                                                }
+
+
                                         </script>
 
 

@@ -18,17 +18,26 @@ Route::get('/restaurants/explore/cusine:{cuisine}', 'RestaurantsController@getBy
 Route::get('/restaurants/{restaurant}', 'RestaurantsController@show')->name('restaurants.show');
 
 Route::post('/orders', 'OrdersController@store');
+
+Route::get('/orders', 'OrdersController@index');
+
 Route::get('/orders/{order}', 'OrdersController@show');
+
 Route::get('/orders/{order}/pay', 'PaymentsController@addMoney');
+
 Route::get('/payments/response/', 'PaymentsController@response');
 
 Route::get('/checkout', 'CheckoutController@index');
+
 Route::get('/checkout/success', 'CheckoutController@success');
 
 Route::get('/cart/add/{item}', 'CartController@add');
+
 Route::get('/cart/remove/{item}/{restaurant}', 'CartController@remove');
 
+Route::get('/coupons/apply/{restaurant}/coupon:{code}', 'CouponsController@apply');
 
+Route::get('/coupons/apply/{restaurant}/coupon:{code}/remove', 'CouponsController@remove');
 
 Route::group(['prefix' => 'admin', 'middleware' => ['admin'], 'namespace' => 'Admin'], function()
 {
@@ -42,7 +51,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin'], 'namespace' => 'Ad
     CRUD::resource('drivers', 'DriverCrudController');
     CRUD::resource('freedeliveries', 'FreedeliveryCrudController');
 });
-
 
 Route::group(['prefix' => 'restaurants-admin', 'middleware' => ['admin'], 'namespace' => 'Restaurants'], function()
 {

@@ -17,15 +17,15 @@
                             <li class="nav-item"> <a class="nav-link  {{ request()->is('register') ? 'active' : '' }} btn" href="{{ route('register') }}">Create Account </a> </li>
 
                             @else 
-                            <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{{ auth()->user()->name }}</a>
+                            <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> &nbsp;{{ auth()->user()->name }}</a>
                                 <div class="dropdown-menu"> 
-                                    <a class="dropdown-item" href="/profile">My Profile</a>  
-                                    <a class="dropdown-item" href="/orders">My Orders</a> 
+                                    <a class="dropdown-item" href="/profile"><i class="fa fa-edit"></i> &nbsp; Profile</a>  
+                                    <a class="dropdown-item" href="/orders"><i class="fa fa-file-text"></i> &nbsp; Orders</a> 
 
                                      <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        <i class="fa fa-sign-out"></i>  &nbsp; {{ __('Logout') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
