@@ -88,3 +88,86 @@
              @include('partials._appBanner')
 
 @endsection
+
+
+@section('scripts')
+
+  <script type="text/javascript">
+
+  function getLocation() {
+    if(navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(geoSuccess, geoError, {maximumAge:60000, timeout:5000, enableHighAccuracy:true});
+                } else {
+                    alert("Geolocation is not supported by this browser.");
+                }
+    }
+
+    function geoSuccess(position) {
+          var lat = position.coords.latitude;
+          var lng = position.coords.longitude;
+
+
+          codeLatLng(lat, lng);
+      }
+
+
+      function geoError() {
+    alert("There was some problem fetching your location please try again!");
+}
+
+
+function codeLatLng(lat, lng) {
+   geocoder = new google.maps.Geocoder();
+    var latlng = new google.maps.LatLng(lat, lng);
+    geocoder.geocode({'latLng': latlng}, function(results, status) {
+      if(status == google.maps.GeocoderStatus.OK) {
+          console.log(results)
+          if(results[1]) {
+              //formatted address
+              var address = results[0].formatted_address;
+          
+
+              $('#userLocation').html(address);
+
+                var userLocation = { 'lat' : lat, 'lng' : lng, 'address' : address, 'city' :  results[1].long_name};
+             
+
+                 localStorage.setItem("userLocation", JSON.stringify(userLocation));
+
+                 location.href = '/restaurants/explore?lat='+ lat + '&lng=' + lng;
+
+          } else {
+              alert("No results found");
+          }
+      } else {
+          alert("Geocoder failed due to: " + status);
+      }
+    });
+}
+
+function codeAddress() {
+  geocoder = new google.maps.Geocoder();
+    var address = document.getElementById('txtPlaces').value;
+    geocoder.geocode( { 'address': address}, function(results, status) {
+      if (status == 'OK') {
+      
+          var position = results[0].geometry.location
+        
+          var userLocation = { 'lat' : position.lat(), 'lng' : position.lng(), 'address' : address, 'city' :  results[0].address_components[0].long_name};
+           localStorage.setItem("userLocation", JSON.stringify(userLocation));
+
+         location.href = '/restaurants/explore?lat='+ position.lat() + '&lng=' + position.lng();
+
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
+    });
+  }
+
+
+//getLocation();
+   
+  </script>
+
+
+@endsection
