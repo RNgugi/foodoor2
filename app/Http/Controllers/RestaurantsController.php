@@ -44,6 +44,9 @@ class RestaurantsController extends Controller
             } else if(request('filter') == 'popular') {
 
                 $restaurants = \DB::select("SELECT id,( 3959 * acos( cos( radians(". request('lat') .") ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(". request('lng') .") ) + sin( radians(". request('lat') .") ) * sin( radians( latitude ) ) ) ) AS distance FROM restaurants WHERE rating > 3  HAVING distance < 15 ORDER BY distance LIMIT 0 , 20"); 
+            }  else if(request('filter') == 'budget') {
+
+                $restaurants = \DB::select("SELECT id,( 3959 * acos( cos( radians(". request('lat') .") ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(". request('lng') .") ) + sin( radians(". request('lat') .") ) * sin( radians( latitude ) ) ) ) AS distance FROM restaurants WHERE min_price < 800  HAVING distance < 15 ORDER BY distance LIMIT 0 , 20"); 
             } 
 
       }  
