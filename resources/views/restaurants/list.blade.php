@@ -5,7 +5,7 @@
          
 
 
-            <div class="inner-page-hero bg-image" data-image-src="/images/profile-banner2.jpeg" style="background: url(&quot;images/profile-banner2.jpeg&quot;) center center / cover no-repeat;">
+           <div class="inner-page-hero"  style="background: #ff7726;">
                 <div class="container"> 
 
                   <div class="row">
@@ -42,7 +42,7 @@
                                         <i class="fa fa-map-marker" style="position: relative;right: 29px;top: 0px;font-size: 17px; z-index: 10000;color: #848282 !important;" aria-hidden="true"></i>
                                    
                                 </div>
-                                 <button onclick="codeAddress()" style="display: inline-block;" type="button" class="btn theme-btn">Filter restaurants</button>
+                                 <button onclick="codeAddress()" style="display: inline-block;" type="button" class="btn theme-btn">Change Location</button>
                             </div>   
                          </div>
                         <p></p>
@@ -61,21 +61,21 @@
             <section class="restaurants-page" style="min-height: 1200px;">
                 <div class="container">
                     <div class="row">
-                      <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3">
-                     <div class="sidebar clearfix m-b-20">
+                      <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3 ">
+                     <div class="sidebar clearfix m-b-20 ">
                         <div class="main-block">
                            <div class="sidebar-title white-txt">
-                              <h6>Choose Cusine</h6>
+                              <h6>Filter Restaurants</h6>
                               <i class="fa fa-cutlery pull-right"></i> 
                            </div>
                            <ul>
-                              <li class="{{ request('filter') ==  'popular' ? 'active' : '' }}"><a href="{{ currentUrl().'&filter=popular' }}" class="scroll">Most Popular</a></li>
                               <li class="{{ request('filter') ==  'all'  ? 'active' : ''  }}"><a href="{{ currentUrl().'&filter=all' }}" class="scroll">All Items</a></li>
-                              <li class="{{ request('filter') ==  'veg'  ? 'active' : ''  }}"><a href="{{ currentUrl().'&filter=veg' }}" class="scroll">Veg Items</a></li>
-                              <li class="{{ request('filter') ==  'nonveg'  ? 'active' : ''  }}"><a href="{{ currentUrl().'&filter=nonveg' }}" class="scroll">Non-Veg Items</a></li>
-                              @foreach($cuisines as $cuisine)
-                              <li class="{{ request('cuisine') ==  $cuisine->id ? 'active' : '' }}"><a href="{{ currentUrl().'&cuisine=' . $cuisine->id }}" class="scroll">{{ $cuisine->name }}</a></li>
-                              @endforeach
+                              <li class="{{ request('filter') ==  'popular' ? 'active' : '' }}"><a href="{{ currentUrl().'&filter=popular' }}" class="scroll">Most Popular</a></li>
+                              <li class="{{ request('filter') ==  'budget'  ? 'active' : ''  }}"><a href="{{ currentUrl().'&filter=nonveg' }}" class="scroll">Pocket Friendly</a></li>
+                              <li class="{{ request('filter') ==  'veg'  ? 'active' : ''  }}"><a href="{{ currentUrl().'&filter=veg' }}" class="scroll">Pure Veg</a></li>
+                              <li class="{{ request('filter') ==  'nonveg'  ? 'active' : ''  }}"><a href="{{ currentUrl().'&filter=nonveg' }}" class="scroll">Non-Veg Special</a></li>
+
+                             
                            </ul>
                            <div class="clearfix"></div>
                         </div>
