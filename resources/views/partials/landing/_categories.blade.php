@@ -1,4 +1,5 @@
-<section class="container" style="padding: 140px 0px;text-align: center;">
+<section class="container" style="padding: 60px 0px;text-align: center;">
+    <h2 style="font-weight: bold;margin-bottom: 40px;">Our Categories</h2>
 	<div class="row">
                     <div class="col-lg-12">
                         <div class="job-grid-sec">

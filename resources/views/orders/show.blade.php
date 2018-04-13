@@ -7,7 +7,7 @@
                <div class="container">
                   <ul>
                      <li><a href="/restaurants" class="active">Home</a></li>
-                     <li><a href="/my-orders">My Orders</a></li>
+                     <li><a href="/orders">My Orders</a></li>
                      <li>Order #{{ $order->id }}</li>
                   </ul>
                </div>

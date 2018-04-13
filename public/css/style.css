@@ -1154,7 +1154,7 @@ Steps
     }
 }
 
-.featured-restaurants:before {
+/*.featured-restaurants:before {
     position: absolute;
     top: -81px;
     left: 50px;
@@ -1162,7 +1162,7 @@ Steps
     width: 103px;
     height: 151px;
     content: "";
-}
+}*/
 
 @media (min-width: 280px) and (max-width: 580px) {
     .featured-restaurants:before {
@@ -1436,7 +1436,7 @@ App section
 
 footer {
     background: url(../images/pattern.png)center repeat;
-    padding: 90px 0;
+    padding: 27px 0;
     z-index: 1;
     position: relative;
 }
@@ -1491,7 +1491,7 @@ footer ul li a {
 }
 
 .how-it-works-links {
-    margin-bottom: 70px;
+    margin-bottom: 14px;
 }
 
 .address p {
