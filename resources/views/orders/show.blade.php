@@ -6,14 +6,14 @@
      <div class="breadcrumb" style="border-top: 1px solid #ccc;margin-top: 13px;">
                <div class="container">
                   <ul>
-                     <li><a href="/restaurants" class="active">Home</a></li>
+                     <li><a href="/" class="active">Home</a></li>
                      <li><a href="/orders">My Orders</a></li>
                      <li>Order #{{ $order->id }}</li>
                   </ul>
                </div>
             </div>  
 
-	<div style="background: #e9ecee;min-height: 900px;">
+	<div style="background: #e9ecee;min-height: 1200px;">
 
     <div class="container" style="padding-top: 60px;">
 
@@ -43,7 +43,7 @@
                       <div class="clearfix"></div>
                         <h5 style="font-weight: bold;margin-top: 55px;">Delivery Address</h5>
                         <h5>{{ json_decode($order->delivery_address)->delivery_location }}</h5>
-                        <h5>{{ json_decode($order->delivery_address)->door_no }} | {{ json_decode($order->delivery_address)->landmark }}</h5>
+                        <h5>{{ json_decode($order->delivery_address)->door_no }} {{ json_decode($order->delivery_address)->landmark }}</h5>
 
                         
                        <div class="clearfix"></div>
@@ -73,15 +73,52 @@
                                 @foreach($order->items as $item)
 
                                     <tr>
-                                        <td>{{ $item->name }}</td>
-                                        <td>1</td>
-                                        <td>{{ $item->price }}</td>
+                                        <td style="font-size: 18px;">@if($item->is_veg)
+                                                 <img src="/images/veg.png" style="width: 12px;height: 12px;margin-top: -2px;" >
+                                                @else
+                                                <img src="/images/nonveg.png" style="width: 12px;height: 12px;margin-top: -2px;" >
+                                                @endif  {{ $item->name }}</td>
+                                        <td style="font-size: 18px;">{{ $item->pivot->qty }}</td>
+                                        <td style="font-size: 18px;">{{ $item->price * $item->pivot->qty }}</td>
                                     </tr>
 
+
+
                                 @endforeach
+                                 <tr style="font-size: 16px;"> 
+                                                         <td></td>
+                                                        <td style="font-size: 18px;">Cart Subtotal</td>
+                                                       
+                                                        <td style="font-size: 18px;">&#8377 {{$order->subtotal }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="font-size: 18px;"></td>
+                                                        <td style="font-size: 18px;">GST</td>
+                                                        
+                                                        <td style="font-size: 18px;">&#8377 {{ $order->subtotal + $order->tax }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                     <td></td>
+                                                        <td style="font-size: 18px;">Delivery Charges</td>
+                                                       
+                                                        <td style="font-size: 18px;">&#8377 {{ $order->delivery_charges}}</td>
+                                                    </tr>
+                                                    
+                                                   
+
+                                                    <tr>
+                                                      <td></td>
+                                                        <td style="font-size: 18px;" class="text-color"><strong>Total</strong></td>
+                                                        
+                                                             <td style="font-size: 18px;" class="text-color"><strong>&#8377 {{ $order->amount }}</strong></td>
+                                                       
+                                                    </tr>
                                 </tbody>
                             </table>
                         </div>
+
+                      
+                                    <!--cart summary-->
                     </div> 
 
              </div>            

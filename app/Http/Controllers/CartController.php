@@ -31,4 +31,35 @@ class CartController extends Controller
         \Cart::instance('restaurant-'.$restaurant->id)->remove($item);
         return back();
     }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function increment($item, Restaurant $restaurant)
+    {   
+        $count = \Cart::instance('restaurant-'.$restaurant->id)->get($item)->qty + 1;
+        \Cart::instance('restaurant-'.$restaurant->id)->update($item, $count);
+        return back();
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function decrement($item, Restaurant $restaurant)
+    {
+        $count = \Cart::instance('restaurant-'.$restaurant->id)->get($item)->qty - 1;
+        
+        if($count < 0)
+        {
+            $count = 0;
+        }
+
+        \Cart::instance('restaurant-'.$restaurant->id)->update($item, $count);
+        
+        return back();
+    }
 }

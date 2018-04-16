@@ -25,7 +25,7 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        $orders = auth()->user()->orders;
+        $orders = auth()->user()->orders()->latest()->get();
 
         return view('orders.index', compact('orders'));
     }
@@ -75,9 +75,9 @@ class OrdersController extends Controller
 
         $order->delivery_address = $delivery_address;
 
-        $order->subtotal = \Cart::instance('restaurant-' . request('restaurant_id'))->subtotal();
+        $order->subtotal = \Cart::instance('restaurant-' . request('restaurant_id'))->subtotal(2, '.', '');
 
-        $order->tax = \Cart::instance('restaurant-' . request('restaurant_id'))->subtotal() * (18/100);
+        $order->tax = \Cart::instance('restaurant-' . request('restaurant_id'))->subtotal(2, '.', '') * (18/100);
 
         $order->delivery_charges = 30;
 
@@ -89,12 +89,15 @@ class OrdersController extends Controller
 
         $order->save();
 
-        foreach ($items as $key => $item) {
-            $order->items()->attach(['item_id' => $item->id, 'qty' => $item->qty, 'price' => $item->getPrice()]);
+        foreach ($items as $key => $item) 
+        {
+            $order->items()->attach($item->id, ['qty' => $item->qty, 'price' => $item->model->getPrice() ]);
         }
 
         //$order->load('items');
 
+        \Cart::instance('restaurant-' . request('restaurant_id'))->destroy();
+        
 
         if(request('payment_mode') == 1)
         {

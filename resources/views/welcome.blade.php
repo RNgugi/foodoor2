@@ -2,26 +2,63 @@
 
 @section('content')
         
-           <div class="inner-page-hero"  style="background: #ff7726;">
+           <div class="inner-page-hero"  style="background: #ff7726;padding-bottom: 19px;
+    padding-top: 30px;">
+
+
                 <div class="container"> 
 
-                  <div class="row">
-                     <a href="/restaurants/{{ App\Models\Restaurant::first()->id }}" class="col-md-3">
-                        <img style="width: 280px;" src="/images/adv-img-1.jpg">
-                     </a>
+                <div class="carousel slide" data-ride="carousel">
+                   <div class="carousel-inner">
+                       <div class="carousel-item active">
+                           <div class="row">
+                                <a href="/restaurants/{{ App\Models\Restaurant::first()->id }}" class="col-md-3">
+                                    <img style="width: 280px;" src="/images/adv-img-1.jpg">
+                                 </a>
 
-                     <a  href="/restaurants/{{ App\Models\Restaurant::first()->id }}" class="col-md-3">
-                        <img style="width: 280px;" src="/images/adv-img-2.jpg">
-                     </a>
+                                 <a  href="/restaurants/{{ App\Models\Restaurant::first()->id }}" class="col-md-3">
+                                    <img style="width: 280px;" src="/images/adv-img-2.jpg">
+                                 </a>
 
-                     <a  href="/restaurants/{{ App\Models\Restaurant::first()->id }}" class="col-md-3">
-                        <img style="width: 280px;" src="/images/adv-img-3.jpg">
-                     </a>
+                                 <a  href="/restaurants/{{ App\Models\Restaurant::first()->id }}" class="col-md-3">
+                                    <img style="width: 280px;" src="/images/adv-img-3.jpg">
+                                 </a>
 
-                     <a  href="/restaurants/{{ App\Models\Restaurant::first()->id }}" class="col-md-3">
-                        <img style="width: 280px;" src="/images/adv-img-1.jpg">
-                     </a>
-                  </div>
+                                 <a  href="/restaurants/{{ App\Models\Restaurant::first()->id }}" class="col-md-3">
+                                    <img style="width: 280px;" src="/images/adv-img-1.jpg">
+                                 </a>
+                           </div>
+                       </div>
+                       <div class="carousel-item">
+                          <div class="row">
+                              <a href="/restaurants/{{ App\Models\Restaurant::first()->id }}" class="col-md-3">
+                                    <img style="width: 280px;" src="/images/adv-img-1.jpg">
+                                 </a>
+
+                                 <a  href="/restaurants/{{ App\Models\Restaurant::first()->id }}" class="col-md-3">
+                                    <img style="width: 280px;" src="/images/adv-img-2.jpg">
+                                 </a>
+
+                                 <a  href="/restaurants/{{ App\Models\Restaurant::first()->id }}" class="col-md-3">
+                                    <img style="width: 280px;" src="/images/adv-img-3.jpg">
+                                 </a>
+
+                                 <a  href="/restaurants/{{ App\Models\Restaurant::first()->id }}" class="col-md-3">
+                                    <img style="width: 280px;" src="/images/adv-img-1.jpg">
+                                 </a>
+                           </div>
+                       </div>
+                   </div>
+                  <a class="carousel-control-prev" href=".." role="button" data-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="sr-only">Previous</span>
+                  </a>
+                  <a class="carousel-control-next" href=".." role="button" data-slide="next">
+                           <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                           <span class="sr-only">Next</span>
+                  </a>
+                </div>
+               
 
 
                 </div>
@@ -30,7 +67,8 @@
 
          @include('partials.landing._locationMatch') 
 
-          <section id="landing" class="hero bg-image" data-image-src="images/image01.jpg">
+          <section id="landing" class="hero bg-image" style="padding-top: 56px;
+    padding-bottom: 26px;" data-image-src="images/image01.jpg">
             <div class="hero-inner">
                 <div class="container text-center hero-text font-white">
                     <h1>Find the best restaurants near you!</h1>
@@ -57,7 +95,6 @@
             <!--end:Hero inner -->
         </section>
 
-        @include('partials._process')
 
          @include('partials.landing._categories') 
 
@@ -68,17 +105,76 @@
         <!-- Featured restaurants starts -->
         <section class="featured-restaurants">
             <div class="container">
-                 <h2 style="font-weight: bold;margin-bottom: 40px;text-align: center;">Our Exclusive Partners</h2>   
+                 <h2 style="font-weight: bold;margin-bottom: 60px;text-align: center;">Our Exclusive Partners</h2>   
                 <!-- restaurants listing starts -->
-                <div class="row">
+              <div class="carousel slide" data-ride="carousel">
+                   <div class="carousel-inner">
+                       <div class="carousel-item active">
+                           <div class="row">
+                                <a href="#" class="col-md-3">
+                                    <img style="width: 280px;" src="/images/hotels/1.png">
+                                 </a>
 
-                   
+                                <a href="#" class="col-md-3">
+                                    <img style="width: 280px;" src="/images/hotels/2.png">
+                                 </a>
 
-                    <div class="" style="margin-bottom: 20px; margin-top: 80px;" >
+                                 <a href="#" class="col-md-3">
+                                    <img style="width: 280px;" src="/images/hotels/3.png">
+                                 </a>
 
-                       <img src="/images/hotels/logos.png" style="width: 100%;">
-                       
-                    </div>
+                                <a href="#" class="col-md-3">
+                                    <img style="width: 280px;" src="/images/hotels/4.png">
+                                 </a>
+                           </div>
+                       </div>
+                       <div class="carousel-item">
+                          <div class="row">
+                              <a href="#" class="col-md-3">
+                                    <img style="width: 280px;" src="/images/hotels/5.png">
+                                 </a>
+
+                                <a href="#" class="col-md-3">
+                                    <img style="width: 280px;" src="/images/hotels/6.png">
+                                 </a>
+
+                                 <a href="#" class="col-md-3">
+                                    <img style="width: 280px;" src="/images/hotels/13.png">
+                                 </a>
+
+                                <a href="#" class="col-md-3">
+                                    <img style="width: 280px;" src="/images/hotels/8.png">
+                                 </a>
+                           </div>
+                       </div>
+                       <div class="carousel-item">
+                          <div class="row">
+                              <a href="#" class="col-md-3">
+                                    <img style="width: 280px;" src="/images/hotels/9.png">
+                                 </a>
+
+                                <a href="#" class="col-md-3">
+                                    <img style="width: 280px;" src="/images/hotels/10.png">
+                                 </a>
+
+                                 <a href="#" class="col-md-3">
+                                    <img style="width: 280px;" src="/images/hotels/11.png">
+                                 </a>
+
+                                <a href="#" class="col-md-3">
+                                    <img style="width: 280px;" src="/images/hotels/12.png">
+                                 </a>
+                           </div>
+                       </div>
+                   </div>
+                  <a class="carousel-control-prev" href=".." role="button" data-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="sr-only">Previous</span>
+                  </a>
+                  <a class="carousel-control-next" href=".." role="button" data-slide="next">
+                           <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                           <span class="sr-only">Next</span>
+                  </a>
                 </div>
                 <!-- restaurants listing ends -->
 

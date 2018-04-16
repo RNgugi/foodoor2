@@ -35,9 +35,15 @@ Route::get('/cart/add/{item}', 'CartController@add');
 
 Route::get('/cart/remove/{item}/{restaurant}', 'CartController@remove');
 
+Route::get('/cart/increment/{item}/{restaurant}', 'CartController@increment');
+
+Route::get('/cart/decrement/{item}/{restaurant}', 'CartController@decrement');
+
 Route::get('/coupons/apply/{restaurant}/coupon:{code}', 'CouponsController@apply');
 
 Route::get('/coupons/apply/{restaurant}/coupon:{code}/remove', 'CouponsController@remove');
+
+Route::post('/bulk-orders', 'BulkOrderController@store');
 
 Route::group(['prefix' => 'admin', 'middleware' => ['admin'], 'namespace' => 'Admin'], function()
 {

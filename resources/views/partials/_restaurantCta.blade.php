@@ -1,4 +1,4 @@
- <section class="add-restaurants">
+ <section class="add-restaurants" style="margin-top: 65px;">
                     <div class="container">
                         <div class="row">
                             <div class="col-xs-12 col-sm-3 add-title">

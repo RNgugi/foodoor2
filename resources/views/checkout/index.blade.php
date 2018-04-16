@@ -98,11 +98,20 @@
 
                               <div class="order-row bg-white">
                                  <div class="widget-body">
-                                    <div class="title-row"><span style="font-size: 14px;">{{ $item->name }}</span> <a href="/cart/remove/{{$item->rowId}}/{{$restaurant->id}}">
-                                     <i class="fa fa-trash pull-right"></i></a> <input style="display: inline;width: 40px;text-align: center;float: right;margin-right: 6px;" 
-                                    type="number" value="{{ $item->qty }}" id="qty-{{$item->id}}"> 
+                                    <div class="title-row"><span style="font-size: 14px;">{{ $item->name }}</span> 
 
-                                     </div>
+                                    <p style="font-size:15px;font-weight: bold;margin-top: 2px;margin-left: 3px;" class="pull-right">&#8377; {{ $item->price * $item->qty }}</p>
+                                    {{-- <a href="/cart/remove/{{$item->rowId}}/{{$restaurant->id}}">
+                                     <i class="fa fa-trash pull-right"></i></a> --}} 
+
+                                    
+
+                                    <div data-trigger="spinner" id="spinner-{{$item->id}}" style="display: inline;text-align: center;float: right;margin-right: 6px;" >
+                                      <a style="color: #f30; font-size: 18px;font-weight: bold;
+   " href="javascript:;" data-spin="down">-</a>
+                                      <input type="text" style="width: 40px;text-align: center;" value="{{ $item->qty }}" data-rule="quantity">
+                                      <a href="" style="color: #f30; font-size: 18px;font-weight: bold;" href="javascript:;" data-spin="up">+</a>
+                                    </div>
                                     
                                     
                                  </div>
@@ -143,7 +152,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td>GST</td>
-                                                        <td>&#8377 {{ Cart::instance('restaurant-'.$restaurant->id)->subtotal() * (18/100) }}</td>
+                                                        <td>&#8377 {{ floatval(Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', '')) * (18/100) }}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Delivery Charges</td>
@@ -160,9 +169,9 @@
                                                     <tr>
                                                         <td class="text-color"><strong>Total</strong></td>
                                                         @if(session()->has($sessionName))
-                                                             <td class="text-color"><strong>&#8377 {{ Cart::instance('restaurant-'.$restaurant->id)->subtotal() + Cart::instance('restaurant-'.$restaurant->id)->subtotal() * (18/100) + 20 - $discount}}</strong></td>
+                                                             <td class="text-color"><strong>&#8377 {{ floatval(Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', '')) + floatval(Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', '')) * (18/100) + 20 - $discount}}</strong></td>
                                                         @else
-                                                             <td class="text-color"><strong>&#8377 {{ Cart::instance('restaurant-'.$restaurant->id)->subtotal() + Cart::instance('restaurant-'.$restaurant->id)->subtotal() * (18/100) + 20 }}</strong></td>
+                                                             <td class="text-color"><strong>&#8377 {{ floatval(Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', '')) + floatval(Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', '')) * (18/100) + 20 }}</strong></td>
                                                         @endif
                                                     </tr>
                                                     <tr>
@@ -222,8 +231,32 @@
 
 
 @section('scripts')
-
+  
+  <script src="/js/jquery.spinner.js"></script>
      <script>
+
+     
+
+    @foreach(Cart::instance('restaurant-'.$restaurant->id)->content() as $item)
+
+     
+      $("#spinner-{{$item->id}}")
+        .spinner('delay', 200) //delay in ms
+        .spinner('changed', function(e, newVal, oldVal) {
+          // trigger lazed, depend on delay option.
+        })
+        .spinner('changing', function(e, newVal, oldVal) {
+         if(newVal > oldVal)
+         {
+
+          window.location = '/cart/increment/{{$item->rowId}}/{{$restaurant->id}}'
+         } else {
+             window.location = '/cart/decrement/{{$item->rowId}}/{{$restaurant->id}}'
+         }
+        });
+      @endforeach
+
+
                                             $('#us3').locationpicker({
                                                 location: {
                                                     latitude: {{ request('lat') }},

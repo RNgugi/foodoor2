@@ -11,10 +11,7 @@
                                 <h3>The Best Food Delivery App</h3>
                                 <p>Now you can make food happen pretty much wherever you are thanks to the free easy-to-use Food Delivery &amp; Takeout App.</p>
                                 <div class="social-btns">
-                                    <a href="#" class="app-btn apple-button clearfix">
-                                        <div class="pull-left"><i class="fa fa-apple"></i> </div>
-                                        <div class="pull-right"> <span class="text">Available on the</span> <span class="text-2">App Store</span> </div>
-                                    </a>
+                                   
                                     <a href="#" class="app-btn android-button clearfix">
                                         <div class="pull-left"><i class="fa fa-android"></i> </div>
                                         <div class="pull-right"> <span class="text">Available on the</span> <span class="text-2">Play store</span> </div>

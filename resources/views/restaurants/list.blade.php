@@ -38,7 +38,7 @@
                         <div class="col-sm-8">
                           <div class="form-group" style="margin-bottom: 0;">
                                 <div class="input-group" style="display: inline;">
-                                    <input style="width: 350px;border-color: #f30;" type="text" class="form-control" id="txtPlaces" placeholder="Enter your location"> 
+                                    <input style="width: 350px;border-color: #f30;" type="text" class="form-control" autofocus="true" id="txtPlaces" placeholder="Enter your location"> 
                                         <i class="fa fa-map-marker" style="position: relative;right: 29px;top: 0px;font-size: 17px; z-index: 10000;color: #848282 !important;" aria-hidden="true"></i>
                                    
                                 </div>
@@ -46,13 +46,13 @@
                             </div>   
                          </div>
                         <p></p>
-                        <div class="col-sm-4">
+                       <!-- <div class="col-sm-4">
                             <select class="custom-select pull-right">
                                 <option selected="">Sort By</option>
                                 <option value="1">Distance</option>
                                 <option value="2">Delivery Time</option>
                             </select>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

@@ -115,7 +115,7 @@
                            @else
                                <?php $items = $restaurant->items()->where('cuisine_id', $cuisine->id)->get(); ?>
                            @endif
-                           <div class="menu-widget m-b-30">
+                           <div class="menu-widget m-b-30" style="background: #fff;">
                               <div class="widget-heading">
                                  <h3 class="widget-title text-dark">
                                     {{ $cuisine->name }} <a class="btn btn-link pull-right" data-toggle="collapse" href="#cuisine-{{ $cuisine->id }}" aria-expanded="true">
@@ -147,8 +147,54 @@
                                           <!-- end:Description -->
                                        </div>
                                        <!-- end:col -->
-                                       <div class="col-xs-12 col-sm-12 col-lg-4 pull-right item-cart-info"> <span class="price pull-left">&#8377; {{ $item->price }}</span> <a href="/cart/add/{{$item->id}}" class="btn btn-small btn btn-secondary pull-right">+</a> </div>
+                                       <div class="col-xs-12 col-sm-12 col-lg-4 pull-right item-cart-info"> <span class="price pull-left">&#8377; {{ $item->price }}</span> 
+
+
+                                       <?php $added = Cart::instance('restaurant-'.$restaurant->id)->search(function ($cartItem, $rowId) use ($item)  {
+                                          return $cartItem->id === $item->id ;
+                                          }); ?>
+
+                                          @if(count($added))
+                                            <div data-trigger="spinner" id="spinner2-{{$item->id}}" style="display: inline;text-align: center;float: right;margin-right: 6px;" >
+                                                 <a style="color: #f30; font-size: 18px;font-weight: bold;" href="javascript:;" data-spin="down">-</a>
+                                                 <input type="text" style="width: 40px;text-align: center;" value="{{ $added->first()->qty }}" data-rule="quantity">
+                                                 <a href="" style="color: #f30; font-size: 18px;font-weight: bold;" href="javascript:;" data-spin="up">+</a>
+                                             </div>
+                                          @else
+                                             @if(count($item->toppings))
+                                                <a href="#toppings-{{$item->id}}" data-toggle="modal" class="btn btn-small btn btn-secondary pull-right">+</a> 
+                                             @else
+                                                <a href="/cart/add/{{$item->id}}" class="btn btn-small btn btn-secondary pull-right">+</a> 
+                                             @endif
+                                          @endif
+
+                                       </div>
                                     </div>
+                                      @if(count($item->toppings))
+                                    <div class="modal fade" id="toppings-{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                      <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <form method="get" action="/cart/add/{{$item->id}}">
+                                           <div class="modal-content">
+                                             <div class="modal-header">
+                                               <h5 class="modal-title" id="exampleModalCenterTitle" style="font-weight: bold;">{{ $item->name }}</h5>
+                                               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                 <span aria-hidden="true">&times;</span>
+                                               </button>
+                                             </div>
+                                             <div class="modal-body">
+                                               @foreach(json_decode($item->toppings) as $topping)
+                                                   <h5 style="font-weight: bold;">{{ $topping->name }}</h5>
+                                               @endforeach
+                                             </div>
+                                             <div class="modal-footer">
+                                               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                               <button type="submit" class="btn theme-btn">Add to Cart</button>
+                                             </div>
+                                          </form>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    @endif
                                     <!-- end:row -->
                                  </div>
                           @endforeach
@@ -172,20 +218,37 @@
                            <input type="hidden" name="restaurant_id" value="{{$restaurant->id}}">
                             <input type="hidden" name="lat" value="{{request('lat')}}">
                              <input type="hidden" name="lng" value="{{request('lng')}}">
-                           <div class="widget widget-cart">
+                           <div class="widget widget-cart" style="background: #fff;">
                               <div class="widget-heading">
-                                 <h3 class="widget-title text-dark">
-                                    Your Shopping Cart
+                                 <h3 style="font-weight: bold;font-size: 24px;" class="widget-title text-dark">
+                                    Cart <br>   <small style="color: #8a8a8a;font-size: 15px;">{{ Cart::instance('restaurant-'.$restaurant->id)->count() }} items</small>
                                  </h3>
+
                                  <div class="clearfix"></div>
                               </div>
                               @foreach(Cart::instance('restaurant-'.$restaurant->id)->content() as $item)
 
                               <div class="order-row bg-white">
                                  <div class="widget-body">
-                                    <div class="title-row"><span style="font-size: 14px;">{{ $item->name }}</span> <a href="/cart/remove/{{$item->rowId}}/{{$restaurant->id}}">
-                                     <i class="fa fa-trash pull-right"></i></a> <input style="display: inline;width: 40px;text-align: center;float: right;margin-right: 6px;" 
-                                    type="number" value="{{ $item->qty }}" id="qty-{{$item->id}}"> 
+                                    <div class="title-row"><span style="font-size: 14px;">  
+                                             @if($item->model->is_veg)
+                                                 <img src="/images/veg.png" style="width: 12px;height: 12px;margin-top: -2px;" >
+                                                @else
+                                                <img src="/images/nonveg.png" style="width: 12px;height: 12px;margin-top: -2px;" >
+                                                @endif {{ $item->name }}</span> 
+
+                                    <p style="font-size:15px;font-weight: bold;margin-top: 2px;margin-left: 3px;" class="pull-right">&#8377; {{ $item->price * $item->qty }}</p>
+                                    {{-- <a href="/cart/remove/{{$item->rowId}}/{{$restaurant->id}}">
+                                     <i class="fa fa-trash pull-right"></i></a> --}} 
+
+                                    
+
+                                    <div data-trigger="spinner" id="spinner-{{$item->id}}" style="display: inline;text-align: center;float: right;margin-right: 6px;" >
+                                      <a style="color: #f30; font-size: 18px;font-weight: bold;
+   " href="javascript:;" data-spin="down">-</a>
+                                      <input type="text" style="width: 40px;text-align: center;" value="{{ $item->qty }}" data-rule="quantity">
+                                      <a href="" style="color: #f30; font-size: 18px;font-weight: bold;" href="javascript:;" data-spin="up">+</a>
+                                    </div>
 
                                      </div>
                                     
@@ -216,8 +279,8 @@
                                  <div class="price-wrap text-xs-center">
                                     <p>SUBTOTAL</p>
                                     <h3 class="value"><strong>&#8377; {{ Cart::instance('restaurant-'.$restaurant->id)->subtotal() }}</strong></h3>
-                                    <p>Free Shipping</p>
-                                    <button  type="submit" class="btn theme-btn btn-lg" {{  $restaurant->is_open ? '' : 'disabled'}}>Checkout</button>
+                                    <p  style="color: #8a8a8a;font-size: 14px;">Extra charges may apply</p>
+                                    <button style="width: 100%;" type="submit" class="btn theme-btn btn-lg" {{  $restaurant->is_open ? '' : 'disabled'}}>Checkout</button>
                                  </div>
                               </div>
                            </div>
@@ -230,5 +293,52 @@
             </div>
 
 
+
+@endsection
+
+
+@section('scripts')
+
+
+   <script src="/js/jquery.spinner.js"></script>
+
+    @foreach(Cart::instance('restaurant-'.$restaurant->id)->content() as $item)
+
+      <script>
+      $("#spinner-{{$item->id}}")
+        .spinner('delay', 200) //delay in ms
+        .spinner('changed', function(e, newVal, oldVal) {
+          // trigger lazed, depend on delay option.
+        })
+        .spinner('changing', function(e, newVal, oldVal) {
+         if(newVal > oldVal)
+         {
+
+          window.location = '/cart/increment/{{$item->rowId}}/{{$restaurant->id}}'
+         } else {
+             window.location = '/cart/decrement/{{$item->rowId}}/{{$restaurant->id}}'
+         }
+        });
+      </script>
+
+       <script>
+      $("#spinner2-{{$item->id}}")
+        .spinner('delay', 200) //delay in ms
+        .spinner('changed', function(e, newVal, oldVal) {
+          // trigger lazed, depend on delay option.
+        })
+        .spinner('changing', function(e, newVal, oldVal) {
+         if(newVal > oldVal)
+         {
+
+          window.location = '/cart/increment/{{$item->rowId}}/{{$restaurant->id}}'
+         } else {
+             window.location = '/cart/decrement/{{$item->rowId}}/{{$restaurant->id}}'
+         }
+        });
+      </script>
+
+    @endforeach
+   
 
 @endsection

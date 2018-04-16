@@ -29,6 +29,14 @@
                         </ul>
                     </div>
 
+                     <div class="col-xs-12 col-sm-3 popular-locations color-gray" >
+                        <a href="#bulkOrderModal" data-toggle="modal">
+                            <img src="/images/bulk.png" style="width: 160px;">
+                        </a>
+    
+                        
+                    </div>
+
                     
                 </div>
                 <!-- top footer ends -->
@@ -45,7 +53,6 @@
                            <h4 style="color: #fff;font-weight: bold;"> 
                             <i style="margin: 10px;" class="fa fa-facebook"></i>
                             <i style="margin: 10px;" class="fa fa-instagram"></i>
-                            <i style="margin: 10px;" class="fa fa-twitter"></i> </h4>
                         </div>
                     </div>
                 </div>
