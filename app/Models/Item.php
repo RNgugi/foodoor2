@@ -25,10 +25,7 @@ class Item extends Model implements Buyable
     // protected $hidden = [];
     // protected $dates = [];
 
-     protected $casts = [
-        'toppings' => 'array'
-    ];
-
+     
     public function cuisine()
     {
         return $this->belongsTo(Cuisine::class);
