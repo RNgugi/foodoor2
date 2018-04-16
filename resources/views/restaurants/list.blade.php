@@ -61,28 +61,7 @@
             <section class="restaurants-page" style="min-height: 1200px;">
                 <div class="container">
                     <div class="row">
-                      <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3 ">
-                     <div class="sidebar clearfix m-b-20 ">
-                        <div class="main-block">
-                           <div class="sidebar-title white-txt">
-                              <h6>Filter Restaurants</h6>
-                              <i class="fa fa-cutlery pull-right"></i> 
-                           </div>
-                           <ul>
-                              <li class="{{ request('filter') ==  'all'  ? 'active' : ''  }}"><a href="{{ currentUrl().'&filter=all' }}" class="scroll">All Items</a></li>
-                              <li class="{{ request('filter') ==  'popular' ? 'active' : '' }}"><a href="{{ currentUrl().'&filter=popular' }}" class="scroll">Most Popular</a></li>
-                              <li class="{{ request('filter') ==  'budget'  ? 'active' : ''  }}"><a href="{{ currentUrl().'&filter=budget' }}" class="scroll">Pocket Friendly</a></li>
-                              <li class="{{ request('filter') ==  'veg'  ? 'active' : ''  }}"><a href="{{ currentUrl().'&filter=veg' }}" class="scroll">Pure Veg</a></li>
-                              <li class="{{ request('filter') ==  'nonveg'  ? 'active' : ''  }}"><a href="{{ currentUrl().'&filter=nonveg' }}" class="scroll">Non-Veg Special</a></li>
-
-                             
-                           </ul>
-                           <div class="clearfix"></div>
-                        </div>
-                        
-                     </div>
-                     
-                  </div>
+                      
                         <div class="col-xs-12 col-sm-7 col-md-7 col-lg-9">
 
                            @foreach($restaurants as $restaurant)
@@ -121,6 +100,29 @@
                            @endforeach 
                             
                         </div>
+
+                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3 ">
+                     <div class="sidebar clearfix m-b-20 ">
+                        <div class="main-block">
+                           <div class="sidebar-title white-txt">
+                              <h6>Filter Restaurants</h6>
+                              <i class="fa fa-cutlery pull-right"></i> 
+                           </div>
+                           <ul>
+                              <li class="{{ request('filter') ==  'all'  ? 'active' : ''  }}"><a href="{{ currentUrl().'&filter=all' }}" class="scroll">All Items</a></li>
+                              <li class="{{ request('filter') ==  'popular' ? 'active' : '' }}"><a href="{{ currentUrl().'&filter=popular' }}" class="scroll">Most Popular</a></li>
+                              <li class="{{ request('filter') ==  'budget'  ? 'active' : ''  }}"><a href="{{ currentUrl().'&filter=budget' }}" class="scroll">Pocket Friendly</a></li>
+                              <li class="{{ request('filter') ==  'veg'  ? 'active' : ''  }}"><a href="{{ currentUrl().'&filter=veg' }}" class="scroll">Pure Veg</a></li>
+                              <li class="{{ request('filter') ==  'nonveg'  ? 'active' : ''  }}"><a href="{{ currentUrl().'&filter=nonveg' }}" class="scroll">Non-Veg Special</a></li>
+
+                             
+                           </ul>
+                           <div class="clearfix"></div>
+                        </div>
+                        
+                     </div>
+                     
+                  </div>
                     </div>
                 </div>
             </section>
