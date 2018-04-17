@@ -8,9 +8,9 @@
     <div class="top-links" style="margin-top: 15px;background: #fff;border-top: 1px solid #ccc;">
                 <div class="container">
                     <ul class="row links">
-                        <li class="col-xs-12 col-sm-3 link-item active"><span>1</span><a href="#">Choose Your Location</a></li>
-                        <li class="col-xs-12 col-sm-3 link-item active"><span>2</span><a href="#">Choose Restaurant</a></li>
-                        <li class="col-xs-12 col-sm-3 link-item active"><span>3</span><a href="#">Pick Your favorite food</a></li>
+                        <li class="col-xs-12 col-sm-3 link-item active"><span>1</span><a href="/">Choose Your Location</a></li>
+                        <li class="col-xs-12 col-sm-3 link-item active"><span>2</span><a href="/restaurants/explore?lat={{$lat}}&lng={{$lng}}">Choose Restaurant</a></li>
+                        <li class="col-xs-12 col-sm-3 link-item active"><span>3</span><a href="/restaurants/{{$restaurant->id}}?lat={{$lat}}&lng={{$lng}}">Pick Your favorite food</a></li>
                         <li class="col-xs-12 col-sm-3 link-item active"><span>4</span><a href="#">Order and Pay online</a></li>
                     </ul>
                 </div>

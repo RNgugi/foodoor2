@@ -25,7 +25,6 @@
 
 <li><a href="{{ backpack_url('items') }}"><i class="fa fa-list-ul"></i> <span>Menu Items</span></a></li>
 
-
 @if(auth()->user()->isRestaurant())
 	<li><a href="/admin/restaurants/{{ auth()->user()->restaurant->id}}/edit"><i class="fa fa-user"></i> <span>Manage Profile</span></a></li>
 @endif

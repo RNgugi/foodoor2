@@ -108,18 +108,6 @@ class ItemCrudController extends CrudController
                 'tab' => 'Available Sizes'
             ],
 
-            [ // Table
-                'name' => 'toppings',
-                'label' => 'Extra Options/Additions',
-                'type' => 'table',
-                'entity_singular' => 'option', // used on the "Add X" button
-                'columns' => [
-                    'name' => 'Name',
-                    'desc' => 'Description (optional)',
-                    'price' => 'Price (Rs.)'
-                ],
-                'tab' => 'Options/Addition'
-            ],
           
         ]);
 
@@ -150,6 +138,8 @@ class ItemCrudController extends CrudController
        {
           $this->crud->addClause('where', 'restaurant_id', '=', auth()->user()->restaurant->id);
        } 
+
+       $this->crud->addButtonFromModelFunction('line', 'additions', 'manageToppings', 'end');
 
        $this->crud->ajax_table = false;
 

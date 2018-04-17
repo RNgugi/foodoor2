@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Calculator WebApp</title>
+</head>
+<body>
+	<div>
+		<h1> Calculator </h1>
+		<div>
+		<form action="/calculator" method='POST'>
+			<input type="number" name="num1" placeholder="Enter number 1" required="True">
+			<input type="number" name="num2" placeholder="Enter number 2" required="True">
+			<br><br>
+			<button type="submit" name="op" value="+">+</button>
+			<button type="submit" name="op" value="-">-</button>
+			<button type="submit" name="op" value="*">*</button>
+			<button type="submit" name="op" value="/">/</button>
+			<button type="submit" name="op" value="sin">sin</button>
+			<button type="submit" name="op" value="cos">cos</button>
+			<button type="submit" name="op" value="sqrt">sqrt</button>
+			<br><br>
+		</form>
+		</div>
+		<div>
+			<h1>Result : {{Result}} </h1>
+		</div>
+	</div>
+	
+	<hr>
+	<div>
+		<h1> Currency Convertor </h1>
+		<form action="/currency"  method="POST">
+			<input type="number" name="inputCurrency">
+			<button type="submit" name="op" value="uti">USD TO INR</button>
+			<button type="submit" name="op" value="itu">INR TO USD</button>
+			<button type="submit" name="op" value="pti">POUNDS TO INR</button>
+			<button type="submit" name="op" value="itp">INR TO POUNDS</button>
+		</form>
+	</div>
+	<div>
+		<h1>Result1 : {{Result1}}</h1>
+	</div>
+	
+</body>
+</html>

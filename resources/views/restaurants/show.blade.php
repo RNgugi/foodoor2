@@ -131,6 +131,7 @@
                                     <div class="row">
                                        <div class="col-xs-12 col-sm-12 col-lg-8">
                                         <div class="rest-logo pull-left">
+
                                              <a class="restaurant-logo pull-left" href="#">
                                                 @if($item->is_veg)
                                                  <img src="/images/veg.png" style="width: 15px;height: 15px;margin-top: 3px;" >
@@ -161,7 +162,7 @@
                                                  <a href="" style="color: #f30; font-size: 18px;font-weight: bold;" href="javascript:;" data-spin="up">+</a>
                                              </div>
                                           @else
-                                             @if($item->toppings != null)
+                                             @if(count($item->additions))
                                                 <a href="#toppings-{{$item->id}}" data-toggle="modal" class="btn btn-small btn btn-secondary pull-right">+</a> 
                                              @else
                                                 <a href="/cart/add/{{$item->id}}" class="btn btn-small btn btn-secondary pull-right">+</a> 
@@ -170,7 +171,7 @@
 
                                        </div>
                                     </div>
-                                      @if($item->toppings != null)
+                                      @if(count($item->additions))
                                     <div class="modal fade" id="toppings-{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                       <div class="modal-dialog modal-dialog-centered" role="document">
                                         <form method="get" action="/cart/add/{{$item->id}}">
@@ -182,8 +183,24 @@
                                                </button>
                                              </div>
                                              <div class="modal-body">
-                                               @foreach(json_decode($item->toppings) as $topping)
-                                                   <h5 style="font-weight: bold;">{{ $topping->name }}</h5>
+                                               @foreach($item->additions as $addition)
+                                                   <h5 style="font-weight: bold;margin-bottom: 18px;">{{ $addition->name }}</h5>
+                                                   @foreach(json_decode($addition->options) as $key => $option)
+                                                      @if($addition->select_type == 0)
+                                                         <label class="custom-control custom-radio  m-b-20">
+                                                          <input id="{{str_slug($option->name)}}" value="{{ $key }}" name="{{str_slug($addition->name)}}" type="radio" class="custom-control-input"> <span class="custom-control-indicator"></span> <span class="custom-control-description">{{ $option->name }}(&#8377;{{ $option->price }})</span>
+                                                          <br>
+                                                          <span>{{ isset($option->description) ? $option->description : '' }}</span>
+                                                          </label>
+                                                      
+                                                      @else
+                                                          <label class="custom-control custom-checkbox  m-b-20">
+                                                          <input id="{{str_slug($option->name)}}" value="{{ $key }}" name="{{str_slug($addition->name)}}" type="checkbox" class="custom-control-input"> <span style="border-radius: 0;" class="custom-control-indicator"></span> <span class="custom-control-description">{{ $option->name }}(&#8377;{{ $option->price }})</span>
+                                                          <br>
+                                                          <span>{{ isset($option->description) ? $option->description : '' }}</span>
+                                                          </label>
+                                                      @endif
+                                                    @endforeach
                                                @endforeach
                                              </div>
                                              <div class="modal-footer">
@@ -237,7 +254,8 @@
                                                 <img src="/images/nonveg.png" style="width: 12px;height: 12px;margin-top: -2px;" >
                                                 @endif {{ $item->name }}</span> 
 
-                                    <p style="font-size:15px;font-weight: bold;margin-top: 2px;margin-left: 3px;" class="pull-right">&#8377; {{ $item->price * $item->qty }}</p>
+                                    <p style="font-size:12px;font-weight: normal;margin-top: 2px;margin-left: 3px;" class="pull-right">&#8377; {{ $item->price * $item->qty }} 
+                                             <a href="/cart/remove/{{$item->rowId}}/{{$restaurant->id}}"><i class="fa fa-trash"></i></a></p>
                                     {{-- <a href="/cart/remove/{{$item->rowId}}/{{$restaurant->id}}">
                                      <i class="fa fa-trash pull-right"></i></a> --}} 
 

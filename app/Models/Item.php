@@ -25,7 +25,11 @@ class Item extends Model implements Buyable
     // protected $hidden = [];
     // protected $dates = [];
 
-     
+    public function additions()
+    {
+        return $this->hasMany(Topping::class);
+    }
+
     public function cuisine()
     {
         return $this->belongsTo(Cuisine::class);
@@ -41,9 +45,22 @@ class Item extends Model implements Buyable
         return $this->belongsTo(Restaurant::class);
     }
 
+    public function manageToppings($crud = false)
+    { 
+     
+        return '<a class="btn btn-xs btn-success" href="/admin/toppings?item=' . $this->id . '" data-toggle="tooltip" title="View Options/Toppings"><i class="fa fa-list-ul"></i> Additions/Options</a>';
+       
+    }
+
+
     public function getRestaurantNameAttribute()
     {
         return $this->restaurant->name;
+    }
+
+    public function getitemFullNameAttribute()
+    {
+        return $this->name . ' - ' . $this->restaurant->name;
     }
 
     public function setSlugAttribute($value)

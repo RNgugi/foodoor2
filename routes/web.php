@@ -45,7 +45,7 @@ Route::get('/coupons/apply/{restaurant}/coupon:{code}/remove', 'CouponsControlle
 
 Route::post('/bulk-orders', 'BulkOrderController@store');
 
-Route::group(['prefix' => 'admin', 'middleware' => ['admin'], 'namespace' => 'Admin'], function()
+Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'role'], 'namespace' => 'Admin'], function()
 {
 	CRUD::resource('orders', 'OrderCrudController');
 	CRUD::resource('earnings', 'EarningsCrudController');
@@ -56,6 +56,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin'], 'namespace' => 'Ad
     CRUD::resource('coupons', 'CouponCrudController');
     CRUD::resource('drivers', 'DriverCrudController');
     CRUD::resource('freedeliveries', 'FreedeliveryCrudController');
+    CRUD::resource('toppings', 'ToppingCrudController');
 });
 
 Route::group(['prefix' => 'restaurants-admin', 'middleware' => ['admin'], 'namespace' => 'Restaurants'], function()

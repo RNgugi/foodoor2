@@ -1,0 +1,29 @@
+<html>
+<head>
+<title>Chat Server</title>
+<meta http-equiv="refresh" content="10">
+</head>
+<body>
+	<h1> Welcome </h1>
+	<div>
+		<h3> Messages </h3>
+		<br>
+		<div>
+		{% for message in msglist %}
+			<p>{{ message }}</p>
+			<hr>
+			{% endfor %}
+		</div>
+	</div>
+
+	<div>
+	<form action="http://127.0.0.1:5000/chat" method="POST">
+	<label>Message Text</label>
+	<br>
+	<input type="text" name="message" autofocus="true" />
+	<br><br>
+	<button type="submit">Submit</button>
+	</form>
+	</div>
+</body>
+</html>
