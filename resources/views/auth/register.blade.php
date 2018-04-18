@@ -1,5 +1,19 @@
 @extends('layouts.restaurants')
 
+@section('styles')
+
+  <style type="text/css">
+    input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}
+  </style>
+
+@endsection
+
 @section('content')
     <div style="background: #e9ecee;">
             <div class="breadcrumb" style="background: #fff;">
@@ -26,7 +40,7 @@
                                  <div class="row">
                                     <div class="form-group col-sm-12">
                                        <label for="name">Full name</label>
-                                       <input id="name" type="name" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+                                       <input id="name" type="name" placeholder="Enter your full name" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
 
                                          @if ($errors->has('name'))
                                             <span class="invalid-feedback">
@@ -37,7 +51,7 @@
 
                                     <div class="form-group col-sm-12">
                                        <label for="email">Email address</label>
-                                       <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+                                       <input id="email" type="email" placeholder="Enter contact e-mail address" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
 
                                          @if ($errors->has('email'))
                                             <span class="invalid-feedback">
@@ -45,10 +59,21 @@
                                             </span>
                                         @endif
                                     </div>
+
+                                    <div class="form-group col-sm-12">
+                                       <label for="phone">Phone Number</label>
+                                       <input id="phone" type="number" placeholder="Enter contact number" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" value="{{ old('phone') }}" required autofocus>
+
+                                         @if ($errors->has('phone'))
+                                            <span class="invalid-feedback">
+                                                <strong>{{ $errors->first('phone') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
                                    
                                     <div class="form-group col-sm-12">
                                        <label for="exampleInputPassword1">Password</label>
-                                       <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                                       <input id="password" type="password" placeholder="Enter a strong password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
 
                                        @if ($errors->has('password'))
                                             <span class="invalid-feedback">
@@ -59,7 +84,7 @@
 
                                     <div class="form-group col-sm-12">
                                        <label for="password-confirm">Confirm Password</label>
-                                       <input id="password-confirm" type="password" class="form-control{{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}" name="password_confirmation" required>
+                                       <input id="password-confirm" type="password" placeholder="Enter password again" class="form-control{{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}" name="password_confirmation" required>
 
                                        @if ($errors->has('password'))
                                             <span class="invalid-feedback">

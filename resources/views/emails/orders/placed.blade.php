@@ -1,19 +1,11 @@
-@extends('layouts.restaurants')
+@extends('layouts.mails')
 
 
 @section('content')
 	 
-     <div class="breadcrumb" style="border-top: 1px solid #ccc;margin-top: 13px;">
-               <div class="container">
-                  <ul>
-                     <li><a href="/" class="active">Home</a></li>
-                     <li><a href="/orders">My Orders</a></li>
-                     <li>Order #{{ $order->id }}</li>
-                  </ul>
-               </div>
-            </div>  
+   
 
-	<div style="background: #e9ecee;min-height: 1200px;">
+	<div style="background: #e9ecee;">
 
     <div class="container" style="padding-top: 60px;">
 

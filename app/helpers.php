@@ -25,7 +25,7 @@ function getStars($rating) {
 function sendSMS($number, $message)
 {
   // Account details
-  $apiKey = urlencode('PlfU4yW3uc8-Jva0w5EyzaBh3Pbnjye1QIaSBYnN47');
+  $apiKey = urlencode('RJItAyWpWRI-snoxrIANb5EnQ5Zq7UJ0bDcjk7lOYM');
   
   // Message details
   
@@ -70,6 +70,31 @@ function check_in_range($start_date, $end_date, $date_from_user)
 
   // Check that user date is between start & end
   return (($user_ts >= $start_ts) && ($user_ts <= $end_ts));
+}
+
+function getCustomsString($customs)
+{ 
+  
+    $msg = '';
+    foreach ($customs as $key => $custom) {
+      if($key != 'price')
+      {
+        if(array_key_exists('name', $custom))
+        { 
+           $msg = $msg . $key . ' : ' . $custom['name'] . ', ';
+        } else {
+          $msg = $msg . $key . ' : ';  
+          foreach ($custom as $key => $choice) {
+             $msg = $msg . $choice['name'] . ', ';
+          }
+        }
+       
+      }
+    }
+
+    
+
+    return $msg;
 }
 
 

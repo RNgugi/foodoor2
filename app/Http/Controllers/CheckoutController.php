@@ -22,11 +22,15 @@ class CheckoutController extends Controller
 
     public function index()
     {	
+
     	$lat = request('lat');
     	$lng = request('lng');
     	$restaurant = Restaurant::findOrFail(request('restaurant_id'));
 
     	$sessionName = 'restaurant-' . $restaurant->id . '-coupon';
+
+
+       // dd(\Cart::instance('restaurant-'.$restaurant->id)->content());
 
     	if(session()->has($sessionName))
     	{

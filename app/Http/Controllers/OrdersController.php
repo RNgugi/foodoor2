@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\OrderPlaced;
+use App\Mail\NewOrderMail;
 use App\Models\Order;
 use Illuminate\Http\Request;
 
@@ -91,7 +93,8 @@ class OrdersController extends Controller
 
         foreach ($items as $key => $item) 
         {
-            $order->items()->attach($item->id, ['qty' => $item->qty, 'price' => $item->model->getPrice() ]);
+            $customs = $item->options->has('customs') ? $item->options->customs : null;
+            $order->items()->attach($item->id, ['qty' => $item->qty, 'price' => $item->price, 'customs' => $customs ]);
         }
 
         //$order->load('items');
@@ -103,6 +106,14 @@ class OrdersController extends Controller
         {
             return redirect('/orders/' . $order->id . '/pay');
         } else {
+            
+            \Mail::to(auth()->user())->send(new OrderPlaced($order));
+            
+            \Mail::to($order->restaurant->contact_email)->send(new NewOrderMail($order));
+            
+            $message = 'Your order at Foodoor.in is placed.Order ID: ' . $order->id;
+            $response = sendSMS(auth()->user()->phone, $message);
+            
             return redirect('/orders/' . $order->id);
         }
 

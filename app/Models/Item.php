@@ -93,10 +93,15 @@ class Item extends Model implements Buyable
      */
     public function getBuyablePrice($options = null)
     {
-        return $this->price;
+        if(isset($this->customs))
+        {
+            return json_decode($this->customs)->price;
+        }
+        return $this->getPrice();
     }
 
-     public function setPhotoAttribute($value)
+
+    public function setPhotoAttribute($value)
     {
         $attribute_name = "photo";
         $disk = "public";

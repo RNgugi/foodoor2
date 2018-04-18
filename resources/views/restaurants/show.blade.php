@@ -174,7 +174,8 @@
                                       @if(count($item->additions))
                                     <div class="modal fade" id="toppings-{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                       <div class="modal-dialog modal-dialog-centered" role="document">
-                                        <form method="get" action="/cart/add/{{$item->id}}">
+                                        <form method="post" action="/cart/add/{{$item->id}}/custom">
+                                          @csrf
                                            <div class="modal-content">
                                              <div class="modal-header">
                                                <h5 class="modal-title" id="exampleModalCenterTitle" style="font-weight: bold;">{{ $item->name }}</h5>
@@ -195,7 +196,7 @@
                                                       
                                                       @else
                                                           <label class="custom-control custom-checkbox  m-b-20">
-                                                          <input id="{{str_slug($option->name)}}" value="{{ $key }}" name="{{str_slug($addition->name)}}" type="checkbox" class="custom-control-input"> <span style="border-radius: 0;" class="custom-control-indicator"></span> <span class="custom-control-description">{{ $option->name }}(&#8377;{{ $option->price }})</span>
+                                                          <input id="{{str_slug($option->name)}}" value="{{ $key }}" name="{{str_slug($addition->name)}}[]" type="checkbox" class="custom-control-input"> <span style="border-radius: 0;" class="custom-control-indicator"></span> <span class="custom-control-description">{{ $option->name }}(&#8377;{{ $option->price }})</span>
                                                           <br>
                                                           <span>{{ isset($option->description) ? $option->description : '' }}</span>
                                                           </label>

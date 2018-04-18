@@ -46,7 +46,7 @@ class Order extends Model
 
     public function items()
     {
-        return $this->belongsToMany(Item::class, 'order_item')->withPivot(['price', 'qty']);
+        return $this->belongsToMany(Item::class, 'order_item')->withPivot(['price', 'qty', 'customs']);
     }
 
     public function getStatusTextAttribute()
