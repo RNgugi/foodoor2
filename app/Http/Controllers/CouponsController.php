@@ -13,33 +13,38 @@ class CouponsController extends Controller
     {
     	$sessionName = 'restaurant-' . $restaurant->id . '-coupon';
 
+
+
     	if(Coupon::where('code', $code)->exists())
     	{	
     		$coupon = Coupon::where('code', $code)->first();
+
     		if(check_in_range($coupon->valid_from, $coupon->valid_through, date('Y-m-d')))
     		{
 
-    			if($coupon->restaurant_id == null || $coupon->restaurant_id == $restaurant->id)
+    			if($coupon->applied_to_all || $coupon->restaurants->contains($restaurant))
     			{
 
-    				if(\Cart::instance('restaurant-'.$restaurant->id)->subtotal() > $coupon->min_order)
+    				if(floatval(\Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', '')) > $coupon->min_order)
     				{
     					
     					session([$sessionName   => $code]);
     				} else {
     					// show error ..
+
+                        dd('Here 1');
     				}
     				
     			} else {
-    				// show error ..
+    				dd('Here 2');
     			}
     			
     		} else {
-    			// show error ..
+    			dd('Here 3');
     		}
     		
     	} else {
-    		// show error..
+    		dd('Here 4');
     	}
     	
 

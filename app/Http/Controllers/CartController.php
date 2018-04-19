@@ -92,8 +92,8 @@ class CartController extends Controller
      */
     public function increment($item, Restaurant $restaurant)
     {   
-        $count = \Cart::instance('restaurant-'.$restaurant->id)->get($item)->qty + 1;
-        \Cart::instance('restaurant-'.$restaurant->id)->update($item, $count);
+        // $count = \Cart::instance('restaurant-'.$restaurant->id)->get($item)->qty + 1;
+        \Cart::instance('restaurant-'.$restaurant->id)->update($item, request('newVal'));
         return back();
     }
 
@@ -104,7 +104,7 @@ class CartController extends Controller
      */
     public function decrement($item, Restaurant $restaurant)
     {
-        $count = \Cart::instance('restaurant-'.$restaurant->id)->get($item)->qty - 1;
+        $count = request('newVal');
         
         if($count < 0)
         {

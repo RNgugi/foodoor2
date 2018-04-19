@@ -100,7 +100,7 @@
                                                         <td style="font-size: 18px;"></td>
                                                         <td style="font-size: 18px;">GST</td>
                                                         
-                                                        <td style="font-size: 18px;">&#8377 {{ $order->subtotal + $order->tax }}</td>
+                                                        <td style="font-size: 18px;">&#8377 {{ $order->tax }}</td>
                                                     </tr>
                                                     <tr>
                                                      <td></td>

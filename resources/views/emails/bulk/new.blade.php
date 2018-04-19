@@ -7,6 +7,10 @@ You have received a new bulk order enquiry at Foodoor!
 
 ### Phone : <a href="tel:{{$phone}}">{{ $phone }}</a>
 
+### Event : {{ $event }}
+
+### Event Date : {{ $eventDate }}
+
 ### Message : {{ $message }}
 
 @component('mail::button', ['url' => 'https://foodoor.in'])

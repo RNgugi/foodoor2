@@ -152,7 +152,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td>GST</td>
-                                                        <td>&#8377 {{ floatval(Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', '')) * (18/100) }}</td>
+                                                        <td>&#8377 {{ floatval(Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', '')) * (5/100) }}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Delivery Charges</td>
@@ -169,9 +169,9 @@
                                                     <tr>
                                                         <td class="text-color"><strong>Total</strong></td>
                                                         @if(session()->has($sessionName))
-                                                             <td class="text-color"><strong>&#8377 {{ floatval(Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', '')) + floatval(Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', '')) * (18/100) + 20 - $discount}}</strong></td>
+                                                             <td class="text-color"><strong>&#8377 {{ floatval(Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', '')) + floatval(Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', '')) * (5/100) + 20 - $discount}}</strong></td>
                                                         @else
-                                                             <td class="text-color"><strong>&#8377 {{ floatval(Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', '')) + floatval(Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', '')) * (18/100) + 20 }}</strong></td>
+                                                             <td class="text-color"><strong>&#8377 {{ floatval(Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', '')) + floatval(Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', '')) * (5/100) + 20 }}</strong></td>
                                                         @endif
                                                     </tr>
                                                     <tr>

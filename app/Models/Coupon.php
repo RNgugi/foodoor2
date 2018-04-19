@@ -19,13 +19,18 @@ class Coupon extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = [ 'code', 'promo_text', 'discount_type', 'discount', 'restaurant_id', 'valid_from', 'valid_through', 'min_order'];
+    protected $fillable = [ 'code', 'promo_text', 'discount_type', 'discount', 'restaurant_id', 'valid_from', 'valid_through', 'min_order', 'store_category'];
     // protected $hidden = [];
     // protected $dates = [];
 
      public function restaurant()
     {
         return $this->belongsTo(Restaurant::class);
+    }
+
+     public function restaurants()
+    {
+        return $this->belongsToMany(Restaurant::class);
     }
 
     public function getRestaurantNameAttribute()

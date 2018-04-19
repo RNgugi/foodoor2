@@ -18,6 +18,18 @@
     <!-- Custom styles for this template -->
     <link href="/css/style.css" rel="stylesheet"> </head>
 
+
+
+  <style type="text/css">
+    input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}
+  </style>
+
    
 
 <body class="home">
@@ -70,7 +82,7 @@
                 <form method="POST" action="/bulk-orders">
                    @csrf 
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Fill up the form below for bulk orders</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Fill up the details below and we will get to you soon</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -78,12 +90,20 @@
                   <div class="modal-body">
                     
                         <div class="form-group">
-                            <label>Full Name</label>
+                            <label>Name</label>
                             <input type="text" name="name"  class="form-control" placeholder="Enter contact name" required="">
                         </div>
                         <div class="form-group">
                             <label>Phone No.</label>
                             <input type="number" step="1" min="0" name="phone" placeholder="Enter contact number"  class="form-control" required="">
+                        </div>
+                         <div class="form-group">
+                            <label>Event</label>
+                            <input type="text"  name="event" placeholder="Tell us about your event"  class="form-control" required="">
+                        </div>
+                         <div class="form-group">
+                            <label>Date</label>
+                            <input type="date"  name="eventDate"   class="form-control" required="">
                         </div>
                         <div class="form-group">
                             <label>Message</label>

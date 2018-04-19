@@ -2,10 +2,12 @@
 
 <div class="food-item-wrap" style="background: #fff;border: none;">
 
+<a href="/restaurants/{{$restaurant->id}}?lat={{request('lat')}}&lng={{request('lng')}}">
 	<div class="figure-wrap bg-image" data-image-src="{{ isset($restaurant->logo) ? url($restaurant->logo) : 'http://via.placeholder.com/350x250' }}" style="max-height: 200px;height: 200px;">
 	   
 	    
 	</div>
+	</a>
 
 	<div class="content" style="padding-left: 0;">
 	    <h5 style="font-size: 18px;"><a href="/restaurants/{{$restaurant->id}}?lat={{request('lat')}}&lng={{request('lng')}}">{{ $restaurant->name }}</a></h5>

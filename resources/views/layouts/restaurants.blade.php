@@ -63,6 +63,52 @@
 
         </script>
 
+         <!-- Modal -->
+            <div class="modal fade" id="bulkOrderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <form method="POST" action="/bulk-orders">
+                   @csrf 
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Fill up the details below and we will get to you soon</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" name="name"  class="form-control" placeholder="Enter contact name" required="">
+                        </div>
+                        <div class="form-group">
+                            <label>Phone No.</label>
+                            <input type="number" step="1" min="0" name="phone" placeholder="Enter contact number"  class="form-control" required="">
+                        </div>
+                         <div class="form-group">
+                            <label>Event</label>
+                            <input type="text"  name="event" placeholder="Tell us about your event"  class="form-control" required="">
+                        </div>
+                         <div class="form-group">
+                            <label>Date</label>
+                            <input type="date"  name="eventDate"   class="form-control" required="">
+                        </div>
+                        <div class="form-group">
+                            <label>Message</label>
+                            <textarea class="form-control" cols="3" name="message" placeholder="Your order purpose/details" required=""></textarea>
+                        </div>
+                        
+                    
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn theme-btn">Send Details</button>
+                  </div>
+                </form>
+                </div>
+              </div>
+            </div>
+
 
         @yield('scripts')
 </body>

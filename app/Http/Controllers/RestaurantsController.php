@@ -35,18 +35,18 @@ class RestaurantsController extends Controller
             if(request('filter') == 'veg')
             {
 
-              $restaurants = \DB::select("SELECT id,( 3959 * acos( cos( radians(". request('lat') .") ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(". request('lng') .") ) + sin( radians(". request('lat') .") ) * sin( radians( latitude ) ) ) ) AS distance FROM restaurants WHERE is_veg = 1 HAVING distance < 15 ORDER BY distance LIMIT 0 , 20"); 
+              $restaurants = \DB::select("SELECT id,( 3959 * acos( cos( radians(". request('lat') .") ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(". request('lng') .") ) + sin( radians(". request('lat') .") ) * sin( radians( latitude ) ) ) ) AS distance FROM restaurants WHERE is_veg = 1 HAVING distance < 5 ORDER BY distance LIMIT 0 , 20"); 
 
             } else if(request('filter') == 'nonveg') {
-                $restaurants = \DB::select("SELECT id,( 3959 * acos( cos( radians(". request('lat') .") ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(". request('lng') .") ) + sin( radians(". request('lat') .") ) * sin( radians( latitude ) ) ) ) AS distance FROM restaurants WHERE is_veg = 0 HAVING distance < 15 ORDER BY distance LIMIT 0 , 20"); 
+                $restaurants = \DB::select("SELECT id,( 3959 * acos( cos( radians(". request('lat') .") ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(". request('lng') .") ) + sin( radians(". request('lat') .") ) * sin( radians( latitude ) ) ) ) AS distance FROM restaurants WHERE is_veg = 0 HAVING distance < 5 ORDER BY distance LIMIT 0 , 20"); 
             } else if(request('filter') == 'all') {
-                $restaurants = \DB::select("SELECT id,( 3959 * acos( cos( radians(". request('lat') .") ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(". request('lng') .") ) + sin( radians(". request('lat') .") ) * sin( radians( latitude ) ) ) ) AS distance FROM restaurants HAVING distance < 15  ORDER BY distance LIMIT 0 , 20"); 
+                $restaurants = \DB::select("SELECT id,( 3959 * acos( cos( radians(". request('lat') .") ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(". request('lng') .") ) + sin( radians(". request('lat') .") ) * sin( radians( latitude ) ) ) ) AS distance FROM restaurants HAVING distance < 5  ORDER BY distance LIMIT 0 , 20"); 
             } else if(request('filter') == 'popular') {
 
-                $restaurants = \DB::select("SELECT id,( 3959 * acos( cos( radians(". request('lat') .") ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(". request('lng') .") ) + sin( radians(". request('lat') .") ) * sin( radians( latitude ) ) ) ) AS distance FROM restaurants WHERE rating > 3  HAVING distance < 15 ORDER BY distance LIMIT 0 , 20"); 
+                $restaurants = \DB::select("SELECT id,( 3959 * acos( cos( radians(". request('lat') .") ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(". request('lng') .") ) + sin( radians(". request('lat') .") ) * sin( radians( latitude ) ) ) ) AS distance FROM restaurants WHERE rating > 3  HAVING distance < 5 ORDER BY distance LIMIT 0 , 20"); 
             }  else if(request('filter') == 'budget') {
 
-                $restaurants = \DB::select("SELECT id,( 3959 * acos( cos( radians(". request('lat') .") ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(". request('lng') .") ) + sin( radians(". request('lat') .") ) * sin( radians( latitude ) ) ) ) AS distance FROM restaurants WHERE min_price < 800  HAVING distance < 15 ORDER BY distance LIMIT 0 , 20"); 
+                $restaurants = \DB::select("SELECT id,( 3959 * acos( cos( radians(". request('lat') .") ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(". request('lng') .") ) + sin( radians(". request('lat') .") ) * sin( radians( latitude ) ) ) ) AS distance FROM restaurants WHERE min_price < 800  HAVING distance < 5 ORDER BY distance LIMIT 0 , 20"); 
             } 
 
       }  
@@ -63,7 +63,7 @@ class RestaurantsController extends Controller
                   $resids[] = $rid->restaurant_id;
               }
                             
-              $restaurants = \DB::select("SELECT id,( 3959 * acos( cos( radians(". request('lat') .") ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(". request('lng') .") ) + sin( radians(". request('lat') .") ) * sin( radians( latitude ) ) ) ) AS distance FROM restaurants WHERE id IN (". implode(',', $resids) .") HAVING distance < 15 ORDER BY distance LIMIT 0 , 20"); 
+              $restaurants = \DB::select("SELECT id,( 3959 * acos( cos( radians(". request('lat') .") ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(". request('lng') .") ) + sin( radians(". request('lat') .") ) * sin( radians( latitude ) ) ) ) AS distance FROM restaurants WHERE id IN (". implode(',', $resids) .") HAVING distance < 5 ORDER BY distance LIMIT 0 , 20"); 
           } else {
                  $restaurants = [];
           }
@@ -72,7 +72,7 @@ class RestaurantsController extends Controller
       } 
       else {
 
-          $restaurants = \DB::select("SELECT id,( 3959 * acos( cos( radians(". request('lat') .") ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(". request('lng') .") ) + sin( radians(". request('lat') .") ) * sin( radians( latitude ) ) ) ) AS distance FROM restaurants HAVING distance < 15 ORDER BY distance LIMIT 0 , 20"); 
+          $restaurants = \DB::select("SELECT id,( 3959 * acos( cos( radians(". request('lat') .") ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(". request('lng') .") ) + sin( radians(". request('lat') .") ) * sin( radians( latitude ) ) ) ) AS distance FROM restaurants HAVING distance < 5 ORDER BY distance LIMIT 0 , 20"); 
       }
      
 
@@ -92,7 +92,7 @@ class RestaurantsController extends Controller
       if(count($restaurants) == 0)
       {
         // flash message
-        return redirect('/restaurants');
+        return redirect('/');
       }
 
         $cuisines = Cuisine::limit(8)->get();
@@ -137,7 +137,7 @@ class RestaurantsController extends Controller
     {   
        $restaurant->distance = ( 3959 * acos( cos( deg2rad(request('lat')) ) * cos( deg2rad( $restaurant->latitude ) ) * cos( deg2rad( $restaurant->longitude ) - deg2rad(request('lng')) ) + sin( deg2rad(request('lat')) ) * sin( deg2rad( $restaurant->latitude ) ) ) );
 
-       $restaurant->delivery_time = $restaurant->distance > 5 ? '45 min' : '40 min';
+       $restaurant->delivery_time = $restaurant->distance > 3 ? '45 min' : '40 min';
 
         $items = $restaurant->items;
          return view('restaurants.show', compact('restaurant', 'items'));

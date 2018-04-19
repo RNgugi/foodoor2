@@ -14,17 +14,21 @@ class NewBulkOrder extends Mailable
     public $name;
     public $phone;
     public $message;
+    public $event;
+    public $eventDate;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($name, $phone, $message)
+    public function __construct($name, $phone, $message,  $event, $eventDate)
     {
         $this->name = $name;
         $this->phone = $phone;
         $this->message = $message;
+        $this->event = $event;
+        $this->eventDate = $eventDate;
     }
 
     /**

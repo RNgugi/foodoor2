@@ -62,15 +62,37 @@ class CouponCrudController extends CrudController
 
         ]);
 
-         $this->crud->addField([  // Select2
-                   'label' => "Restaurant *",
-                   'type' => 'select2',
-                   'name' => 'restaurant_id', // the db column for the foreign key
-                   'entity' => 'restaurant', // the method that defines the relationship in your Model
-                   'attribute' => 'name', // foreign key attribute that is shown to user
-                   'model' => "App\Models\Restaurant",
-                  
-                ]);
+        $this->crud->addField([ // select_from_array
+                'name' => 'store_category',
+                'label' => 'Applicable to',
+                'type' => 'select2_from_array',
+                'options' => [0 => 'Restaurants', 1 => 'Bakeries', 2 => 'Sweetshops'],
+                'allows_null' => false,
+                'default' => 0,
+            ]);
+
+          $this->crud->addField([ // select_from_array
+                'name' => 'store_category',
+                'label' => 'Applies to All',
+                'type' => 'select2_from_array',
+                'options' => [0 => 'No', 1 => 'Yes'],
+                'allows_null' => false,
+                'default' => 0,
+            ]);
+
+         $this->crud->addField(  [       
+                'label' => 'Restaurants',
+                'type' => 'select2_multiple',
+                'name' => 'restaurants', 
+                'entity' => 'restaurants', 
+                'attribute' => 'name',
+                'model' => "App\Models\Restaurant", 
+                'allows_null' => true,
+                'pivot' => true, 
+             ]);
+
+
+         
 
          $this->crud->ajax_table = false;
 

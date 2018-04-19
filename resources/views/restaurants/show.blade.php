@@ -158,7 +158,7 @@
                                           @if(count($added))
                                             <div data-trigger="spinner" id="spinner2-{{$item->id}}" style="display: inline;text-align: center;float: right;margin-right: 6px;" >
                                                  <a style="color: #f30; font-size: 18px;font-weight: bold;" href="javascript:;" data-spin="down">-</a>
-                                                 <input type="text" style="width: 40px;text-align: center;" value="{{ $added->first()->qty }}" data-rule="quantity">
+                                                 <input type="text" style="width: 40px;text-align: center;" min="1" value="{{ $added->first()->qty }}" data-rule="quantity">
                                                  <a href="" style="color: #f30; font-size: 18px;font-weight: bold;" href="javascript:;" data-spin="up">+</a>
                                              </div>
                                           @else
@@ -265,7 +265,7 @@
                                     <div data-trigger="spinner" id="spinner-{{$item->id}}" style="display: inline;text-align: center;float: right;margin-right: 6px;" >
                                       <a style="color: #f30; font-size: 18px;font-weight: bold;
    " href="javascript:;" data-spin="down">-</a>
-                                      <input type="text" style="width: 40px;text-align: center;" value="{{ $item->qty }}" data-rule="quantity">
+                                      <input type="text" style="width: 40px;text-align: center;" min="1" value="{{ $item->qty }}" data-rule="quantity">
                                       <a href="" style="color: #f30; font-size: 18px;font-weight: bold;" href="javascript:;" data-spin="up">+</a>
                                     </div>
 
@@ -333,9 +333,9 @@
          if(newVal > oldVal)
          {
 
-          window.location = '/cart/increment/{{$item->rowId}}/{{$restaurant->id}}'
+          window.location = '/cart/increment/{{$item->rowId}}/{{$restaurant->id}}/newVal:' + newVal
          } else {
-             window.location = '/cart/decrement/{{$item->rowId}}/{{$restaurant->id}}'
+             window.location = '/cart/decrement/{{$item->rowId}}/{{$restaurant->id}}/newVal:' + newVal
          }
         });
       </script>
@@ -350,9 +350,9 @@
          if(newVal > oldVal)
          {
 
-          window.location = '/cart/increment/{{$item->rowId}}/{{$restaurant->id}}'
+         window.location = '/cart/increment/{{$item->rowId}}/{{$restaurant->id}}/newVal:' + newVal
          } else {
-             window.location = '/cart/decrement/{{$item->rowId}}/{{$restaurant->id}}'
+              window.location = '/cart/decrement/{{$item->rowId}}/{{$restaurant->id}}/newVal:' + newVal
          }
         });
       </script>

@@ -115,6 +115,15 @@ class RestaurantCrudController extends CrudController
                , 'tab' => 'Location'
              ],
 
+                [ // select_from_array
+                    'name' => 'store_category',
+                    'label' => 'Store Type',
+                    'type' => 'select2_from_array',
+                    'options' => [0 => 'Restaurant', 1 => 'Bakery', 2 => 'Sweet shop'],
+                    'allows_null' => false,
+                    'default' => 0,
+                    'tab' => 'General'
+                ],
             
               [ // select_from_array
                 'name' => 'open_time',

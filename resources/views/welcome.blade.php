@@ -2,7 +2,7 @@
 
 @section('content')
         
-           <div class="inner-page-hero"  style="background: #ff7726;padding-bottom: 19px;
+           <div class="inner-page-hero"  style="background: #c09101;padding-bottom: 19px;
     padding-top: 30px;">
 
 
@@ -72,7 +72,7 @@
             <div class="hero-inner">
                 <div class="container text-center hero-text font-white">
                     <h1>Find the best restaurants near you!</h1>
-                    <h5 class="font-white space-xs">Find restaurants and order multi-cuisine food items with huge offers</h5>
+                    <h5 class="font-white space-xs">Currently we serve multi-cuisine food items with huge offers only in Ranchi</h5>
                     <div class="banner-form">
                         <div class="form-inline">
                             <div class="form-group">
@@ -96,7 +96,7 @@
         </section>
 
 
-         @include('partials.landing._categories') 
+     {{--     @include('partials.landing._categories')  --}}
 
 
 

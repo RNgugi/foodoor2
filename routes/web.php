@@ -44,9 +44,9 @@ Route::group(['middleware' => ['verified'] ], function() {
 
     Route::get('/cart/remove/{item}/{restaurant}', 'CartController@remove');
 
-    Route::get('/cart/increment/{item}/{restaurant}', 'CartController@increment');
+    Route::get('/cart/increment/{item}/{restaurant}/newVal:{newVal}', 'CartController@increment');
 
-    Route::get('/cart/decrement/{item}/{restaurant}', 'CartController@decrement');
+    Route::get('/cart/decrement/{item}/{restaurant}/newVal:{newVal}', 'CartController@decrement');
 
     Route::get('/coupons/apply/{restaurant}/coupon:{code}', 'CouponsController@apply');
 
