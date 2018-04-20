@@ -31,7 +31,25 @@ class CartController extends Controller
 
         $customs = [];
 
-        $customs['price'] =  $item->getPrice();
+
+        if(request()->has('size'))
+        {
+            $sizes = json_decode($item->sizes);
+
+            $sizeKey = request('size');
+
+            $size = $sizes[$sizeKey];
+
+            $customs['size'] = $size->name;
+
+            $customs['price'] = $size->price;
+
+
+        } else {
+
+            $customs['price'] =  $item->getPrice();
+        }
+
 
       
 

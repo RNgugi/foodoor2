@@ -111,6 +111,16 @@ class RestaurantCrudController extends CrudController
                , 'tab' => 'Location'
              ],
 
+               [ // select_from_array
+                    'name' => 'store_category',
+                    'label' => 'Store Type',
+                    'type' => 'select2_from_array',
+                    'options' => [0 => 'Restaurant', 1 => 'Bakery', 2 => 'Sweet shop'],
+                    'allows_null' => false,
+                    'default' => 0,
+                    'tab' => 'General'
+                ],
+
             
               [ // select_from_array
                 'name' => 'open_time',
@@ -162,13 +172,13 @@ class RestaurantCrudController extends CrudController
 
              ['name' => 'website', 'label' => 'Website Link' , 'tab' => 'General'],
 
-             ['name' => 'bank_name', 'label' => 'Bank Name' , 'tab' => 'Banking'],
+             ['name' => 'bank_name', 'label' => 'Bank Name' , 'tab' => 'Banking', 'attributes' => ["readonly" => true]],
 
-             ['name' => 'bank_ifsc', 'label' => 'Bank IFSC Code', 'tab' => 'Banking'],
+             ['name' => 'bank_ifsc', 'label' => 'Bank IFSC Code', 'tab' => 'Banking', 'attributes' => ["readonly" => true]],
 
-             ['name' => 'bank_acc_no', 'label' => 'Bank Account No.', 'type' => 'number', 'attributes' => ["step" => 1, "min" => 1], 'tab' => 'Banking'],
+             ['name' => 'bank_acc_no', 'label' => 'Bank Account No.', 'type' => 'number', 'attributes' => ["step" => 1, "min" => 1, "readonly" => true], 'tab' => 'Banking'],
 
-             ['name' => 'bank_acc_name', 'label' => 'Bank Account Name', 'tab' => 'Banking'],
+             ['name' => 'bank_acc_name', 'label' => 'Bank Account Name', 'tab' => 'Banking', 'attributes' => ["readonly" => true]],
 
              [ // select_from_array
                 'name' => 'bank_acc_type',
@@ -177,7 +187,8 @@ class RestaurantCrudController extends CrudController
                 'options' => [0 => 'Savings Account', 1 => 'Current Account'],
                 'allows_null' => false,
                 'default' => 1
-                , 'tab' => 'Banking'
+                , 'tab' => 'Banking',
+                'attributes' => ["disabled" => true]
                 // 'allows_multiple' => true, // OPTIONAL; needs you to cast this to array in your model;
              ],
 
@@ -227,6 +238,7 @@ $this->crud->ajax_table = false;
                $user = User::create([
                 'name' => $this->crud->entry->contact_name,
                 'email' => $this->crud->entry->contact_email,
+                'phone' => $this->crud->entry->contact_phone,
                 'password' => Hash::make('password'),
             ]);
 
@@ -260,6 +272,7 @@ $this->crud->ajax_table = false;
             $user = User::create([
                 'name' => $this->crud->entry->contact_name,
                 'email' => $this->crud->entry->contact_email,
+                'phone' => $this->crud->entry->contact_phone,
                 'password' => Hash::make('password'),
             ]);
 

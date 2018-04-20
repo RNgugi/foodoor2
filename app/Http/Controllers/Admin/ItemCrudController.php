@@ -56,7 +56,7 @@ class ItemCrudController extends CrudController
 
             ['name' => 'name', 'label' => 'Name *', 'tab' => 'General'],
 
-            ['name' => 'description', 'label' => 'Decription/Ingredients <span style="color: red;">*</span>', 'tab' => 'General'],
+            ['name' => 'description', 'label' => 'Decription/Ingredients', 'tab' => 'General'],
 
             ['name' => 'slug', 'label' => 'Slug', 'type' => 'hidden', 'value' => 'a', 'tab' => 'General'],
 

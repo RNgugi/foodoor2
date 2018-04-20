@@ -39,10 +39,12 @@
 
                         <div class="col-xs-12 col-sm-12 col-md-3">
                            @if($restaurant->promo_text != '' || $restaurant->promo_text != null)
+                            @if(check_in_range($restaurant->valid_from, $restaurant->valid_through, date('Y-m-d')))
                               <div class="alert alert-success" role="alert" style="margin-top: 40px;">
-                                 <b><i class="fa fa-percent"></i>  OFFER</b> <br>
+                                 <b>OFFER</b> <br>
                                  {{ $restaurant->promo_text }}
                               </div>
+                             @endif
                            @endif   
                         </div>
                      </div>
@@ -115,7 +117,7 @@
                            @else
                                <?php $items = $restaurant->items()->where('cuisine_id', $cuisine->id)->get(); ?>
                            @endif
-                           <div class="menu-widget m-b-30" style="background: #fff;">
+                           <div class="menu-widget " style="background: #fff;margin-bottom: 8px;">
                               <div class="widget-heading">
                                  <h3 class="widget-title text-dark">
                                     {{ $cuisine->name }} <a class="btn btn-link pull-right" data-toggle="collapse" href="#cuisine-{{ $cuisine->id }}" aria-expanded="true">
@@ -171,7 +173,7 @@
 
                                        </div>
                                     </div>
-                                      @if(count($item->additions))
+                                      @if(count($item->additions) || count(json_decode($item->sizes)))
                                     <div class="modal fade" id="toppings-{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                       <div class="modal-dialog modal-dialog-centered" role="document">
                                         <form method="post" action="/cart/add/{{$item->id}}/custom">
@@ -184,6 +186,12 @@
                                                </button>
                                              </div>
                                              <div class="modal-body">
+                                                <h5 style="font-weight: bold;margin-bottom: 18px;">Choose Size</h5>
+                                                @foreach(json_decode($item->sizes) as $key => $size)
+                                                   <label class="custom-control custom-radio  m-b-20">
+                                                          <input id="size" value="{{ $key }}" name="size" type="radio" class="custom-control-input"> <span class="custom-control-indicator"></span> <span class="custom-control-description">{{ $size->name }}(&#8377;{{ $size->price }})</span>
+                                                          </label>
+                                                @endforeach
                                                @foreach($item->additions as $addition)
                                                    <h5 style="font-weight: bold;margin-bottom: 18px;">{{ $addition->name }}</h5>
                                                    @foreach(json_decode($addition->options) as $key => $option)
