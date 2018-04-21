@@ -31,6 +31,7 @@ class RestaurantRequest extends FormRequest
              'area' => 'required',
              'pincode' => 'required|min:6|max:6',
              'city_id' => 'required',
+             'min_price' => 'required',
              'contact_name' => 'required|min:2',
              'contact_email' => 'required|email',
              'contact_phone' => 'required|min:10|max:10',

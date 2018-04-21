@@ -72,6 +72,7 @@ if (isset($field['value']) && (is_array($field['value']) || is_object($field['va
                     longitude: {{ isset($crud->entry->latitude) ? $crud->entry->longitude : 85.301583  }} 
                 },
                 radius: 0,
+                addressFormat: 'street_address',
                 inputBinding: {
                     latitudeInput: $('#latitude'),
                     longitudeInput: $('#longitude'),

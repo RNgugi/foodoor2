@@ -164,7 +164,7 @@ class RestaurantCrudController extends CrudController
              ],
 
 
-             ['name' => 'min_price', 'label' => 'Minimum Price (2 person)', 'type' => 'number' , 'tab' => 'General'],
+             ['name' => 'min_price', 'label' => 'Minimum Price (2 person) <span style="color: red;">*</span>', 'type' => 'number' , 'tab' => 'General'],
 
              ['name' => 'contact_name', 'label' => 'Contact Person <span style="color: red;">*</span>', 'tab' => 'Account'],
 
