@@ -153,6 +153,9 @@ class ItemCrudController extends CrudController
           $this->crud->addClause('where', 'restaurant_id', '=', auth()->user()->restaurant->id);
        } 
 
+        $this->crud->addButtonFromModelFunction('line', 'additions', 'manageToppings', 'end');
+
+
       
     }
 

@@ -14,7 +14,7 @@ class MakeRatingNullable extends Migration
     public function up()
     {
         Schema::table('restaurants', function (Blueprint $table) {
-            $table->double('rating')->nullable()->change();
+            $table->float('rating')->nullable()->change();
         });
     }
 
@@ -26,7 +26,7 @@ class MakeRatingNullable extends Migration
     public function down()
     {
         Schema::table('restaurants', function (Blueprint $table) {
-            $table->double('rating')->change();
+            $table->float('rating')->change();
         });
     }
 }
