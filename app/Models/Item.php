@@ -119,6 +119,8 @@ class Item extends Model implements Buyable
             return $this->price;
         }
     }
+
+    
      /*
     }
     |--------------------------------------------------------------------------

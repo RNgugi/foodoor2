@@ -249,9 +249,9 @@
          if(newVal > oldVal)
          {
 
-          window.location = '/cart/increment/{{$item->rowId}}/{{$restaurant->id}}'
+          window.location = '/cart/increment/{{$item->rowId}}/{{$restaurant->id}}/newVal:' + newVal
          } else {
-             window.location = '/cart/decrement/{{$item->rowId}}/{{$restaurant->id}}'
+             window.location = '/cart/decrement/{{$item->rowId}}/{{$restaurant->id}}/newVal:' + newVal
          }
         });
       @endforeach

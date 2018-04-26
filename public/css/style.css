@@ -1937,7 +1937,9 @@ a.more-link {
 }
 
 .menu-widget .food-item {
-    padding: 15px
+    padding: 15px;
+    padding-bottom: 0;
+    margin-bottom: 0;
 }
 
 .menu-widget .food-item:first-of-type {
@@ -1979,7 +1981,7 @@ a.more-link {
 }
 
 .menu-widget .food-item .item-cart-info {
-    padding-top: 20px
+    /* padding-top: 20px */
 }
 
 .menu-widget .food-item .price {

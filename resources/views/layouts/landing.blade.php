@@ -10,6 +10,7 @@
     <meta name="author" content="">
     <link rel="icon" href="/images/logo.ico">
     <title>Foodoor.in | When you think of food think foodoor</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/font-awesome.min.css" rel="stylesheet">
@@ -57,6 +58,7 @@ input[type=number]::-webkit-outer-spin-button {
     <script src="/js/jquery.isotope.min.js"></script>
     <script src="/js/headroom.js"></script>
     <script src="/js/foodpicky.min.js"></script> 
+     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABIlUStLsr84EGUomykEKJeNPIuWbT854&v=3.exp&sensor=false&libraries=places"></script>
         
@@ -70,6 +72,11 @@ input[type=number]::-webkit-outer-spin-button {
 
                 });
             });
+
+              $( function() {
+                $( ".datepicker" ).datepicker();
+              } );
+
 
 
         </script>
@@ -103,7 +110,7 @@ input[type=number]::-webkit-outer-spin-button {
                         </div>
                          <div class="form-group">
                             <label>Date</label>
-                            <input type="date"  name="eventDate"   class="form-control" required="">
+                            <input type="text"   name="eventDate"   class="form-control datepicker" required="">
                         </div>
                         <div class="form-group">
                             <label>Message</label>

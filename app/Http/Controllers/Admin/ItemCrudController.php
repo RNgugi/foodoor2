@@ -80,7 +80,6 @@ class ItemCrudController extends CrudController
                 'type' => 'select2_from_array',
                 'options' => [0 => 'Non Veg', 1 => 'Veg'],
                 'allows_null' => false,
-                'default' => 1,
                 'tab' => 'General'
                 // 'allows_multiple' => true, // OPTIONAL; needs you to cast this to array in your model;
             ],
@@ -142,6 +141,20 @@ class ItemCrudController extends CrudController
        $this->crud->addButtonFromModelFunction('line', 'additions', 'manageToppings', 'end');
 
        $this->crud->ajax_table = false;
+
+
+       $this->crud->orderBy('name');
+
+       $this->crud->addFilter([ // select2_ajax filter
+          'name' => 'restaurant_id',
+          'type' => 'select2_ajax',
+          'label'=> 'Restaurant',
+          'placeholder' => 'Filter by restaurant'
+        ],
+        url('/get/restaurants'), // the ajax route
+        function($value) { // if the filter is active
+             $this->crud->addClause('where', 'restaurant_id', $value);
+        });
 
       
     }

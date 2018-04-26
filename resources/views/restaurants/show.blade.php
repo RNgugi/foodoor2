@@ -67,6 +67,13 @@
             
 
             <div class="container m-t-30" style="min-height: 1200px;">
+
+               @if(!$restaurant->is_open)
+                 <div class="alert alert-warning" role="alert" >
+                     This restaurant is currently closed. Please try other  <a class="alert-link" href="/restaurants/explore?lat={{request('lat')}}&lng={{request('lng')}}">restaurants</a>
+                  </div>
+               @endif
+
                <div class="row">
                   <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3 ">
                      <div class="sidebar clearfix m-b-20 ">
@@ -145,7 +152,7 @@
                                           
                                           <div class="rest-descr" style="padding-left: 23px;">
                                              <h6><a href="#">{{ $item->name }}</a></h6>
-                                             <p>{{ $item->description }}</p>
+                                             <p>{{ $item->description != '' ? $item->description : 'No description'}}</p>
                                           </div>
                                           <!-- end:Description -->
                                        </div>

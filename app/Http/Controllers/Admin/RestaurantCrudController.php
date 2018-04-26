@@ -220,6 +220,8 @@ class RestaurantCrudController extends CrudController
 
         $this->crud->ajax_table = false;
 
+        $this->crud->orderBy('name');
+
         
     }
 

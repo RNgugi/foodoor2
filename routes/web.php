@@ -7,6 +7,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/get/restaurants', 'RestaurantsController@getAjax');
 
 Route::get('/verify-otp', 'OtpController@index');
 Route::post('/verify-otp', 'OtpController@store');

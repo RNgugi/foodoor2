@@ -34,9 +34,9 @@ class CityCrudController extends CrudController
         ]);
 
         $this->crud->addFields([
-            ['name' => 'name', 'label' => 'Name']
-        ]);
+            ['name' => 'name', 'label' => 'Name']]);
 
+        
         $this->crud->ajax_table = false;
 
         // ------ CRUD FIELDS

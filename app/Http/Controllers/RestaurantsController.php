@@ -140,6 +140,8 @@ class RestaurantsController extends Controller
        $restaurant->delivery_time = $restaurant->distance > 3 ? '45 min' : '40 min';
 
         $items = $restaurant->items;
+
+       
          return view('restaurants.show', compact('restaurant', 'items'));
     }
 
@@ -181,5 +183,12 @@ class RestaurantsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    public function getAjax(){
+       $term = request('term');
+       $options = Restaurant::where('name', 'like', '%'.$term.'%')->get();
+       return $options->pluck('name', 'id');
     }
 }
