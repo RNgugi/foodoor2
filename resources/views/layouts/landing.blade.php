@@ -17,7 +17,7 @@
     <link href="/css/animsition.min.css" rel="stylesheet">
     <link href="/css/animate.css" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link href="/css/style.css" rel="stylesheet"> </head>
+    <link href="/css/style.css" rel="stylesheet"> 
 
 
 
@@ -31,11 +31,10 @@ input[type=number]::-webkit-outer-spin-button {
 }
   </style>
 
-   
-
+   </head>
 <body class="home">
     <div class="site-wrapper animsition" data-animsition-in="fade-in" data-animsition-out="fade-out">
-       
+         @include('flash::message')
          @include('partials.landing._header')
        
          <div class="page-wrapper">
@@ -127,6 +126,10 @@ input[type=number]::-webkit-outer-spin-button {
                 </div>
               </div>
             </div>
+
+            <script>
+$('div.alert').not('.alert-important').delay(3000).fadeOut(350);
+</script>
 
         @yield('scripts')
 </body>

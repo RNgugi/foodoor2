@@ -12,6 +12,13 @@ Route::get('/get/restaurants', 'RestaurantsController@getAjax');
 Route::get('/verify-otp', 'OtpController@index');
 Route::post('/verify-otp', 'OtpController@store');
 
+Route::get('/security', 'HomeController@security');
+Route::get('/payments', 'HomeController@payments');
+Route::post('/profile', 'HomeController@updateProfile');
+Route::post('/password', 'HomeController@updatePassword');
+
+Route::get('/phone/update', 'HomeController@updatePhone');
+
 Route::group(['middleware' => ['verified'] ], function() {
 
 

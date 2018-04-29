@@ -5,8 +5,7 @@
             <div class="breadcrumb" style="background: #fff;">
                <div class="container">
                   <ul>
-                     <li><a href="#" class="active">Home</a></li>
-                     <li><a href="#">Account</a></li>
+                     <li><a href="/" class="active">Home</a></li>
                      <li>Login</li>
                   </ul>
                </div>
@@ -61,8 +60,10 @@
                                 
                                  <div class="row">
                                     <div class="col-sm-4">
-                                       <p> <button type="submit" class="btn theme-btn">Sign In</button> </p>     
+                                       <p> <button type="submit" class="btn theme-btn">Sign In</button> 
+                                       <a href="/register" class="btn btn-border">Create Account</a> </p>     
                                     </div>
+                                     
                                  </div>
 
                                  <div class="row">

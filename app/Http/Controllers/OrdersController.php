@@ -113,6 +113,8 @@ class OrdersController extends Controller
             
             $message = 'Your order at Foodoor.in is placed.Order ID: ' . $order->id;
             $response = sendSMS(auth()->user()->phone, $message);
+
+            flash('We have placed your order and waiting for restaurant confirmation.')->success();
             
             return redirect('/orders/' . $order->id);
         }

@@ -18,13 +18,18 @@
     <link href="/css/animsition.min.css" rel="stylesheet">
     <link href="/css/animate.css" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link href="/css/style.css" rel="stylesheet"> </head>
+    <link href="/css/style.css" rel="stylesheet"> 
 
     @yield('styles')
 
+
+    </head>
+
+
 <body class="home">
+
     <div class="site-wrapper animsition" data-animsition-in="fade-in" data-animsition-out="fade-out">
-       
+         @include('flash::message')   
          @include('partials._header')
        
          <div class="page-wrapper">
@@ -115,6 +120,10 @@
             </div>
 
 
+            <script>
+            $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
+            $('.flash-message').delay(3000).fadeOut(350);
+            </script>
         @yield('scripts')
 </body>
 

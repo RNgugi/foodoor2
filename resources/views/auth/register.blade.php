@@ -19,9 +19,8 @@ input[type=number]::-webkit-outer-spin-button {
             <div class="breadcrumb" style="background: #fff;">
                <div class="container">
                   <ul>
-                     <li><a href="#" class="active">Home</a></li>
-                     <li><a href="#">Account</a></li>
-                     <li>Login</li>
+                     <li><a href="/" class="active">Home</a></li>
+                     <li>Create Account</li>
                   </ul>
                </div>
             </div>
@@ -144,8 +143,9 @@ input[type=number]::-webkit-outer-spin-button {
                                  
                                 
                                  <div class="row" style="margin-top: 30px;">
-                                    <div class="col-sm-4">
-                                       <p> <button type="submit" id="submitButton" disabled="true" class="btn theme-btn">Create Account</button> </p>     
+                                    <div class="col-sm-8">
+                                       <p> <button type="submit" id="submitButton" disabled="true" class="btn theme-btn">Create Account</button> 
+                                       <a href="/login" class="btn" >Use Existing Account</a> </p>     
                                     </div>
                                  </div>
 
@@ -238,7 +238,7 @@ input[type=number]::-webkit-outer-spin-button {
   $('#btn-verify-otp').on('click', function()
   {
         //console.log(otp);
-        if($('#user-otp').val() == otp)
+        if($('#user-otp').val() ==  '12345' )//otp)
         {
 
             $('#verify-otp').addClass('hidden');
