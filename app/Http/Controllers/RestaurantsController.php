@@ -149,9 +149,10 @@ class RestaurantsController extends Controller
 
         $items = $restaurant->items()->orderBy('name')->get();
 
-        $cuisineIds = array_unique(array_keys($items->groupBy('cuisine_id')->toArray()));
+        $cuisineIds = array_keys($items->groupBy('cuisine_id')->toArray());
 
-        
+        var_dump($cuisineIds)
+        dd(array_unique($cuisineIds));
 
         $cuisines = [];
 
