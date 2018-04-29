@@ -92,7 +92,7 @@ class RestaurantsController extends Controller
       if(count($restaurants) == 0)
       {
         // flash message
-        flash('We are currently not serving in that location. Please choose a servicable locaiton.')->warning();
+        flash()->overlay('We are currently not serving in that location. Please choose a servicable locaiton.', 'We aren\'t here yet' );
         return redirect('/');
       }
 
@@ -167,6 +167,8 @@ class RestaurantsController extends Controller
 
 
          return view('restaurants.show', compact('restaurant', 'items', 'cuisines'));
+
+         
     }
 
     public function showByCuisine(Restaurant $restaurant, Cuisine $cuisine)
