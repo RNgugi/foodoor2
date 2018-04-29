@@ -2916,4 +2916,16 @@ a[aria-expanded=false] .fa-angle-down {
 
 
 
+.hidden {
+  display: none;
+}
 
+input.is-invalid {
+    border-color: red;
+
+}
+
+.invalid-feedback {
+    font-size: 13px;
+    color: red;
+}

@@ -244,6 +244,7 @@ class RestaurantCrudController extends CrudController
                 'email' => $this->crud->entry->contact_email,
                 'phone' => $this->crud->entry->contact_phone,
                 'password' => Hash::make(config('settings.default_password')),
+                 'is_verified' => 1
             ]);
 
                  $this->crud->entry->account_id = $user->id;
@@ -280,6 +281,7 @@ class RestaurantCrudController extends CrudController
                 'email' => $this->crud->entry->contact_email,
                 'phone' => $this->crud->entry->contact_phone,
                 'password' => Hash::make('password'),
+                 'is_verified' => 1
             ]);
 
             $this->crud->entry->account_id = $user->id;

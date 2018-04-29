@@ -154,7 +154,9 @@ class DriverCrudController extends CrudController
             $user = User::create([
                 'name' => $request->get('contact_name'),
                 'email' =>  $request->get('contact_email'),
+                'phone' => $this->crud->entry->phone,
                 'password' => Hash::make(config('settings.default_password')),
+                 'is_verified' => 1
             ]);
 
             $this->crud->entry->user_id = $user->id;
@@ -188,7 +190,9 @@ class DriverCrudController extends CrudController
             $user = User::create([
                 'name' => $request->get('contact_name'),
                 'email' => $request->get('contact_email'),
+                'phone' => $this->crud->entry->phone,
                 'password' => Hash::make('password'),
+                'is_verified' => 1
             ]);
 
             $this->crud->entry->user_id = $user->id;
