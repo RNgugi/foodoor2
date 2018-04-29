@@ -151,8 +151,8 @@
                                           </div> 
                                           
                                           <div class="rest-descr" style="padding-left: 23px;">
-                                             <h6><a href="#">{{ $item->name }}</a></h6>
-                                             <p>{{ $item->description != '' ? $item->description : '-'}}</p>
+                                             <h6 style="{{ $item->description == '' ? 'margin-bottom: 11px;' : '' }}"><a href="#">{{ $item->name }}</a></h6>
+                                             <p>{{ $item->description != '' ? $item->description : ''}}</p>
                                           </div>
                                           <!-- end:Description -->
                                        </div>
