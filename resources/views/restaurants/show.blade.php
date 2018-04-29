@@ -152,7 +152,7 @@
                                           
                                           <div class="rest-descr" style="padding-left: 23px;">
                                              <h6><a href="#">{{ $item->name }}</a></h6>
-                                             <p>{{ $item->description != '' ? $item->description : 'No description'}}</p>
+                                             <p>{{ $item->description != '' ? $item->description : ''}}</p>
                                           </div>
                                           <!-- end:Description -->
                                        </div>
