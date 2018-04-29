@@ -88,6 +88,10 @@
                                  <a href="/restaurants/{{ $restaurant->id }}?lat={{request('lat')}}&lng={{request('lng')}}&filter=all" class="scroll">All Items</a>
                               </li>
 
+                              <li class="{{ request('filter') == 'featured' ? 'active' : '' }}">
+                                 <a href="/restaurants/{{ $restaurant->id }}?lat={{request('lat')}}&lng={{request('lng')}}&filter=featured" class="scroll">Restaurant Special</a>
+                              </li>
+
                               @if(!$restaurant->is_veg)
                                  <li class="{{ request('filter') == 'veg' ? 'active' : '' }}">
                                     <a href="/restaurants/{{ $restaurant->id }}?lat={{request('lat')}}&lng={{request('lng')}}&filter=veg" class="scroll">Veg Items</a>
@@ -120,11 +124,13 @@
 
                              @if(request()->has('filter') && request('filter') == 'veg')
                                 <?php $items = $restaurant->items()->where('cuisine_id', $cuisine->id)->where('is_veg', 1)->get(); ?>
+                             @elseif(request()->has('filter') && request('filter') == 'featured')
+                                <?php $items = $restaurant->items()->where('is_featured', 1)->get(); ?>   
                              @elseif(request()->has('filter') && request('filter') == 'nonveg')
                                 <?php $items = $restaurant->items()->where('cuisine_id', $cuisine->id)->where('is_veg', 0)->get(); ?>
                              @else
-                                 <?php $items = $restaurant->items()->where('cuisine_id', $cuisine->id)->get(); ?>
-                           @endif
+                                <?php $items = $restaurant->items()->where('cuisine_id', $cuisine->id)->get(); ?>
+                             @endif
                            <div class="menu-widget " style="background: #fff;margin-bottom: 8px;">
                               <div class="widget-heading">
                                  <h3 class="widget-title text-dark">
