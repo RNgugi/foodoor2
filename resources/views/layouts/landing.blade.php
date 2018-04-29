@@ -128,7 +128,7 @@ input[type=number]::-webkit-outer-spin-button {
             </div>
 
             <script>
-$('div.alert').not('.alert-important').delay(3000).fadeOut(350);
+$('div.alert-flash').not('.alert-important').delay(3000).fadeOut(350);
 </script>
 
         @yield('scripts')

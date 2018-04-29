@@ -8,7 +8,7 @@
     @else
         <div style="text-align: center;font-weight: bold;" class="alert
                     alert-{{ $message['level'] }}
-                    {{ $message['important'] ? 'alert-important' : '' }}"
+                    {{ $message['important'] ? 'alert-important' : '' }} alert-flash"
                     role="alert"
         >
             @if ($message['important'])

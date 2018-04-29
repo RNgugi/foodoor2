@@ -121,7 +121,7 @@
 
 
             <script>
-            $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
+            $('div.alert-flash').not('.alert-important').delay(3000).fadeOut(350);
             $('.flash-message').delay(3000).fadeOut(350);
             </script>
         @yield('scripts')
