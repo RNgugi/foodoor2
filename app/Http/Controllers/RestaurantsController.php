@@ -128,6 +128,13 @@ class RestaurantsController extends Controller
         //
     }
 
+    public function cmp($a, $b)
+    {
+        return strcmp($a->name, $b->name);
+    }
+
+   
+
     /**
      * Display the specified resource.
      *
@@ -140,10 +147,22 @@ class RestaurantsController extends Controller
 
        $restaurant->delivery_time = $restaurant->distance > 3 ? '45 min' : '40 min';
 
-        $items = $restaurant->items;
+        $items = $restaurant->items()->orderBy('name')->get();
 
-       
-         return view('restaurants.show', compact('restaurant', 'items'));
+        $cuisineIds = $items->groupBy('cuisine_id');
+
+        $cuisines = [];
+
+        foreach ($cuisineIds as $key => $cuisine) {
+            $cuisines[] = Cuisine::findOrFail($cuisine)->first();
+        }
+
+         usort($cuisines, array($this, "cmp"));
+
+
+
+
+         return view('restaurants.show', compact('restaurant', 'items', 'cuisines'));
     }
 
     public function showByCuisine(Restaurant $restaurant, Cuisine $cuisine)

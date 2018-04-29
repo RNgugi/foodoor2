@@ -115,14 +115,15 @@
 
                      
 
-                        @foreach($restaurant->cuisines as $cuisine)
+                        @foreach($cuisines as $cuisine)
                            @if(request('cuisine') == null || $cuisine->id == request('cuisine'))
-                           @if(request()->has('filter') && request('filter') == 'veg')
-                              <?php $items = $restaurant->items()->where('cuisine_id', $cuisine->id)->where('is_veg', 1)->get(); ?>
-                           @elseif(request()->has('filter') && request('filter') == 'nonveg')
-                              <?php $items = $restaurant->items()->where('cuisine_id', $cuisine->id)->where('is_veg', 0)->get(); ?>
-                           @else
-                               <?php $items = $restaurant->items()->where('cuisine_id', $cuisine->id)->get(); ?>
+
+                             @if(request()->has('filter') && request('filter') == 'veg')
+                                <?php $items = $restaurant->items()->where('cuisine_id', $cuisine->id)->where('is_veg', 1)->get(); ?>
+                             @elseif(request()->has('filter') && request('filter') == 'nonveg')
+                                <?php $items = $restaurant->items()->where('cuisine_id', $cuisine->id)->where('is_veg', 0)->get(); ?>
+                             @else
+                                 <?php $items = $restaurant->items()->where('cuisine_id', $cuisine->id)->get(); ?>
                            @endif
                            <div class="menu-widget " style="background: #fff;margin-bottom: 8px;">
                               <div class="widget-heading">
