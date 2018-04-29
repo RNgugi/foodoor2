@@ -66,7 +66,7 @@
 
             
 
-            <div class="container m-t-30" style="min-height: 1200px;">
+            <div class="container m-t-30" style="min-height: 1200px;margin-bottom: 80px;">
 
                @if(!$restaurant->is_open)
                  <div class="alert alert-warning" role="alert" >
