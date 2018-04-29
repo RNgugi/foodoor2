@@ -151,7 +151,7 @@ class RestaurantsController extends Controller
 
         $cuisineIds = array_keys($items->groupBy('cuisine_id')->toArray());
 
-        var_dump($cuisineIds)
+        var_dump($cuisineIds);
         dd(array_unique($cuisineIds));
 
         $cuisines = [];
