@@ -117,9 +117,7 @@
                   </div>
                   <div class="col-xs-12 col-sm-8 col-md-8 col-lg-6">
 
-                      @if(request()->has('filter') && request('filter') == 'featured')
                      
-
                         @foreach($cuisines as $cuisine)
                            @if(request('cuisine') == null || $cuisine->id == request('cuisine'))
 
@@ -241,7 +239,7 @@
                           
                            </div>
                            </div>
-                          @endif
+                       
                      @endforeach
 
 
