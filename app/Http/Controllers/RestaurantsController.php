@@ -159,7 +159,7 @@ class RestaurantsController extends Controller
             $cuisines[] = Cuisine::findOrFail($cuisine)->first();
         }
 
-        dd($cuisines);
+       
         
          usort($cuisines, array($this, "cmp"));
 
