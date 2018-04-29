@@ -118,6 +118,7 @@
                   <div class="col-xs-12 col-sm-8 col-md-8 col-lg-6">
 
                      
+
                         @foreach($cuisines as $cuisine)
                            @if(request('cuisine') == null || $cuisine->id == request('cuisine'))
 
@@ -126,8 +127,8 @@
                              @elseif(request()->has('filter') && request('filter') == 'nonveg')
                                 <?php $items = $restaurant->items()->where('cuisine_id', $cuisine->id)->where('is_veg', 0)->get(); ?>
                              @else
-                                <?php $items = $restaurant->items()->where('cuisine_id', $cuisine->id)->get(); ?>
-                             @endif
+                                 <?php $items = $restaurant->items()->where('cuisine_id', $cuisine->id)->get(); ?>
+                           @endif
                            <div class="menu-widget " style="background: #fff;margin-bottom: 8px;">
                               <div class="widget-heading">
                                  <h3 class="widget-title text-dark">
@@ -239,7 +240,7 @@
                           
                            </div>
                            </div>
-                       
+                          @endif
                      @endforeach
 
 
