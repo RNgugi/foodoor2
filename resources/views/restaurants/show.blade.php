@@ -98,7 +98,7 @@
                                  </li>
                               @endif
 
-                              @foreach($restaurant->cuisines as $cuisine)
+                              @foreach($cuisines as $cuisine)
                                  <li class="{{ request('cuisine') ==  $cuisine->id ? 'active' : '' }}">
                                     <a href="/restaurants/{{ $restaurant->id }}?lat={{request('lat')}}&lng={{request('lng')}}&cuisine={{$cuisine->id}}" class="scroll">{{ $cuisine->name }}</a>
                                  </li>
