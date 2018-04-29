@@ -57,7 +57,7 @@
             <div class="breadcrumb" style="background: #fff;">
                <div class="container">
                   <ul>
-                     <li><a href="#" class="active">Home</a></li>
+                     <li><a href="/" class="active">Home</a></li>
                      <li><a href="/restaurants/explore?lat={{request('lat')}}&lng={{request('lng')}}">Restaurants</a></li>
                      <li>{{ $restaurant->name }}</li>
                   </ul>
