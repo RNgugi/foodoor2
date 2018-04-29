@@ -151,13 +151,12 @@ class RestaurantsController extends Controller
 
         $cuisineIds = array_keys($items->groupBy('cuisine_id')->toArray());
 
-        var_dump($cuisineIds);
-        dd(array_unique($cuisineIds));
+       
 
         $cuisines = [];
 
         foreach ($cuisineIds as $key => $cuisine) {
-            $cuisines[] = Cuisine::findOrFail($cuisine)->first();
+            $cuisines[] = Cuisine::findOrFail($cuisine);
         }
 
 
