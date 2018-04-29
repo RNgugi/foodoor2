@@ -65,13 +65,13 @@
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>Door No./ Flat No.</label>
-                                                <input type="text" name="door_no" class="form-control" placeholder="Ex. Flat no. 1"> </div>
+                                                <input type="text" name="door_no" value="{{ old('door_no') }}" class="form-control" placeholder="Ex. Flat no. 1"> </div>
                                             <!--/form-group-->
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>Landmark</label>
-                                                <input type="text" name="landmark" class="form-control" placeholder="Nearby place"> </div>
+                                                <input type="text" name="landmark" value="{{ old('landmark') }}" class="form-control" placeholder="Nearby place"> </div>
                                             <!--/form-group-->
                                         </div>
                                     </div>

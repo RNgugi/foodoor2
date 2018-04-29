@@ -76,7 +76,8 @@ function getCustomsString($customs)
 { 
   
     $msg = '';
-    foreach ($customs as $key => $custom) {
+   /* foreach ($customs as $key => $custom) {
+      
       if($key != 'price')
       {
         if(array_key_exists('name', $custom))
@@ -90,7 +91,8 @@ function getCustomsString($customs)
         }
        
       }
-    }
+
+    } */
 
     
 

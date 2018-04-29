@@ -87,10 +87,12 @@
                   </div>
                       
                         <div class="col-xs-12 col-sm-7 col-md-7 col-lg-9">
-
+                        <?php $restaurantChunks = array_chunk($restaurants, 3); ?>
+                        @foreach($restaurantChunks as $restaurant)
+                               <div class="row">
                            @foreach($restaurants as $restaurant)
-                            <div class="col-sm-4">
-                               @include('partials._foodItemBig')
+                               <div class="col-sm-4">
+                                 @include('partials._foodItemBig')
                                </div>
                               {{--  <div class="bg-gray restaurant-entry">
                                    <div class="row">
@@ -122,6 +124,8 @@
                                    <!--end:row -->
                                </div> --}}
                            @endforeach 
+                           </div> 
+                         @endforeach  
                             
                         </div>
 

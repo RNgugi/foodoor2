@@ -29,22 +29,26 @@ class CouponsController extends Controller
     				{
     					
     					session([$sessionName   => $code]);
+
+                        flash('Coupon was applied successfully')->success();
+
+
     				} else {
     					// show error ..
 
-                        dd('Here 1');
+                       flash('Minimum order amount for this coupon should be ' . $coupon->min_order)->error();
     				}
     				
     			} else {
-    				dd('Here 2');
+    				flash('Given coupon is not applicable to this restaurant')->error();
     			}
     			
     		} else {
-    			dd('Here 3');
+    			flash('Given coupon is expired')->error();
     		}
     		
     	} else {
-    		dd('Here 4');
+    		flash('Given coupon code is invalid')->error();
     	}
     	
 

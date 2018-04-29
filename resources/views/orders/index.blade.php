@@ -6,7 +6,7 @@
      <div class="breadcrumb" style="border-top: 1px solid #ccc;margin-top: 13px;">
                <div class="container">
                   <ul>
-                     <li><a href="/restaurants" class="active">Home</a></li>
+                     <li><a href="/" class="active">Home</a></li>
                      <li>My Orders</li>
                   </ul>
                </div>
@@ -21,8 +21,8 @@
             </div>
        
             <div class="col-md-9">
-              <div class="col-sm-12">
-               <h4 style="font-weight: 600;margin-bottom: 20px;">Past Orders</h4>
+              <div class="">
+               <h4 style="font-weight: 600;padding-bottom: 20px;">Past Orders</h4>
              </div>
              @foreach($orders as $order)
                <div class="widget clearfix " style="background: #fff;z-index: 0;">
