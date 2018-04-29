@@ -2,7 +2,12 @@
 
 Route::get('/', function () {
 	//return redirect('/restaurants');
-    return view('welcome');
+
+    $restaurantlogosChunk = (App\Models\Restaurantlogo::all())->chunk(4);
+
+    $homebannersChunk = (App\Models\Homebanner::all())->chunk(4);
+
+    return view('welcome', compact('restaurantlogosChunk', 'homebannersChunk'));
 });
 
 Auth::routes();
@@ -78,6 +83,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin'], 'namespace' => 'Ad
     CRUD::resource('drivers', 'DriverCrudController');
     CRUD::resource('freedeliveries', 'FreedeliveryCrudController');
     CRUD::resource('toppings', 'ToppingCrudController');
+    CRUD::resource('restaurantlogos', 'RestaurantlogoCrudController');
+    CRUD::resource('homebanners', 'HomebannerCrudController');
+    CRUD::resource('restaurantbanners', 'RestaurantbannerCrudController');
+
 });
 
 Route::group(['prefix' => 'restaurants-admin', 'middleware' => ['admin'], 'namespace' => 'Restaurants'], function()
@@ -89,5 +98,6 @@ Route::group(['prefix' => 'restaurants-admin', 'middleware' => ['admin'], 'names
     CRUD::resource('items', 'ItemCrudController');
     CRUD::resource('coupons', 'CouponCrudController');
     CRUD::resource('freedeliveries', 'FreedeliveryCrudController');
+
 });
 

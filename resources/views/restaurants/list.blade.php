@@ -5,27 +5,44 @@
          
 
 
-           <div class="inner-page-hero"  style="background: #c09101;padding-bottom: 19px;
+            <div id="#carouselBanners" class="inner-page-hero"  style="background: #c09101;padding-bottom: 19px;
     padding-top: 30px;">
+
+
                 <div class="container"> 
 
-                  <div class="row">
-                     <a href="/restaurants/{{ App\Models\Restaurant::first()->id }}" class="col-md-3">
-                        <img style="width: 280px;" src="/images/adv-img-1.jpg">
-                     </a>
+                <div id="carouselBanners" class="carousel slide" data-ride="carousel">
+                   <div class="carousel-inner">
+                      @foreach($restaurantbannersChunk as  $index => $restaurantbanners)
+                       <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+                           <div class="row">
 
-                     <a  href="/restaurants/{{ App\Models\Restaurant::first()->id }}" class="col-md-3">
-                        <img style="width: 280px;" src="/images/adv-img-2.jpg">
-                     </a>
+                            @foreach($restaurantbanners as $restaurantbanner)
+                                <a href="/restaurants/{{ $restaurantbanner->restaurant->id }}?lat={{ request('lat') }}&lng={{ request('lng') }}" class="col-md-3">
+                                    <img style="width: 280px;" src="{{ url($restaurantbanner->image) }}">
+                                 </a>
+                            @endforeach     
+                                
+                           </div>
+                       </div>
+                     @endforeach  
+                       
+                   </div>
+                  
+                  <a class="carousel-control-prev" href="#carouselBanners" role="button" data-slide="prev">
+                          <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                          <span class="sr-only">Previous</span>
+                  </a>
+                
 
-                     <a  href="/restaurants/{{ App\Models\Restaurant::first()->id }}" class="col-md-3">
-                        <img style="width: 280px;" src="/images/adv-img-3.jpg">
-                     </a>
+                  <a class="carousel-control-next" href="#carouselBanners" role="button" data-slide="next">
+                           <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                           <span class="sr-only">Next</span>
+                  </a>
+                
 
-                     <a  href="/restaurants/{{ App\Models\Restaurant::first()->id }}" class="col-md-3">
-                        <img style="width: 280px;" src="/images/adv-img-1.jpg">
-                     </a>
-                  </div>
+                </div>
+               
 
 
                 </div>

@@ -2938,3 +2938,42 @@ input.is-invalid {
     padding: 12px 16px; /* Some padding */
     font-size: 16px /* Set a font size */
 }
+
+.carousel-control-prev{
+    color: #fff;
+    background: #f30;
+    padding: 12px;
+    padding-left: 18px;
+    border-radius: 100%;
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    top: 42.5%;
+    left: -29px;
+}
+
+
+
+.carousel-control-next{
+    color: #fff;
+    background: #f30;
+    padding: 12px;
+    padding-left: 18px;
+    border-radius: 100%;
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    top: 42.5%;
+    right: -24px;
+}
+
+
+.carousel-control-prev:hover, .carousel-control-next:hover, .carousel-control-prev:focus, .carousel-control-next:focus{
+    color: #fff;
+    
+}
+
+
+
+
+

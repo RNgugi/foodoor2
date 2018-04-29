@@ -180,11 +180,11 @@ class RestaurantCrudController extends CrudController
 
              ['name' => 'bank_ifsc', 'label' => 'Bank IFSC Code', 'tab' => 'Banking'],
 
-             ['name' => 'bank_acc_no', 'label' => 'Bank Account No.', 'type' => 'number', 'attributes' => ["step" => 1, "min" => 1], 'tab' => 'Banking'],
+            ['name' => 'bank_acc_no', 'label' => 'Bank Account No.', 'type' => 'number', 'attributes' => ["step" => 1, "min" => 1], 'tab' => 'Banking'],
 
-             ['name' => 'bank_acc_name', 'label' => 'Bank Account Name', 'tab' => 'Banking'],
+            ['name' => 'bank_acc_name', 'label' => 'Bank Account Name', 'tab' => 'Banking'],
 
-             [ // select_from_array
+            [ // select_from_array
                 'name' => 'bank_acc_type',
                 'label' => "Savings or Current?",
                 'type' => 'select2_from_array',
@@ -193,9 +193,9 @@ class RestaurantCrudController extends CrudController
                 'default' => 1
                 , 'tab' => 'Banking'
                 // 'allows_multiple' => true, // OPTIONAL; needs you to cast this to array in your model;
-             ],
+            ],
 
-             ['name' => 'promo_text', 'label' => 'Promo Text (optional)', 'type' => 'textarea', 'tab' => 'Offer/Discount'],
+            ['name' => 'promo_text', 'label' => 'Promo Text (optional)', 'type' => 'textarea', 'tab' => 'Offer/Discount'],
             
             [ // select_from_array
                 'name' => 'discount_type  <span style="color: red;">*</span>',
@@ -209,11 +209,11 @@ class RestaurantCrudController extends CrudController
 
             ['name' => 'discount', 'label' => 'Discount ', 'type' => 'number', 'tab' => 'Offer/Discount', 'attributes' => ['min' => 1]],
 
-             ['name' => 'min_order', 'label' => 'Minimum Order Amount', 'type' => 'number', 'tab' => 'Offer/Discount', 'attributes' => ['min' => 1]],
+            ['name' => 'min_order', 'label' => 'Minimum Order Amount', 'type' => 'number', 'tab' => 'Offer/Discount', 'attributes' => ['min' => 1]],
 
             ['name' => 'valid_from', 'label' => 'Valid From ', 'type' => 'date_picker', 'tab' => 'Offer/Discount'],
 
-              ['name' => 'valid_through', 'label' => 'Valid Uptil ', 'type' => 'date_picker', 'tab' => 'Offer/Discount'],
+            ['name' => 'valid_through', 'label' => 'Valid Uptil ', 'type' => 'date_picker', 'tab' => 'Offer/Discount'],
 
         ]);
 

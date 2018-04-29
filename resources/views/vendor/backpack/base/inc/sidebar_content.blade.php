@@ -42,6 +42,17 @@
 
 <li><a href="{{ backpack_url('drivers') }}"><i class="fa fa-motorcycle"></i> <span>Delivery Boys</span></a></li>
 
+<li class="treeview">
+	
+	<a href="#"><i class="fa fa-image"></i> <span>Logos &amp; Banners</span> <i class="fa fa-angle-left pull-right"></i></a>
+	
+	<ul class="treeview-menu">
+		<li><a href="{{ backpack_url('homebanners') }}"><i class="fa fa-image"></i> <span>Home Banners</span></a></li>
+		<li><a href="{{ backpack_url('restaurantlogos') }}"><i class="fa fa-image"></i> <span>Restaurant Logos</span></a></li>
+		<li><a href="{{ backpack_url('restaurantbanners') }}"><i class="fa fa-image"></i> <span>Restaurant Banners</span></a></li>
+	</ul>
+
+</li>
 
 <li class="header">General Options</li>
 <li><a href="{{ backpack_url('setting') }}"><i class="fa fa-cog"></i> <span>Settings</span></a></li>

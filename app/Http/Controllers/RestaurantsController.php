@@ -97,7 +97,10 @@ class RestaurantsController extends Controller
       }
 
         $cuisines = Cuisine::limit(8)->get();
-        return view('restaurants.list', compact('restaurants', 'cuisines'));
+
+        $restaurantbannersChunk = (\App\Models\Restaurantbanner::all())->chunk(4);
+
+        return view('restaurants.list', compact('restaurants', 'cuisines', 'restaurantbannersChunk'));
     }
 
 
@@ -168,7 +171,7 @@ class RestaurantsController extends Controller
 
          return view('restaurants.show', compact('restaurant', 'items', 'cuisines'));
 
-         
+
     }
 
     public function showByCuisine(Restaurant $restaurant, Cuisine $cuisine)

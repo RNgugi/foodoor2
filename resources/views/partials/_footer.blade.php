@@ -51,8 +51,8 @@
                         </div>    
                         <div class="col-xs-12 col-sm-4 additional-info color-white" style="text-align: center;">
                            <h4 style="color: #fff;font-weight: bold;"> 
-                            <a target="_blank" href="https://www.facebook.com/Ranchifoodoor/"><i style="margin: 10px;" class="fa fa-facebook"></i></a>
-                            <a target="_blank" href="https://www.instagram.com/foodoor.in"><i style="margin: 10px;" class="fa fa-instagram"></i></a>
+                            <a class="text-white" target="_blank" href="https://www.facebook.com/Ranchifoodoor/"><i style="margin: 10px;" class="fa fa-facebook"></i></a>
+                            <a class="text-white"  target="_blank" href="https://www.instagram.com/foodoor.in"><i style="margin: 10px;" class="fa fa-instagram"></i></a>
                            </h4> 
                         </div>
                     </div>
