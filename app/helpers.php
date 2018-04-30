@@ -29,7 +29,7 @@ function sendSMS($number, $message)
   
   // Message details
   
-  $sender = urlencode('TXTLCL');
+  $sender = urlencode('FOODOR');
   $message = rawurlencode($message);
  
   $number = '91' . $number;

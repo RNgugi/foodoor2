@@ -238,7 +238,7 @@ input[type=number]::-webkit-outer-spin-button {
   $('#btn-verify-otp').on('click', function()
   {
         //console.log(otp);
-        if($('#user-otp').val() ==  '12345' )//otp)
+        if($('#user-otp').val() == otp)
         {
 
             $('#verify-otp').addClass('hidden');
