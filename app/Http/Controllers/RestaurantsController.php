@@ -180,6 +180,7 @@ class RestaurantsController extends Controller
          usort($cuisineMenu, array($this, "cmp"));
 
 
+         dd($cuisineMenu);
 
 
          return view('restaurants.show', compact('restaurant', 'items', 'cuisines', 'cuisineMenu'));
