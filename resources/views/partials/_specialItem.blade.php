@@ -26,7 +26,7 @@
                                           return $cartItem->id === $item->id ;
                                           }); ?>
 
-                                        @if(count($added) && (count($item->additions) == 0 || ($item->sizes == null || count(json_decode($item->sizes)) == 0)))
+                                        @if(count($added) && (count($item->additions) == 0 && ($item->sizes == null || count(json_decode($item->sizes)) == 0)))
                                             <div data-trigger="spinner" id="spinner2-{{$item->id}}" style="display: inline;text-align: center;float: right;margin-right: 6px;" >
                                                  <a style="color: #f30; font-size: 18px;font-weight: bold;" href="javascript:;" data-spin="down">-</a>
                                                  <input type="text" style="width: 40px;text-align: center;" min="1" value="{{ $added->first()->qty }}" data-rule="quantity">
@@ -47,7 +47,7 @@
 
 </div>
 
- @if(count($item->additions) || ($item->sizes != null && count(json_decode($item->sizes))))
+ 								@if(count($item->additions) || ($item->sizes != null && count(json_decode($item->sizes))))
                                     <div class="modal fade" id="toppings-{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                       <div class="modal-dialog modal-dialog-centered" role="document">
                                         <form method="post" action="/cart/add/{{$item->id}}/custom">
