@@ -222,7 +222,7 @@
                                                  <a href="" style="color: #f30; font-size: 18px;font-weight: bold;" href="javascript:;" data-spin="up">+</a>
                                              </div>
                                           @else
-                                             @if(count($item->additions) || ($item->sizes != null || count(json_decode($item->sizes))))
+                                             @if(count($item->additions) || ($item->sizes != null && count(json_decode($item->sizes))))
                                                 <a href="#toppings-{{$item->id}}" data-toggle="modal" class="btn btn-small btn btn-secondary pull-right">+</a> 
                                              @else
                                                 <a href="/cart/add/{{$item->id}}" class="btn btn-small btn btn-secondary pull-right">+</a> 
