@@ -24,9 +24,7 @@ class RoleMiddleware
                return redirect('/');
             }
             
-            if (!$request->user()->can('access_backend')) {
-               return redirect('/');
-            }
+            
             
             
        }

@@ -71,7 +71,7 @@ Route::group(['middleware' => ['verified'] ], function() {
 Route::post('/bulk-orders', 'BulkOrderController@store');
 
 
-Route::group(['prefix' => 'admin', 'middleware' => ['admin'], 'namespace' => 'Admin'], function()
+Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'role'], 'namespace' => 'Admin'], function()
 {
 	CRUD::resource('orders', 'OrderCrudController');
 	CRUD::resource('earnings', 'EarningsCrudController');
