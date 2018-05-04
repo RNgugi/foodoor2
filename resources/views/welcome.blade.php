@@ -95,7 +95,7 @@
                                <div class="row">
                                   @foreach($restaurantLogos as $restaurantLogo)
                                     <a href="#" class="col-md-3">
-                                        <img style="width: 280px;" src="{{ url($restaurantLogo->image) }}">
+                                        <img style="width: 280px;height: 250px;" src="{{ url($restaurantLogo->image) }}">
                                      </a>
                                   @endforeach  
                                    
