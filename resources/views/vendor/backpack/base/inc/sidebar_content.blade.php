@@ -82,7 +82,7 @@
 @endif
 
 <!-- Users, Roles Permissions -->
-@if(auth()->user()->can('manage_users'))
+@if(auth()->user()->can('manage_users') || auth()->user()->hasRole('admin'))
 	<li class="treeview">
 	<a href="#"><i class="fa fa-group"></i> <span>Users, Roles, Permissions</span> <i class="fa fa-angle-left pull-right"></i></a>
 	<ul class="treeview-menu">
