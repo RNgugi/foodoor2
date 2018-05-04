@@ -51,7 +51,7 @@ class Order extends Model
 
     public function getStatusTextAttribute()
     {   
-        $statuses = ['Order Placed', 'Arrived at Restaurant', 'Order Picked', 'Order Delivered'];
+        $statuses = ['Order Placed', 'Confirmed by Restaurant', 'Order Ready' , 'Order Picked', 'Order Delivered'];
         return $statuses[$this->status];
     }
 
@@ -69,6 +69,28 @@ class Order extends Model
     public function getCommissionEarnedAttribute()
     {
         return $this->amount * (10/100);
+    }
+
+     public function confirmOrder($crud = false)
+    { 
+        if($this->status < 1)
+        {
+           return '<a class="btn btn-xs btn-success" href="/orders/'. $this->id . '/confirm" data-toggle="tooltip" title="Confirm Order"><i class="fa fa-check"></i> Confirm Order</a>';
+        } else {
+
+                 return '<a class="btn btn-xs btn-success" href="/orders/'. $this->id . '/confirm" data-toggle="tooltip" title="Confirm Order" disabled><i class="fa fa-check"></i> Order Confirmed</a>';
+        }
+       
+    }
+
+    public function viewOrder($crud = false)
+    { 
+      
+           return 
+           '<a class="btn btn-xs btn-primary" href="/orders/'. $this->id . '" data-toggle="tooltip" target="_blank" title="Confirm Order"><i class="fa fa-eye"></i> View</a>';
+       
+       
+       
     }
 
 }

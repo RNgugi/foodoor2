@@ -8,6 +8,8 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 use App\Http\Requests\OrderRequest as StoreRequest;
 use App\Http\Requests\OrderRequest as UpdateRequest;
 
+use App\Events\OrderStatusChanged;
+
 class OrderCrudController extends CrudController
 {
     public function setup()
@@ -49,6 +51,12 @@ class OrderCrudController extends CrudController
            } 
 
            $this->crud->ajax_table = false;
+
+              $this->crud->orderBy('created_at', 'DESC');
+
+            $this->crud->addButtonFromModelFunction('line', 'confirm', 'confirmOrder', 'end');
+
+             $this->crud->setListView('admin.orders.list');
 
         // ------ CRUD FIELDS
         // $this->crud->addField($options, 'update/create/both');
@@ -134,6 +142,9 @@ class OrderCrudController extends CrudController
         $redirect_location = parent::updateCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
+
+         event(new OrderStatusChanged($this->crud->entry));
+
         return $redirect_location;
     }
 }

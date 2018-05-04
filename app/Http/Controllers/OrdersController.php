@@ -6,6 +6,7 @@ use App\Mail\OrderPlaced;
 use App\Mail\NewOrderMail;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use App\Events\OrderStatusChanged;
 
 class OrdersController extends Controller
 {
@@ -111,10 +112,10 @@ class OrdersController extends Controller
             
             \Mail::to($order->restaurant->contact_email)->send(new NewOrderMail($order));
             
-            $message = 'Your order at Foodoor.in is placed.Order ID: ' . $order->id;
+            $message = 'We have received your order. Waiting for restaurant confirmation!';
             $response = sendSMS(auth()->user()->phone, $message);
 
-            flash('We have placed your order and waiting for restaurant confirmation.')->success();
+            flash('We have received your order and waiting for restaurant confirmation.')->success();
             
             return redirect('/orders/' . $order->id);
         }
@@ -131,6 +132,22 @@ class OrdersController extends Controller
     public function show(Order $order)
     {
         return view('orders.show', compact('order'));
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function confirm(Order $order)
+    {
+        $order->status = 1;
+        $order->save();
+
+         event(new OrderStatusChanged($order));
+
+        return back();
     }
 
     /**

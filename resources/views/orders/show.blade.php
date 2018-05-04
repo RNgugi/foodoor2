@@ -35,10 +35,11 @@
                         @endif
 
                         <ul class="progressbar" style="margin-top: 40px;">
-                              <li class="{{ $order->status >= 0 ? 'active' : '' }}">order placed</li>
-                              <li class="{{ $order->status >= 1 ? 'active' : '' }}">arrived at restaurant</li>
-                              <li class="{{ $order->status >= 2 ? 'active' : '' }}">order picked</li>
-                              <li class="{{ $order->status >= 3 ? 'active' : '' }}">order served</li>
+                              <li class="{{ $order->status >= 0 ? 'active' : '' }}">order received</li>
+                              <li class="{{ $order->status >= 1 ? 'active' : '' }}">order confirmed</li>
+                              <li class="{{ $order->status >= 2 ? 'active' : '' }}">order prepared</li>
+                              <li class="{{ $order->status >= 3 ? 'active' : '' }}">order picked</li>
+                              <li class="{{ $order->status >= 4 ? 'active' : '' }}">order served</li>
                       </ul>
                       <div class="clearfix"></div>
                         <h5 style="font-weight: bold;margin-top: 55px;">Delivery Address</h5>
@@ -54,7 +55,22 @@
                             </div>
                              @if($order->status < 3)
                             <div class="col-sm-4">
+                              @if(auth()->user()->isRestaurant() && $order->restaurant_id == auth()->user()->restaurant->id)
+
+                                <div>
+                                  <select class="form-control">
+                                    <option value="0" {{ $order->status == 0 ? 'selected' : '' }}>Order Placed</option>
+                                    <option value="1" {{ $order->status == 1 ? 'selected' : '' }}>Order Confirmed</option>
+                                    <option value="2" {{ $order->status == 2 ? 'selected' : '' }}>Order Ready</option>
+                                    <option value="3" {{ $order->status == 3 ? 'selected' : '' }}>Order Picked</option>
+                                    <option value="4" {{ $order->status == 4 ? 'selected' : '' }}>Order Delivered</option>
+                                  </select>
+                                </div>
                                 <button style="float: right;margin-right: 14px;margin-top: 7px;border-radius: 5px;" type="button" class="btn theme-btn btn-lg"><i class="fa fa-map-marker"></i> Track Your Order</button>
+
+                              @else
+                                <button style="float: right;margin-right: 14px;margin-top: 7px;border-radius: 5px;" type="button" class="btn theme-btn btn-lg"><i class="fa fa-map-marker"></i> Track Your Order</button>
+                              @endif  
                             </div>
                             @endif
                         </div>

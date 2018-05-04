@@ -8,6 +8,8 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 use App\Http\Requests\OrderRequest as StoreRequest;
 use App\Http\Requests\OrderRequest as UpdateRequest;
 
+use App\Events\OrderStatusChanged;
+
 class OrderCrudController extends CrudController
 {
     public function setup()
@@ -39,7 +41,15 @@ class OrderCrudController extends CrudController
 
            $this->crud->addFields([
              
-            ['name' => 'status', 'label' => 'Order Status', 'type' => 'number'],
+            [ // select_from_array
+                'name' => 'status',
+                'label' => 'Order Status <span style="color: red;">*</span>',
+                'type' => 'select2_from_array',
+                'options' => [0 => 'Placed', 1 => 'Confirmed', 2 => 'Order Ready', 3 => 'Order Picked', 4 => 'Order Delivered'],
+                'allows_null' => false,
+                'default' => 0,
+                // 'allows_multiple' => true, // OPTIONAL; needs you to cast this to array in your model;
+            ],
         ]);
 
            $this->crud->ajax_table = false;
@@ -47,8 +57,17 @@ class OrderCrudController extends CrudController
 
            if(auth()->user()->isRestaurant())
            {
-              $this->crud->addClause('where', 'restaurant_id', '==', auth()->user()->restaurant->id);
+              $this->crud->addClause('where', 'restaurant_id', '=', auth()->user()->restaurant->id);
            } 
+
+
+           $this->crud->orderBy('created_at', 'DESC');
+
+            $this->crud->addButtonFromModelFunction('line', 'confirm', 'confirmOrder', 'end');
+
+            $this->crud->addButtonFromModelFunction('line', 'viewOrder', 'viewOrder', 'end');
+
+            $this->crud->setListView('admin.orders.list');
 
         // ------ CRUD FIELDS
         // $this->crud->addField($options, 'update/create/both');
@@ -132,6 +151,8 @@ class OrderCrudController extends CrudController
     {
         // your additional operations before save here
         $redirect_location = parent::updateCrud($request);
+
+        event(new OrderStatusChanged($this->crud->entry));
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
         return $redirect_location;

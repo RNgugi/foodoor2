@@ -231,7 +231,7 @@
 
                                        </div>
                                     </div>
-                                      @if(count($item->additions) || ($item->sizes != null && count(json_decode($item->sizes))))
+                                      @if(count($item->additions) || ($item->sizes != null || count(json_decode($item->sizes))))
                                     <div class="modal fade" id="toppings-{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                       <div class="modal-dialog modal-dialog-centered" role="document">
                                         <form method="post" action="/cart/add/{{$item->id}}/custom">

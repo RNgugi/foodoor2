@@ -35,7 +35,7 @@ class PaymentsController extends Controller
             'purpose' => $orderId,
             'buyer_name' => \Auth::user()->name,
             'email' => \Auth::user()->email,
-            'phone' => '9922367414',
+            'phone' => \Auth::user()->phone,
             
           ];
  
@@ -83,6 +83,9 @@ class PaymentsController extends Controller
 
 
         //flash('Payment was succesfully made!')->success();
+
+        $message = 'We have received your order. Waiting for restaurant confirmation!';
+        $response = sendSMS(auth()->user()->phone, $message);
 
         flash('We have placed your order and waiting for restaurant confirmation.')->success();
 

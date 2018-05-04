@@ -24,49 +24,51 @@ Route::post('/password', 'HomeController@updatePassword');
 
 Route::get('/phone/update', 'HomeController@updatePhone');
 
-Route::group(['middleware' => ['verified'] ], function() {
 
 
-    Route::get('/home', 'HomeController@index')->name('home');
 
-    Route::get('/restaurants', 'RestaurantsController@index')->name('restaurants');
+Route::get('/home', 'HomeController@index')->name('home');
 
-    Route::get('/restaurants/explore', 'RestaurantsController@get')->name('restaurants.list');
+Route::get('/restaurants', 'RestaurantsController@index')->name('restaurants');
 
-    Route::get('/restaurants/explore/cusine:{cuisine}', 'RestaurantsController@getByCuisine')->name('restaurants.list.cuisine');
+Route::get('/restaurants/explore', 'RestaurantsController@get')->name('restaurants.list');
 
-    Route::get('/restaurants/{restaurant}', 'RestaurantsController@show')->name('restaurants.show');
+Route::get('/restaurants/explore/cusine:{cuisine}', 'RestaurantsController@getByCuisine')->name('restaurants.list.cuisine');
 
-    Route::post('/orders', 'OrdersController@store');
+Route::get('/restaurants/{restaurant}', 'RestaurantsController@show')->name('restaurants.show');
 
-    Route::get('/orders', 'OrdersController@index');
+Route::post('/orders', 'OrdersController@store');
 
-    Route::get('/orders/{order}', 'OrdersController@show');
+Route::get('/orders', 'OrdersController@index');
 
-    Route::get('/orders/{order}/pay', 'PaymentsController@addMoney');
+Route::get('/orders/{order}', 'OrdersController@show');
 
-    Route::get('/payments/response/', 'PaymentsController@response');
+Route::get('/orders/{order}/pay', 'PaymentsController@addMoney');
 
-    Route::get('/checkout', 'CheckoutController@index');
+Route::get('/orders/{order}/confirm', 'OrdersController@confirm');
 
-    Route::get('/checkout/success', 'CheckoutController@success');
+Route::get('/payments/response/', 'PaymentsController@response');
 
-    Route::get('/cart/add/{item}', 'CartController@add');
+Route::get('/checkout', 'CheckoutController@index');
 
-    Route::post('/cart/add/{item}/custom', 'CartController@customAdd');
+Route::get('/checkout/success', 'CheckoutController@success');
 
-    Route::get('/cart/remove/{item}/{restaurant}', 'CartController@remove');
+Route::get('/cart/add/{item}', 'CartController@add');
 
-    Route::get('/cart/increment/{item}/{restaurant}/newVal:{newVal}', 'CartController@increment');
+Route::post('/cart/add/{item}/custom', 'CartController@customAdd');
 
-    Route::get('/cart/decrement/{item}/{restaurant}/newVal:{newVal}', 'CartController@decrement');
+Route::get('/cart/remove/{item}/{restaurant}', 'CartController@remove');
 
-    Route::get('/coupons/apply/{restaurant}/coupon:{code}', 'CouponsController@apply');
+Route::get('/cart/increment/{item}/{restaurant}/newVal:{newVal}', 'CartController@increment');
 
-    Route::get('/coupons/apply/{restaurant}/coupon:{code}/remove', 'CouponsController@remove');
+Route::get('/cart/decrement/{item}/{restaurant}/newVal:{newVal}', 'CartController@decrement');
+
+Route::get('/coupons/apply/{restaurant}/coupon:{code}', 'CouponsController@apply');
+
+Route::get('/coupons/apply/{restaurant}/coupon:{code}/remove', 'CouponsController@remove');
 
     
-});
+
 
 Route::post('/bulk-orders', 'BulkOrderController@store');
 

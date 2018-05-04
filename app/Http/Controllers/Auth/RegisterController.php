@@ -86,5 +86,11 @@ class RegisterController extends Controller
     protected function registered(Request $request, $user)
     {
         flash('Welcome to foodoor! Congratulations, You have received ' . $user->wallet_ballance . ' foodoor cash!')->success();
+
+        $message = 'Welcome to foodoor! Congratulations, You have received ' . $user->wallet_ballance . ' foodoor cash!';
+
+        sendSMS($user->phone, $message);
+
+
     }
 }
