@@ -43,6 +43,11 @@ class Cuisine extends Model
         return $this->belongsTo(Cuisine::class, 'parent_id');
     }
 
+    public function subs()
+    {
+        return $this->hasMany(Cuisine::class, 'parent_id');
+    }
+
     public function getRestaurantsCountAttribute()
     {
         return count($this->restaurants);

@@ -102,10 +102,33 @@
                                  </li>
                               @endif
 
-                              @foreach($cuisines as $cuisine)
+                              @foreach($cuisineMenu as $cuisine)
+                                @if($cuisine->parent_id == 0 || $cuisine->parent_id == null)
                                  <li class="{{ request('cuisine') ==  $cuisine->id ? 'active' : '' }}">
-                                    <a href="/restaurants/{{ $restaurant->id }}?lat={{request('lat')}}&lng={{request('lng')}}&cuisine={{$cuisine->id}}" class="scroll">{{ $cuisine->name }}</a>
+                                    
+                                    @if($cuisine->subs()->count())
+                                    <a data-toggle="collapse" aria-expanded="false" href="#cuisinemenu-{{ $cuisine->id }}" class="scroll">{{ $cuisine->name }}  <i style="margin-top: 5px;" class="fa fa-angle-right pull-right"></i>
+                                    <i style="margin-top: 5px;" class="fa fa-angle-down pull-right"></i></a>
+
+                                    <div class="collapse" id="cuisinemenu-{{ $cuisine->id }}">
+                                      <ul>
+                                          @foreach($cuisine->subs as $subCuisine)
+                                            <li class="{{ request('cuisine') ==  $cuisine->id ? 'active' : '' }}">
+                                             <a href="/restaurants/{{ $restaurant->id }}?lat={{request('lat')}}&lng={{request('lng')}}&cuisine={{$subCuisine->id}}" class="scroll pull-right">{{ $subCuisine->name }}</a>
+                                            </li> 
+                                          @endforeach
+                                      </ul>    
+                                     </div>
+                                     @else 
+
+                                      <a href="/restaurants/{{ $restaurant->id }}?lat={{request('lat')}}&lng={{request('lng')}}&cuisine={{$cuisine->id}}" class="scroll">{{ $cuisine->name }} </a>
+                                      @endif
+                                     
+
                                  </li>
+
+                                  @endif 
+
                               @endforeach
                           
                            </ul>
@@ -119,119 +142,29 @@
 
                       @if(request()->has('filter') && request('filter') == 'featured')
                           <?php $items = $restaurant->items()->where('featured', 1)->get(); ?>
-                        <div class="menu-widget " style="background: #fff;margin-bottom: 8px;">
-                              <div class="widget-heading">
-                                 <h3 class="widget-title text-dark">
-                                   Restaurant Special <a class="btn btn-link pull-right" data-toggle="collapse" href="#restaurant-special" aria-expanded="true">
-                                    <i class="fa fa-angle-right pull-right"></i>
-                                    <i class="fa fa-angle-down pull-right"></i>
-                                    </a>
-                                 </h3>
-                                 <div class="clearfix"></div>
-                              </div>
-                              <div class="collapse in" id="restaurant-special">
-                              @foreach($items as $index => $item)
-                                 <div class="food-item {{ ($index+1) % 2 == 0 ? 'white' : '' }}">
-                                    <div class="row">
-                                       <div class="col-xs-12 col-sm-12 col-lg-8">
-                                        <div class="rest-logo pull-left">
-
-                                             <a class="restaurant-logo pull-left" href="#">
-                                                @if($item->is_veg)
-                                                 <img src="/images/veg.png" style="width: 15px;height: 15px;margin-top: 3px;" >
-                                                @else
-                                                <img src="/images/nonveg.png" style="width: 15px;height: 15px;margin-top: 3px;" >
-                                                @endif
-                                             </a>
-                                          </div> 
-                                          
-                                          <div class="rest-descr" style="padding-left: 23px;">
-                                             <h6 style="{{ $item->description == '' ? 'margin-bottom: 28px;' : '' }}"><a href="#">{{ $item->name }}</a></h6>
-                                             <p>{{ $item->description != '' ? $item->description : ''}}</p>
-                                          </div>
-                                          <!-- end:Description -->
-                                       </div>
-                                       <!-- end:col -->
-                                       <div class="col-xs-12 col-sm-12 col-lg-4 pull-right item-cart-info"> <span class="price pull-left">&#8377; {{ $item->price }}</span> 
-
-
-                                       <?php $added = Cart::instance('restaurant-'.$restaurant->id)->search(function ($cartItem, $rowId) use ($item)  {
-                                          return $cartItem->id === $item->id ;
-                                          }); ?>
-
-                                          @if(count($added))
-                                            <div data-trigger="spinner" id="spinner2-{{$item->id}}" style="display: inline;text-align: center;float: right;margin-right: 6px;" >
-                                                 <a style="color: #f30; font-size: 18px;font-weight: bold;" href="javascript:;" data-spin="down">-</a>
-                                                 <input type="text" style="width: 40px;text-align: center;" min="1" value="{{ $added->first()->qty }}" data-rule="quantity">
-                                                 <a href="" style="color: #f30; font-size: 18px;font-weight: bold;" href="javascript:;" data-spin="up">+</a>
-                                             </div>
-                                          @else
-                                             @if(count($item->additions) || ($item->sizes != null && count(json_decode($item->sizes))))
-                                                <a href="#toppings-{{$item->id}}" data-toggle="modal" class="btn btn-small btn btn-secondary pull-right">+</a> 
-                                             @else
-                                                <a href="/cart/add/{{$item->id}}" class="btn btn-small btn btn-secondary pull-right">+</a> 
-                                             @endif
-                                          @endif
-
-                                       </div>
-                                    </div>
-                                      @if(count($item->additions) || ($item->sizes != null && count(json_decode($item->sizes))))
-                                    <div class="modal fade" id="toppings-{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                      <div class="modal-dialog modal-dialog-centered" role="document">
-                                        <form method="post" action="/cart/add/{{$item->id}}/custom">
-                                          @csrf
-                                           <div class="modal-content">
-                                             <div class="modal-header">
-                                               <h5 class="modal-title" id="exampleModalCenterTitle" style="font-weight: bold;">{{ $item->name }}</h5>
-                                               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                 <span aria-hidden="true">&times;</span>
-                                               </button>
-                                             </div>
-                                             <div class="modal-body">
-                                                <h5 style="font-weight: bold;margin-bottom: 18px;">Choose Size</h5>
-                                                @foreach(json_decode($item->sizes) as $key => $size)
-                                                   <label class="custom-control custom-radio  m-b-20">
-                                                          <input id="size" value="{{ $key }}" name="size" type="radio" class="custom-control-input"> <span class="custom-control-indicator"></span> <span class="custom-control-description">{{ $size->name }}(&#8377;{{ $size->price }})</span>
-                                                          </label>
-                                                @endforeach
-                                               @foreach($item->additions as $addition)
-                                                   <h5 style="font-weight: bold;margin-bottom: 18px;">{{ $addition->name }}</h5>
-                                                   @foreach(json_decode($addition->options) as $key => $option)
-                                                      @if($addition->select_type == 0)
-                                                         <label class="custom-control custom-radio  m-b-20">
-                                                          <input id="{{str_slug($option->name)}}" value="{{ $key }}" name="{{str_slug($addition->name)}}" type="radio" class="custom-control-input"> <span class="custom-control-indicator"></span> <span class="custom-control-description">{{ $option->name }}(&#8377;{{ $option->price }})</span>
-                                                          <br>
-                                                          <span>{{ isset($option->description) ? $option->description : '' }}</span>
-                                                          </label>
-                                                      
-                                                      @else
-                                                          <label class="custom-control custom-checkbox  m-b-20">
-                                                          <input id="{{str_slug($option->name)}}" value="{{ $key }}" name="{{str_slug($addition->name)}}[]" type="checkbox" class="custom-control-input"> <span style="border-radius: 0;" class="custom-control-indicator"></span> <span class="custom-control-description">{{ $option->name }}(&#8377;{{ $option->price }})</span>
-                                                          <br>
-                                                          <span>{{ isset($option->description) ? $option->description : '' }}</span>
-                                                          </label>
-                                                      @endif
-                                                    @endforeach
-                                               @endforeach
-                                             </div>
-                                             <div class="modal-footer">
-                                               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                               <button type="submit" class="btn theme-btn">Add to Cart</button>
-                                             </div>
-                                          </form>
-                                        </div>
-                                      </div>
-                                    </div>
-                                    @endif
-                                    <!-- end:row -->
-                                 </div>
-                          @endforeach
-
+                       
+                                @foreach($items as $index => $item)
+                                  <div class="col-md-6">
+                                    @include('partials._specialItem')
+                                  </div>  
+                                @endforeach
+                              
                           
-                           </div>
-                           </div>
                      
                       @else
+
+                        @if(request('cuisine') == null && (request('filter') == 'all' || request('filter') == ''))
+                        <?php $items = $restaurant->items()->where('featured', 1)->get(); ?>
+                        <div class="row">
+                                @foreach($items as $index => $item)
+                                  <div class="col-md-6">
+                                    @include('partials._specialItem')
+                                  </div>  
+                                @endforeach
+                          </div>      
+                         @endif 
+                              
+
                         @foreach($cuisines as $cuisine)
                            @if(request('cuisine') == null || $cuisine->id == request('cuisine'))
 
@@ -282,7 +215,7 @@
                                           return $cartItem->id === $item->id ;
                                           }); ?>
 
-                                          @if(count($added))
+                                          @if(count($added) && (count($item->additions) == 0 || ($item->sizes == null || count(json_decode($item->sizes)) == 0)))
                                             <div data-trigger="spinner" id="spinner2-{{$item->id}}" style="display: inline;text-align: center;float: right;margin-right: 6px;" >
                                                  <a style="color: #f30; font-size: 18px;font-weight: bold;" href="javascript:;" data-spin="down">-</a>
                                                  <input type="text" style="width: 40px;text-align: center;" min="1" value="{{ $added->first()->qty }}" data-rule="quantity">
@@ -294,7 +227,7 @@
                                              @else
                                                 <a href="/cart/add/{{$item->id}}" class="btn btn-small btn btn-secondary pull-right">+</a> 
                                              @endif
-                                          @endif
+                                           @endif 
 
                                        </div>
                                     </div>

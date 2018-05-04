@@ -159,17 +159,30 @@ class RestaurantsController extends Controller
         $cuisines = [];
 
         foreach ($cuisineIds as $key => $cuisine) {
-            $cuisines[] = Cuisine::findOrFail($cuisine);
+            $cuisineModel = Cuisine::findOrFail($cuisine);
+           
+             $cuisines[] = $cuisineModel;
         }
 
+        $cuisineMenu = [];
 
+         foreach ($cuisines as $key => $cuisine) {
+            if($cuisine->parent_id == 0 || $cuisine->parent_id == null)
+            {
+              $cuisineMenu[] = $cuisine; 
+            } else {
+              $cuisineMenu[] = $cuisine->parent;
+            }
+        }
 
          usort($cuisines, array($this, "cmp"));
 
+         usort($cuisineMenu, array($this, "cmp"));
 
 
 
-         return view('restaurants.show', compact('restaurant', 'items', 'cuisines'));
+
+         return view('restaurants.show', compact('restaurant', 'items', 'cuisines', 'cuisineMenu'));
 
 
     }

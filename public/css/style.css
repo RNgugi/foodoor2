@@ -2941,7 +2941,7 @@ input.is-invalid {
 
 .carousel-control-prev{
     color: #fff;
-    background: #f30;
+    background: #060335;
     padding: 12px;
     padding-left: 18px;
     border-radius: 100%;
@@ -2956,7 +2956,7 @@ input.is-invalid {
 
 .carousel-control-next{
     color: #fff;
-    background: #f30;
+    background: #060335;
     padding: 12px;
     padding-left: 18px;
     border-radius: 100%;
