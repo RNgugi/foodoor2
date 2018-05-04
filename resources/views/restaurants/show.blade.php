@@ -11,7 +11,7 @@
                      <div class="row">
                         <div class="col-xs-12 col-sm-12  col-md-3 col-lg-4 profile-img">
                            <div class="image-wrap">
-                              <figure><img src="{{ isset($restaurant->logo) ? url($restaurant->logo) : 'http://via.placeholder.com/350x250' }}" style="height: 160px;" alt="Profile Image"></figure>
+                              <figure><img src="{{ isset($restaurant->logo) ? url($restaurant->logo) : 'http://via.placeholder.com/350x250' }}" style="height: 160px;width: 100%;" alt="Profile Image"></figure>
                            </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 profile-desc">
