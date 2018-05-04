@@ -94,7 +94,7 @@
                            <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
                                <div class="row">
                                   @foreach($restaurantLogos as $restaurantLogo)
-                                    <a href="/restaurants/{{$restaurantLogo->restaurant->id}}?lat={{$restaurantLogo->restaurant->lat}}&lng={{$restaurantLogo->restaurant->lng}}" class="col-md-3">
+                                    <a href="/restaurants/{{$restaurantLogo->restaurant->id}}?latitude={{$restaurantLogo->restaurant->lat}}&longitude={{$restaurantLogo->restaurant->lng}}" class="col-md-3">
                                         <img style="width: 280px;height: 250px;" src="{{ url($restaurantLogo->image) }}">
                                      </a>
                                   @endforeach  
