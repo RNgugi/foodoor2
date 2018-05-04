@@ -173,14 +173,18 @@ class RestaurantsController extends Controller
             } else {
               $cuisineMenu[] = $cuisine->parent;
             }
-        }
+        } 
+
+
+         $cuisineMenu = array_unique($cuisineMenu);
+
+         $cuisines = array_unique($cuisines);
 
          usort($cuisines, array($this, "cmp"));
 
          usort($cuisineMenu, array($this, "cmp"));
 
 
-         dd($cuisineMenu);
 
 
          return view('restaurants.show', compact('restaurant', 'items', 'cuisines', 'cuisineMenu'));

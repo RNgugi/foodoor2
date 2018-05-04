@@ -53,4 +53,8 @@ class Cuisine extends Model
         return count($this->restaurants);
     }
 
+     public function __toString() {
+        return $this->name;
+    }
+
 }
