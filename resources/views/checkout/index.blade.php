@@ -95,10 +95,10 @@
                                  <div class="clearfix"></div>
                               </div>
                               @foreach(Cart::instance('restaurant-'.$restaurant->id)->content() as $item)
-
+                              <?php $customs = $item->options->has('customs') ? json_decode($item->options->customs) : null; ?>
                               <div class="order-row bg-white">
                                  <div class="widget-body">
-                                    <div class="title-row"><span style="font-size: 14px;">{{ $item->name }}</span> 
+                                    <div class="title-row"><span style="font-size: 14px;">{{ $item->name }}  {!! $customs != null ? '<br><small>Size : ' . $customs->size . '</small>' : '' !!}</span> 
 
                                     <p style="font-size:15px;font-weight: bold;margin-top: 2px;margin-left: 3px;" class="pull-right">&#8377; {{ $item->price * $item->qty }}</p>
                                     {{-- <a href="/cart/remove/{{$item->rowId}}/{{$restaurant->id}}">
@@ -156,7 +156,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td>Delivery Charges</td>
-                                                        <td>&#8377 20</td>
+                                                        <td>&#8377 30</td>
                                                     </tr>
                                                     
                                                     @if(session()->has($sessionName))
@@ -228,7 +228,7 @@
             </div> 
            </form>   
 </div>
-	
+	</div>
 
 @endsection
 

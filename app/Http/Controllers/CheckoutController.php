@@ -35,7 +35,7 @@ class CheckoutController extends Controller
     	if(session()->has($sessionName))
     	{
     		$coupon = Coupon::where('code',session($sessionName) )->first();
-    		$discount = $coupon->discount_type == 0 ? $coupon->discount : (\Cart::instance('restaurant-'.$restaurant->id)->subtotal() * (5/100) + 20) * ($coupon->discount / 100);
+    		$discount = $coupon->discount_type == 0 ? $coupon->discount : (\Cart::instance('restaurant-'.$restaurant->id)->subtotal() * (5/100) + 30) * ($coupon->discount / 100);
 	    }
 
     	return view('checkout.index', compact('restaurant', 'lat', 'lng', 'sessionName', 'coupon', 'discount'));
