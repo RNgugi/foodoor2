@@ -46,7 +46,7 @@ class RestaurantsController extends Controller
                 $restaurants = \DB::select("SELECT id,( 3959 * acos( cos( radians(". request('lat') .") ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(". request('lng') .") ) + sin( radians(". request('lat') .") ) * sin( radians( latitude ) ) ) ) AS distance FROM restaurants WHERE rating > 3  HAVING distance < 5 ORDER BY distance LIMIT 0 , 20"); 
             }  else if(request('filter') == 'budget') {
 
-                $restaurants = \DB::select("SELECT id,( 3959 * acos( cos( radians(". request('lat') .") ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(". request('lng') .") ) + sin( radians(". request('lat') .") ) * sin( radians( latitude ) ) ) ) AS distance FROM restaurants WHERE min_price < 800  HAVING distance < 5 ORDER BY distance LIMIT 0 , 20"); 
+                $restaurants = \DB::select("SELECT id,( 3959 * acos( cos( radians(". request('lat') .") ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(". request('lng') .") ) + sin( radians(". request('lat') .") ) * sin( radians( latitude ) ) ) ) AS distance FROM restaurants WHERE min_price < 200  HAVING distance < 5 ORDER BY distance LIMIT 0 , 20"); 
             } 
 
       }  
@@ -92,7 +92,7 @@ class RestaurantsController extends Controller
       if(count($restaurants) == 0)
       {
         // flash message
-        flash()->overlay('We are currently not serving in that location. Please choose a servicable locaiton.', 'We aren\'t here yet' );
+        flash()->overlay('We are currently serving in Ranchi only. Please choose a servicable locaiton.', 'We aren\'t here yet' );
         return redirect('/');
       }
 

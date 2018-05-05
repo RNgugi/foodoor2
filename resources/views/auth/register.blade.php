@@ -61,7 +61,7 @@ input[type=number]::-webkit-outer-spin-button {
 
                                       <div class="form-group col-sm-12">
                                        <label for="exampleInputPassword1">Password</label>
-                                       <input id="password" type="password" placeholder="Enter a strong password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                                       <input id="password" type="password" placeholder="Enter a password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
 
                                        @if ($errors->has('password'))
                                             <span class="invalid-feedback">

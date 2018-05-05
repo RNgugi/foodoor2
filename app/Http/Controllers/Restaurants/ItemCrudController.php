@@ -108,18 +108,7 @@ class ItemCrudController extends CrudController
                 'tab' => 'Available Sizes'
             ],
 
-            [ // Table
-                'name' => 'toppings',
-                'label' => 'Extra Options/Additions',
-                'type' => 'table',
-                'entity_singular' => 'option', // used on the "Add X" button
-                'columns' => [
-                    'name' => 'Name',
-                    'desc' => 'Description (optional)',
-                    'price' => 'Price (Rs.)'
-                ],
-                'tab' => 'Options/Addition'
-            ],
+           
           
         ]);
 

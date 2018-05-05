@@ -80,7 +80,7 @@ class OrdersController extends Controller
 
         $order->subtotal = \Cart::instance('restaurant-' . request('restaurant_id'))->subtotal(2, '.', '');
 
-        $order->tax = \Cart::instance('restaurant-' . request('restaurant_id'))->subtotal(2, '.', '') * (18/100);
+        $order->tax = \Cart::instance('restaurant-' . request('restaurant_id'))->subtotal(2, '.', '') * (5/100);
 
         $order->delivery_charges = 30;
 
@@ -90,7 +90,7 @@ class OrdersController extends Controller
         {
             $discount = request('discount');    
         }  
-        
+
         $order->amount =   $order->subtotal +  $order->tax + $order->delivery_charges - $discount;
 
         $order->payment_mode = request('payment_mode');
