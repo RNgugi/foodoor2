@@ -313,31 +313,38 @@
 
                                  <div class="clearfix"></div>
                               </div>
+                              <div class="scroll" style="max-height: 274px;
+    overflow: scroll;">
                               @foreach(Cart::instance('restaurant-'.$restaurant->id)->content() as $item)
-
+                              <?php $customs = $item->options->has('customs') ? json_decode($item->options->customs) : null; ?>
                               <div class="order-row bg-white">
                                  <div class="widget-body">
-                                    <div class="title-row"><span style="font-size: 14px;">  
+                                    <div class="title-row"><span style="font-size: 14px;display: block;">  
                                              @if($item->model->is_veg)
                                                  <img src="/images/veg.png" style="width: 12px;height: 12px;margin-top: -2px;" >
                                                 @else
                                                 <img src="/images/nonveg.png" style="width: 12px;height: 12px;margin-top: -2px;" >
-                                                @endif {{ $item->name }}</span> 
+                                                @endif {{ $item->name }} {!! $customs != null ? '<br><small>Size : ' . $customs->size . '</small>' : '' !!}</span> 
+                                    <div style="margin-bottom: 7px;margin-top: 10px;">   
 
-                                    <p style="font-size:12px;font-weight: normal;margin-top: 2px;margin-left: 3px;" class="pull-right">&#8377; {{ $item->price * $item->qty }} 
-                                             <a href="/cart/remove/{{$item->rowId}}/{{$restaurant->id}}"><i class="fa fa-trash"></i></a></p>
-                                    {{-- <a href="/cart/remove/{{$item->rowId}}/{{$restaurant->id}}">
-                                     <i class="fa fa-trash pull-right"></i></a> --}} 
-
-                                    
-
-                                    <div data-trigger="spinner" id="spinner-{{$item->id}}" style="display: inline;text-align: center;float: right;margin-right: 6px;" >
+                                    <div data-trigger="spinner" id="spinner-{{$item->id}}" style="display: inline;text-align: center;margin-right: 6px;" >
                                       <a style="color: #f30; font-size: 18px;font-weight: bold;
    " href="javascript:;" data-spin="down">-</a>
                                       <input type="text" style="width: 40px;text-align: center;" min="1" value="{{ $item->qty }}" data-rule="quantity">
                                       <a href="" style="color: #f30; font-size: 18px;font-weight: bold;" href="javascript:;" data-spin="up">+</a>
                                     </div>
 
+                                    <p style="font-size:12px;font-weight: normal;margin-top: 2px;margin-left: 3px;display: inline;" class="">&#8377; {{ $item->price * $item->qty }} 
+                                             <a href="/cart/remove/{{$item->rowId}}/{{$restaurant->id}}"><i class="fa fa-trash"></i></a></p>
+
+
+                                    {{-- <a href="/cart/remove/{{$item->rowId}}/{{$restaurant->id}}">
+                                     <i class="fa fa-trash pull-right"></i></a> --}} 
+
+                                    
+
+                                    
+                                    </div>
                                      </div>
                                     
                                     
@@ -346,7 +353,7 @@
                                 
                               </div>
                               @endforeach
-
+                              </div>
                               <div class="order-row">
                                  <div class="widget-body">
                                   <div class="form-group row no-gutter">
