@@ -110,21 +110,24 @@
                                     <a data-toggle="collapse" aria-expanded="false" href="#cuisinemenu-{{ $cuisine->id }}" class="scroll">{{ $cuisine->name }}  <i style="margin-top: 5px;" class="fa fa-angle-right pull-right"></i>
                                     <i style="margin-top: 5px;" class="fa fa-angle-down pull-right"></i></a>
 
-                                    <div class="collapse" id="cuisinemenu-{{ $cuisine->id }}">
-                                      <ul>
-                                          @foreach($cuisine->subs as $subCuisine)
-                                            <li class="{{ request('cuisine') ==  $cuisine->id ? 'active' : '' }}">
-                                             <a href="/restaurants/{{ $restaurant->id }}?lat={{request('lat')}}&lng={{request('lng')}}&cuisine={{$subCuisine->id}}" class="scroll pull-right">{{ $subCuisine->name }}</a>
-                                            </li> 
-                                          @endforeach
-                                      </ul>    
-                                     </div>
+                                   
                                      @else 
 
                                       <a href="/restaurants/{{ $restaurant->id }}?lat={{request('lat')}}&lng={{request('lng')}}&cuisine={{$cuisine->id}}" class="scroll">{{ $cuisine->name }} </a>
                                       @endif
                                      
 
+                                 </li>
+                                 <li>
+                                    <div class="collapse" id="cuisinemenu-{{ $cuisine->id }}">
+                                      <ul style="background-color: #fff;">
+                                          @foreach($cuisine->subs as $subCuisine)
+                                            <li class="{{ request('cuisine') ==  $cuisine->id ? 'active' : '' }}">
+                                             <a href="/restaurants/{{ $restaurant->id }}?lat={{request('lat')}}&lng={{request('lng')}}&cuisine={{$subCuisine->id}}" class="scroll">{{ $subCuisine->name }}</a>
+                                            </li> 
+                                          @endforeach
+                                      </ul>    
+                                     </div>
                                  </li>
 
                                   @endif 

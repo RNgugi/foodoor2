@@ -200,8 +200,9 @@ function codeAddress() {
    
 </script>
 
-
-//getLocation();
+<script type="text/javascript">
+    
+     getLocation();
    
   </script>
 

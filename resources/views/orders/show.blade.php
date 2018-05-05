@@ -57,7 +57,7 @@
                             <div class="col-sm-4">
                               @if(auth()->user()->isRestaurant() && $order->restaurant_id == auth()->user()->restaurant->id)
 
-                                <div>
+                                <div >
                                   <select class="form-control">
                                     <option value="0" {{ $order->status == 0 ? 'selected' : '' }}>Order Placed</option>
                                     <option value="1" {{ $order->status == 1 ? 'selected' : '' }}>Order Confirmed</option>
