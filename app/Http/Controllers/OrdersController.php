@@ -84,7 +84,14 @@ class OrdersController extends Controller
 
         $order->delivery_charges = 30;
 
-        $order->amount =   $order->subtotal +  $order->tax + $order->delivery_charges;
+        $discount = 0;
+
+        if(request()->has('discount'))
+        {
+            $discount = request('discount');    
+        }  
+        
+        $order->amount =   $order->subtotal +  $order->tax + $order->delivery_charges - $discount;
 
         $order->payment_mode = request('payment_mode');
 

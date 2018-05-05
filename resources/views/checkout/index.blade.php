@@ -213,6 +213,9 @@
                                                     <input name="payment_mode" type="radio" value="1" class="custom-control-input"> <span class="custom-control-indicator"></span> <span class="custom-control-description">Pay Online</span><br> <span>Various online payment options like Visa, Mastercard, Rupay, Netbanking, etc. are available.</span>  </label>
                                             </li>
                                         </ul>
+                                        @if(session()->has($sessionName))
+                                          <input type="hidden" name="discount" value="{{ $discount }}">
+                                        @endif
                                         <p class="text-xs-center"> <button type="submit" class="btn btn-outline-success btn-block">Place Order</button> </p>
                                     </div>
                               </div>
