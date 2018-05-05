@@ -202,7 +202,7 @@ function codeAddress() {
 
 <script type="text/javascript">
     
-     getLocation();
+     //getLocation();
    
   </script>
 
