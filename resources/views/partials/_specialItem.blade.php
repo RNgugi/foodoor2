@@ -4,7 +4,7 @@
 
 
 
-	<img src="{{ isset($item->image) ? url($item->image) : 'http://via.placeholder.com/350x250' }}" style="max-height: 200px;height: 200px;">
+	<img src="{{ isset($item->photo) ? url($item->photo) : 'http://via.placeholder.com/350x250' }}" style="max-height: 200px;height: 200px;">
 	
 	
 
