@@ -148,7 +148,7 @@
                                                 <tbody>
                                                     <tr>
                                                         <td>Cart Subtotal</td>
-                                                        <td>&#8377 {{ Cart::instance('restaurant-'.$restaurant->id)->subtotal() }}</td>
+                                                        <td>&#8377 {{ floatval(Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', '')) }}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>GST</td>
@@ -161,6 +161,12 @@
                                                     
                                                     @if(session()->has($sessionName))
                                                     <tr>
+                                                        <td class="text-color"><strong>Order Total</strong></td>
+                                                       
+                                                             <td class="text-color"><strong>&#8377 {{ (floatval(Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', '')) + (floatval(Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', '')) * (5/100)) + 30) }}</strong></td>
+                                                     
+                                                    </tr>
+                                                    <tr>
                                                         <td class="text-color"><strong>Discount</strong></td>
                                                         <td class="text-color"><strong>&#8377 {{$discount}}</strong></td>
                                                     </tr>
@@ -169,17 +175,17 @@
                                                     <tr>
                                                         <td class="text-color"><strong>Total</strong></td>
                                                         @if(session()->has($sessionName))
-                                                             <td class="text-color"><strong>&#8377 {{ floatval(Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', '')) + floatval(Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', '')) * (5/100) + 20 - $discount}}</strong></td>
+                                                             <td class="text-color"><strong>&#8377 {{ (floatval(Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', '')) + (floatval(Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', '')) * (5/100)) + 30) - $discount}}</strong></td>
                                                         @else
-                                                             <td class="text-color"><strong>&#8377 {{ floatval(Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', '')) + floatval(Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', '')) * (5/100) + 20 }}</strong></td>
+                                                             <td class="text-color"><strong>&#8377 {{ (floatval(Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', '')) + (floatval(Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', '')) * (5/100)) + 30) }}</strong></td>
                                                         @endif
                                                     </tr>
                                                     <tr>
                                                      @if(session()->has($sessionName))
                                                         <td colspan="2">
                                                              <div class="alert alert-info" role="alert" style="">
-                                                                 <b> COUPON APPLIED : <i class="fa fa-qrcode"></i>  {{ $coupon->code }}</b> <br>
-                                                                 {{ $coupon->promo_text }}<br>
+                                                                 Congratualtions! Coupon applied successfully. You have saved Rs {{ $discount }}.
+
                                                                  <a href="javascript:void(0)" style="text-decoration: underline;" onclick="removeCoupon({{ $restaurant->id }})" >Remove Coupon</a>
                                                               </div>
                                                             </td>
