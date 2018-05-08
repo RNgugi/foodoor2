@@ -35,6 +35,7 @@ class RestaurantRequest extends FormRequest
              'contact_name' => 'required|min:2',
              'contact_email' => 'required|email',
              'contact_phone' => 'required|min:10|max:10',
+             'commission' => 'required'
 
         ];
     }

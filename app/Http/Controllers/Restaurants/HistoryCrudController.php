@@ -8,7 +8,9 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 use App\Http\Requests\OrderRequest as StoreRequest;
 use App\Http\Requests\OrderRequest as UpdateRequest;
 
-class EarningsCrudController extends CrudController
+use App\Events\OrderStatusChanged;
+
+class HistoryCrudController extends CrudController
 {
     public function setup()
     {
@@ -19,8 +21,8 @@ class EarningsCrudController extends CrudController
         |--------------------------------------------------------------------------
         */
         $this->crud->setModel('App\Models\Order');
-        $this->crud->setRoute('restaurants-admin' . '/earnings');
-        $this->crud->setEntityNameStrings('earning', 'earnings');
+        $this->crud->setRoute('restaurants-admin'. '/history');
+        $this->crud->setEntityNameStrings('order history', 'orders history');
 
         /*
         |--------------------------------------------------------------------------
@@ -31,23 +33,32 @@ class EarningsCrudController extends CrudController
           $this->crud->addColumns([
             ['name' => 'id', 'label' => 'Order ID'],
             ['name' => 'customer_name', 'label' => 'Customer Name'],
-            ['name' => 'amount', 'label' => 'Order Amount (Rs.)'],
-            ['name' => 'amount_earned', 'label' => 'Amount Earned (Rs.)'],
             ['name' => 'booking_date', 'label' => 'Date'],
+            ['name' => 'itemsCount', 'label' => 'Items Count'],
+            ['name' => 'amount', 'label' => 'Amount (Rs.)'],
+            ['name' => 'status_text', 'label' => 'Status'],
         ]);
 
-          $this->crud->ajax_table = false;
-
           
-       if(auth()->user()->isRestaurant())
-       {
-          $this->crud->addClause('where', 'restaurant_id', '=', auth()->user()->restaurant->id);
-       } 
+
+           $this->crud->ajax_table = false;
 
 
-        $this->crud->addClause('where', 'status', '=', 4);
+           if(auth()->user()->isRestaurant())
+           {
+              $this->crud->addClause('where', 'restaurant_id', '=', auth()->user()->restaurant->id);
+           } 
+
+            //$this->crud->addClause('where', 'created_at', '=', \DB::raw('CURDATE()'));
+
+            $this->crud->addClause('where', 'status', '=', 4);
 
             $this->crud->orderBy('created_at', 'DESC');
+
+
+            $this->crud->addButtonFromModelFunction('line', 'viewOrder', 'viewOrder', 'end');
+
+            $this->crud->addButtonFromModelFunction('line', 'invoice', 'invoice', 'end');
 
             $this->crud->setListView('admin.orders.list');
 
@@ -77,7 +88,7 @@ class EarningsCrudController extends CrudController
 
         // ------ CRUD ACCESS
         // $this->crud->allowAccess(['list', 'create', 'update', 'reorder', 'delete']);
-        $this->crud->denyAccess(['create', 'update', 'reorder', 'update', 'delete']);
+        $this->crud->denyAccess(['create', 'reorder', 'delete', 'update']);
 
         // ------ CRUD REORDER
         // $this->crud->enableReorder('label_name', MAX_TREE_LEVEL);
@@ -118,8 +129,6 @@ class EarningsCrudController extends CrudController
         // $this->crud->orderBy();
         // $this->crud->groupBy();
         // $this->crud->limit();
-
-       // $this->crud->addClause('where', 'payment_status', '==', '1');
     }
 
     public function store(StoreRequest $request)
@@ -135,6 +144,8 @@ class EarningsCrudController extends CrudController
     {
         // your additional operations before save here
         $redirect_location = parent::updateCrud($request);
+
+        event(new OrderStatusChanged($this->crud->entry));
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
         return $redirect_location;

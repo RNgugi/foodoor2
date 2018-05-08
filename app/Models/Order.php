@@ -44,6 +44,11 @@ class Order extends Model
         return $this->user->name;
     }
 
+     public function getBookingDateAttribute()
+    {
+        return $this->created_at->format('d/m/Y');
+    }
+
     public function items()
     {
         return $this->belongsToMany(Item::class, 'order_item')->withPivot(['price', 'qty', 'customs']);
@@ -68,7 +73,12 @@ class Order extends Model
 
     public function getCommissionEarnedAttribute()
     {
-        return $this->amount * (10/100);
+        return $this->amount * ($this->restaurant->commission/100);
+    }
+
+    public function getAmountEarnedAttribute()
+    {
+        return $this->amount - $this->commission_earned;
     }
 
      public function confirmOrder($crud = false)
@@ -76,9 +86,17 @@ class Order extends Model
         if($this->status < 1)
         {
            return '<a class="btn btn-xs btn-success" href="/orders/'. $this->id . '/confirm" data-toggle="tooltip" title="Confirm Order"><i class="fa fa-check"></i> Confirm Order</a>';
-        } else {
+        } elseif($this->status == 1) {
 
-                 return '<a class="btn btn-xs btn-success" href="/orders/'. $this->id . '/confirm" data-toggle="tooltip" title="Confirm Order" disabled><i class="fa fa-check"></i> Order Confirmed</a>';
+                 return '<a class="btn btn-xs btn-info" href="/orders/'. $this->id . '/ready" data-toggle="tooltip" title="Order Ready" ><i class="fa fa-check"></i> Order Ready</a>';
+        } elseif($this->status == 2) {
+
+                 return '<a class="btn btn-xs btn-info" href="/orders/'. $this->id . '/picked" data-toggle="tooltip" title="Order Picked" ><i class="fa fa-check"></i> Order Picked</a>';
+        } elseif($this->status == 3) {
+
+                 return '<a class="btn btn-xs btn-success" href="/orders/'. $this->id . '/delivered" data-toggle="tooltip" title="Order Delivered" ><i class="fa fa-check"></i> Order Delivered</a>';
+        } else {
+             return '<a class="btn btn-xs btn-success" href="#" data-toggle="tooltip" title="Order Delivered" disabled><i class="fa fa-check"></i> Order Closed</a>';
         }
        
     }
@@ -87,7 +105,17 @@ class Order extends Model
     { 
       
            return 
-           '<a class="btn btn-xs btn-primary" href="/orders/'. $this->id . '" data-toggle="tooltip" target="_blank" title="Confirm Order"><i class="fa fa-eye"></i> View</a>';
+           '<a class="btn btn-xs btn-danger" href="/orders/'. $this->id . '" data-toggle="tooltip" target="_blank" title="Confirm Order"><i class="fa fa-eye"></i> View</a>';
+       
+       
+       
+    }
+
+    public function invoice($crud = false)
+    { 
+      
+           return 
+           '<a class="btn btn-xs btn-primary" href="/orders/'. $this->id . '/invoice" data-toggle="tooltip" target="_blank" title="Confirm Order"><i class="fa fa-file-text"></i> Invoice</a>';
        
        
        

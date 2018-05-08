@@ -46,6 +46,9 @@ Route::get('/orders/{order}', 'OrdersController@show');
 Route::get('/orders/{order}/pay', 'PaymentsController@addMoney');
 
 Route::get('/orders/{order}/confirm', 'OrdersController@confirm');
+Route::get('/orders/{order}/ready', 'OrdersController@ready');
+Route::get('/orders/{order}/picked', 'OrdersController@picked');
+Route::get('/orders/{order}/delivered', 'OrdersController@delivered');
 
 Route::get('/payments/response/', 'PaymentsController@response');
 
@@ -95,6 +98,7 @@ Route::group(['prefix' => 'restaurants-admin', 'middleware' => ['admin'], 'names
 {
 	Route::get('/', 'DashboardController@dashboard');
 	CRUD::resource('orders', 'OrderCrudController');
+    CRUD::resource('history', 'HistoryCrudController');
 	CRUD::resource('earnings', 'EarningsCrudController');
     CRUD::resource('restaurants', 'RestaurantCrudController');
     CRUD::resource('items', 'ItemCrudController');

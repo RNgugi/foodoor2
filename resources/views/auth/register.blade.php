@@ -88,9 +88,11 @@ input[type=number]::-webkit-outer-spin-button {
                                          <input id="phone" type="number" placeholder="Enter contact number" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" value="{{ old('phone') }}" required autofocus>
 
                                           
-                                              <span class="invalid-feedback" id="request-feedback">
-                                                    
-                                              </span>
+                                               @if ($errors->has('phone'))
+                                            <span class="invalid-feedback">
+                                                <strong>{{ $errors->first('password_confirmation') }}</strong>
+                                            </span>
+                                        @endif
                                         
                                       </div>
 

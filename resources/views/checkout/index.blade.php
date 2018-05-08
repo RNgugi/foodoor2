@@ -65,13 +65,13 @@
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>Door No./ Flat No.</label>
-                                                <input type="text" name="door_no" value="{{ old('door_no') }}" class="form-control" placeholder="Ex. Flat no. 1"> </div>
+                                                <input type="text" name="door_no" value="{{ old('door_no') }}" class="form-control" placeholder="Ex. Flat no. 1" required=""> </div>
                                             <!--/form-group-->
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>Landmark</label>
-                                                <input type="text" name="landmark" value="{{ old('landmark') }}" class="form-control" placeholder="Nearby place"> </div>
+                                                <input type="text" name="landmark" value="{{ old('landmark') }}" class="form-control" placeholder="Nearby place" required=""> </div>
                                             <!--/form-group-->
                                         </div>
                                     </div>
@@ -205,12 +205,12 @@
                                         <ul class=" list-unstyled">
                                             <li>
                                                 <label class="custom-control custom-radio  m-b-20">
-                                                    <input id="radioStacked1" value="0" name="payment_mode" type="radio" class="custom-control-input"> <span class="custom-control-indicator"></span> <span class="custom-control-description">Payment on delivery</span>
+                                                    <input id="radioStacked1" value="0" name="payment_mode" type="radio" class="custom-control-input" required=""> <span class="custom-control-indicator"></span> <span class="custom-control-description">Payment on delivery</span>
                                                     </label>
                                             </li>
                                             <li>
                                                 <label class="custom-control custom-radio  m-b-10">
-                                                    <input name="payment_mode" type="radio" value="1" class="custom-control-input"> <span class="custom-control-indicator"></span> <span class="custom-control-description">Pay Online</span><br> <span>Various online payment options like Visa, Mastercard, Rupay, Netbanking, etc. are available.</span>  </label>
+                                                    <input name="payment_mode" type="radio" value="1" class="custom-control-input" required=""> <span class="custom-control-indicator"></span> <span class="custom-control-description">Pay Online</span><br> <span>Various online payment options like Visa, Mastercard, Rupay, Netbanking, etc. are available.</span>  </label>
                                             </li>
                                         </ul>
                                         @if(session()->has($sessionName))

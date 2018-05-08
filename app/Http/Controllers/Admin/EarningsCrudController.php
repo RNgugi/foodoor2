@@ -32,18 +32,25 @@ class EarningsCrudController extends CrudController
             ['name' => 'id', 'label' => 'Order ID'],
             ['name' => 'customer_name', 'label' => 'Customer Name'],
             ['name' => 'restaurant_name', 'label' => 'Restaurant Name'],
-            ['name' => 'amount', 'label' => 'Amount (Rs.)'],
-            ['name' => 'commission_earned', 'label' => 'Commission Earned (Rs.)'],
-            ['name' => 'created_at', 'label' => 'Date'],
+            ['name' => 'amount', 'label' => 'Order Amount (Rs.)'],
+            ['name' => 'amount_earned', 'label' => 'Amount Earned (Rs.)'],
+            ['name' => 'booking_date', 'label' => 'Date'],
         ]);
 
           $this->crud->ajax_table = false;
 
           
-           if(auth()->user()->isRestaurant())
-           {
-              $this->crud->addClause('where', 'restaurant_id', '==', auth()->user()->restaurant->id);
-           } 
+       if(auth()->user()->isRestaurant())
+       {
+          $this->crud->addClause('where', 'restaurant_id', '=', auth()->user()->restaurant->id);
+       } 
+
+
+        $this->crud->addClause('where', 'status', '=', 4);
+
+            $this->crud->orderBy('created_at', 'DESC');
+
+            $this->crud->setListView('admin.orders.list');
 
         // ------ CRUD FIELDS
         // $this->crud->addField($options, 'update/create/both');
@@ -71,7 +78,7 @@ class EarningsCrudController extends CrudController
 
         // ------ CRUD ACCESS
         // $this->crud->allowAccess(['list', 'create', 'update', 'reorder', 'delete']);
-        $this->crud->denyAccess(['create', 'update', 'reorder']);
+        $this->crud->denyAccess(['create', 'update', 'reorder', 'update', 'delete']);
 
         // ------ CRUD REORDER
         // $this->crud->enableReorder('label_name', MAX_TREE_LEVEL);

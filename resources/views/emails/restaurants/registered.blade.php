@@ -9,7 +9,7 @@ Your account credentials are :
 
 Use the link below to login to your restaurant admin panel. 
 
-@component('mail::button', ['url' => '/restaurants-admin'])
+@component('mail::button', ['url' => 'https://foodoor.in/restaurants-admin'])
 Manage Restaurant
 @endcomponent
 

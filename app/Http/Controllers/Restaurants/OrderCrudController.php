@@ -22,7 +22,7 @@ class OrderCrudController extends CrudController
         */
         $this->crud->setModel('App\Models\Order');
         $this->crud->setRoute('restaurants-admin'. '/orders');
-        $this->crud->setEntityNameStrings('order', 'orders');
+        $this->crud->setEntityNameStrings('order', 'today\'s orders');
 
         /*
         |--------------------------------------------------------------------------
@@ -33,7 +33,7 @@ class OrderCrudController extends CrudController
           $this->crud->addColumns([
             ['name' => 'id', 'label' => 'Order ID'],
             ['name' => 'customer_name', 'label' => 'Customer Name'],
-            ['name' => 'restaurant_name', 'label' => 'Restaurant Name'],
+            ['name' => 'booking_date', 'label' => 'Date'],
             ['name' => 'itemsCount', 'label' => 'Items Count'],
             ['name' => 'amount', 'label' => 'Amount (Rs.)'],
             ['name' => 'status_text', 'label' => 'Status'],
@@ -60,12 +60,17 @@ class OrderCrudController extends CrudController
               $this->crud->addClause('where', 'restaurant_id', '=', auth()->user()->restaurant->id);
            } 
 
+            $this->crud->addClause('where', 'created_at', '=', \DB::raw('CURDATE()'));
 
-           $this->crud->orderBy('created_at', 'DESC');
+            $this->crud->addClause('where', 'status', '<', 4);
+
+            $this->crud->orderBy('created_at', 'DESC');
 
             $this->crud->addButtonFromModelFunction('line', 'confirm', 'confirmOrder', 'end');
 
             $this->crud->addButtonFromModelFunction('line', 'viewOrder', 'viewOrder', 'end');
+
+            $this->crud->addButtonFromModelFunction('line', 'invoice', 'invoice', 'end');
 
             $this->crud->setListView('admin.orders.list');
 
@@ -95,7 +100,7 @@ class OrderCrudController extends CrudController
 
         // ------ CRUD ACCESS
         // $this->crud->allowAccess(['list', 'create', 'update', 'reorder', 'delete']);
-        $this->crud->denyAccess(['create', 'reorder',]);
+        $this->crud->denyAccess(['create', 'reorder', 'delete', 'update']);
 
         // ------ CRUD REORDER
         // $this->crud->enableReorder('label_name', MAX_TREE_LEVEL);

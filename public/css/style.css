@@ -2940,31 +2940,34 @@ input.is-invalid {
 }
 
 .carousel-control-prev{
-    color: #fff;
-    background: #060335;
-    padding: 12px;
-    padding-left: 18px;
+     color: #fff;
+    background: #f01f2f;
+    padding: 10px;
+    padding-left: 16px;
     border-radius: 100%;
     position: absolute;
     width: 50px;
     height: 50px;
     top: 42.5%;
     left: -29px;
+    font-size: 20px;
+
 }
 
 
 
 .carousel-control-next{
     color: #fff;
-    background: #060335;
-    padding: 12px;
-    padding-left: 18px;
+    background: #f01f2f;
+    padding: 10px;
+    padding-left: 17px;
     border-radius: 100%;
     position: absolute;
     width: 50px;
     height: 50px;
     top: 42.5%;
     right: -24px;
+    font-size: 20px;
 }
 
 

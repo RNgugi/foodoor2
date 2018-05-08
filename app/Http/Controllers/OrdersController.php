@@ -157,6 +157,56 @@ class OrdersController extends Controller
         return back();
     }
 
+     /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function ready(Order $order)
+    {
+        $order->status = 2;
+        $order->save();
+
+         event(new OrderStatusChanged($order));
+
+        return back();
+    }
+
+
+     /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function picked(Order $order)
+    {
+        $order->status = 3;
+        $order->save();
+
+         event(new OrderStatusChanged($order));
+
+        return back();
+    }
+
+
+     /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function delivered(Order $order)
+    {
+        $order->status = 4;
+        $order->save();
+
+         event(new OrderStatusChanged($order));
+
+        return back();
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
