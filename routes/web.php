@@ -80,6 +80,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'role'], 'namespace
 {
 	CRUD::resource('orders', 'OrderCrudController');
 	CRUD::resource('earnings', 'EarningsCrudController');
+    CRUD::resource('history', 'HistoryCrudController');
     CRUD::resource('restaurants', 'RestaurantCrudController');
     CRUD::resource('items', 'ItemCrudController');
     CRUD::resource('cuisines', 'CuisineCrudController');
