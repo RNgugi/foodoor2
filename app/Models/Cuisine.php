@@ -27,6 +27,11 @@ class Cuisine extends Model
     {
         return $this->belongsToMany(Restaurant::class);
     }
+
+    public function items()
+    {
+        return $this->hasMany(Item::class);
+    }
   
     public function getParentCuisineAttribute()
     {

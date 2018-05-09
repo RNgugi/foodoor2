@@ -122,9 +122,11 @@
                                     <div class="collapse" id="cuisinemenu-{{ $cuisine->id }}">
                                       <ul style="background-color: #fff;">
                                           @foreach($cuisine->subs as $subCuisine)
-                                            <li style="text-align: right;font-size: 15px;" class="{{ request('cuisine') ==  $cuisine->id ? 'active' : '' }}">
-                                             <a style="padding: 4px;" href="/restaurants/{{ $restaurant->id }}?lat={{request('lat')}}&lng={{request('lng')}}&cuisine={{$subCuisine->id}}" class="scroll">{{ $subCuisine->name }}</a>
-                                            </li> 
+                                            @if($subCuisine->items()->where('restaurant_id', $restaurant->id)->count())
+                                              <li style="text-align: right;font-size: 15px;" class="{{ request('cuisine') ==  $cuisine->id ? 'active' : '' }}">
+                                               <a style="padding: 4px;" href="/restaurants/{{ $restaurant->id }}?lat={{request('lat')}}&lng={{request('lng')}}&cuisine={{$subCuisine->id}}" class="scroll">{{ $subCuisine->name }}</a>
+                                              </li> 
+                                            @endif
                                           @endforeach
                                       </ul>    
                                      </div>
