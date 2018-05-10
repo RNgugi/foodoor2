@@ -15,7 +15,7 @@
             @else
             <img src="/images/nonveg.png" style="width: 15px;height: 15px;margin-top: 0px;" >
             @endif 
-           {{ $item->name }}</h5>
+           {{ substr($item->name, 0, 60) }}</h5>
 	    <div class="product-name">{{ $item->description }}</div>
 	    
 	    	<div style="position: relative;margin-top: 5px;font-size: 14px;color: green">
