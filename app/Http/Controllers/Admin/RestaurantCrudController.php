@@ -124,7 +124,9 @@ class RestaurantCrudController extends CrudController
                     'default' => 0,
                     'tab' => 'General'
                 ],
-            
+
+               
+                          
               [ // select_from_array
                 'name' => 'open_time',
                 'label' => 'Opening Time <span style="color: red;">*</span>',
@@ -135,7 +137,7 @@ class RestaurantCrudController extends CrudController
                               20 => '8:00 PM', 21 => '9:00 PM', 22 => '10:00 PM', 23 => '11:00 PM' ],
                 'allows_null' => false,
                 'default' => 1
-                , 'tab' => 'General'
+                , 'tab' => 'Timings'
                 // 'allows_multiple' => true, // OPTIONAL; needs you to cast this to array in your model;
              ],
 
@@ -149,7 +151,7 @@ class RestaurantCrudController extends CrudController
                               20 => '8:00 PM', 21 => '9:00 PM', 22 => '10:00 PM', 23 => '11:00 PM' ],
                 'allows_null' => false,
                 'default' => 1
-                , 'tab' => 'General'
+                , 'tab' => 'Timings'
                 // 'allows_multiple' => true, // OPTIONAL; needs you to cast this to array in your model;
              ],
 
