@@ -29,7 +29,7 @@ class CheckoutController extends Controller
 
     	$sessionName = 'restaurant-' . $restaurant->id . '-coupon';
 
-        $foodoorCash = auth()->user()->wallet_ballance > 10 ? auth()->user()->wallet_ballance * (10/100) : auth()->user()->wallet_ballance;
+        $foodoorCash = auth()->user()->wallet_ballance > 10 ? ceil(auth()->user()->wallet_ballance * (10/100)) : auth()->user()->wallet_ballance;
 
 
        // dd(\Cart::instance('restaurant-'.$restaurant->id)->content());

@@ -93,7 +93,7 @@ class OrdersController extends Controller
             $discount = request('discount');    
         }  
         
-        $foodoorCash = auth()->user()->wallet_ballance > 10 ? auth()->user()->wallet_ballance * (10/100) : auth()->user()->wallet_ballance;
+        $foodoorCash = auth()->user()->wallet_ballance > 10 ? ceil(auth()->user()->wallet_ballance * (10/100)) : auth()->user()->wallet_ballance;
 
         $order->amount =   $order->subtotal +  $order->tax + $order->delivery_charges - $discount - $foodoorCash;
 
