@@ -37,7 +37,7 @@ class OrderStatusChangedListener
             $message = 'Your order is ready to leave for delivery.';
             $response = sendSMS($event->order->user->phone, $message);
         } elseif($status == 3) {
-            $message = 'The delivery person has picked your food for delivery. It will reach you soon. Track your order : https://foodoor.in/orders/ ' . $event->order->id;
+            $message = 'The delivery person has picked your food for delivery. It will reach you soon. Track your order : https://foodoor.in/orders/' . $event->order->id;
             $response = sendSMS($event->order->user->phone, $message);
         } elseif($status == 4) {
             $message = 'Your order is delivered to you. Thank you for using Foodoor.';
