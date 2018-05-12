@@ -31,7 +31,7 @@
                         <h5 style="font-weight: bold;margin-top: 55px;">Delivery Details</h5>
                         <hr>
                         <div style="width: 50%;">
-                          <h5><b>{{ $order->user->name }}</b></h5>
+                          <h5><b>{{ $order->user->name }}</b> | {{ $order->user->phone }}</h5>
                           <h5>{{ json_decode($order->delivery_address)->delivery_location }}</h5>
                           <h5>{{ json_decode($order->delivery_address)->door_no }} {{ json_decode($order->delivery_address)->landmark }}</h5>
                         </div>
