@@ -107,6 +107,10 @@ class OrdersController extends Controller
 
         $order->save();
 
+        auth()->user()->wallet_ballance = auth()->user()->wallet_ballance - $foodoorCash;
+
+        auth()->user()->save();
+
         foreach ($items as $key => $item) 
         {
             $customs = $item->options->has('customs') ? $item->options->customs : null;
