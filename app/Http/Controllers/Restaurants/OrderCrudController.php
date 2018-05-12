@@ -60,7 +60,7 @@ class OrderCrudController extends CrudController
               $this->crud->addClause('where', 'restaurant_id', '=', auth()->user()->restaurant->id);
            } 
 
-            $this->crud->addClause('where', 'created_at', '=', \DB::raw('CURDATE()'));
+            $this->crud->addClause('whereDate', 'created_at', '=', date('Y-m-d'));
 
             $this->crud->addClause('where', 'status', '<', 4);
 

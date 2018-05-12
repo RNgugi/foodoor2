@@ -3,24 +3,15 @@
 
 @section('content')
 	
-    <div style="background: #e9ecee;">
+    <div style="background: #e9ecee;min-height: 1300px;">
 	
-    <div class="top-links" style="margin-top: 15px;background: #fff;border-top: 1px solid #ccc;">
-                <div class="container">
-                    <ul class="row links">
-                        <li class="col-xs-12 col-sm-3 link-item active"><span>1</span><a href="/">Choose Your Location</a></li>
-                        <li class="col-xs-12 col-sm-3 link-item active"><span>2</span><a href="/restaurants/explore?lat={{$lat}}&lng={{$lng}}">Choose Restaurant</a></li>
-                        <li class="col-xs-12 col-sm-3 link-item active"><span>3</span><a href="/restaurants/{{$restaurant->id}}?lat={{$lat}}&lng={{$lng}}">Pick Your favorite food</a></li>
-                        <li class="col-xs-12 col-sm-3 link-item active"><span>4</span><a href="#">Order and Pay online</a></li>
-                    </ul>
-                </div>
-            </div>
+  
 
 
-     <div class="container m-t-30" style="min-height: 900px;">
+     <div class="container " style="min-height: 900px;padding-top: 30px;">
         <form method="POST" action="/orders">
         @csrf
-         <h3 style="margin-bottom: 18px; font-weight: 600;">Restaurant : <a href="/restaurants/{{$restaurant->id}}?lat={{$lat}}&lng={{$lng}}">{{ $restaurant->name }}</a></h3>
+        
         <div class="row">
             <div class="col-md-8">
 
@@ -28,12 +19,12 @@
                     <!-- /widget heading -->
                     <div class="widget-heading">
                         <h3 class="widget-title text-dark" style="font-size: 26px;font-weight: bold;">
-                                        Add Delivery Address
+                                        Express Checkout
                                     </h3>
                         <div class="clearfix"></div>
                     </div>
                     <div class="widget-body checkout-form">
-                        <form method="post" action="#">
+                       
                             <div class="row">
                                 <div class="col-sm-12 margin-b-30">
                                     
@@ -44,10 +35,10 @@
                                            
                                         </div>
                                        
-                                        <div id="us3" style="width: 550px; height: 400px;"></div>
+                                        <div id="us3" style="width: 350px; height: 200px;"></div>
                                         
                                          <div class="">
-                                                <input type="text" style="width: 550px;margin-top: 0;padding: 18px;color: #000;font-weight: 500;"  class="form-control" id="address" name="address" />
+                                                <input type="text" style="width: 350px;margin-top: 0;padding: 18px;color: #000;font-weight: 500;"  class="form-control" id="address" name="address" />
                                             </div>
                                        
                                             
@@ -79,7 +70,24 @@
                                 </div>
                                
                             </div>
-                        </form>
+                         <hr>
+                           <div class="payment-option">
+                                        <ul class=" list-unstyled">
+                                            <li>
+                                                <label class="custom-control custom-radio  m-b-20">
+                                                    <input id="radioStacked1" value="0" name="payment_mode" type="radio" class="custom-control-input" required=""> <span class="custom-control-indicator"></span> <span class="custom-control-description">Payment on delivery</span>
+                                                    </label>
+                                            </li>
+                                            <li>
+                                                <label class="custom-control custom-radio  m-b-10">
+                                                    <input name="payment_mode" type="radio" value="1" class="custom-control-input" required=""> <span class="custom-control-indicator"></span> <span class="custom-control-description">Pay Online</span><br> <span>Various online payment options like Visa, Mastercard, Rupay, Netbanking, etc. are available.</span>  </label>
+                                            </li>
+                                        </ul>
+                                        @if(session()->has($sessionName))
+                                          <input type="hidden" name="discount" value="{{ $discount }}">
+                                        @endif
+                                        <p class="text-xs-center"> <button type="submit" class="btn btn-outline-success btn-block">Place Order</button> </p>
+                                    </div>
                     </div>
                 </div>
             </div>  
@@ -88,25 +96,33 @@
                         
                            <input type="hidden" name="restaurant_id" value="{{$restaurant->id}}">
                            <div class="widget widget-cart" style="background: #fff;">
-                              <div class="widget-heading">
-                                 <h3 class="widget-title text-dark"  style="font-size: 26px;font-weight: bold;">
-                                    Your Shopping Cart
-                                 </h3>
-                                 <div class="clearfix"></div>
+                             <div class="media" style="padding: 8px;padding-top: 18px;padding-left: 12px;">
+                                <img class="mr-1" style="width: 54px;height: 54px;float: left;" src="{{ isset($restaurant->logo) ? url($restaurant->logo) : 'http://via.placeholder.com/64x64' }}" alt="Generic placeholder image">
+                                <div class="media-body">
+                                  <h5 class="mt-0" style="font-size: 16px;font-weight: bold;">{{ $restaurant->name }}</h5>
+                                   <p style="font-size: 14px;color: #b1b1b1;">{{ $restaurant->area }}</p>
+                                </div>
                               </div>
+                              <div style="max-height: 300px;overflow: scroll;">
                               @foreach(Cart::instance('restaurant-'.$restaurant->id)->content() as $item)
                               <?php $customs = $item->options->has('customs') ? json_decode($item->options->customs) : null; ?>
-                              <div class="order-row bg-white">
-                                 <div class="widget-body">
-                                    <div class="title-row"><span style="font-size: 14px;">{{ $item->name }}  {!! $customs != null ? '<br><small>Size : ' . $customs->size . '</small>' : '' !!}</span> 
+                              <div class="order-row bg-white" style="padding-top: 10px;">
+                                 <div class="widget-body" style="padding: 20px;
+    padding-bottom: 3px;
+    padding-top: 0px;">
+                                    <div class="title-row"><span style="font-size: 14px;">@if($item->model->is_veg)
+                                                 <img src="/images/veg.png" style="width: 12px;height: 12px;margin-top: -2px;" >
+                                                @else
+                                                <img src="/images/nonveg.png" style="width: 12px;height: 12px;margin-top: -2px;" >
+                                                @endif  {{ $item->name }}  {!! $customs != null ? '<br><small>Size : ' . $customs->size . '</small>' : '' !!}</span> 
 
-                                    <p style="font-size:15px;font-weight: bold;margin-top: 2px;margin-left: 3px;" class="pull-right">&#8377; {{ $item->price * $item->qty }}</p>
+                                    <p style="font-size:15px;margin-top: 2px;margin-left: 3px;" class="pull-right">&#8377; {{ $item->price * $item->qty }}</p>
                                     {{-- <a href="/cart/remove/{{$item->rowId}}/{{$restaurant->id}}">
                                      <i class="fa fa-trash pull-right"></i></a> --}} 
 
                                     
 
-                                    <div data-trigger="spinner" id="spinner-{{$item->id}}" style="display: inline;text-align: center;float: right;margin-right: 6px;" >
+                                    <div data-trigger="spinner" id="spinner-{{$item->rowId}}" style="display: inline;text-align: center;float: right;margin-right: 10px;" >
                                       <a style="color: #f30; font-size: 18px;font-weight: bold;
    " href="javascript:;" data-spin="down">-</a>
                                       <input type="text" style="width: 40px;text-align: center;" value="{{ $item->qty }}" data-rule="quantity">
@@ -118,8 +134,9 @@
                                     
                                 
                               </div>
+                              </div>
                               @endforeach
-
+                              </div>
                               <div class="order-row">
                                  <div class="widget-body">
                                   <div class="form-group row no-gutter">
@@ -141,44 +158,45 @@
                             
                               <div class="widget-body">
                                 <div class="cart-totals margin-b-20">
-                                        <div class="cart-totals-title">
-                                            <h4>Cart Summary</h4> </div>
+                                      
                                         <div class="cart-totals-fields">
                                             <table class="table">
                                                 <tbody>
                                                     <tr>
                                                         <td>Cart Subtotal</td>
-                                                        <td>&#8377 {{ floatval(Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', '')) }}</td>
+                                                        <td style="text-align: right;">&#8377;{{ floatval(Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', '')) }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Foodoor Cash <a role="button" data-toggle="popover" data-container="body"  data-content="10% of your total foodoor cash is reduced from your billing amount."><i  class="fa fa-info-circle"></i></a></td>
+                                                        <td style="text-align: right;">-&#8377;{{ $foodoorCash }}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>GST</td>
-                                                        <td>&#8377 {{ floatval(Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', '')) * (5/100) }}</td>
+                                                        <td style="text-align: right;">&#8377;{{ $gst }}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Delivery Charges</td>
-                                                        <td>&#8377 30</td>
+                                                        <td style="text-align: right;">&#8377;30</td>
                                                     </tr>
                                                     
                                                     @if(session()->has($sessionName))
                                                     <tr>
                                                         <td class="text-color"><strong>Order Total</strong></td>
                                                        
-                                                             <td class="text-color"><strong>&#8377 {{ (floatval(Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', '')) + (floatval(Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', '')) * (5/100)) + 30) }}</strong></td>
+                                                             <td style="text-align: right;" class="text-color"><strong>&#8377;{{ $total + $discount }}</strong></td>
                                                      
                                                     </tr>
                                                     <tr>
-                                                        <td class="text-color"><strong>Discount</strong></td>
-                                                        <td class="text-color"><strong>&#8377 {{$discount}}</strong></td>
+                                                        <td class="text-color"><strong>Coupon Discount</strong></td>
+                                                        <td style="text-align: right;" class="text-color"><strong>-&#8377;{{$discount}}</strong></td>
                                                     </tr>
                                                     @endif
 
-                                                    <tr>
+                                                    <tr style="border-top: 1px solid #000;">
                                                         <td class="text-color"><strong>Total</strong></td>
-                                                        @if(session()->has($sessionName))
-                                                             <td class="text-color"><strong>&#8377 {{ (floatval(Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', '')) + (floatval(Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', '')) * (5/100)) + 30) - $discount}}</strong></td>
-                                                        @else
-                                                             <td class="text-color"><strong>&#8377 {{ (floatval(Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', '')) + (floatval(Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', '')) * (5/100)) + 30) }}</strong></td>
-                                                        @endif
+                                                        
+                                                        <td style="text-align: right;" class="text-color"><strong>&#8377;{{ $total }}</strong></td>
+                                                        
                                                     </tr>
                                                     <tr>
                                                      @if(session()->has($sessionName))
@@ -191,11 +209,9 @@
                                                             </td>
 
                                                      @else   
-                                                     <td>
-                                                        <input class="form-control" name="coupon_code" id="coupon_code" style="background: #fcfcfc;color: #000;" type="text" placeholder="Coupon Code"> 
-                                                      </td>
-                                                      <td>  
-                                                          <button onclick="applyCoupon({{ $restaurant->id }})" class="btn btn-warning" type="button">Apply Coupon</button>   
+                                                    
+                                                      <td colspan="2">  
+                                                          <button data-toggle="modal" data-target="#couponModal" class="btn btn-warning add-coupon-btn" type="button">Apply Coupon</button>   
                                                        </td>
                                                      @endif     
                                                     </tr>
@@ -207,23 +223,7 @@
                                         </div>
                                     </div>
                                     <!--cart summary-->
-                                    <div class="payment-option">
-                                        <ul class=" list-unstyled">
-                                            <li>
-                                                <label class="custom-control custom-radio  m-b-20">
-                                                    <input id="radioStacked1" value="0" name="payment_mode" type="radio" class="custom-control-input" required=""> <span class="custom-control-indicator"></span> <span class="custom-control-description">Payment on delivery</span>
-                                                    </label>
-                                            </li>
-                                            <li>
-                                                <label class="custom-control custom-radio  m-b-10">
-                                                    <input name="payment_mode" type="radio" value="1" class="custom-control-input" required=""> <span class="custom-control-indicator"></span> <span class="custom-control-description">Pay Online</span><br> <span>Various online payment options like Visa, Mastercard, Rupay, Netbanking, etc. are available.</span>  </label>
-                                            </li>
-                                        </ul>
-                                        @if(session()->has($sessionName))
-                                          <input type="hidden" name="discount" value="{{ $discount }}">
-                                        @endif
-                                        <p class="text-xs-center"> <button type="submit" class="btn btn-outline-success btn-block">Place Order</button> </p>
-                                    </div>
+                                 
                               </div>
                            </div>
                       
@@ -233,6 +233,50 @@
 
             </div> 
            </form>   
+
+
+
+               <!-- Modal -->
+            <div class="modal fade" id="couponModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Available Coupons</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                      
+                      
+                     <div class="list-group coupons-list scroll" style="max-height: 400px;
+    overflow: scroll;">
+                          @foreach($coupons as $coupon)
+                          <div class="list-group-item list-group-item-action">
+                           <div>
+                            <span class="coupon-code">{{ $coupon->code }}</span>
+                            </div>
+                            <div>
+                              <p>{{ $coupon->promo_text }}</p>
+                            </div>
+                            <button type="button" onclick="applyCoupon({{$restaurant->id}}, '{{$coupon->code}}')" class="btn btn-outline-success apply-button">Apply Coupon</button>
+                          </div>
+                          @endforeach
+                        </div>
+
+                      
+                      
+                        
+                    
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                  </div>
+               
+                </div>
+              </div>
+            </div>
 </div>
 	</div>
 
@@ -249,7 +293,7 @@
     @foreach(Cart::instance('restaurant-'.$restaurant->id)->content() as $item)
 
      
-      $("#spinner-{{$item->id}}")
+      $("#spinner-{{$item->rowId}}")
         .spinner('delay', 200) //delay in ms
         .spinner('changed', function(e, newVal, oldVal) {
           // trigger lazed, depend on delay option.
@@ -289,14 +333,14 @@
 
                                         <script type="text/javascript">
                                                 
-                                                function applyCoupon(restaurantId)
+                                                function applyCoupon(restaurantId, code)
                                                 {
-                                                    location.href = '/coupons/apply/' + restaurantId + '/coupon:' + $('#coupon_code').val();
+                                                    location.href = '/coupons/apply/' + restaurantId + '/coupon:' + code;
                                                 }
 
-                                                function removeCoupon(restaurantId)
+                                                function removeCoupon(restaurantId, code)
                                                 {
-                                                    location.href = '/coupons/apply/' + restaurantId + '/coupon:' + $('#coupon_code').val() + '/remove';
+                                                    location.href = '/coupons/apply/' + restaurantId + '/coupon:' + code + '/remove';
                                                 }
 
 

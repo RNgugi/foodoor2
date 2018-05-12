@@ -6,7 +6,7 @@
                             <div class="col-xs-12 col-sm-5 join-text">
                                 <p>Join the thousands of other restaurants who benefit from having their menus on <a href="#"><strong> Foodoor directory</strong></a> </p>
                             </div>
-                            <div class="col-xs-12 col-sm-4 join-btn text-xs-right"><a href="#" class="btn theme-btn btn-lg">I‘m restaurant</a> </div>
+                            <div class="col-xs-12 col-sm-4 join-btn text-xs-right"><a href="#restaurantModal" data-toggle="modal" class="btn theme-btn btn-lg">I‘m restaurant</a> </div>
                         </div>
                     </div>
                 </section>

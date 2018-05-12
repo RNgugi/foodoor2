@@ -51,6 +51,8 @@ class OrdersController extends Controller
      */
     public function store(Request $request)
     {
+        $sessionName = 'restaurant-' . request('restaurant_id') . '-coupon';
+
         $user = auth()->user();
 
         $items = \Cart::instance('restaurant-' . request('restaurant_id'))->content();
@@ -90,8 +92,14 @@ class OrdersController extends Controller
         {
             $discount = request('discount');    
         }  
+        
+        $foodoorCash = auth()->user()->wallet_ballance > 10 ? auth()->user()->wallet_ballance * (10/100) : auth()->user()->wallet_ballance;
 
-        $order->amount =   $order->subtotal +  $order->tax + $order->delivery_charges - $discount;
+        $order->amount =   $order->subtotal +  $order->tax + $order->delivery_charges - $discount - $foodoorCash;
+
+        $order->discounted_price = $discount;
+
+        $order->foodoor_cash = $foodoorCash;
 
         $order->payment_mode = request('payment_mode');
 
@@ -108,6 +116,9 @@ class OrdersController extends Controller
         //$order->load('items');
 
         \Cart::instance('restaurant-' . request('restaurant_id'))->destroy();
+
+
+        session()->forget($sessionName);
         
 
         if(request('payment_mode') == 1)

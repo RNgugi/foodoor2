@@ -1,28 +1,52 @@
 @extends('layouts.landing')
 
+
+@section('styles')
+  
+  <style type="text/css">
+    .carousel-inner .active.left { left: -25%; }
+
+
+    #carouselBanners .carousel-inner .carousel-item {
+  
+  /*transition: transform;*/
+  transition: all 500ms ease-out; /* transition is added here */
+}
+
+#carouselRestaurants .carousel-inner .carousel-item {
+  
+  /*transition: transform;*/
+  transition: all 500ms ease-out; /* transition is added here */
+}
+  </style>
+
+@endsection
+
+
 @section('content')
         
-           <div id="#carouselBanners" class="inner-page-hero"  style="background: #c09101;padding-bottom: 19px;
+           <div  class="inner-page-hero hidden-md-down"  style="background: #2b2b2b;padding-bottom: 19px;
     padding-top: 30px;">
 
 
                 <div class="container"> 
 
-                <div id="carouselBanners" class="carousel slide" data-ride="carousel">
+                <div id="carouselBanners" class="carousel slide" data-ride="carousel" data-interval="2000" data-pause="hover"> 
                    <div class="carousel-inner">
-                      @foreach($homebannersChunk as  $index => $homebanners)
-                       <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
-                           <div class="row">
+                    
 
-                            @foreach($homebanners as $homebanner)
-                                <a href="{{ $homebanner->url }}" class="col-md-3">
+                      @foreach($allbanners as  $index => $homebanner)
+                       <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+                           <div class="col-md-3">
+                                <a href="{{ $homebanner->url }}" class="">
                                     <img style="width: 280px;" src="{{ url($homebanner->image) }}">
                                  </a>
-                            @endforeach     
-                                
-                           </div>
+                             </div>    
+                           
                        </div>
+
                      @endforeach  
+                     
                        
                    </div>
                   
@@ -46,6 +70,39 @@
                 <!-- end:Container -->
             </div>
 
+
+             <div id="#carouselBanners" class="inner-page-hero hidden-md-up"  style="background: #2b2b2b;padding-bottom: 19px;
+    padding-top: 30px;">
+
+
+                <div class="container"> 
+
+                <div id="carouselBanners" class="carousel slide" data-ride="carousel">
+                   <div class="carousel-inner">
+                      @foreach($allbanners as  $index => $homebanner)
+                       <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+                           
+                                <a href="{{ $homebanner->url }}" class="">
+                                    <img style="width: 280px;" src="{{ url($homebanner->image) }}">
+                                 </a>
+                           
+                       </div>
+                     @endforeach  
+                       
+                   </div>
+                  
+              
+                
+
+                </div>
+               
+
+
+                </div>
+                <!-- end:Container -->
+            </div>
+
+
          @include('partials.landing._locationMatch') 
 
           <section id="landing" class="hero bg-image" style="padding-top: 56px;
@@ -53,15 +110,15 @@
             <div class="hero-inner">
                 <div class="container text-center hero-text font-white">
                     <h1>Find the best restaurants near you!</h1>
-                    <h5 class="font-white space-xs">Currently we serve multi-cuisine food items with huge offers only in Ranchi</h5>
+                    <h5 class="font-white space-xs">Currently we serve multi-cuisine food items with huge offers only in Ranchi.</h5>
                     <div class="banner-form">
                         <div class="form-inline">
                             <div class="form-group">
                                 <label class="sr-only" for="exampleInputAmount">Search restaurants...</label>
                               
                                 <div class="input-group">
-                                    <input style="width: 500px;border-color: #f30;" type="text" class="form-control form-control-lg" id="txtPlaces" placeholder="Enter your delivery location" autofocus="true"> 
-                                        <i class="fa fa-map-marker"  onclick="getLocation()" style="position: relative;right: 22px;top: 12px;font-size: 24px; z-index: 10000;color: #848282 !important;cursor: pointer;" aria-hidden="true"></i>
+                                    <input style="width: 500px;border-color: #e94e1b;" type="text" class="form-control form-control-lg hidden-md-down" id="txtPlaces" placeholder="Enter your delivery location" autofocus="true"> 
+                                        <i class="fa fa-map-marker"  onclick="getLocation()" style="position: relative;right: 22px;top: 14px;font-size: 20px; z-index: 10000;color: #2b2b2b !important;cursor: pointer;" aria-hidden="true"></i>
                                    
                                 </div>
                             </div>
@@ -90,14 +147,14 @@
                 <!-- restaurants listing starts -->
               <div id="carouselRestaurants" class="carousel slide" data-ride="carousel">
                    <div class="carousel-inner">
-                       @foreach($restaurantlogosChunk as  $index => $restaurantLogos)
+                        @foreach($restaurantlogos as $index => $restaurantLogo)
                            <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
-                               <div class="row">
-                                  @foreach($restaurantLogos as $restaurantLogo)
-                                    <a href="/restaurants/{{$restaurantLogo->restaurant->id}}?lat={{$restaurantLogo->restaurant->latitude}}&lng={{$restaurantLogo->restaurant->longitude}}" class="col-md-3">
+                               <div class="col-md-3">
+                                 
+                                    <a href="/restaurants/{{$restaurantLogo->restaurant->id}}?lat={{$restaurantLogo->restaurant->latitude}}&lng={{$restaurantLogo->restaurant->longitude}}" >
                                         <img style="width: 280px;height: 250px;" src="{{ url($restaurantLogo->image) }}">
                                      </a>
-                                  @endforeach  
+                                  
                                    
                                </div>
                            </div>
@@ -202,8 +259,47 @@ function codeAddress() {
 
 <script type="text/javascript">
     
-     //getLocation();
-   
+  $('#carouselBanners').carousel({
+  interval: 4000
+})
+
+$('#carouselBanners .carousel-item').each(function(){
+  var next = $(this).next();
+  if (!next.length) {
+    next = $(this).siblings(':first');
+  }
+  next.children(':first-child').clone().appendTo($(this));
+
+  for (var i=0;i<2;i++) {
+    next=next.next();
+    if (!next.length) {
+      next = $(this).siblings(':first');
+    }
+
+    next.children(':first-child').clone().appendTo($(this));
+  }
+});
+
+ $('#carouselRestaurants').carousel({
+  interval: 4000
+})
+
+$('#carouselRestaurants .carousel-item').each(function(){
+  var next = $(this).next();
+  if (!next.length) {
+    next = $(this).siblings(':first');
+  }
+  next.children(':first-child').clone().appendTo($(this));
+
+  for (var i=0;i<2;i++) {
+    next=next.next();
+    if (!next.length) {
+      next = $(this).siblings(':first');
+    }
+
+    next.children(':first-child').clone().appendTo($(this));
+  }
+});
   </script>
 
 

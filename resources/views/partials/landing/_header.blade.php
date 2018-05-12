@@ -3,7 +3,7 @@
             <nav class="navbar navbar-light">
                 <div class="container">
                     <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#mainNavbarCollapse">&#9776;</button>
-                    <a class="navbar-brand" href="/"> <img class="img-rounded" style="width: 180px;" src="/images/food-picky-logo.png" alt=""> </a>
+                    <a class="navbar-brand" href="/"> <img class="img-rounded" style="width: 180px;" src="/images/logonew.png" alt=""> </a>
                     <div class="collapse navbar-toggleable-md  float-lg-right" id="mainNavbarCollapse" style="margin-top: 10px;">
                         <ul class="nav navbar-nav">
                             
@@ -18,13 +18,13 @@
                             @else 
                             <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> &nbsp;{{ auth()->user()->name }}</a>
                                 <div class="dropdown-menu"> 
-                                    <a class="dropdown-item" href="/home"><i class="fa fa-edit"></i> &nbsp; Profile</a>  
-                                    <a class="dropdown-item" href="/orders"><i class="fa fa-file-text"></i> &nbsp; Orders</a> 
+                                    <a class="dropdown-item" href="/home">&nbsp; Profile</a>  
+                                    <a class="dropdown-item" href="/orders">&nbsp; Orders</a> 
 
                                      <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        <i class="fa fa-sign-out"></i>  &nbsp; {{ __('Logout') }}
+                                         &nbsp; {{ __('Logout') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

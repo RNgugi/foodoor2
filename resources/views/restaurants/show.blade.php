@@ -221,7 +221,7 @@
                                           }); ?>
 
                                           @if(count($added) && (count($item->additions) == 0 && ($item->sizes == null || count(json_decode($item->sizes)) == 0)))
-                                            <div data-trigger="spinner" id="spinner2-{{$item->id}}" style="display: inline;text-align: center;float: right;margin-right: 6px;" >
+                                            <div data-trigger="spinner" id="spinner2-{{$added->first()->rowId}}" style="display: inline;text-align: center;float: right;margin-right: 6px;" >
                                                  <a style="color: #f30; font-size: 18px;font-weight: bold;" href="javascript:;" data-spin="down">-</a>
                                                  <input type="text" style="width: 40px;text-align: center;" min="1" value="{{ $added->first()->qty }}" data-rule="quantity">
                                                  <a href="" style="color: #f30; font-size: 18px;font-weight: bold;" href="javascript:;" data-spin="up">+</a>
@@ -329,7 +329,7 @@
                                                 @endif {{ $item->name }} {!! $customs != null ? '<br><small>Size : ' . $customs->size . '</small>' : '' !!}</span> 
                                     <div style="margin-bottom: 7px;margin-top: 10px;">   
 
-                                    <div data-trigger="spinner" id="spinner-{{$item->id}}" style="display: inline;text-align: center;margin-right: 6px;" >
+                                    <div data-trigger="spinner" id="spinner-{{$item->rowId}}" style="display: inline;text-align: center;margin-right: 6px;" >
                                       <a style="color: #f30; font-size: 18px;font-weight: bold;
    " href="javascript:;" data-spin="down">-</a>
                                       <input type="text" style="width: 40px;text-align: center;" min="1" value="{{ $item->qty }}" data-rule="quantity">
@@ -402,7 +402,7 @@
     @foreach(Cart::instance('restaurant-'.$restaurant->id)->content() as $item)
 
       <script>
-      $("#spinner-{{$item->id}}")
+      $("#spinner-{{$item->rowId}}")
         .spinner('delay', 200) //delay in ms
         .spinner('changed', function(e, newVal, oldVal) {
           // trigger lazed, depend on delay option.
@@ -419,7 +419,7 @@
       </script>
 
        <script>
-      $("#spinner2-{{$item->id}}")
+      $("#spinner2-{{$item->rowId}}")
         .spinner('delay', 200) //delay in ms
         .spinner('changed', function(e, newVal, oldVal) {
           // trigger lazed, depend on delay option.

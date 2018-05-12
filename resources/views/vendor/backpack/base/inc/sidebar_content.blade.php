@@ -21,8 +21,8 @@
 <li class="header">Manage Entities</li>
 
 @if(auth()->user()->can('manage_orders'))
-<li><a href="{{ backpack_url('orders') }}"><i class="fa fa-file-text"></i> <span>Today's Orders</span></a></li>
-<li><a href="{{ backpack_url('history') }}"><i class="fa fa-file-text"></i> <span>Orders History</span></a></li>
+	<li><a href="{{ backpack_url('orders') }}"><i class="fa fa-file-text"></i> <span>Today's Orders</span></a></li>
+	<li><a href="{{ backpack_url('history') }}"><i class="fa fa-file-text"></i> <span>Orders History</span></a></li>
 @endif
 
 @if(auth()->user()->can('manage_restaurants'))

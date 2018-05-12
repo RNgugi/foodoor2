@@ -1,13 +1,31 @@
 <?php
 
+Route::view('/terms', 'pages.terms');
+Route::view('/about-us', 'pages.about');
+Route::view('/privacy-policy', 'pages.privacy');
+Route::view('/team', 'pages.team');
+Route::view('/careers', 'pages.careers');
+
 Route::get('/', function () {
 	//return redirect('/restaurants');
 
-    $restaurantlogosChunk = (App\Models\Restaurantlogo::all())->chunk(4);
+    $restaurantlogos = App\Models\Restaurantlogo::all();
 
     $homebannersChunk = (App\Models\Homebanner::all())->chunk(4);
 
-    return view('welcome', compact('restaurantlogosChunk', 'homebannersChunk'));
+    $allbanners = App\Models\Homebanner::all();
+
+    return view('welcome', compact('restaurantlogos', 'homebannersChunk', 'allbanners'));
+});
+
+
+Route::post('/new-restaurant', function(){
+
+    \Mail::to('waniabhishek47@gmail.com')->send(new App\Mail\NewRestaurantEnquiry(request('name'), request('phone'), request('email'), request('address'), request('message')));
+
+    flash('We have received your details. We will get back to you soon!')->success();
+
+     return back();
 });
 
 Auth::routes();

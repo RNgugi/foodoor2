@@ -24,12 +24,12 @@
                                 @csrf
                                  <div class="row">
                                     <div class="form-group col-sm-12">
-                                       <label for="email">Email address</label>
-                                       <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+                                       <label for="phone">Phone Number</label>
+                                       <input id="phone" type="number" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" value="{{ old('phone') }}" required autofocus>
 
-                                         @if ($errors->has('email'))
+                                         @if ($errors->has('phone'))
                                             <span class="invalid-feedback">
-                                                <strong>{{ $errors->first('email') }}</strong>
+                                                <strong>{{ $errors->first('phone') }}</strong>
                                             </span>
                                         @endif
                                     </div>

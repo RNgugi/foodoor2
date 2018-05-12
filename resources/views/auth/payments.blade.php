@@ -3,23 +3,26 @@
 
 
 @section('content')
-<div style="min-height: 900px;background: #e9ecee;" >
+<div style="background: #fbbf67;min-height: 900px;padding-top: 60px;" >
     
 
-<div class="container" style="padding-top: 100px;">
+<div class="container" style="background: #fff;padding-top: 30px;min-height: 700px;">
     <div class="row">
         <div class="col-md-3">
            @include('partials._profileSidebar')
         </div>
 
         <div class="col-md-9">
-            <div class="widget">
+            <h3 style="font-weight: 600;margin-bottom: 30px;">Payments</h3>
+            <div class="widget" style="width: 40%;">
                <div class="widget-body" style="background: #fff;">
-                    
-                        <h4 style="font-weight: 600;">Foodoor Money : <span>{{ auth()->user()->wallet_ballance }}</span></h4>
+                     
+                        <h4 style="font-weight: 400;padding-bottom: 0px;margin-bottom: 0px;font-size: 23px;">Foodoor Money : <span>{{ auth()->user()->wallet_ballance }}</span></h4>
                      
                </div>
-            </div>               
+            </div> 
+
+            <p><i class="fa fa-info-circle"></i> 10% of your Foodoor money is always reduced in your billing amount.</p>              
         </div>
     </div>
 </div>

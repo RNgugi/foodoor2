@@ -9,8 +9,8 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="/images/logo.ico">
-    <title>Foodoor.in | When you think of food think foodoor</title>
+    <link rel="icon" href="/images/fav.png">
+    <title>Foodoor</title>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -46,6 +46,9 @@
     ================================================== -->
     <script src="/js/jquery.min.js"></script>
     <script src="/js/tether.min.js"></script>
+
+    <script src="https://unpkg.com/tooltip.jss"></script>
+    <script src="https://unpkg.com/popper.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/animsition.min.js"></script>
     <script src="/js/bootstrap-slider.min.js"></script>
@@ -56,6 +59,7 @@
 
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABIlUStLsr84EGUomykEKJeNPIuWbT854&v=3.exp&sensor=false&libraries=places"></script>
         
+
          
 
      <script src="/js/locationpicker.jquery.js"></script>
@@ -70,6 +74,10 @@
            $( function() {
             $( ".datepicker" ).datepicker();
           } );
+
+           $(function () {
+  $('[data-toggle="popover"]').popover()
+})
 
     </script>
 

@@ -1,31 +1,55 @@
 @extends('layouts.restaurants')
 
+
+@section('styles')
+  
+  <style type="text/css">
+    .carousel-inner .active.left { left: -25%; }
+
+
+    #carouselBanners .carousel-inner .carousel-item {
+  
+  /*transition: transform;*/
+  transition: all 500ms ease-out; /* transition is added here */
+}
+
+#carouselRestaurants .carousel-inner .carousel-item {
+  
+  /*transition: transform;*/
+  transition: all 500ms ease-out; /* transition is added here */
+}
+  </style>
+
+@endsection
+
+
 @section('content')
          
          
 
 
-            <div id="#carouselBanners" class="inner-page-hero"  style="background: #c09101;padding-bottom: 19px;
+            <div  class="inner-page-hero hidden-md-down"  style="background: #2b2b2b;padding-bottom: 19px;
     padding-top: 30px;">
 
 
                 <div class="container"> 
 
-                <div id="carouselBanners" class="carousel slide" data-ride="carousel">
+                <div id="carouselBanners" class="carousel slide" data-ride="carousel" data-interval="2000" data-pause="hover"> 
                    <div class="carousel-inner">
-                      @foreach($restaurantbannersChunk as  $index => $restaurantbanners)
-                       <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
-                           <div class="row">
+                    
 
-                            @foreach($restaurantbanners as $restaurantbanner)
-                                <a href="/restaurants/{{ $restaurantbanner->restaurant->id }}?lat={{ request('lat') }}&lng={{ request('lng') }}" class="col-md-3">
-                                    <img style="width: 280px;" src="{{ url($restaurantbanner->image) }}">
+                      @foreach($allbanners as  $index => $homebanner)
+                       <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+                           <div class="col-md-3">
+                                <a href="{{ $homebanner->url }}" class="">
+                                    <img style="width: 280px;" src="{{ url($homebanner->image) }}">
                                  </a>
-                            @endforeach     
-                                
-                           </div>
+                             </div>    
+                           
                        </div>
+
                      @endforeach  
+                     
                        
                    </div>
                   
@@ -143,6 +167,18 @@
                            @endforeach 
                            </div> 
                          @endforeach  
+
+
+                         @if($count > $limit)
+                         <ul class="pagination">
+                    
+                          <li class="page-item"><a class="page-link" href="/restaurants/explore?lat={{request('lat')}}&lng={{request('lng')}}&page={{ $page > 1 ? $page-1 : 1}}"><<</a></li>
+                           @for($i = 0; $i <= $pages;$i++)
+                            <li class="page-item {{ $page == $i+1 ? 'active' : '' }}"><a class="page-link" href="/restaurants/explore?lat={{request('lat')}}&lng={{request('lng')}}&page={{$i+1}}">{{ $i+1 }}</a></li>
+                           @endfor
+                          <li class="page-item"><a class="page-link" href="/restaurants/explore?lat={{request('lat')}}&lng={{request('lng')}}&page={{ $page <= $pages ? $page+1 : $pages+1}}">>></a></li>
+                        </ul>
+                        @endif
                             
                         </div>
 
@@ -150,6 +186,22 @@
                     </div>
                 </div>
             </section>
+
+
+
+           <div class="container">
+              <div class="row">
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3 ">
+
+                </div>
+
+                 <div class="col-xs-12 col-sm-7 col-md-7 col-lg-9">
+                    
+                 </div>
+
+
+              </div>
+           </div>
 
 
 @endsection 
@@ -184,6 +236,33 @@ function codeAddress() {
   }
 
     </script>
+
+
+    <script type="text/javascript">
+    
+  $('#carouselBanners').carousel({
+  interval: 4000
+})
+
+$('#carouselBanners .carousel-item').each(function(){
+  var next = $(this).next();
+  if (!next.length) {
+    next = $(this).siblings(':first');
+  }
+  next.children(':first-child').clone().appendTo($(this));
+
+  for (var i=0;i<2;i++) {
+    next=next.next();
+    if (!next.length) {
+      next = $(this).siblings(':first');
+    }
+
+    next.children(':first-child').clone().appendTo($(this));
+  }
+});
+
+ 
+  </script>
 
 
 @endsection

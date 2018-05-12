@@ -21,10 +21,10 @@
 
 
 @section('content')
-<div style="min-height: 900px;background: #e9ecee;" >
+<div style="background: #fbbf67;min-height: 900px;padding-top: 60px;" >
     
 
-<div class="container" style="padding-top: 100px;">
+<div class="container" style="background: #fff;padding-top: 30px;min-height: 700px;">
     <div class="row">
         <div class="col-md-3">
            @include('partials._profileSidebar')

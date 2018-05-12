@@ -3,17 +3,9 @@
 
 @section('content')
 	 
-     <div class="breadcrumb" style="border-top: 1px solid #ccc;margin-top: 13px;">
-               <div class="container">
-                  <ul>
-                     <li><a href="/" class="active">Home</a></li>
-                     <li><a href="/orders">My Orders</a></li>
-                     <li>Order #{{ $order->id }}</li>
-                  </ul>
-               </div>
-            </div>  
+    
 
-	<div style="background: #e9ecee;min-height: 1200px;">
+	<div style="background: #fbbf67;min-height: 1200px;">
 
     <div class="container" style="padding-top: 60px;">
 
@@ -26,15 +18,9 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="widget-body">
-                        @if($order->status >= 3)
-                            <h5>Thank you for using Foodoor! Your order is served to you successfully.</h5>
-                            <h5>Looking forward to serve you in future.</h5>
-                        @else
-                            <h5>Thank you for using Foodoor! Your order is being processed and will reach you shortly.</h5>
-                            <h5>Looking forward to serve you.</h5>
-                        @endif
+                      
 
-                        <ul class="progressbar" style="margin-top: 40px;">
+                        <ul class="progressbar" style="margin-top: 20px;">
                               <li class="{{ $order->status >= 0 ? 'active' : '' }}">order received</li>
                               <li class="{{ $order->status >= 1 ? 'active' : '' }}">order confirmed</li>
                               <li class="{{ $order->status >= 2 ? 'active' : '' }}">order prepared</li>
@@ -42,32 +28,28 @@
                               <li class="{{ $order->status >= 4 ? 'active' : '' }}">order served</li>
                       </ul>
                       <div class="clearfix"></div>
-                        <h5 style="font-weight: bold;margin-top: 55px;">Delivery Address</h5>
-                        <h5>{{ json_decode($order->delivery_address)->delivery_location }}</h5>
-                        <h5>{{ json_decode($order->delivery_address)->door_no }} {{ json_decode($order->delivery_address)->landmark }}</h5>
-
+                        <h5 style="font-weight: bold;margin-top: 55px;">Delivery Details</h5>
+                        <hr>
+                        <div style="width: 50%;">
+                          <h5><b>{{ $order->user->name }}</b></h5>
+                          <h5>{{ json_decode($order->delivery_address)->delivery_location }}</h5>
+                          <h5>{{ json_decode($order->delivery_address)->door_no }} {{ json_decode($order->delivery_address)->landmark }}</h5>
+                        </div>
                         
                        <div class="clearfix"></div>
                         <div class="row" style="margin-top: 35px;">
                             <div class="col-sm-8">
+                            @if(auth()->user()->isRestaurant() && $order->restaurant_id == auth()->user()->restaurant->id)
+                            @else
                             <h5 style="font-weight: bold;">Restaurant</h5>
                             <h5>{{ $order->restaurant->name }}</h5>
+                            @endif
                             </div>
                              @if($order->status < 3)
                             <div class="col-sm-4">
-                              @if(auth()->user()->isRestaurant() && $order->restaurant_id == auth()->user()->restaurant->id)
+                              @if(auth()->user()->hasRole('admin') || (auth()->user()->isRestaurant() && $order->restaurant_id == auth()->user()->restaurant->id))
 
-                                <div >
-                                  <select class="form-control">
-                                    <option value="0" {{ $order->status == 0 ? 'selected' : '' }}>Order Placed</option>
-                                    <option value="1" {{ $order->status == 1 ? 'selected' : '' }}>Order Confirmed</option>
-                                    <option value="2" {{ $order->status == 2 ? 'selected' : '' }}>Order Ready</option>
-                                    <option value="3" {{ $order->status == 3 ? 'selected' : '' }}>Order Picked</option>
-                                    <option value="4" {{ $order->status == 4 ? 'selected' : '' }}>Order Delivered</option>
-                                  </select>
-                                </div>
-                                <button style="float: right;margin-right: 14px;margin-top: 7px;border-radius: 5px;" type="button" class="btn theme-btn btn-lg"><i class="fa fa-map-marker"></i> Track Your Order</button>
-
+                               
                               @else
                                 <button style="float: right;margin-right: 14px;margin-top: 7px;border-radius: 5px;" type="button" class="btn theme-btn btn-lg"><i class="fa fa-map-marker"></i> Track Your Order</button>
                               @endif  
@@ -100,7 +82,7 @@
                                                 @endif
                                                 </td>
                                         <td style="font-size: 18px;">{{ $item->pivot->qty }}</td>
-                                        <td style="font-size: 18px;">{{ $item->pivot->price * $item->pivot->qty }}</td>
+                                        <td style="font-size: 18px;">&#8377; {{ $item->pivot->price * $item->pivot->qty }}</td>
                                     </tr>
 
 
@@ -110,21 +92,36 @@
                                                          <td></td>
                                                         <td style="font-size: 18px;">Subtotal</td>
                                                        
-                                                        <td style="font-size: 18px;">&#8377 {{$order->subtotal }}</td>
+                                                        <td style="font-size: 18px;">&#8377; {{$order->subtotal }}</td>
                                                     </tr>
+                                                    @if($order->foodoor_cash > 0)
+                                                    <tr>
+                                                        <td style="font-size: 18px;"></td>
+                                                        <td style="font-size: 18px;">Foodoor Cash</td>
+                                                        
+                                                        <td style="font-size: 18px;">-&#8377; {{ $order->foodoor_cash }}</td>
+                                                    </tr>
+                                                    @endif
                                                     <tr>
                                                         <td style="font-size: 18px;"></td>
                                                         <td style="font-size: 18px;">GST</td>
                                                         
-                                                        <td style="font-size: 18px;">&#8377 {{ $order->tax }}</td>
+                                                        <td style="font-size: 18px;">&#8377; {{ $order->tax }}</td>
                                                     </tr>
                                                     <tr>
                                                      <td></td>
                                                         <td style="font-size: 18px;">Delivery Charges</td>
                                                        
-                                                        <td style="font-size: 18px;">&#8377 {{ $order->delivery_charges}}</td>
+                                                        <td style="font-size: 18px;">&#8377; {{ $order->delivery_charges}}</td>
                                                     </tr>
-                                                    
+                                                    @if($order->discounted_price != NULL)
+                                                     <tr>
+                                                     <td></td>
+                                                        <td style="font-size: 18px;">Coupon Discount</td>
+                                                       
+                                                        <td style="font-size: 18px;">&#8377; {{ $order->discounted_price}}</td>
+                                                    </tr>
+                                                    @endif
                                                    
 
                                                     <tr>
