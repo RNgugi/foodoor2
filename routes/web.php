@@ -122,6 +122,7 @@ Route::group(['prefix' => 'restaurants-admin', 'middleware' => ['admin'], 'names
     CRUD::resource('restaurants', 'RestaurantCrudController');
     CRUD::resource('items', 'ItemCrudController');
     CRUD::resource('coupons', 'CouponCrudController');
+    CRUD::resource('toppings', 'ToppingCrudController');
     CRUD::resource('freedeliveries', 'FreedeliveryCrudController');
 
 });

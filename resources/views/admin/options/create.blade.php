@@ -3,7 +3,7 @@
 @section('header')
 	<section class="content-header">
 	  <h1>
-        <span class="text-capitalize"><a href="/admin/toppings?item={{$crud->item->id}}"><i class="fa fa-angle-double-left"></i> {{ $crud->entity_name_plural }}</a></span>
+        <span class="text-capitalize"><a href="/{{ auth()->user()->isRestaurant() ? 'restaurants-admin' : 'admin' }}/toppings?item={{$crud->item->id}}"><i class="fa fa-angle-double-left"></i> {{ $crud->entity_name_plural }}</a></span>
         <small>{{ trans('backpack::crud.add').' '.$crud->entity_name }}.</small>
 	  </h1>
 	  <ol class="breadcrumb">
@@ -20,7 +20,7 @@
 	<div class="col-md-8 col-md-offset-2">
 		<!-- Default box -->
 		@if ($crud->hasAccess('list'))
-			<a href="/admin/toppings?item={{$crud->item->id}}"><i class="fa fa-angle-double-left"></i> {{ trans('backpack::crud.back_to_all') }} <span>{{ $crud->entity_name_plural }}</span></a><br><br>
+			<a href="/{{ auth()->user()->isRestaurant() ? 'restaurants-admin' : 'admin' }}/toppings?item={{$crud->item->id}}"><i class="fa fa-angle-double-left"></i> {{ trans('backpack::crud.back_to_all') }} <span>{{ $crud->entity_name_plural }}</span></a><br><br>
 		@endif
 
 		@include('crud::inc.grouped_errors')

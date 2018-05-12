@@ -47,8 +47,14 @@ class Item extends Model implements Buyable
 
     public function manageToppings($crud = false)
     { 
-     
-        return '<a class="btn btn-xs btn-success" href="/admin/toppings?item=' . $this->id . '" data-toggle="tooltip" title="View Options/Toppings"><i class="fa fa-list-ul"></i> Additions/Options</a>';
+      
+       if(auth()->user()->isRestaurant())
+       {
+            return '<a class="btn btn-xs btn-success" href="/restaurants-admin/toppings?item=' . $this->id . '" data-toggle="tooltip" title="View Options/Toppings"><i class="fa fa-list-ul"></i> Additions/Options</a>';
+       } else {
+            return '<a class="btn btn-xs btn-success" href="/admin/toppings?item=' . $this->id . '" data-toggle="tooltip" title="View Options/Toppings"><i class="fa fa-list-ul"></i> Additions/Options</a>';
+       }
+        
        
     }
 

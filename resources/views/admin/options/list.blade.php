@@ -3,7 +3,7 @@
 @section('header')
 	<section class="content-header">
 	  <h1>
-	    <span class="text-capitalize"><a href="/admin/items"><i class="fa fa-angle-double-left"></i> {{ $crud->entity_name_plural }}</a></span>
+	    <span class="text-capitalize"><a href="/{{ auth()->user()->isRestaurant() ? 'restaurants-admin' : 'admin' }}/items"><i class="fa fa-angle-double-left"></i> {{ $crud->entity_name_plural }}</a></span>
 	    <small>{{ trans('backpack::crud.all') }} <span>{{ $crud->entity_name_plural }}</span> {{ trans('backpack::crud.in_the_database') }}.</small>
 	  </h1>
 	  <ol class="breadcrumb">
@@ -24,7 +24,7 @@
       <div class="box">
         <div class="box-header {{ $crud->hasAccess('create')?'with-border':'' }}">
 
-           <a class="btn btn-primary"  href="/admin/toppings/create?item={{$crud->item->id}}" data-toggle="tooltip" title="Add New chapter to book"><i class="fa fa-plus"></i> Add Option/Topping</a>
+           <a class="btn btn-primary"  href="/{{ auth()->user()->isRestaurant() ? 'restaurants-admin' : 'admin' }}/toppings/create?item={{$crud->item->id}}" data-toggle="tooltip" title="Add New topping to item"><i class="fa fa-plus"></i> Add Option/Topping</a>
           <div id="datatable_button_stack" class="pull-right text-right hidden-xs"></div>
         </div>
 
