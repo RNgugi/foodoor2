@@ -3044,3 +3044,10 @@ input.is-invalid {
     font-weight: 500;
     font-size: 18px;
 }
+
+
+.fixedElement {
+    position:fixed;
+    top:0;
+    z-index:100;
+}

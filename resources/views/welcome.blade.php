@@ -39,7 +39,7 @@
                        <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
                            <div class="col-md-3">
                                 <a href="{{ $homebanner->url }}" class="">
-                                    <img style="width: 280px;" src="{{ url($homebanner->image) }}">
+                                    <img style="width: 100%;" src="{{ url($homebanner->image) }}">
                                  </a>
                              </div>    
                            

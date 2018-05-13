@@ -76,7 +76,7 @@
 
                <div class="row">
                   <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3 ">
-                     <div class="sidebar clearfix m-b-20 ">
+                     <div class="sidebar clearfix m-b-20 " style="position: sticky;">
                         <div class="main-block">
                            <div class="sidebar-title white-txt">
                               <h6>Choose Cusine</h6>
