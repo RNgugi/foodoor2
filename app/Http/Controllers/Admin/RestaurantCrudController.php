@@ -217,6 +217,9 @@ class RestaurantCrudController extends CrudController
 
             ['name' => 'valid_through', 'label' => 'Valid Uptil ', 'type' => 'date_picker', 'tab' => 'Offer/Discount'],
 
+             ['name' => 'days', 'label' => 'Days ', 'type' => 'hidden', 'tab' => 'Timings', 'value' => 'days'],
+             ['name' => 'timings', 'label' => 'Timings ', 'type' => 'hidden', 'tab' => 'Timings', 'value' => 'timings'],
+
         ]);
 
 
