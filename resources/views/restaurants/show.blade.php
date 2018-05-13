@@ -252,7 +252,7 @@
                                                 <h5 style="font-weight: bold;margin-bottom: 18px;">Choose Size</h5>
                                                 @foreach(json_decode($item->sizes) as $key => $size)
                                                    <label class="custom-control custom-radio  m-b-20">
-                                                          <input id="size" value="{{ $key }}" name="size" type="radio" class="custom-control-input"> <span class="custom-control-indicator"></span> <span class="custom-control-description">{{ $size->name }}(&#8377;{{ $size->price }})</span>
+                                                          <input id="size" value="{{ $key }}" required="true" name="size" type="radio" class="custom-control-input"> <span class="custom-control-indicator"></span> <span class="custom-control-description">{{ $size->name }}(&#8377;{{ $size->price }})</span>
                                                           </label>
                                                 @endforeach
                                                @foreach($item->additions as $addition)
@@ -326,7 +326,7 @@
                                                  <img src="/images/veg.png" style="width: 12px;height: 12px;margin-top: -2px;" >
                                                 @else
                                                 <img src="/images/nonveg.png" style="width: 12px;height: 12px;margin-top: -2px;" >
-                                                @endif {{ $item->name }} {!! $customs != null ? '<br><small>Size : ' . $customs->size . '</small>' : '' !!}</span> 
+                                                @endif {{ $item->name }} {!! $customs != null && isset($customs->size) ? '<br><small>Size : ' . $customs->size . '</small>' : '' !!}</span> 
                                     <div style="margin-bottom: 7px;margin-top: 10px;">   
 
                                     <div data-trigger="spinner" id="spinner-{{$item->rowId}}" style="display: inline;text-align: center;margin-right: 6px;" >
