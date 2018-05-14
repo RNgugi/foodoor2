@@ -208,7 +208,7 @@
                                           
                                           <div class="rest-descr" style="padding-left: 23px;">
                                              <h6 style="{{ $item->description == '' ? 'margin-bottom: 28px;' : '' }}"><a href="#">{{ $item->name }}</a></h6>
-                                             <p>{{ $item->description != '' ? substr($item->description, 0, 100) : ''}}</p>
+                                             <p>{{ $item->description != '' ? substr($item->description, 0, 70) : ''}}</p>
                                           </div>
                                           <!-- end:Description -->
                                        </div>
