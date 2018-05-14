@@ -16,7 +16,7 @@
             <img src="/images/nonveg.png" style="width: 15px;height: 15px;margin-top: 0px;" >
             @endif 
            {{ substr($item->name, 0, 30) }}</h5>
-	    <div class="product-name">{{ $item->description }}</div>
+	    <div class="product-name">{{ substr($item->description, 0, 80) }}</div>
 	    
 	    	<div style="position: relative;margin-top: 5px;font-size: 14px;color: green">
 	    	<span style="background: green;color: #fff;padding: 4px;font-size: 12px;"><i class="fa fa-inr"></i> {{ $item->getPrice() }}</span>
