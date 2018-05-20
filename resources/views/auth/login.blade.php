@@ -25,7 +25,7 @@
                                  <div class="row">
                                     <div class="form-group col-sm-12">
                                        <label for="phone">Phone Number</label>
-                                       <input id="phone" type="number" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" value="{{ old('phone') }}" required autofocus>
+                                       <input id="phone" type="number" autocomplete="off" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" value="{{ old('phone') }}" required autofocus>
 
                                          @if ($errors->has('phone'))
                                             <span class="invalid-feedback">
@@ -57,8 +57,21 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
+
                                  <div class="row">
+                                   <div class="col-sm-8">
+                                     {!! NoCaptcha::display() !!}
+
+                                     @if ($errors->has('g-recaptcha-response'))
+                                        <span class="invalid-feedback">
+                                            <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+                                        </span>
+                                    @endif
+                                   </div>
+                                 </div>
+                                
+                                 <div class="row" style="margin-top: 20px;">
                                     <div class="col-sm-4">
                                        <p> <button type="submit" class="btn theme-btn">Sign In</button> 
                                        <a href="/register" class="btn btn-border">Create Account</a> </p>     
@@ -93,5 +106,12 @@
             </div>
             
 
+
+@endsection
+
+
+@section('scripts')
+  
+  {!! NoCaptcha::renderJs() !!}
 
 @endsection

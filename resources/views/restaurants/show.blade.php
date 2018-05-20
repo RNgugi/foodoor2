@@ -207,9 +207,9 @@
                                           </div> 
                                           
                                           <div class="rest-descr" style="padding-left: 23px;">
-                                             <h6 style="{{ 'margin-bottom: 28px;' }}"><a href="#">{{ $item->name }}</a></h6>
+                                             <h6 style="{{ 'margin-bottom: 8px;' }}"><a href="#">{{ $item->name }}</a></h6>
                                             
-                                              <p>{{ strlen($item->description) > 100 ? substr($item->description, 0, 100) . '...' : $item->description }}</p>
+                                              <p style="cursor: pointer;" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="{{ $item->description }}">{{ strlen($item->description) > 40 ? substr($item->description, 0, 40) . '...' : $item->description }}</p>
                                              
                                           </div>
                                           <!-- end:Description -->
@@ -379,7 +379,10 @@
                                     <p>SUBTOTAL</p>
                                     <h3 class="value"><strong>&#8377; {{ Cart::instance('restaurant-'.$restaurant->id)->subtotal() }}</strong></h3>
                                     <p  style="color: #8a8a8a;font-size: 14px;">Extra charges may apply</p>
-                                    <button style="width: 100%;" type="submit" class="btn theme-btn btn-lg" {{  $restaurant->is_open && Cart::instance('restaurant-'.$restaurant->id)->count()  ? '' : 'disabled'}}>Checkout</button>
+                                    <button style="width: 100%;" type="submit" class="btn theme-btn btn-lg" {{  $restaurant->is_open && Cart::instance('restaurant-'.$restaurant->id)->count() && (floatval(\Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', ''))) > 99 ? '' : 'disabled'}}>Checkout</button>
+                                    @if(floatval(\Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', '')) < 99)
+                                     <p style="color: #000;font-size: 14px;margin-top: 5px;">Minimum order amount should be <br> Rs. 99</p>
+                                    @endif
                                  </div>
                               </div>
                            </div>

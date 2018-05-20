@@ -48,7 +48,7 @@ class HomeController extends Controller
 
     public function updateProfile(Request $request)
     {
-        $this->validate($request, ['name' => 'required', 'email' => 'required']);
+        $this->validate($request, ['name' => 'required', 'email' => 'required|unique:users']);
 
         auth()->user()->update($request->all());
 

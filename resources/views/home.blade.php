@@ -134,7 +134,7 @@
 
                                       <div class="form-group col-sm-8" style="margin-bottom: 0;">
                                          
-                                         <input id="user-otp" type="number" placeholder="Enter 5-digit OTP" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="otp" >
+                                         <input id="user-otp" type="text" placeholder="Enter 5-digit OTP" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="otp" >
 
                                               <span class="invalid-feedback" id="verify-feedback">
                                                   
