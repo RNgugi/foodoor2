@@ -69,6 +69,10 @@ class OrdersController extends Controller
 
         $address['landmark'] = request('landmark');
 
+        $address['road_name'] = request('road_name');
+
+        $address['alt_mobile'] = request('alt_mobile');
+
         $delivery_address = json_encode($address);
 
 
@@ -92,9 +96,14 @@ class OrdersController extends Controller
         {
             $discount = request('discount');    
         }  
-        
-        $foodoorCash = auth()->user()->wallet_ballance > 10 ? ceil(auth()->user()->wallet_ballance * (10/100)) : auth()->user()->wallet_ballance;
 
+        $foodoorCash = 0;
+        
+         if(request()->has('discount'))
+        {
+            $foodoorCash = request('foodoorCash')
+        }
+        
         $order->amount =   ceil($order->subtotal +  $order->tax + $order->delivery_charges - $discount - $foodoorCash);
 
         $order->discounted_price = $discount;

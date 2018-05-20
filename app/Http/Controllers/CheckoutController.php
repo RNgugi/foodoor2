@@ -29,7 +29,7 @@ class CheckoutController extends Controller
 
     	$sessionName = 'restaurant-' . $restaurant->id . '-coupon';
 
-        $foodoorCash = auth()->user()->wallet_ballance > 10 ? auth()->user()->wallet_ballance * (10/100) : auth()->user()->wallet_ballance;
+        
 
 
        // dd(\Cart::instance('restaurant-'.$restaurant->id)->content());
@@ -38,15 +38,40 @@ class CheckoutController extends Controller
          $gst = (floatval(\Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', ''))) * (5/100);
 
 
-         $total =  ceil((floatval(\Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', ''))) - $foodoorCash + 30 + $gst);
+         $total =  ceil((floatval(\Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', ''))) + 30 + $gst);
 
     	if(session()->has($sessionName))
-    	{
-    		$coupon = Coupon::where('code',session($sessionName) )->first();
-            
-    		$discount = $coupon->discount_type == 0 ? $coupon->discount : (floatval(\Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', '')))  * ($coupon->discount / 100);
+    	{  
+            if(session($sessionName) == 'foodoorcash')
+            {   
+                $disc = (floatval(\Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', '')))  * (10 / 100);
 
-            $total =  ceil((floatval(\Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', ''))) - $foodoorCash - $discount + 30 + $gst) ;
+                if($disc > 150)
+                {
+                    $foodoorCash = auth()->user()->wallet_ballance >= 150 ? 150 : auth()->user()->wallet_ballance;
+
+                } else {
+                    
+                    if(auth()->user()->wallet_ballance >= $disc)
+                    {
+                        $foodoorCash = $disc;
+                    } else {
+                        $foodoorCash = auth()->user()->wallet_ballance;
+                    }
+
+                }
+                
+
+                 $total =  ceil((floatval(\Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', ''))) - $foodoorCash + 30 + $gst) ;
+
+            } else {
+                $coupon = Coupon::where('code',session($sessionName) )->first();
+            
+                $discount = $coupon->discount_type == 0 ? $coupon->discount : (floatval(\Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', '')))  * ($coupon->discount / 100);
+
+                $total =  ceil((floatval(\Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', ''))) - $discount + 30 + $gst) ;
+            }
+    		
 	    } 
 
 

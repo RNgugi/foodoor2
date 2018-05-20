@@ -170,7 +170,7 @@
 
 
                          
-                         <ul class="pagination" style="margin-bottom: 100px;">
+                         <ul class="pagination" style="margin-bottom: 100px;float: right;">
                     
                           <li class="page-item"><a class="page-link" href="/restaurants/explore?lat={{request('lat')}}&lng={{request('lng')}}&page={{ $page > 1 ? $page-1 : 1}}"><<</a></li>
                            @for($i = 0; $i <= $pages;$i++)

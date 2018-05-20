@@ -9,7 +9,7 @@
 
 
      <div class="container " style="min-height: 900px;padding-top: 30px;">
-        <form method="POST" action="/orders">
+        <form id="placeorderform" method="POST" action="/orders">
         @csrf
         
         <div class="row">
@@ -42,27 +42,42 @@
                                             </div>
                                        
                                             
-                                                <input type="hidden" class="form-control" style="width: 110px" id="latitude" name="latitude" />
+                                                <input type="hidden" class="form-control" value="{{ old('latitude') }}" style="width: 110px" id="latitude" name="latitude" />
                                             
                                            
 
-                                                <input type="hidden" class="form-control" style="width: 110px" id="longitude" name="longitude" />
+                                                <input type="hidden" class="form-control" value="{{ old('longitude') }}" style="width: 110px" id="longitude" name="longitude" />
                                            
                                        <div class="clearfix">&nbsp;</div>
                                        
                                     </div>
                                     </div>
-                                                                    <div class="row">
+                                    <div class="row">
                                         <div class="col-sm-6">
                                             <div class="form-group">
-                                                <label>Door No./ Flat No.</label>
+                                                <label>Door No./ Flat No. <span style="color: red;">*</span></label>
                                                 <input type="text" name="door_no" value="{{ old('door_no') }}" class="form-control" placeholder="Ex. Flat no. 1" required=""> </div>
                                             <!--/form-group-->
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group">
-                                                <label>Landmark</label>
+                                                <label>Landmark <span style="color: red;">*</span></label>
                                                 <input type="text" name="landmark" value="{{ old('landmark') }}" class="form-control" placeholder="Nearby place" required=""> </div>
+                                            <!--/form-group-->
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Road Name</label>
+                                                <input type="text" name="road_name" value="{{ old('road_name') }}" class="form-control" placeholder="Ex. Thakkar Nagar"> </div>
+                                            <!--/form-group-->
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Alternate Mobile No.</label>
+                                                <input type="text" name="alt_mobile" value="{{ old('alt_mobile') }}" class="form-control" placeholder="Alternate Contact Number" > </div>
                                             <!--/form-group-->
                                         </div>
                                     </div>
@@ -83,8 +98,10 @@
                                                     <input name="payment_mode" type="radio" value="1" class="custom-control-input" required=""> <span class="custom-control-indicator"></span> <span class="custom-control-description">Pay Online</span><br> <span>Various online payment options like Visa, Mastercard, Rupay, Netbanking, etc. are available.</span>  </label>
                                             </li>
                                         </ul>
-                                        @if(session()->has($sessionName))
+                                        @if(session()->has($sessionName) && session($sessionName) != 'foodoorcash')
                                           <input type="hidden" name="discount" value="{{ $discount }}">
+                                        @elseif(session()->has($sessionName) && session($sessionName) == 'foodoorcash')  
+                                          <input type="hidden" name="foodoorcash" value="{{ $foodoorCash }}">
                                         @endif
                                         <p class="text-xs-center"> <button type="submit" class="btn btn-outline-success btn-block">Place Order</button> </p>
                                     </div>
@@ -166,10 +183,13 @@
                                                         <td>Cart Subtotal</td>
                                                         <td style="text-align: right;">&#8377;{{ floatval(Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', '')) }}</td>
                                                     </tr>
+
+                                                    @if(isset($foodoorCash))
                                                     <tr>
                                                         <td>Foodoor Cash <a role="button" data-toggle="popover" data-container="body"  data-content="10% of your total foodoor cash is reduced from your billing amount."><i  class="fa fa-info-circle"></i></a></td>
                                                         <td style="text-align: right;">-&#8377;{{ $foodoorCash }}</td>
                                                     </tr>
+                                                    @endif
                                                     <tr>
                                                         <td>GST</td>
                                                         <td style="text-align: right;">&#8377;{{ $gst }}</td>
@@ -179,7 +199,7 @@
                                                         <td style="text-align: right;">&#8377;30</td>
                                                     </tr>
                                                     
-                                                    @if(session()->has($sessionName))
+                                                    @if(session()->has($sessionName) && session($sessionName) != 'foodoorcash')
                                                     <tr>
                                                         <td class="text-color"><strong>Order Total</strong></td>
                                                        
@@ -199,7 +219,7 @@
                                                         
                                                     </tr>
                                                     <tr>
-                                                     @if(session()->has($sessionName))
+                                                     @if(session()->has($sessionName) && session($sessionName) != 'foodoorcash' )
                                                         <td colspan="2">
                                                              <div class="alert alert-info" role="alert" style="">
                                                                  Congratualtions! Coupon applied successfully. You have saved Rs {{ $discount }}.
@@ -208,7 +228,16 @@
                                                               </div>
                                                             </td>
 
-                                                     @else   
+                                                     @elseif(session()->has($sessionName) && session($sessionName) == 'foodoorcash') 
+                                                      <td colspan="2">
+                                                             <div class="alert alert-info" role="alert" style="">
+                                                                 Congratualtions! Foodoor cash applied to the bill. You have saved Rs {{ $foodoorCash }}.
+
+                                                                 <a href="javascript:void(0)" style="text-decoration: underline;" onclick="removeCoupon({{ $restaurant->id }})" >Remove Coupon</a>
+                                                              </div>
+                                                            </td>
+
+                                                     @else  
                                                     
                                                       <td colspan="2">  
                                                           <button data-toggle="modal" data-target="#couponModal" class="btn btn-warning add-coupon-btn" type="button">Apply Coupon</button>   
@@ -252,6 +281,16 @@
                       
                      <div class="list-group coupons-list scroll" style="max-height: 400px;
     overflow: scroll;">
+                          <div class="list-group-item list-group-item-action">
+                           <div>
+                            <span class="coupon-code">FOODOOR CASH</span>
+                            </div>
+                            <div>
+                              <p>Pay 10% of your amount from foodoor cash</p>
+                            </div>
+                            <button type="button" onclick="applyFoodoorCash({{$restaurant->id}})" class="btn btn-outline-success apply-button">Use Foodoor Cash</button>
+                          </div>
+
                           @foreach($coupons as $coupon)
                           <div class="list-group-item list-group-item-action">
                            <div>
@@ -287,6 +326,26 @@
   
   <script src="/js/jquery.spinner.js"></script>
      <script>
+
+     restaurantloc = {'lat' : {{ $restaurant->latitude }}, 'lng' : {{ $restaurant->longitude }} };
+
+
+
+     var rad = function(x) {
+        return x * Math.PI / 180;
+      };
+
+      var getDistance = function(point) {
+        var R = 6378137; // Earth’s mean radius in meter
+        var dLat = rad(restaurantloc.lat - point.latitude);
+        var dLong = rad(restaurantloc.lng - point.longitude);
+        var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+          Math.cos(rad(point.latitude)) * Math.cos(rad(restaurantloc.lat)) *
+          Math.sin(dLong / 2) * Math.sin(dLong / 2);
+        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        var d = R * c;
+        return d; // returns the distance in meter
+      };
 
      
 
@@ -324,23 +383,33 @@
                                                 enableAutocomplete: true,
                                                 addressFormat: 'street_address',
                                                 onchanged: function (currentLocation, radius, isMarkerDropped) {
-                                                    // Uncomment line below to show alert on each Location Changed event
-                                                    //alert("Location changed. New location (" + currentLocation.latitude + ", " + currentLocation.longitude + ")");
+                                                    if(getDistance(currentLocation) > 5000)
+                                                    {
+                                                        alert('The distance from restaurant should be less than 5 KM');
+
+                                                        $('#us3').locationpicker("location", {latitude: {{ request('lat') }}, longitude:{{ request('lng') }} });
+                                                    }
                                                 }
                                             });
                                         </script>
 
 
-                                        <script type="text/javascript">
+                                        <script type="text/javascript"> 
+
+                                                 function applyFoodoorCash(restaurantId)
+                                                {
+                                                    location.href = '/coupons/apply/' + restaurantId + '/foodoorcash?' + $('#placeorderform').serialize();
+                                                }
+
                                                 
                                                 function applyCoupon(restaurantId, code)
                                                 {
-                                                    location.href = '/coupons/apply/' + restaurantId + '/coupon:' + code;
+                                                    location.href = '/coupons/apply/' + restaurantId + '/coupon:' + code + '?' + $('#placeorderform').serialize();
                                                 }
 
                                                 function removeCoupon(restaurantId, code)
                                                 {
-                                                    location.href = '/coupons/apply/' + restaurantId + '/coupon:' + code + '/remove';
+                                                    location.href = '/coupons/apply/' + restaurantId + '/coupon:' + code + '/remove?' + $('#placeorderform').serialize();
                                                 }
 
 

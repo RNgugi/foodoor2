@@ -207,8 +207,10 @@
                                           </div> 
                                           
                                           <div class="rest-descr" style="padding-left: 23px;">
-                                             <h6 style="{{ $item->description == '' ? 'margin-bottom: 28px;' : '' }}"><a href="#">{{ $item->name }}</a></h6>
-                                             <p>{{ $item->description != '' ? substr($item->description, 0, 100) : ''}}</p>
+                                             <h6 style="{{ 'margin-bottom: 28px;' }}"><a href="#">{{ $item->name }}</a></h6>
+                                            
+                                              <p>{{ strlen($item->description) > 100 ? substr($item->description, 0, 100) . '...' : $item->description }}</p>
+                                             
                                           </div>
                                           <!-- end:Description -->
                                        </div>
@@ -377,7 +379,7 @@
                                     <p>SUBTOTAL</p>
                                     <h3 class="value"><strong>&#8377; {{ Cart::instance('restaurant-'.$restaurant->id)->subtotal() }}</strong></h3>
                                     <p  style="color: #8a8a8a;font-size: 14px;">Extra charges may apply</p>
-                                    <button style="width: 100%;" type="submit" class="btn theme-btn btn-lg" {{  $restaurant->is_open ? '' : 'disabled'}}>Checkout</button>
+                                    <button style="width: 100%;" type="submit" class="btn theme-btn btn-lg" {{  $restaurant->is_open && Cart::instance('restaurant-'.$restaurant->id)->count()  ? '' : 'disabled'}}>Checkout</button>
                                  </div>
                               </div>
                            </div>

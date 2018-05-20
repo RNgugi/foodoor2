@@ -52,7 +52,27 @@ class CouponsController extends Controller
     	}
     	
 
-    	return back();
+    	return back()->withInput(request()->all());
+    }
+
+    public function applyFoodoorcash(Restaurant $restaurant)
+    {
+
+
+        $amount = floatval(\Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', ''));
+
+        if(auth()->user()->wallet_ballance < 0) {
+            flash('You don\'t have enough foodoor cash')->error();
+        } else {
+             $sessionName = 'restaurant-' . $restaurant->id . '-coupon';
+             session([$sessionName   => 'foodoorcash']);
+
+             flash('Foodoor cash was applied successfully')->success();
+        }
+        
+       return back()->withInput(request()->all());
+
+        
     }
 
     public function remove(Restaurant $restaurant, $code)
@@ -62,6 +82,6 @@ class CouponsController extends Controller
     	session()->forget($sessionName);
     	
 
-    	return back();
+    	return back()->withInput(request()->all());
     }
 }

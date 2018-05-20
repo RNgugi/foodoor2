@@ -5,6 +5,7 @@ Route::view('/about-us', 'pages.about');
 Route::view('/privacy-policy', 'pages.privacy');
 Route::view('/team', 'pages.team');
 Route::view('/careers', 'pages.careers');
+Route::view('/contact', 'pages.contact');
 
 Route::get('/', function () {
 	//return redirect('/restaurants');
@@ -85,6 +86,8 @@ Route::get('/cart/increment/{item}/{restaurant}/newVal:{newVal}', 'CartControlle
 Route::get('/cart/decrement/{item}/{restaurant}/newVal:{newVal}', 'CartController@decrement');
 
 Route::get('/coupons/apply/{restaurant}/coupon:{code}', 'CouponsController@apply');
+
+Route::get('/coupons/apply/{restaurant}/foodoorcash', 'CouponsController@applyFoodoorcash');
 
 Route::get('/coupons/apply/{restaurant}/coupon:{code}/remove', 'CouponsController@remove');
 

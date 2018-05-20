@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="/images/fav.png">
-    <title>Foodoor</title>
+    <title>When you think food, Think foodoor</title>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -90,7 +90,7 @@ input[type=number]::-webkit-outer-spin-button {
                 <form method="POST" action="/bulk-orders">
                    @csrf 
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Fill up the details below and we will get to you soon</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Fill up the details below and we will get backw to you soon</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -98,11 +98,11 @@ input[type=number]::-webkit-outer-spin-button {
                   <div class="modal-body">
                     
                         <div class="form-group">
-                            <label>Name</label>
+                            <label>Name <span style="color: red;">*</span></label>
                             <input type="text" name="name"  class="form-control" placeholder="Enter contact name" required="">
                         </div>
                         <div class="form-group">
-                            <label>Phone No.</label>
+                            <label>Phone No. <span style="color: red;">*</span></label>
                             <input type="number" step="1" min="0" name="phone" placeholder="Enter contact number"  class="form-control" required="">
                         </div>
                          <div class="form-group">
@@ -110,7 +110,7 @@ input[type=number]::-webkit-outer-spin-button {
                             <input type="text"  name="event" placeholder="Tell us about your event"  class="form-control" required="">
                         </div>
                          <div class="form-group">
-                            <label>Date</label>
+                            <label>Date <span style="color: red;">*</span></label>
                             <input type="text"   name="eventDate"   class="form-control datepicker" required="">
                         </div>
                         <div class="form-group">
@@ -138,7 +138,7 @@ input[type=number]::-webkit-outer-spin-button {
                 <form method="POST" action="/new-restaurant">
                    @csrf 
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Fill up the details below and we will get to you soon</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Fill up the details below and we will get back to you soon</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -146,11 +146,11 @@ input[type=number]::-webkit-outer-spin-button {
                   <div class="modal-body">
                     
                         <div class="form-group">
-                            <label>Name</label>
+                            <label>Name <span style="color: red;">*</span></label>
                             <input type="text" name="name"  class="form-control" placeholder="Enter contact name" required="">
                         </div>
                         <div class="form-group">
-                            <label>Phone No.</label>
+                            <label>Phone No. <span style="color: red;">*</span></label>
                             <input type="number" step="1" min="0" name="phone" placeholder="Enter contact number"  class="form-control" required="">
                         </div>
                          <div class="form-group">

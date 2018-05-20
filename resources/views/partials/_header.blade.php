@@ -8,9 +8,10 @@
                         <ul class="nav navbar-nav">
                             
                             
-                           
+                             <li class="nav-item"> <a class="nav-link {{ request()->is('contact') ? 'active' : '' }}" href="/contact">Contact Us</a> </li>
                             
                             @guest
+
 
                                 <li class="nav-item"> <a class="nav-link {{ request()->is('login') ? 'active' : '' }} btn btn-border" href="{{ route('login') }}">Sign In</a> </li>
                             

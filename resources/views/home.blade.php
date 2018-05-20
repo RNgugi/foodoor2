@@ -79,22 +79,49 @@
                     </form>
 
                     <div class="row">
-                                 <div id="request-otp">
+                    <div id="verified-phone" class="{{ auth()->user()->phone ? '' : 'hidden' }}">
                                       <div class="form-group col-sm-8">
-                                         <label for="phone">Phone Number</label>
-                                         <input id="phone" type="number" placeholder="Enter contact number" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" value="{{ old('phone') ? old('phone') : auth()->user()->phone }}" required autofocus>
+                                         <label for="stored-phone">Phone Number</label>
+                                         <input id="stored-phone" type="number" readonly=""  placeholder="Enter contact number" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" value="{{ auth()->user()->phone }}">
 
                                           
-                                              <span class="invalid-feedback" id="request-feedback">
-                                                    
-                                              </span>
+                                              
+                                           
                                         
                                       </div>
 
                                        <div class="col-sm-4">
-                                         <p style="margin-top: 32px;"> <button type="button" id="btn-request-otp" class="btn theme-btn">Verify</button> </p>     
+                                         <p style="margin-top: 32px;"> <button type="button" id="btn-change-number" class="btn theme-btn">Change Number</button> </p>     
                                       </div>
                                     </div>
+
+                                    
+
+                                       <div id="request-otp" class="{{ auth()->user()->phone ? 'hidden' : '' }}">
+                                        <div class="form-group col-sm-8">
+                                           <label for="phone">Update Phone Number</label>
+                                           <input id="phone" type="number"  placeholder="Enter contact number" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" value="{{ auth()->user()->phone }}">
+
+                                            
+                                                
+                                              <span id="request-feedback"  class="invalid-feedback">
+                                                 
+                                              </span>
+                                          
+                                          
+                                        </div>
+
+                                         <div class="col-sm-4">
+                                           <p style="margin-top: 32px;"> <button type="button" id="btn-request-otp" class="btn theme-btn">Send OTP</button> </p>     
+                                        </div>
+
+                                        <div class="col-sm-12">
+                                         <a style="margin-top: 15px;" href="javascript:void(0)" id="btn-cancel" class="text-primary" >Cancel</a> 
+                                        </div>
+                                      </div>
+
+
+                                   
 
 
                                     <div id="verify-otp" class="hidden" >
@@ -107,7 +134,7 @@
 
                                       <div class="form-group col-sm-8" style="margin-bottom: 0;">
                                          
-                                         <input id="user-otp" type="number" placeholder="Enter 5-digit OTP" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="otp"  required>
+                                         <input id="user-otp" type="number" placeholder="Enter 5-digit OTP" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="otp" >
 
                                               <span class="invalid-feedback" id="verify-feedback">
                                                   
@@ -125,11 +152,10 @@
                                       </div>
                                     </div>
 
-                                     <div id="verified-otp" class="hidden flash-message">
+                                     <div id="verified-otp" class="hidden">
                                       <div class="col-sm-12">
                                           <h4 class="text-success"><i class="fa fa-check-circle"></i> Phone Number Updated</h4>
                                       </div>
-                                     </div>
                                      </div>
                              
 
@@ -151,11 +177,12 @@
   
   <script type="text/javascript">
     var otp = '';
+    var storedPhone = '';
 
   $('#btn-request-otp').on('click', function()
   { 
         var phone = $('#phone').val();
-        if(phone.length  < 10)
+        if(phone.length  < 10 || phone.length > 10)
         {
             message = 'Please enter correct 10 digit mobile number!';
           
@@ -165,20 +192,34 @@
 
         } else {
 
-            $.post('api/phone/sendotp', {'phone':  $('#phone').val() }).then(function(response) {
+             $.post('api/phone/sendotp', {'phone':  $('#phone').val() }).then(function(response) {
+              
               console.log(response);
-               otp = response.otp;
+
+              if(response.status == 'failed')
+              {
+
+                 $('#phone').addClass('is-invalid');
+
+                 $('#request-feedback').html('<strong>'+response.message+'</strong>'); 
+               
+              } else {
+                 
+                 otp = response.otp;
+
+                 $('#user-phone').html('+91' + phone);
+
+                 $('#request-otp').addClass('hidden');
+
+                 $('#verify-otp').removeClass('hidden');
+
+                 $('#btn-request-otp').addClass('hidden');
+
+                 $('#request-feedback').html('');
+
+              }
             });
 
-            $('#user-phone').html('+91' + phone);
-
-            $('#request-otp').addClass('hidden');
-
-            $('#verify-otp').removeClass('hidden');
-
-            $('#user-otp').val('');
-
-            $('#request-feedback').html('');
 
 
         }
@@ -188,6 +229,42 @@
       
         
   });
+
+  $('#btn-cancel').on('click', function()
+  { 
+        
+            $('#verified-phone').removeClass('hidden');
+            $('#request-otp').addClass('hidden');
+            $('#btn-request-otp').addClass('hidden');
+            $('#verify-otp').val('');
+
+            $('#request-feedback').html('');
+            $('#verify-feedback').html('');
+
+            $('#verify-otp').addClass('hidden');
+
+            $('#phone').val(storedPhone);
+
+            
+        });
+
+  $('#btn-change-number').on('click', function()
+  { 
+            storedPhone = $('#phone').val();
+            $('#verified-phone').addClass('hidden');
+            $('#request-otp').removeClass('hidden');
+            $('#btn-request-otp').removeClass('hidden');
+            
+            $('#submitButton').attr('disabled', true);
+
+            $('#request-feedback').html('');
+            $('#verify-feedback').html('');
+
+           
+
+            
+        });
+
 
   $('#btn-resend-otp').on('click', function()
   { 

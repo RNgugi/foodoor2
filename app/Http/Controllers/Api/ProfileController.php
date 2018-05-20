@@ -69,6 +69,12 @@ class ProfileController extends Controller
     {
         $phone = $request->get('phone');
 
+        if(User::where('phone', $phone)->exists()) 
+        {
+            return response(['status' => 'failed', 'message' => 'Phone number is already registered!']);
+        }
+
+
         $otp = mt_rand(10000, 99999);
 
 
@@ -77,6 +83,16 @@ class ProfileController extends Controller
         $response = sendSMS($phone, $message);
 
         return response(['status' => 'success', 'message' => 'OTP sent successfully!', 'otp' => $otp, 'phone' => $phone, 'api' => $response]);
+    }
+
+
+    public function store(Request $request)
+    {
+        $phone = $request->get('phone');
+
+        session(['phone-verified' => $phone]);
+        
+        return response(['status' => 'success']);
     }
 
     

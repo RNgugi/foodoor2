@@ -6,16 +6,17 @@
                     <div class="col-xs-12 col-sm-3 about color-gray">
                         <h5>Company</h5>
                         <ul>
-                            <li><a href="/about-us">About us</a> </li>
-                            <li><a href="/team">Team</a> </li>
-                            <li><a href="/careers">Careers</a> </li>
+                            <li><a target="_blank"  href="/about-us">About us</a> </li>
+                            <li><a target="_blank"  href="/about-us">Contact Us</a> </li>
+                            <li><a target="_blank"  href="/team">Team</a> </li>
+                            <li><a target="_blank"  href="/careers">Careers</a> </li>
                         </ul>
                     </div>
                     <div class="col-xs-12 col-sm-3 how-it-works-links color-gray">
                         <h5>Legals</h5>
                         <ul>
-                            <li><a href="/terms">Terms &amp; Conditions</a> </li>
-                            <li><a href="/privacy-policy">Privacy Policy</a> </li>
+                            <li><a target="_blank"  href="/terms">Terms &amp; Conditions</a> </li>
+                            <li><a target="_blank"  href="/privacy-policy">Privacy Policy</a> </li>
 
                         </ul>
                     </div>
@@ -23,7 +24,7 @@
                     <div class="col-xs-12 col-sm-3 popular-locations color-gray" >
                      <h5>Serving locations</h5>
                         <ul>
-                            <li><a href="/restaurants/explore?lat=23.3440997&lng=85.30956200000003">Ranchi</a> </li>
+                            <li><a target="_blank"  href="/restaurants/explore?lat=23.3440997&lng=85.30956200000003">Ranchi</a> </li>
                         </ul>
                     </div>
 

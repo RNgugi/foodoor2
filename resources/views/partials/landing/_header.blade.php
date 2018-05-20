@@ -8,6 +8,7 @@
                         <ul class="nav navbar-nav">
                             
                             
+                             <li class="nav-item"> <a class="nav-link {{ request()->is('contact') ? 'active' : '' }} " href="/contact">Contact Us</a> </li>
                          
                           @guest
 

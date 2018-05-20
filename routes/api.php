@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 */
 
 Route::post('/phone/sendotp', 'Api\ProfileController@sendOTP');
+Route::post('/phone/store', 'Api\ProfileController@store');
 
 
 

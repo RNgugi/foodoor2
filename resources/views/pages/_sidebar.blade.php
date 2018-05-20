@@ -6,6 +6,8 @@
                                </div>
                                <ul>
                                    <li class="{{ request()->is('about-us') ? 'active' : ''  }}"><a href="/about-us" class="scroll">About</a></li>
+
+                                    <li class="{{ request()->is('contact') ? 'active' : ''  }}"><a href="/contact" class="scroll">Contact Us</a></li>
                                    
                                    <li class="{{ request()->is('team') ? 'active' : ''  }}"><a href="/team" class="scroll">Our Team</a></li>
 

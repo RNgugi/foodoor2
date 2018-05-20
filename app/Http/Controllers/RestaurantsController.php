@@ -30,7 +30,7 @@ class RestaurantsController extends Controller
     public function get()
     {
 
-      $limit = 10;
+      $limit = 13;
 
       if(request('page'))
       {
