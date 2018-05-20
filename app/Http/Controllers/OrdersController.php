@@ -103,7 +103,7 @@ class OrdersController extends Controller
         {
             $foodoorCash = request('foodoorCash')
         }
-        
+
         $order->amount =   ceil($order->subtotal +  $order->tax + $order->delivery_charges - $discount - $foodoorCash);
 
         $order->discounted_price = $discount;
@@ -145,6 +145,10 @@ class OrdersController extends Controller
             
             $message = 'We have received your order. Waiting for restaurant confirmation!';
             $response = sendSMS(auth()->user()->phone, $message);
+
+            auth()->user()->wallet_ballance = auth()->user()->wallet_ballance + ($order->subtotal * (5/100));
+
+            auth()->user()->save();
 
             flash('We have received your order and waiting for restaurant confirmation.')->success();
             
