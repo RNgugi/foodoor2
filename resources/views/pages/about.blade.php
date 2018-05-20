@@ -11,7 +11,7 @@
            @include('pages._sidebar')
         </div>
 
-        <div class="col-md-9">
+        <div class="col-md-9" style="text-align: justify;">
              <h3 style="font-weight: 600;margin-bottom: 30px;">About Us</h3>   
 
              <p>We are team FooDoor…….!!</p>

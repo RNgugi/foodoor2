@@ -12,17 +12,51 @@
         </div>
 
         <div class="col-md-9">
-             <h3 style="font-weight: 600;margin-bottom: 30px;">Contact Us</h3>   
+             <h3 style="font-weight: 600;margin-bottom: 30px;text-align: left;color: #e94e1b;">Contact Us</h3>   
 
-             <p><b style="margin-bottom: 5px;display: block;">Headquaters</b> 1, Nishant apt., Thakkar Nagar <br>
-                Sharanpur road, Nashik - 02</p>
-             <p style="margin-bottom: 0;"><b>Email : <a href="mailto:contact@foodoor.in">contact@foodoor.in</a></p>
+             <div class="col-md-6">
+               <p><b>Contact Info</b></p>
 
-              <p><b>Phone : <a href="tel:9905585412">(+91) 905585412</a></p>
+               <p><i class="fa fa-phone"></i> <a href="tel:08102814217">08102814217</a> <a href="tel:08788191787">08788191787</a> <a href="tel:09905585412">09905585412</a></p>
 
-              <br>
+               <p><i class="fa fa-whatsapp"></i> <a href="tel:08788191787">08788191787</a> </p>
 
-              <script src='https://maps.googleapis.com/maps/api/js?v=3.exp'></script><div style='overflow:hidden;height:300px;width:500px;'><div id='gmap_canvas' style='height:300px;width:500px;'></div><div><small><a href="embedgooglemaps.com/">https://embedgooglemaps.com/</a></small></div><div><small><a href="http://www.kumo-racing.nl/">newyorkpass</a></small></div><style>#gmap_canvas img{max-width:none!important;background:none!important}</style></div><script type='text/javascript'>function init_map(){var myOptions = {zoom:10,center:new google.maps.LatLng(23.2855789,85.30586640000001),mapTypeId: google.maps.MapTypeId.ROADMAP};map = new google.maps.Map(document.getElementById('gmap_canvas'), myOptions);marker = new google.maps.Marker({map: map,position: new google.maps.LatLng(23.2855789,85.30586640000001)});infowindow = new google.maps.InfoWindow({content:'<strong>Foodoor</strong><br>Hatia, Ranchi, Jharkhand<br>'});google.maps.event.addListener(marker, 'click', function(){infowindow.open(map,marker);});infowindow.open(map,marker);}google.maps.event.addDomListener(window, 'load', init_map);</script>
+               <p><i class="fa fa-envelope"></i> <a href="mailto:contact@foodoor.in">contact@foodoor.in</a> </p>
+             </div>
+
+             <div class="col-md-6">
+               <div class="card" style="background: #f7f7f7;border-radius: 0;">
+                 <div class="card-body" style="padding: 16px;">
+                  <form method="POST" action="/contact">
+                   @csrf
+                   <div class="form-group">
+                     <label>Name</label>
+                     <input type="text" name="name" placeholder="Full name" class="form-control">
+                   </div>
+
+                   <div class="form-group">
+                     <label>Email</label>
+                     <input type="email" name="email" placeholder="Contact Email" class="form-control">
+                   </div>
+
+                   <div class="form-group">
+                     <label>Phone</label>
+                     <input type="text" name="phone" placeholder="Contact number" class="form-control">
+                   </div>
+
+
+                   <div class="form-group">
+                     <label>Message</label>
+                     <textarea name="message" class="form-control" placeholder="Write something to us.."></textarea>
+                   </div>
+
+                   <div class="form-group">
+                     <button style="display: block;width: 100%;" type="submit" class="btn btn-success">Submit</button>
+                   </div>
+                  </form> 
+                 </div>
+               </div>
+             </div>
              
         </div>
     </div>

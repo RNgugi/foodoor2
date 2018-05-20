@@ -385,7 +385,7 @@
                                                 onchanged: function (currentLocation, radius, isMarkerDropped) {
                                                     if(getDistance(currentLocation) > 5000)
                                                     {
-                                                        alert('The distance from restaurant should be less than 5 KM');
+                                                        alert('Sorry, As of now we are not serving in this area.Please choose another location.');
 
                                                         $('#us3').locationpicker("location", {latitude: {{ request('lat') }}, longitude:{{ request('lng') }} });
                                                     }

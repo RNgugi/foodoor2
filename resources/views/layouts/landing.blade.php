@@ -90,7 +90,7 @@ input[type=number]::-webkit-outer-spin-button {
                 <form method="POST" action="/bulk-orders">
                    @csrf 
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Fill up the details below and we will get backw to you soon</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Fill up the details below and we will get back to you soon</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>

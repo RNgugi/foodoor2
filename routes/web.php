@@ -95,6 +95,7 @@ Route::get('/coupons/apply/{restaurant}/coupon:{code}/remove', 'CouponsControlle
 
 
 Route::post('/bulk-orders', 'BulkOrderController@store');
+Route::post('/contact', 'ContactController@store');
 
 
 Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'role'], 'namespace' => 'Admin'], function()

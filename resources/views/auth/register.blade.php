@@ -120,7 +120,7 @@ input[type=number]::-webkit-outer-spin-button {
                                            <p style="margin-top: 32px;"> <button type="button" id="btn-request-otp" class="btn theme-btn">Send OTP</button> </p>     
                                         </div>
 
-                                        <div class="col-sm-12">
+                                        <div class="col-sm-12 {{ old('phone') ? '' : 'hidden' }}" >
                                          <a style="margin-top: 15px;" href="javascript:void(0)" id="btn-cancel" class="text-primary" >Cancel</a> 
                                         </div>
                                       </div>
@@ -181,6 +181,11 @@ input[type=number]::-webkit-outer-spin-button {
                                    </div>
                                  </div>
 
+                                 <div class="row" style="margin-top: 30px;">
+                                   <div class="col-sm-8">
+                                     <input type="checkbox" required="true" name="terms"> <label> I agree to the <a target="_blank" href="/terms">Terms &amp; Conditions</a> of Foodoor.</label>
+                                   </div>
+                                 </div>
                                  
                                 
                                  <div class="row" style="margin-top: 30px;">
