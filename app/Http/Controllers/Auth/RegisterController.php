@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
+use App\Mail\WelcomeMail;
 
 class RegisterController extends Controller
 {
@@ -91,6 +92,8 @@ class RegisterController extends Controller
         $message = 'Welcome to foodoor! Congratulations, You have received ' . $user->wallet_ballance . ' foodoor cash!';
 
         sendSMS($user->phone, $message);
+
+         \Mail::to($user)->send(new WelcomeMail());
 
 
     }

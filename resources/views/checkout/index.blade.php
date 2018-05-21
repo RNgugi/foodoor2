@@ -77,7 +77,7 @@
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>Alternate Mobile No.</label>
-                                                <input type="text" name="alt_mobile" value="{{ old('alt_mobile') }}" class="form-control" placeholder="Alternate Contact Number" > </div>
+                                                <input type="number" max="10" name="alt_mobile" value="{{ old('alt_mobile') }}" class="form-control" placeholder="Alternate Contact Number" > </div>
                                             <!--/form-group-->
                                         </div>
                                     </div>

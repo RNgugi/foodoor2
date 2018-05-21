@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\Restaurant;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -11,6 +12,8 @@ class WelcomeMail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $restaurants;
+
     /**
      * Create a new message instance.
      *
@@ -18,7 +21,7 @@ class WelcomeMail extends Mailable
      */
     public function __construct()
     {
-        //
+        $this->restaurants = Restaurant::limit(3)->get();
     }
 
     /**
@@ -28,6 +31,6 @@ class WelcomeMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.welcome');
+        return $this->view('emails.welcome');
     }
 }
