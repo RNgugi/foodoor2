@@ -99,9 +99,9 @@ class OrdersController extends Controller
 
         $foodoorCash = 0;
         
-         if(request()->has('discount'))
+        if(request()->has('discount'))
         {
-            $foodoorCash = request('foodoorCash')
+            $foodoorCash = request('foodoorCash');
         }
 
         $order->amount =   ceil($order->subtotal +  $order->tax + $order->delivery_charges - $discount - $foodoorCash);
