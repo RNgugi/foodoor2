@@ -31,6 +31,6 @@ class RegisteredAsRestaurant extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.restaurants.registered');
+        return $this->view('emails.restaurants.registered');
     }
 }

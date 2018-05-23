@@ -1,125 +1,428 @@
-@extends('layouts.mails')
-
-
-@section('content')
-	 
-   
-
-	<div style="background: #e9ecee;">
-
-    <div class="container" style="padding-top: 60px;">
-
-         <div class="widget clearfix " style="background: #fff;z-index: 0;">
-                    <!-- /widget heading -->
-                    <div class="widget-heading">
-                        <h3 class="widget-title text-dark" style="font-size: 26px;font-weight: bold;">
-                                        Order #{{$order->id}}
-                                    </h3>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="widget-body">
-                        @if($order->status >= 3)
-                            <h5>Thank you for using Foodoor! Your order is served to you successfully.</h5>
-                            <h5>Looking forward to serve you in future.</h5>
-                        @else
-                            <h5>Thank you for using Foodoor! Your order is being processed and will reach you shortly.</h5>
-                            <h5>Looking forward to serve you.</h5>
-                        @endif
-
-                        <ul class="progressbar" style="margin-top: 40px;">
-                              <li class="{{ $order->status >= 0 ? 'active' : '' }}">order placed</li>
-                              <li class="{{ $order->status >= 1 ? 'active' : '' }}">arrived at restaurant</li>
-                              <li class="{{ $order->status >= 2 ? 'active' : '' }}">order picked</li>
-                              <li class="{{ $order->status >= 3 ? 'active' : '' }}">order served</li>
-                      </ul>
-                      <div class="clearfix"></div>
-                        <h5 style="font-weight: bold;margin-top: 55px;">Delivery Address</h5>
-                        <h5>{{ json_decode($order->delivery_address)->delivery_location }}</h5>
-                        <h5>{{ json_decode($order->delivery_address)->door_no }} {{ json_decode($order->delivery_address)->landmark }}</h5>
-
-                        
-                       <div class="clearfix"></div>
-                        <div class="row" style="margin-top: 35px;">
-                            <div class="col-sm-8">
-                            <h5 style="font-weight: bold;">Restaurant</h5>
-                            <h5>{{ $order->restaurant->name }}</h5>
-                            </div>
-                             @if($order->status < 3)
-                            <div class="col-sm-4">
-                                <button style="float: right;margin-right: 14px;margin-top: 7px;border-radius: 5px;" type="button" class="btn theme-btn btn-lg"><i class="fa fa-map-marker"></i> Track Your Order</button>
-                            </div>
-                            @endif
-                        </div>
-                        <div class="clearfix"></div>
-
-                        <div style="margin-top: 35px;">
-                            <table class="table order-table">
-                                 <thead class="thead-dark">
-                                <tr>
-                                    <th>Item Name</th>
-                                    <th>Quantity</th>
-                                    <th>Price</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($order->items as $item)
-
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+   <head>
+      <title></title>
+      <!--[if !mso]><!-- -->  
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <!--<![endif]-->
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style type="text/css">  #outlook a { padding: 0; }  .ReadMsgBody { width: 100%; }  .ExternalClass { width: 100%; }  .ExternalClass * { line-height:100%; }  body { margin: 0; padding: 0; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }  table, td { border-collapse:collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; }  img { border: 0; height: auto; line-height: 100%; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; }  p { display: block; margin: 13px 0; }</style>
+      <!--[if !mso]><!-->
+      <style type="text/css">  @media only screen and (max-width:480px) {    @-ms-viewport { width:320px; }    @viewport { width:320px; }  }</style>
+      <!--<![endif]--><!--[if mso]>
+      <xml>
+         <o:OfficeDocumentSettings>
+            <o:AllowPNG/>
+            <o:PixelsPerInch>96</o:PixelsPerInch>
+         </o:OfficeDocumentSettings>
+      </xml>
+      <![endif]--><!--[if lte mso 11]>
+      <style type="text/css">  .outlook-group-fix {    width:100% !important;  }</style>
+      <![endif]--><!--[if !mso]><!-->    
+      <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700" rel="stylesheet" type="text/css">
+      <style type="text/css">        @import url(https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700);    </style>
+      <!--<![endif]-->
+      <style type="text/css">  @media only screen and (min-width:480px) {    .mj-column-per-50 { width:50%!important; }.mj-column-per-100 { width:100%!important; }  }</style>
+   </head>
+   <body style="background: #FFFFFF;">
+      <div class="mj-container" style="background-color:#FFFFFF;">
+         <!--[if mso | IE]>      
+         <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="600" align="center" style="width:600px;">
+            <tr>
+               <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
+                  <![endif]-->
+                  <table role="presentation" cellpadding="0" cellspacing="0" style="font-size:0px;width:100%;" border="0">
+                     <tbody>
+                        <tr>
+                           <td>
+                              <div style="margin:0px auto;max-width:600px;">
+                                 <table role="presentation" cellpadding="0" cellspacing="0" style="font-size:0px;width:100%;" align="center" border="0">
+                                    <tbody>
+                                       <tr>
+                                          <td style="text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:9px 0px 9px 0px;">
+                                             <!--[if mso | IE]>      
+                                             <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                                                <tr>
+                                                   <td style="vertical-align:top;width:300px;">
+                                                      <![endif]-->
+                                                      <div class="mj-column-per-50 outlook-group-fix" style="vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%;">
+                                                         <table role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
+                                                            <tbody>
+                                                               <tr>
+                                                                  <td style="word-wrap:break-word;font-size:0px;padding:0px 0px 0px 0px;" align="left">
+                                                                     <table role="presentation" cellpadding="0" cellspacing="0" style="border-collapse:collapse;border-spacing:0px;" align="left" border="0">
+                                                                        <tbody>
+                                                                           <tr>
+                                                                              <td style="width:195px;"><img alt="" title="" height="auto" src="https://topolio.s3-eu-west-1.amazonaws.com/uploads/5b024329cca70/1526878988.jpg" style="border:none;border-radius:0px;display:block;font-size:13px;outline:none;text-decoration:none;width:100%;height:auto;" width="195"></td>
+                                                                           </tr>
+                                                                        </tbody>
+                                                                     </table>
+                                                                  </td>
+                                                               </tr>
+                                                            </tbody>
+                                                         </table>
+                                                      </div>
+                                                      <!--[if mso | IE]>      
+                                                   </td>
+                                                   <td style="vertical-align:top;width:300px;">
+                                                      <![endif]-->
+                                                      <div class="mj-column-per-50 outlook-group-fix" style="vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%;">
+                                                         <table role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
+                                                            <tbody>
+                                                               <tr>
+                                                                  <td style="word-wrap:break-word;font-size:0px;padding:10px 25px 10px 25px;padding-top:10px;padding-left:25px;" align="right">
+                                                                     <table role="presentation" cellpadding="0" cellspacing="0" style="border-collapse:separate;" align="right" border="0">
+                                                                        <tbody>
+                                                                           <tr>
+                                                                              <td style="border:none;border-radius:24px;color:#fff;cursor:auto;padding:10px 25px;" align="center" valign="middle" bgcolor="#e85034"><a href="https://foodoor.in" style="text-decoration:none;background:#e85034;color:#fff;font-family:Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif;font-size:15px;font-weight:normal;line-height:120%;text-transform:none;margin:0px;" target="_blank">Visit Site!</a></td>
+                                                                           </tr>
+                                                                        </tbody>
+                                                                     </table>
+                                                                  </td>
+                                                               </tr>
+                                                            </tbody>
+                                                         </table>
+                                                      </div>
+                                                      <!--[if mso | IE]>      
+                                                   </td>
+                                                </tr>
+                                             </table>
+                                             <![endif]-->
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+                  <!--[if mso | IE]>      
+               </td>
+            </tr>
+         </table>
+         <![endif]-->      <!--[if mso | IE]>      
+         <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="600" align="center" style="width:600px;">
+            <tr>
+               <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
+                  <![endif]-->
+                  <div style="margin:0px auto;max-width:600px;">
+                     <table role="presentation" cellpadding="0" cellspacing="0" style="font-size:0px;width:100%;" align="center" border="0">
+                        <tbody>
+                           <tr>
+                              <td style="text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:0px 0px 0px 0px;">
+                                 <!--[if mso | IE]>      
+                                 <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                                     <tr>
-                                        <td style="font-size: 18px;">@if($item->is_veg)
-                                                 <img src="/images/veg.png" style="width: 12px;height: 12px;margin-top: -2px;" >
-                                                @else
-                                                <img src="/images/nonveg.png" style="width: 12px;height: 12px;margin-top: -2px;" >
-                                                @endif  {{ $item->name }} 
-
-                                                @if(isset($item->pivot->customs))
-                                                <br> <span style="font-size: 12px;"> {{ getCustomsString(json_decode($item->pivot->customs, TRUE)) }}</span>
-                                                @endif
-                                                </td>
-                                        <td style="font-size: 18px;">{{ $item->pivot->qty }}</td>
-                                        <td style="font-size: 18px;">{{ $item->pivot->price * $item->pivot->qty }}</td>
+                                       <td style="vertical-align:top;width:600px;">
+                                          <![endif]-->
+                                          <div class="mj-column-per-100 outlook-group-fix" style="vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%;">
+                                             <table role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
+                                                <tbody>
+                                                   <tr>
+                                                      <td style="word-wrap:break-word;font-size:0px;padding:0px 20px 0px 20px;" align="left">
+                                                         <div style="cursor:auto;color:#000000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:11px;line-height:22px;text-align:left;">
+                                                            <h1 style="font-family: &apos;Cabin&apos;, sans-serif; line-height: 100%;">We have received your order!</h1>
+                                                         </div>
+                                                      </td>
+                                                   </tr>
+                                                </tbody>
+                                             </table>
+                                          </div>
+                                          <!--[if mso | IE]>      
+                                       </td>
                                     </tr>
-
-
-
-                                @endforeach
-                                 <tr style="font-size: 16px;"> 
-                                                         <td></td>
-                                                        <td style="font-size: 18px;">Subtotal</td>
-                                                       
-                                                        <td style="font-size: 18px;">&#8377 {{$order->subtotal }}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="font-size: 18px;"></td>
-                                                        <td style="font-size: 18px;">GST</td>
-                                                        
-                                                        <td style="font-size: 18px;">&#8377 {{ $order->subtotal + $order->tax }}</td>
-                                                    </tr>
-                                                    <tr>
-                                                     <td></td>
-                                                        <td style="font-size: 18px;">Delivery Charges</td>
-                                                       
-                                                        <td style="font-size: 18px;">&#8377 {{ $order->delivery_charges}}</td>
-                                                    </tr>
-                                                    
-                                                   
-
-                                                    <tr>
-                                                      <td></td>
-                                                        <td style="font-size: 18px;" class="text-color"><strong>Total</strong></td>
-                                                        
-                                                             <td style="font-size: 18px;" class="text-color"><strong>&#8377 {{ $order->amount }}</strong></td>
-                                                       
-                                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                      
-                                    <!--cart summary-->
-                    </div> 
-
-             </div>            
-             </div>
-	 </div>  
-
-@endsection
+                                 </table>
+                                 <![endif]-->
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <!--[if mso | IE]>      
+               </td>
+            </tr>
+         </table>
+         <![endif]-->      <!--[if mso | IE]>      
+         <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="600" align="center" style="width:600px;">
+            <tr>
+               <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
+                  <![endif]-->
+                  <table role="presentation" cellpadding="0" cellspacing="0" style="font-size:0px;width:100%;" border="0">
+                     <tbody>
+                        <tr>
+                           <td>
+                              <div style="margin:0px auto;max-width:600px;">
+                                 <table role="presentation" cellpadding="0" cellspacing="0" style="font-size:0px;width:100%;" align="center" border="0">
+                                    <tbody>
+                                       <tr>
+                                          <td style="text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:9px 0px 9px 0px;">
+                                             <!--[if mso | IE]>      
+                                             <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                                                <tr>
+                                                   <td style="vertical-align:top;width:600px;">
+                                                      <![endif]-->
+                                                      <div class="mj-column-per-100 outlook-group-fix" style="vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%;">
+                                                         <table role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
+                                                            <tbody>
+                                                               <tr>
+                                                                  <td style="word-wrap:break-word;font-size:0px;padding:0px 20px 0px 20px;" align="left">
+                                                                     <div style="cursor:auto;color:#000000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:11px;line-height:22px;text-align:left;">
+                                                                        <p><span style="font-size:18px;">Thanks for ordering with Foodoor. Your order no: {{$order->id}} and total bill amount : Rs. {{$order->amount}}/- . We are waiting for restaurant confirmation and will update you soon.</span></p>
+                                                                        <p></p>
+                                                                        <p><span style="font-size:18px;">Regards,</span></p>
+                                                                        <p><span style="font-size:18px;">Team Foodoor</span></p>
+                                                                     </div>
+                                                                  </td>
+                                                               </tr>
+                                                            </tbody>
+                                                         </table>
+                                                      </div>
+                                                      <!--[if mso | IE]>      
+                                                   </td>
+                                                </tr>
+                                             </table>
+                                             <![endif]-->
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+                  <!--[if mso | IE]>      
+               </td>
+            </tr>
+         </table>
+         <![endif]-->      <!--[if mso | IE]>      
+         <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="600" align="center" style="width:600px;">
+            <tr>
+               <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
+                  <![endif]-->
+                  <table role="presentation" cellpadding="0" cellspacing="0" style="font-size:0px;width:100%;" border="0">
+                     <tbody>
+                        <tr>
+                           <td>
+                              <div style="margin:0px auto;max-width:600px;">
+                                 <table role="presentation" cellpadding="0" cellspacing="0" style="font-size:0px;width:100%;" align="center" border="0">
+                                    <tbody>
+                                       <tr>
+                                          <td style="text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:9px 0px 9px 0px;">
+                                             <!--[if mso | IE]>      
+                                             <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                                                <tr>
+                                                   <td style="vertical-align:top;width:300px;">
+                                                      <![endif]-->
+                                                      <div class="mj-column-per-50 outlook-group-fix" style="vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%;">
+                                                         <table role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
+                                                            <tbody>
+                                                               <tr>
+                                                                  <td style="word-wrap:break-word;font-size:0px;padding:10px 25px 10px 25px;padding-top:10px;padding-left:25px;" align="left">
+                                                                     <table role="presentation" cellpadding="0" cellspacing="0" style="border-collapse:separate;" align="left" border="0">
+                                                                        <tbody>
+                                                                           <tr>
+                                                                              <td style="border:none;border-radius:24px;color:#fff;cursor:auto;padding:10px 25px;" align="center" valign="middle" bgcolor="#e85034"><a href="https://foodoor.in/orders/{{$order->id}}" style="text-decoration:none;background:#e85034;color:#fff;font-family:Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif;font-size:15px;font-weight:normal;line-height:120%;text-transform:none;margin:0px;" target="_blank">Order Details</a></td>
+                                                                           </tr>
+                                                                        </tbody>
+                                                                     </table>
+                                                                  </td>
+                                                               </tr>
+                                                            </tbody>
+                                                         </table>
+                                                      </div>
+                                                      <!--[if mso | IE]>      
+                                                   </td>
+                                                   <td style="vertical-align:top;width:300px;">
+                                                      <![endif]-->
+                                                      <div class="mj-column-per-50 outlook-group-fix" style="vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%;">
+                                                         <table role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
+                                                            <tbody>
+                                                               <tr>
+                                                                  <td style="word-wrap:break-word;font-size:0px;padding:7px 25px 7px 25px;padding-top:10px;padding-left:25px;" align="right">
+                                                                     <table role="presentation" cellpadding="0" cellspacing="0" style="border-collapse:separate;" align="right" border="0">
+                                                                        <tbody>
+                                                                           <tr>
+                                                                              <td style="border:none;border-radius:24px;color:#030379;cursor:auto;padding:10px 25px;" align="center" valign="middle" bgcolor="#FFFFFF"><a href="https://foodoor.in/orders/{{$order->id}}/invoice" style="text-decoration:none;background:#FFFFFF;color:#030379;font-family:Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif;font-size:18px;font-weight:normal;line-height:120%;text-transform:none;margin:0px;" target="_blank">Download Invoice</a></td>
+                                                                           </tr>
+                                                                        </tbody>
+                                                                     </table>
+                                                                  </td>
+                                                               </tr>
+                                                            </tbody>
+                                                         </table>
+                                                      </div>
+                                                      <!--[if mso | IE]>      
+                                                   </td>
+                                                </tr>
+                                             </table>
+                                             <![endif]-->
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+                  <!--[if mso | IE]>      
+               </td>
+            </tr>
+         </table>
+         <![endif]-->      <!--[if mso | IE]>      
+         <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="600" align="center" style="width:600px;">
+            <tr>
+               <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
+                  <![endif]-->
+                  <table role="presentation" cellpadding="0" cellspacing="0" style="font-size:0px;width:100%;" border="0">
+                     <tbody>
+                        <tr>
+                           <td>
+                              <div style="margin:0px auto;max-width:600px;">
+                                 <table role="presentation" cellpadding="0" cellspacing="0" style="font-size:0px;width:100%;" align="center" border="0">
+                                    <tbody>
+                                       <tr>
+                                          <td style="text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:9px 0px 9px 0px;">
+                                             <!--[if mso | IE]>      
+                                             <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                                                <tr>
+                                                   <td style="vertical-align:top;width:600px;">
+                                                      <![endif]-->
+                                                      <div class="mj-column-per-100 outlook-group-fix" style="vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%;">
+                                                         <table role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
+                                                            <tbody>
+                                                               <tr>
+                                                                  <td style="word-wrap:break-word;font-size:0px;padding:10px 25px;padding-top:10px;padding-bottom:10px;padding-right:10px;padding-left:10px;">
+                                                                     <p style="font-size:1px;margin:0px auto;border-top:1px solid #000;width:100%;"></p>
+                                                                     <!--[if mso | IE]>
+                                                                     <table role="presentation" align="center" border="0" cellpadding="0" cellspacing="0" style="font-size:1px;margin:0px auto;border-top:1px solid #000;width:100%;" width="600">
+                                                                        <tr>
+                                                                           <td style="height:0;line-height:0;"> </td>
+                                                                        </tr>
+                                                                     </table>
+                                                                     <![endif]-->
+                                                                  </td>
+                                                               </tr>
+                                                            </tbody>
+                                                         </table>
+                                                      </div>
+                                                      <!--[if mso | IE]>      
+                                                   </td>
+                                                </tr>
+                                             </table>
+                                             <![endif]-->
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+                  <!--[if mso | IE]>      
+               </td>
+            </tr>
+         </table>
+         <![endif]-->      <!--[if mso | IE]>      
+         <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="600" align="center" style="width:600px;">
+            <tr>
+               <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
+                  <![endif]-->
+                  <table role="presentation" cellpadding="0" cellspacing="0" style="font-size:0px;width:100%;" border="0">
+                     <tbody>
+                        <tr>
+                           <td>
+                              <div style="margin:0px auto;max-width:600px;">
+                                 <table role="presentation" cellpadding="0" cellspacing="0" style="font-size:0px;width:100%;" align="center" border="0">
+                                    <tbody>
+                                       <tr>
+                                          <td style="text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:5px 0px 5px 0px;">
+                                             <!--[if mso | IE]>      
+                                             <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                                                <tr>
+                                                   <td style="vertical-align:top;width:600px;">
+                                                      <![endif]-->
+                                                      <div class="mj-column-per-100 outlook-group-fix" style="vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%;">
+                                                         <table role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
+                                                            <tbody>
+                                                               <tr>
+                                                                  <td style="word-wrap:break-word;font-size:0px;padding:10px 25px;" align="center">
+                                                                     <div>
+                                                                        <!--[if mso | IE]>      
+                                                                        <table role="presentation" border="0" cellpadding="0" cellspacing="0" align="undefined">
+                                                                           <tr>
+                                                                              <td>
+                                                                                 <![endif]-->
+                                                                                 <table role="presentation" cellpadding="0" cellspacing="0" style="float:none;display:inline-table;" align="center" border="0">
+                                                                                    <tbody>
+                                                                                       <tr>
+                                                                                          <td style="padding:4px;vertical-align:middle;">
+                                                                                             <table role="presentation" cellpadding="0" cellspacing="0" style="background:none;border-radius:3px;width:35px;" border="0">
+                                                                                                <tbody>
+                                                                                                   <tr>
+                                                                                                      <td style="vertical-align:middle;width:35px;height:35px;"><a href="https://www.facebook.com/PROFILE"><img alt="facebook" height="35" src="https://s3-eu-west-1.amazonaws.com/ecomail-assets/editor/social-icos/squared/facebook.png" style="display:block;border-radius:3px;" width="35"></a></td>
+                                                                                                   </tr>
+                                                                                                </tbody>
+                                                                                             </table>
+                                                                                          </td>
+                                                                                          <td style="padding:4px 4px 4px 0;vertical-align:middle;"><a href="https://www.facebook.com/PROFILE" style="text-decoration:none;text-align:left;display:block;color:#333333;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;border-radius:3px;"></a></td>
+                                                                                       </tr>
+                                                                                    </tbody>
+                                                                                 </table>
+                                                                                 <!--[if mso | IE]>      
+                                                                              </td>
+                                                                              <td>
+                                                                                 <![endif]-->
+                                                                                 <table role="presentation" cellpadding="0" cellspacing="0" style="float:none;display:inline-table;" align="center" border="0">
+                                                                                    <tbody>
+                                                                                       <tr>
+                                                                                          <td style="padding:4px;vertical-align:middle;">
+                                                                                             <table role="presentation" cellpadding="0" cellspacing="0" style="background:none;border-radius:3px;width:35px;" border="0">
+                                                                                                <tbody>
+                                                                                                   <tr>
+                                                                                                      <td style="vertical-align:middle;width:35px;height:35px;"><a href="https://plus.google.com/PROFILE"><img alt="google" height="35" src="https://s3-eu-west-1.amazonaws.com/ecomail-assets/editor/social-icos/squared/google-plus.png" style="display:block;border-radius:3px;" width="35"></a></td>
+                                                                                                   </tr>
+                                                                                                </tbody>
+                                                                                             </table>
+                                                                                          </td>
+                                                                                          <td style="padding:4px 4px 4px 0;vertical-align:middle;"><a href="https://plus.google.com/PROFILE" style="text-decoration:none;text-align:left;display:block;color:#333333;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;border-radius:3px;"></a></td>
+                                                                                       </tr>
+                                                                                    </tbody>
+                                                                                 </table>
+                                                                                 <!--[if mso | IE]>      
+                                                                              </td>
+                                                                           </tr>
+                                                                        </table>
+                                                                        <![endif]-->
+                                                                     </div>
+                                                                  </td>
+                                                               </tr>
+                                                            </tbody>
+                                                         </table>
+                                                      </div>
+                                                      <!--[if mso | IE]>      
+                                                   </td>
+                                                </tr>
+                                             </table>
+                                             <![endif]-->
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+                  <!--[if mso | IE]>      
+               </td>
+            </tr>
+         </table>
+         <![endif]-->
+      </div>
+   </body>
+</html>

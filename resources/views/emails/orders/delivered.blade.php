@@ -123,7 +123,7 @@
                                                    <tr>
                                                       <td style="word-wrap:break-word;font-size:0px;padding:0px 20px 0px 20px;" align="left">
                                                          <div style="cursor:auto;color:#000000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:11px;line-height:22px;text-align:left;">
-                                                            <h1 style="font-family: &apos;Cabin&apos;, sans-serif; line-height: 100%;">We have received your order!</h1>
+                                                            <h1 style="font-family: &apos;Cabin&apos;, sans-serif; line-height: 100%;">Thank you for using foodoor!</h1>
                                                          </div>
                                                       </td>
                                                    </tr>
@@ -169,7 +169,7 @@
                                                                <tr>
                                                                   <td style="word-wrap:break-word;font-size:0px;padding:0px 20px 0px 20px;" align="left">
                                                                      <div style="cursor:auto;color:#000000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:11px;line-height:22px;text-align:left;">
-                                                                        <p><span style="font-size:18px;">Thanks for ordering with Foodoor. Your order no: {{$order->id}} and total bill amount : Rs. {{$order->amount}}/- . We are waiting for restaurant confirmation and will update you soon.</span></p>
+                                                                        <p><span style="font-size:18px;">Thanks for ordering with Foodoor. Your order #{{$order->id}} has been delivered. and congratulations, you have got Foodoor cash of amount Rs. {{ $order->amount * (5/100) }} /-!!. Use this cash in your next order and save your money.</span></p>
                                                                         <p></p>
                                                                         <p><span style="font-size:18px;">Regards,</span></p>
                                                                         <p><span style="font-size:18px;">Team Foodoor</span></p>
@@ -224,7 +224,7 @@
                                                                      <table role="presentation" cellpadding="0" cellspacing="0" style="border-collapse:separate;" align="left" border="0">
                                                                         <tbody>
                                                                            <tr>
-                                                                              <td style="border:none;border-radius:24px;color:#fff;cursor:auto;padding:10px 25px;" align="center" valign="middle" bgcolor="#e85034"><a href="https://foodoor.in/orders/{{$order->id}}" style="text-decoration:none;background:#e85034;color:#fff;font-family:Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif;font-size:15px;font-weight:normal;line-height:120%;text-transform:none;margin:0px;" target="_blank">Order Details</a></td>
+                                                                              <td style="border:none;border-radius:24px;color:#fff;cursor:auto;padding:10px 25px;" align="center" valign="middle" bgcolor="#e85034"><a href="https://foodoor.in/orders/1" style="text-decoration:none;background:#e85034;color:#fff;font-family:Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif;font-size:15px;font-weight:normal;line-height:120%;text-transform:none;margin:0px;" target="_blank">Order Details</a></td>
                                                                            </tr>
                                                                         </tbody>
                                                                      </table>
@@ -245,7 +245,7 @@
                                                                      <table role="presentation" cellpadding="0" cellspacing="0" style="border-collapse:separate;" align="right" border="0">
                                                                         <tbody>
                                                                            <tr>
-                                                                              <td style="border:none;border-radius:24px;color:#030379;cursor:auto;padding:10px 25px;" align="center" valign="middle" bgcolor="#FFFFFF"><a href="https://foodoor.in/orders/{{$order->id}}/invoice" style="text-decoration:none;background:#FFFFFF;color:#030379;font-family:Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif;font-size:18px;font-weight:normal;line-height:120%;text-transform:none;margin:0px;" target="_blank">Download Invoice</a></td>
+                                                                              <td style="border:none;border-radius:24px;color:#030379;cursor:auto;padding:10px 25px;" align="center" valign="middle" bgcolor="#FFFFFF"><a href="https://google.com" style="text-decoration:none;background:#FFFFFF;color:#030379;font-family:Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif;font-size:18px;font-weight:normal;line-height:120%;text-transform:none;margin:0px;" target="_blank">Download Invoice</a></td>
                                                                            </tr>
                                                                         </tbody>
                                                                      </table>

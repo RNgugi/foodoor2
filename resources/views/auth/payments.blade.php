@@ -22,7 +22,7 @@
                </div>
             </div> 
 
-            <p><i class="fa fa-info-circle"></i> 10% of your Foodoor money is always reduced in your billing amount.</p>              
+            <p><i class="fa fa-info-circle"></i> 10% of your Foodoor money is always reduced in your billing amount. T&amp;C applied.</p>              
         </div>
     </div>
 </div>

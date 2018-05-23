@@ -381,7 +381,7 @@
                                     <p  style="color: #8a8a8a;font-size: 14px;">Extra charges may apply</p>
                                     <button style="width: 100%;" type="submit" class="btn theme-btn btn-lg" {{  $restaurant->is_open && Cart::instance('restaurant-'.$restaurant->id)->count() && (floatval(\Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', ''))) > 99 ? '' : 'disabled'}}>Checkout</button>
                                     @if(floatval(\Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', '')) < 99)
-                                     <p style="color: #000;font-size: 14px;margin-top: 5px;">Minimum order amount should be <br> Rs. 99</p>
+                                     <p style="color: #000;font-size: 14px;margin-top: 5px;font-weight: bold;">Minimum order amount should be <br> Rs. 99</p>
                                     @endif
                                  </div>
                               </div>

@@ -21,7 +21,7 @@ class WelcomeMail extends Mailable
      */
     public function __construct()
     {
-        $this->restaurants = Restaurant::limit(3)->get();
+        $this->restaurants = Restaurant::inRandomOrder()->limit(3)->get();
     }
 
     /**

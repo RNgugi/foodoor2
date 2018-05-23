@@ -16,13 +16,13 @@ return [
 
     // Menu logos
     'logo_lg'   => '<b>Food</b>oor',
-    'logo_mini' => '<b>D</b>d',
+    'logo_mini' => '<b>F</b>d',
 
     // Developer or company name. Shown in footer.
-    'developer_name' => 'Solicitous',
+    'developer_name' => 'Trumpets',
 
     // Developer website. Link in footer.
-    'developer_link' => 'http://solicitousbusiness.com',
+    'developer_link' => 'http://trumpetstechnologies.com',
 
     // Show powered by Laravel Backpack in the footer?
     'show_powered_by' => false,

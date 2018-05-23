@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\OrderPlaced;
+use App\Mail\OrderDelivered;
 use App\Mail\NewOrderMail;
 use App\Models\Order;
 use Illuminate\Http\Request;
@@ -143,12 +144,17 @@ class OrdersController extends Controller
             
             \Mail::to($order->restaurant->contact_email)->send(new NewOrderMail($order));
             
-            $message = 'We have received your order. Waiting for restaurant confirmation!';
+            $message = 'Thanks for ordering with Foodoor. Your order no: '. $order->id . ' and bill amount : Rs. '. $order->amount .'/- . We are waiting for restaurant confirmation and will update you soon.';
+
             $response = sendSMS(auth()->user()->phone, $message);
 
             auth()->user()->wallet_ballance = auth()->user()->wallet_ballance + ($order->subtotal * (5/100));
 
             auth()->user()->save();
+
+            $messageToRest = 'You have received a new order of Rs. '. $order->amount .'/-. Order Invoice : https://foodoor.in/orders/'. $order->id  .'/invoice';
+
+            sendSMS($order->restaurant->phone, $messageToRest);
 
             flash('We have received your order and waiting for restaurant confirmation.')->success();
             
@@ -231,6 +237,7 @@ class OrdersController extends Controller
         $order->save();
 
          event(new OrderStatusChanged($order));
+
 
         return back();
     }
