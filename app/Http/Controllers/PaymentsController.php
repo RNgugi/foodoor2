@@ -84,8 +84,12 @@ class PaymentsController extends Controller
 
         //flash('Payment was succesfully made!')->success();
 
-        $message = 'We have received your order. Waiting for restaurant confirmation!';
+         $message = 'Thanks for ordering with Foodoor. Your order no: '. $order->id . ' and bill amount : Rs. '. $order->amount .'/- . We are waiting for restaurant confirmation and will update you soon.';
         $response = sendSMS(auth()->user()->phone, $message);
+
+         $messageToRest = 'You have received a new order of Rs. '. $order->amount .'/-. Order Invoice : https://foodoor.in/orders/'. $order->id  .'/invoice';
+
+            sendSMS($order->restaurant->phone, $messageToRest);
 
         flash('We have placed your order and waiting for restaurant confirmation.')->success();
 

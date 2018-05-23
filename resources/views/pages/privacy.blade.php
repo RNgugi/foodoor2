@@ -156,6 +156,8 @@
 			<b>Email :</b> <a href="mailto:contact@foodoor.in">contact@foodoor.in</a><br>
 			<b>Phone :</b> <a href="tel:9905585412">(+91) 9905585412</a></p>
 
+			<P><b>Last updated on : Friday, 25th May 2018 12:00 PM</b></P> 
+
         </div>
     </div>
 </div>

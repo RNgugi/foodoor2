@@ -170,15 +170,7 @@
 
 
                          
-                         <ul class="pagination" style="margin-bottom: 100px;float: right;">
-                    
-                          <li class="page-item"><a class="page-link" href="/restaurants/explore?lat={{request('lat')}}&lng={{request('lng')}}&page={{ $page > 1 ? $page-1 : 1}}"><<</a></li>
-                           @for($i = 0; $i <= $pages;$i++)
-                            <li class="page-item {{ $page == $i+1 ? 'active' : '' }}"><a class="page-link" href="/restaurants/explore?lat={{request('lat')}}&lng={{request('lng')}}&page={{$i+1}}">{{ $i+1 }}</a></li>
-                           @endfor
-                          <li class="page-item"><a class="page-link" href="/restaurants/explore?lat={{request('lat')}}&lng={{request('lng')}}&page={{ $page <= $pages ? $page+1 : $pages+1}}">>></a></li>
-                        </ul>
-                        
+                       
                             
                         </div>
 

@@ -1,6 +1,24 @@
 @extends('layouts.restaurants')
 
 
+@section('styles')
+  
+    <style type="text/css">
+    input[type=number]::-webkit-inner-spin-button, 
+      input[type=number]::-webkit-outer-spin-button { 
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+          margin: 0; 
+      }
+  </style>
+
+
+
+
+@endsection
+
+
 @section('content')
 	
     <div style="background: #e9ecee;min-height: 1300px;">
@@ -77,7 +95,11 @@
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>Alternate Mobile No.</label>
-                                                <input type="number" max="10" name="alt_mobile" value="{{ old('alt_mobile') }}" class="form-control" placeholder="Alternate Contact Number" > </div>
+                                                <input id="alt_mobile" onkeyup="checkPhone()" type="number" autocomplete="off" max="10" name="alt_mobile" value="{{ old('alt_mobile') }}" class="form-control" placeholder="Alternate Contact Number" > 
+                                                   <span id="alt_mobile_feedback" class="invalid-feedback">
+                                                        
+                                                   </span>
+                                                </div>
                                             <!--/form-group-->
                                         </div>
                                     </div>
@@ -103,7 +125,7 @@
                                         @elseif(session()->has($sessionName) && session($sessionName) == 'foodoorcash')  
                                           <input type="hidden" name="foodoorcash" value="{{ $foodoorCash }}">
                                         @endif
-                                        <p class="text-xs-center"> <button type="submit" class="btn btn-outline-success btn-block">Place Order</button> </p>
+                                        <p class="text-xs-center"> <button id="place_order_btn" type="submit" class="btn btn-outline-success btn-block">Place Order</button> </p>
                                     </div>
                     </div>
                 </div>
@@ -195,8 +217,8 @@
                                                         <td style="text-align: right;">&#8377;{{ $gst }}</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Delivery Charges</td>
-                                                        <td style="text-align: right;">&#8377;30</td>
+                                                        <td>Delivery Charges <a role="button" data-toggle="popover" data-container="body"  data-content="Your first 3 deliveries are on us."><i  class="fa fa-info-circle"></i></a></td>
+                                                        <td style="text-align: right;">&#8377;{{$deliveryCharge}}</td>
                                                     </tr>
                                                     
                                                     @if(session()->has($sessionName) && session($sessionName) != 'foodoorcash')
@@ -326,6 +348,32 @@
   
   <script src="/js/jquery.spinner.js"></script>
      <script>
+
+
+     function checkPhone()
+     {
+         phone = $('#alt_mobile').val();
+
+         if(phone.length == 0)
+         {
+            $('#place_order_btn').attr('disabled', false);
+         } else {
+            if(phone.length < 10 || phone.length > 10)
+         {
+            $('#alt_mobile').addClass('is-invalid');
+             $('#alt_mobile_feedback').html('<strong>Please enter a valid phone number.</strong>');
+
+             $('#place_order_btn').attr('disabled', true);
+
+         } else {
+               $('#alt_mobile').removeClass('is-invalid');
+              $('#alt_mobile_feedback').html('');
+              $('#place_order_btn').attr('disabled', false);
+         }
+         } 
+
+         
+     }
 
      restaurantloc = {'lat' : {{ $restaurant->latitude }}, 'lng' : {{ $restaurant->longitude }} };
 

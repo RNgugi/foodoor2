@@ -75,9 +75,12 @@ class CheckoutController extends Controller
 	    } 
 
 
+        $deliveryCharge = auth()->user()->orders()->count() >= 3 ? 30 : 0;
+
+
         $coupons = Coupon::all();
 
-    	return view('checkout.index', compact('restaurant', 'lat', 'lng', 'sessionName', 'coupon', 'discount', 'coupons', 'total', 'gst', 'foodoorCash'));
+    	return view('checkout.index', compact('restaurant', 'lat', 'lng', 'sessionName', 'coupon', 'discount', 'coupons', 'total', 'gst', 'foodoorCash', 'deliveryCharge'));
     }
 
 

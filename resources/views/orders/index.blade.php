@@ -4,7 +4,7 @@
 @section('content')
 	 
 
-	<div style="background: #fbbf67;min-height: 900px;padding-top: 60px;">
+	<div style="background: #fbbf67;min-height: 900px;padding-top: 60px;padding-bottom: 60px;">
 
     <div class="container" style="background: #fff;padding-top: 30px;min-height: 700px;">
        <div class="row">

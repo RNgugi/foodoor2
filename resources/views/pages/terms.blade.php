@@ -159,7 +159,10 @@
 			Hatia Ranchi Jharkhand, 834003<br>
 			<b>Contact Us Form:</b> <a href="https://foodoor.in/contact">https://foodoor.in/contact</a><br>
 			<b>Email :</b> <a href="mailto:contact@foodoor.in">contact@foodoor.in</a><br>
-			<b>Phone :</b> <a href="tel:9905585412">(+91) 9905585412</a></p>       
+			<b>Phone :</b> <a href="tel:9905585412">(+91) 9905585412</a></p>      
+
+
+			<P><b>Last updated on : Friday, 25th May 2018 12:00 PM</b></P> 
         </div>
     </div>
 </div>

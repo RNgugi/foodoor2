@@ -89,7 +89,7 @@ class OrdersController extends Controller
 
         $order->tax = \Cart::instance('restaurant-' . request('restaurant_id'))->subtotal(2, '.', '') * (5/100);
 
-        $order->delivery_charges = 30;
+        $order->delivery_charges = auth()->user()->orders()->count() >= 3 ? 30 : 0;
 
         $discount = 0;
 

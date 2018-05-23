@@ -22,6 +22,8 @@
                <p><i class="fa fa-whatsapp"></i> <a href="tel:08788191787">08788191787</a> </p>
 
                <p><i class="fa fa-envelope"></i> <a href="mailto:contact@foodoor.in">contact@foodoor.in</a> </p>
+               <br>
+               <div class="mapouter"><div class="gmap_canvas"><iframe width="400" height="300" id="gmap_canvas" src="https://maps.google.com/maps?q=Hatia, Ranchi Jharkhand&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe></div><a href="https://www.pureblack.de/webdesign-muenchen/">pure black münchen</a><style>.mapouter{overflow:hidden;height:327px;width:456px;}.gmap_canvas {background:none!important;height:327px;width:456px;}</style></div>
              </div>
 
              <div class="col-md-6">
