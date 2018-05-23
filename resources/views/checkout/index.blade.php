@@ -95,7 +95,7 @@
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>Alternate Mobile No.</label>
-                                                <input id="alt_mobile" onkeyup="checkPhone()" type="number" autocomplete="off" max="10" name="alt_mobile" value="{{ old('alt_mobile') }}" class="form-control" placeholder="Alternate Contact Number" > 
+                                                <input id="alt_mobile" onkeyup="checkPhone()" type="number" autocomplete="off"  name="alt_mobile" value="{{ old('alt_mobile') }}" class="form-control" placeholder="Alternate Contact Number" > 
                                                    <span id="alt_mobile_feedback" class="invalid-feedback">
                                                         
                                                    </span>
