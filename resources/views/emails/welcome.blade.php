@@ -230,7 +230,7 @@
                                                                      <table role="presentation" cellpadding="0" cellspacing="0" style="border-collapse:collapse;border-spacing:0px;" align="center" border="0">
                                                                         <tbody>
                                                                            <tr>
-                                                                              <td style="width:174px;"><a href="/restaurants/{{$restaurant->id}}?lat={{$restaurant->latitude}}&lng={{$restaurant->longitude}}" target="_blank"><img alt="" title="" height="auto" src="{{ isset($restaurant->logo) ? url($restaurant->logo) : 'http://via.placeholder.com/350x250' }}" style="border:none;border-radius:0px;display:block;font-size:13px;outline:none;text-decoration:none;width:100%;height:auto;" width="174"></a></td>
+                                                                              <td style="width:174px;"><a href="http://foodoor.in/restaurants/{{$restaurant->id}}?lat={{$restaurant->latitude}}&lng={{$restaurant->longitude}}" target="_blank"><img alt="" title="" height="auto" src="{{ isset($restaurant->logo) ? url($restaurant->logo) : 'http://via.placeholder.com/350x250' }}" style="border:none;border-radius:0px;display:block;font-size:13px;outline:none;text-decoration:none;width:100%;height:180px;" width="174"></a></td>
                                                                            </tr>
                                                                         </tbody>
                                                                      </table>

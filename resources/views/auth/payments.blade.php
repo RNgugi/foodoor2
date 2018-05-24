@@ -17,7 +17,7 @@
             <div class="widget" style="width: 40%;">
                <div class="widget-body" style="background: #fff;">
                      
-                        <h4 style="font-weight: 400;padding-bottom: 0px;margin-bottom: 0px;font-size: 23px;">Foodoor Money : <span>{{ auth()->user()->wallet_ballance }}</span></h4>
+                        <h4 style="font-weight: 400;padding-bottom: 0px;margin-bottom: 0px;font-size: 23px;">Foodoor Cash : <span>{{ auth()->user()->wallet_ballance }}</span></h4>
                      
                </div>
             </div> 
