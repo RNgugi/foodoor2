@@ -15,7 +15,7 @@
             @else
             <img src="/images/nonveg.png" style="width: 15px;height: 15px;margin-top: 0px;" >
             @endif 
-           {{ substr($item->name, 0, 30) }}</h5>
+           {{ substr($item->name, 0, 25) }}</h5>
           
   	       <div style="cursor: pointer;" class="product-name"  data-toggle="popover" data-trigger="hover" data-placement="top" data-content="{{ $item->description }}">{{  (strlen($item->description) > 50 ? substr($item->description, 0, 50) . '...' : $item->description) }}</div>
   	      

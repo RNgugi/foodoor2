@@ -218,7 +218,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td>Delivery Charges <a role="button" data-toggle="popover" data-container="body"  data-content="Your first 3 deliveries are on us."><i  class="fa fa-info-circle"></i></a></td>
-                                                        <td style="text-align: right;">&#8377;{{$deliveryCharge}}</td>
+                                                        <td style="text-align: right;">{{ $deliveryCharge == 0 ? 'FREE' :  $deliveryCharge }}</td>
                                                     </tr>
                                                     
                                                     @if(session()->has($sessionName) && session($sessionName) != 'foodoorcash')
@@ -431,7 +431,7 @@
                                                 enableAutocomplete: true,
                                                 addressFormat: 'street_address',
                                                 onchanged: function (currentLocation, radius, isMarkerDropped) {
-                                                    if(getDistance(currentLocation) > 5000)
+                                                    if(getDistance(currentLocation) > 2500)
                                                     {
                                                         alert('Sorry, As of now we are not serving in this area.Please choose another location.');
 

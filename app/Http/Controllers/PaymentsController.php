@@ -89,7 +89,7 @@ class PaymentsController extends Controller
 
          $messageToRest = 'You have received a new order of Rs. '. $order->amount .'/-. Order Invoice : https://foodoor.in/orders/'. $order->id  .'/invoice';
 
-            sendSMS($order->restaurant->phone, $messageToRest);
+            sendSMS($order->restaurant->contact_phone, $messageToRest);
 
         flash('We have placed your order and waiting for restaurant confirmation.')->success();
 

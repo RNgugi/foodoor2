@@ -30,7 +30,7 @@ class CheckoutController extends Controller
     	$sessionName = 'restaurant-' . $restaurant->id . '-coupon';
 
         
-        
+
         $deliveryCharge = auth()->user()->orders()->count() >= 3 ? 30 : 0;
 
        // dd(\Cart::instance('restaurant-'.$restaurant->id)->content());
@@ -45,21 +45,16 @@ class CheckoutController extends Controller
     	{  
             if(session($sessionName) == 'foodoorcash')
             {   
-                $disc = (floatval(\Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', '')))  * (10 / 100);
+                $disc = auth()->user()->wallet_ballance * (10 / 100);
 
                 if($disc > 150)
                 {
-                    $foodoorCash = auth()->user()->wallet_ballance >= 150 ? 150 : auth()->user()->wallet_ballance;
+                    $foodoorCash = 150;
 
                 } else {
                     
-                    if(auth()->user()->wallet_ballance >= $disc)
-                    {
-                        $foodoorCash = $disc;
-                    } else {
-                        $foodoorCash = auth()->user()->wallet_ballance;
-                    }
-
+                    $foodoorCash = $disc;
+                
                 }
                 
 

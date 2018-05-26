@@ -54,7 +54,7 @@
                                                                      <table role="presentation" cellpadding="0" cellspacing="0" style="border-collapse:collapse;border-spacing:0px;" align="left" border="0">
                                                                         <tbody>
                                                                            <tr>
-                                                                              <td style="width:195px;"><img alt="" title="" height="auto" src="https://topolio.s3-eu-west-1.amazonaws.com/uploads/5b024329cca70/1526878988.jpg" style="border:none;border-radius:0px;display:block;font-size:13px;outline:none;text-decoration:none;width:100%;height:auto;" width="195"></td>
+                                                                              <td style="width:195px;"><img alt="" title="" height="195" src="https://foodoor.in/images/logonew.png" style="border:none;border-radius:0px;display:block;font-size:13px;outline:none;text-decoration:none;width:100%;height:195px;" width="195"></td>
                                                                            </tr>
                                                                         </tbody>
                                                                      </table>
