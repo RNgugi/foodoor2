@@ -39,7 +39,7 @@ class OrderStatusChangedListener
             $response = sendSMS($event->order->user->phone, $message);
         } elseif($status == 3) {
             $message = 
-            'Delivery person is out for delivery and will reach you soon. Request you to keep Rs. '. $event->order->amount .'/- in cash ready. Please ignore if already paid online.'
+            'Delivery person is out for delivery and will reach you soon. Request you to keep Rs. '. $event->order->amount .'/- in cash ready. Please ignore if already paid online.';
             $response = sendSMS($event->order->user->phone, $message);
         } elseif($status == 4) {
             $message = 'Your order has been delivered. Congratulations, you have got Foodoor cash of amount Rs. '. ($event->order->amount * (5/100)) .'/-  !!. Use this cash in your next order and save your money.';
