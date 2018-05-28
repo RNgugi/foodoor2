@@ -73,7 +73,7 @@ class CheckoutController extends Controller
 	     } 
 
 
-
+         dd(session($sessionName));
 
         $coupons = Coupon::all();
 
