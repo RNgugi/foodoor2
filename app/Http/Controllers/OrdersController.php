@@ -52,6 +52,7 @@ class OrdersController extends Controller
      */
     public function store(Request $request)
     {
+
         $sessionName = 'restaurant-' . request('restaurant_id') . '-coupon';
 
         $user = auth()->user();
@@ -100,9 +101,9 @@ class OrdersController extends Controller
 
         $foodoorCash = 0;
         
-        if(request()->has('discount'))
+        if(request()->has('foodoorcash'))
         {
-            $foodoorCash = request('foodoorCash');
+            $foodoorCash = request('foodoorcash');
         }
 
         $order->amount =   ceil($order->subtotal +  $order->tax + $order->delivery_charges - $discount - $foodoorCash);

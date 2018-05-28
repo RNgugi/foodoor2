@@ -36,15 +36,17 @@ class CheckoutController extends Controller
        // dd(\Cart::instance('restaurant-'.$restaurant->id)->content());
 
 
-         $gst = (floatval(\Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', ''))) * (5/100);
+         $foodoorCash = 0;
 
+         $gst = (floatval(\Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', ''))) * (5/100);
 
          $total =  ceil((floatval(\Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', ''))) + $deliveryCharge + $gst);
 
-    	if(session()->has($sessionName))
-    	{  
-            if(session($sessionName) == 'foodoorcash')
-            {   
+	     if(session()->has($sessionName))
+    	 {  
+
+             if(session($sessionName) == 'foodoorcash')
+             {   
                 $disc = auth()->user()->wallet_ballance * (10 / 100);
 
                 if($disc > 150)
@@ -56,19 +58,19 @@ class CheckoutController extends Controller
                     $foodoorCash = $disc;
                 
                 }
-                
-
+              
                  $total =  ceil((floatval(\Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', ''))) - $foodoorCash + $deliveryCharge + $gst) ;
 
-            } else {
+             } else {
                 $coupon = Coupon::where('code',session($sessionName) )->first();
             
                 $discount = $coupon->discount_type == 0 ? $coupon->discount : (floatval(\Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', '')))  * ($coupon->discount / 100);
 
                 $total =  ceil((floatval(\Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', ''))) - $discount + $deliveryCharge + $gst) ;
-            }
+             }
+
     		
-	    } 
+	     } 
 
 
 
