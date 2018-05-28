@@ -78,7 +78,6 @@ class ItemCrudController extends CrudController
                 'type' => 'select2_from_array',
                 'options' => [0 => 'Non Veg', 1 => 'Veg'],
                 'allows_null' => false,
-                'default' => 1,
                 'tab' => 'General'
                 // 'allows_multiple' => true, // OPTIONAL; needs you to cast this to array in your model;
             ],
