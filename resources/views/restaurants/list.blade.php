@@ -259,7 +259,7 @@ $('#carouselBanners .carousel-item').each(function(){
           } else {
                $('#fixedSidebar').css('position', 'absolute');
                $('#fixedSidebar').css('width', '287px');
-                 $('#fixedSidebar').css('top', '80px');
+                 $('#fixedSidebar').css('top', '0px');
           }
       }
     </script>
