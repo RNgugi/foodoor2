@@ -145,7 +145,7 @@ class OrdersController extends Controller
 
             $invoiceData = $invoice->output();
             
-            $message = new OrderPlaced($booking);
+            $message = new OrderPlaced($order);
 
             $message->attachData($invoiceData, 'invoice.pdf', [
                             'mime' => 'application/pdf',
