@@ -70,14 +70,14 @@
 
                                   <div class="food-item-wrap" style="background: #fff;border: none;">
 
-                                  <a href="/restaurants/{{$restaurant->id}}?lat={{$restaurant->latitude}}&lng={{$restaurant->longitude}}">
+                                  <a href="/restaurants/{{$restaurant->id}}?lat={{session('lat')}}&lng={{session('lng')}}">
 
                                     <img src="{{ isset($restaurant->logo) ? url($restaurant->logo) : 'http://via.placeholder.com/350x250' }}" style="max-height: 200px;height: 200px;width: 100%;">
                                     
                                     </a>
 
                                     <div class="content" style="padding-left: 0;">
-                                        <h5 style="font-size: 18px;"><a href="/restaurants/{{$restaurant->id}}?lat={{$restaurant->latitude}}&lng={{$restaurant->longitude}}">{{ $restaurant->name }}</a></h5>
+                                        <h5 style="font-size: 18px;"><a href="/restaurants/{{$restaurant->id}}?lat={{session('lat')}}&lng={{session('lng')}}">{{ $restaurant->name }}</a></h5>
                                         <div class="product-name">{{ $restaurant->area }}</div>
                                         
                                           <div style="position: relative;margin-top: 5px;font-size: 14px;color: green">
