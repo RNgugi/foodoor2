@@ -113,7 +113,7 @@
                                    
                                      @else 
 
-                                      <a href="/restaurants/{{ $restaurant->id }}?lat={{request('lat')}}&lng={{request('lng')}}&cuisine={{$cuisine->id}}" class="scroll">{{ $cuisine->name }} </a>
+                                      <a href="#cuisine-{{$cuisine->id}}" class="scroll">{{ $cuisine->name }} </a>
                                       @endif
                                      
 
@@ -180,7 +180,7 @@
                              @else
                                  <?php $items = $restaurant->items()->where('cuisine_id', $cuisine->id)->get(); ?>
                            @endif
-                           <div class="menu-widget " style="background: #fff;margin-bottom: 8px;">
+                           <div id="cuisine-{{$cuisine->id}}" class="menu-widget " style="background: #fff;margin-bottom: 8px;">
                               <div class="widget-heading">
                                  <h3 class="widget-title text-dark">
                                     {{ $cuisine->name }} <a class="btn btn-link pull-right" data-toggle="collapse" href="#cuisine-{{ $cuisine->id }}" aria-expanded="true">
