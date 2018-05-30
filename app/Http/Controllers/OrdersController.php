@@ -141,8 +141,18 @@ class OrdersController extends Controller
             return redirect('/orders/' . $order->id . '/pay');
         } else {
             
-            \Mail::to(auth()->user())->send(new OrderPlaced($order));
+            $invoice = \PDF::loadView('orders.invoice', compact('order'));
+
+            $invoiceData = $invoice->output();
             
+            $message = new OrderPlaced($booking);
+
+            $message->attachData($invoiceData, 'invoice.pdf', [
+                            'mime' => 'application/pdf',
+                        ]);
+
+            \Mail::to(auth()->user())->send($message);
+
             \Mail::to($order->restaurant->contact_email)->send(new NewOrderMail($order));
             
             $message = 'Thanks for ordering with Foodoor. Your order no: '. $order->id . ' and bill amount : Rs. '. $order->amount .'/- . We are waiting for restaurant confirmation and will update you soon.';
@@ -174,6 +184,19 @@ class OrdersController extends Controller
     public function show(Order $order)
     {
         return view('orders.show', compact('order'));
+    }
+
+     /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function invoice(Order $order)
+    {
+        $invoice = \PDF::loadView('orders.invoice', compact('order'));
+
+        return $invoice->download('invoice.pdf');
     }
 
     /**

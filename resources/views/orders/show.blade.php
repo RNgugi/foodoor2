@@ -52,6 +52,7 @@
                                
                               @else
                               {{--   <button style="float: right;margin-right: 14px;margin-top: 7px;border-radius: 5px;" type="button" class="btn theme-btn btn-lg"><i class="fa fa-map-marker"></i> Track Your Order</button> --}}
+                               <a href="/orders/{{$order->id}}/invoice" style="float: right;" class="btn btn-link"> Download Invoice</a>
                               @endif  
                             </div>
                             @endif

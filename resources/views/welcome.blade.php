@@ -31,36 +31,24 @@
 
                 <div class="container"> 
 
-                <div id="carouselBanners" class="carousel slide" data-ride="carousel" data-interval="2000" data-pause="hover"> 
-                   <div class="carousel-inner">
+                <div class="autoplay"> 
+                  
                     
 
                       @foreach($allbanners as  $index => $homebanner)
-                       <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
-                           <div class="col-md-3">
+                       <div  class="col-md-3">
+                           
                                 <a href="{{ $homebanner->url }}" class="">
-                                    <img style="width: 100%;" src="{{ url($homebanner->image) }}">
+                                    <img style="width: 100%;height: 270px;" src="{{ url($homebanner->image) }}">
                                  </a>
-                             </div>    
+                            
                            
                        </div>
 
                      @endforeach  
                      
                        
-                   </div>
-                  
-                  <a class="carousel-control-prev" href="#carouselBanners" role="button" data-slide="prev">
-                          <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                          <span class="sr-only">Previous</span>
-                  </a>
-                
-
-                  <a class="carousel-control-next" href="#carouselBanners" role="button" data-slide="next">
-                           <i class="fa fa-arrow-right" aria-hidden="true"></i>
-                           <span class="sr-only">Next</span>
-                  </a>
-                
+                   
 
                 </div>
                
@@ -71,36 +59,7 @@
             </div>
 
 
-             <div id="#carouselBanners" class="inner-page-hero hidden-md-up"  style="background: #2b2b2b;padding-bottom: 19px;
-    padding-top: 30px;">
-
-
-                <div class="container"> 
-
-                <div id="carouselBanners" class="carousel slide" data-ride="carousel">
-                   <div class="carousel-inner">
-                      @foreach($allbanners as  $index => $homebanner)
-                       <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
-                           
-                                <a href="{{ $homebanner->url }}" class="">
-                                    <img style="width: 280px;" src="{{ url($homebanner->image) }}">
-                                 </a>
-                           
-                       </div>
-                     @endforeach  
-                       
-                   </div>
-                  
-              
-                
-
-                </div>
-               
-
-
-                </div>
-                <!-- end:Container -->
-            </div>
+            
 
 
          @include('partials.landing._locationMatch') 
@@ -145,10 +104,10 @@
             <div class="container">
                  <h2 style="font-weight: bold;margin-bottom: 60px;text-align: center;">Our Exclusive Partners</h2>   
                 <!-- restaurants listing starts -->
-              <div id="carouselRestaurants" class="carousel slide" data-ride="carousel">
-                   <div class="carousel-inner">
+              <div class="autoplay">
+                 
                         @foreach($restaurantlogos as $index => $restaurantLogo)
-                           <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+                           
                                <div class="col-md-3">
                                  
                                     <a href="/restaurants/{{$restaurantLogo->restaurant->id}}?lat={{$restaurantLogo->restaurant->latitude}}&lng={{$restaurantLogo->restaurant->longitude}}" >
@@ -157,17 +116,9 @@
                                   
                                    
                                </div>
-                           </div>
+                           
                        @endforeach
-                   </div>
-                  <a class="carousel-control-prev" href="#carouselRestaurants" role="button" data-slide="prev">
-                          <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                          <span class="sr-only">Previous</span>
-                  </a>
-                  <a class="carousel-control-next" href="#carouselRestaurants" role="button" data-slide="next">
-                          <i class="fa fa-arrow-right" aria-hidden="true"></i>
-                           <span class="sr-only">Next</span>
-                  </a>
+
                 </div>
                 <!-- restaurants listing ends -->
 

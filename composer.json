@@ -13,6 +13,7 @@
         "backpack/logmanager": "^2.3",
         "backpack/permissionmanager": "^2.1",
         "backpack/settings": "^2.0",
+        "barryvdh/laravel-dompdf": "master",
         "barryvdh/laravel-elfinder": "^0.3.12",
         "fideloper/proxy": "^4.0",
         "gloudemans/shoppingcart": "^2.5",

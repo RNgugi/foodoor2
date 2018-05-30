@@ -52,6 +52,10 @@ Route::get('/restaurants', 'RestaurantsController@index')->name('restaurants');
 
 Route::get('/restaurants/explore', 'RestaurantsController@get')->name('restaurants.list');
 
+
+Route::get('/restaurants/search', 'RestaurantsController@search')->name('restaurants.search');
+
+
 Route::get('/restaurants/explore/cusine:{cuisine}', 'RestaurantsController@getByCuisine')->name('restaurants.list.cuisine');
 
 Route::get('/restaurants/{restaurant}', 'RestaurantsController@show')->name('restaurants.show');
@@ -61,6 +65,7 @@ Route::post('/orders', 'OrdersController@store');
 Route::get('/orders', 'OrdersController@index');
 
 Route::get('/orders/{order}', 'OrdersController@show');
+Route::get('/orders/{order}/invoice', 'OrdersController@invoice');
 
 Route::get('/orders/{order}/pay', 'PaymentsController@addMoney');
 

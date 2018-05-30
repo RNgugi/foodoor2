@@ -98,6 +98,10 @@ class RestaurantsController extends Controller
         return redirect('/');
       }
 
+      session(['lat' => request('lat')]);
+
+      session(['lng' => request('lng')]);
+
         $cuisines = Cuisine::limit(8)->get();
 
         $allbanners = \App\Models\Restaurantbanner::all();
@@ -119,10 +123,22 @@ class RestaurantsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function search()
     {
-        //
+       $query = request('query');
+
+       if($query == '')
+       {
+        $restaurants = [];
+       } else {
+
+       $restaurants = Restaurant::where('name', 'LIKE', '%' . $query . '%')->get();
+       }
+
+       return view('restaurants.search', compact('restaurants', 'query'));
     }
+
+
 
     /**
      * Store a newly created resource in storage.

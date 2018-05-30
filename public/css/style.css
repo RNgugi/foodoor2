@@ -2949,8 +2949,8 @@ input.is-invalid {
     font-size: 16px /* Set a font size */
 }
 
-.carousel-control-prev{
-     color: #2b2b2b;
+.slick-prev.slick-arrow{
+    color: transparent;
     background: #fff;
     padding: 10px;
     padding-left: 16px;
@@ -2962,13 +2962,41 @@ input.is-invalid {
     left: -29px;
     font-size: 20px;
     font-weight: 400;
+    z-index: 1000;
+    cursor: pointer;
 
 }
 
 
+.slick-prev, .slick-next {
+    font-size: 0;
+    line-height: 0;
+    position: absolute;
+   
+}
 
-.carousel-control-next{
-    color: #2b2b2b;
+.slick-next:before {
+    content: '→';
+}
+.slick-prev:before, .slick-next:before {
+    font-family: 'slick';
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1;
+    opacity: .75;
+    color: #000;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.slick-prev:before {
+    content: '←';
+}
+
+
+
+.slick-next.slick-arrow{
+    color: transparent;
     background: #fff;
     padding: 10px;
     padding-left: 17px;
@@ -2980,6 +3008,8 @@ input.is-invalid {
     right: -24px;
     font-size: 20px;
     font-weight: 400;
+    z-index: 1000;
+    cursor: pointer;
 }
 
 

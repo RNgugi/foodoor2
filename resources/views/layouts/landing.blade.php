@@ -16,6 +16,8 @@
     <link href="/css/font-awesome.min.css" rel="stylesheet">
     <link href="/css/animsition.min.css" rel="stylesheet">
     <link href="/css/animate.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <!-- Custom styles for this template -->
     <link href="/css/style.css" rel="stylesheet"> 
 
@@ -61,6 +63,10 @@ input[type=number]::-webkit-outer-spin-button {
     <script src="/js/foodpicky.min.js"></script> 
      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
+
+     <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABIlUStLsr84EGUomykEKJeNPIuWbT854&v=3.exp&sensor=false&libraries=places"></script>
         
          
@@ -77,6 +83,15 @@ input[type=number]::-webkit-outer-spin-button {
               $( function() {
                 $( ".datepicker" ).datepicker();
               } );
+
+
+              $('.autoplay').slick({
+                slidesToShow: 4,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 2000,
+                arrows: true
+              });
 
 
 

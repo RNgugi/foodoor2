@@ -34,39 +34,26 @@
 
                 <div class="container"> 
 
-                <div id="carouselBanners" class="carousel slide" data-ride="carousel" data-interval="2000" data-pause="hover"> 
-                   <div class="carousel-inner">
+                <div class="autoplay"> 
+                  
                     
 
                       @foreach($allbanners as  $index => $homebanner)
-                       <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
-                           <div class="col-md-3">
+                       <div  class="col-md-3">
+                           
                                 <a href="{{ $homebanner->url }}" class="">
-                                    <img style="width: 280px;" src="{{ url($homebanner->image) }}">
+                                    <img style="width: 100%;height: 270px;" src="{{ url($homebanner->image) }}">
                                  </a>
-                             </div>    
+                            
                            
                        </div>
 
                      @endforeach  
                      
                        
-                   </div>
-                  
-                  <a class="carousel-control-prev" href="#carouselBanners" role="button" data-slide="prev">
-                          <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                          <span class="sr-only">Previous</span>
-                  </a>
-                
-
-                  <a class="carousel-control-next" href="#carouselBanners" role="button" data-slide="next">
-                           <i class="fa fa-arrow-right" aria-hidden="true"></i>
-                           <span class="sr-only">Next</span>
-                  </a>
-                
+                   
 
                 </div>
-               
 
 
                 </div>
@@ -88,13 +75,9 @@
                             </div>   
                          </div>
                         <p></p>
-                       <!-- <div class="col-sm-4">
-                            <select class="custom-select pull-right">
-                                <option selected="">Sort By</option>
-                                <option value="1">Distance</option>
-                                <option value="2">Delivery Time</option>
-                            </select>
-                        </div> -->
+                      <div class="col-sm-4">
+                             <a href="/restaurants/search" style="display: inline-block;float: right;" class="btn theme-btn">Search Restaurants</a>
+                        </div> 
                     </div>
                 </div>
             </div>
