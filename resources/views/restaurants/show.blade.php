@@ -76,7 +76,7 @@
 
                <div class="row">
                   <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3 ">
-                     <div class="sidebar clearfix m-b-20 " style="position: sticky;">
+                     <div id="fixedSidebar" class="sidebar clearfix m-b-20 " >
                         <div class="main-block">
                            <div class="sidebar-title white-txt">
                               <h6>Choose Cusine</h6>
@@ -302,7 +302,7 @@
                   </div>
                   <!-- end:Bar -->
                   <div class="col-xs-12 col-md-12 col-lg-3">
-                     <div class="sidebar-wrap">
+                     <div id="fixedCart" class="sidebar-wrap">
                         <form method="GET" action="/checkout">
                           
 
@@ -439,6 +439,27 @@
          }
         });
       </script>
+
+
+
+    <script type="text/javascript">
+      window.onscroll = function() {myFunction()};
+
+      function myFunction() {
+          if (document.body.scrollTop > 468 || document.documentElement.scrollTop > 468) {
+              $('#fixedSidebar').css('position', 'fixed');
+               $('#fixedSidebar').css('width', '287px');
+                 $('#fixedSidebar').css('top', '80px');
+                  $('#fixedCart').css('position', 'fixed');
+               $('#fixedCart').css('width', '287px');
+                 $('#fixedCart').css('top', '80px');
+          } else {
+               $('#fixedCart').css('position', 'absolute');
+               $('#fixedCart').css('width', '287px');
+                 $('#fixedCart').css('top', '0px');
+          }
+      }
+    </script>
 
     @endforeach
    
