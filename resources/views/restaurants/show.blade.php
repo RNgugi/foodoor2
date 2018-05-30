@@ -442,6 +442,11 @@
 
 
 
+
+    @endforeach
+
+
+    
     <script type="text/javascript">
       window.onscroll = function() {myFunction()};
 
@@ -460,8 +465,6 @@
           }
       }
     </script>
-
-    @endforeach
    
 
 @endsection
