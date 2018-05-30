@@ -54,7 +54,7 @@
 
          
 
-            <div class="breadcrumb" style="background: #fff;">
+            <div class="breadcrumb" style="background: #fff;" style="position: sticky;">
                <div class="container">
                   <ul>
                      <li><a href="/" class="active">Home</a></li>
