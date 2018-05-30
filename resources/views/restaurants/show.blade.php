@@ -124,7 +124,7 @@
                                           @foreach($cuisine->subs as $subCuisine)
                                             @if($subCuisine->items()->where('restaurant_id', $restaurant->id)->count())
                                               <li style="text-align: right;font-size: 15px;" class="{{ request('cuisine') ==  $cuisine->id ? 'active' : '' }}">
-                                               <a style="padding: 4px;" href="/restaurants/{{ $restaurant->id }}?lat={{request('lat')}}&lng={{request('lng')}}&cuisine={{$subCuisine->id}}" class="scroll">{{ $subCuisine->name }}</a>
+                                               <a style="padding: 4px;" href="#cuisine-{{$cuisine->id}}" class="scroll">{{ $subCuisine->name }}</a>
                                               </li> 
                                             @endif
                                           @endforeach
