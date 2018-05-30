@@ -125,8 +125,22 @@
 @section('scripts')
 
   
-    
+    position: fixed;
+    width: 287px;
+    top: 80px;
 
+
+    <script type="text/javascript">
+      window.onscroll = function() {myFunction()};
+
+      function myFunction() {
+          if (document.body.scrollTop > 468 || document.documentElement.scrollTop > 468) {
+              document.getElementById("myP").className = "test";
+          } else {
+              document.getElementById("myP").className = "";
+          }
+      }
+    </script>
 
 @endsection
 

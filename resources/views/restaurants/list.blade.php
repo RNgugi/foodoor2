@@ -88,7 +88,7 @@
                     <div class="row">
 
                         <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3 ">
-                     <div class="sidebar clearfix m-b-20 ">
+                     <div id="fixedSidebar" class="sidebar clearfix m-b-20 ">
                         <div class="main-block">
                            <div class="sidebar-title white-txt">
                               <h6>Filter Restaurants</h6>
@@ -236,8 +236,34 @@ $('#carouselBanners .carousel-item').each(function(){
   }
 });
 
+
+
+
  
   </script>
+
+
+   position: fixed;
+    width: 287px;
+    top: 80px;
+
+
+    <script type="text/javascript">
+      window.onscroll = function() {myFunction()};
+
+      function myFunction() {
+          if (document.body.scrollTop > 468 || document.documentElement.scrollTop > 468) {
+              $('#fixedSidebar').css('position', 'fixed');
+               $('#fixedSidebar').css('width', '287px');
+                 $('#fixedSidebar').css('top', '80px');
+          } else {
+               $('#fixedSidebar').css('position', 'absolute');
+               $('#fixedSidebar').css('width', '287px');
+                 $('#fixedSidebar').css('top', '80px');
+          }
+      }
+    </script>
+
 
 
 @endsection
