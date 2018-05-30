@@ -25,7 +25,7 @@
 
 @section('content')
         
-           <div  class="inner-page-hero hidden-md-down"  style="background: #2b2b2b;padding-bottom: 19px;
+           <div  class="inner-page-hero"  style="background: #2b2b2b;padding-bottom: 19px;
     padding-top: 30px;">
 
 

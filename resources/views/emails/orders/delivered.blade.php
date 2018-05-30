@@ -245,7 +245,7 @@
                                                                      <table role="presentation" cellpadding="0" cellspacing="0" style="border-collapse:separate;" align="right" border="0">
                                                                         <tbody>
                                                                            <tr>
-                                                                              <td style="border:none;border-radius:24px;color:#030379;cursor:auto;padding:10px 25px;" align="center" valign="middle" bgcolor="#FFFFFF"><a href="https://google.com" style="text-decoration:none;background:#FFFFFF;color:#030379;font-family:Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif;font-size:18px;font-weight:normal;line-height:120%;text-transform:none;margin:0px;" target="_blank">Download Invoice</a></td>
+                                                                              <td style="border:none;border-radius:24px;color:#030379;cursor:auto;padding:10px 25px;" align="center" valign="middle" bgcolor="#FFFFFF"><a href="https://foodoor.in/orders/{{$order->id}}/invoice" style="text-decoration:none;background:#FFFFFF;color:#030379;font-family:Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif;font-size:18px;font-weight:normal;line-height:120%;text-transform:none;margin:0px;" target="_blank">Download Invoice</a></td>
                                                                            </tr>
                                                                         </tbody>
                                                                      </table>
