@@ -446,7 +446,7 @@
     @endforeach
 
 
-    
+
     <script type="text/javascript">
       window.onscroll = function() {myFunction()};
 
@@ -459,6 +459,9 @@
                $('#fixedCart').css('width', '287px');
                  $('#fixedCart').css('top', '80px');
           } else {
+             $('#fixedSidebar').css('position', 'absolute');
+               $('#fixedSidebar').css('width', '287px');
+                 $('#fixedSidebar').css('top', '0px');
                $('#fixedCart').css('position', 'absolute');
                $('#fixedCart').css('width', '287px');
                  $('#fixedCart').css('top', '0px');
