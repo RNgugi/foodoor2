@@ -35,14 +35,16 @@ class OrderStatusChangedListener
             $response = sendSMS($event->order->user->phone, $message);
 
         } elseif($status == 2) {
-            $message = 'Your order is ready to leave for delivery.';
-            $response = sendSMS($event->order->user->phone, $message);
+            //$message = 'Your order is ready to leave for delivery.';
+            //$response = sendSMS($event->order->user->phone, $message);
         } elseif($status == 3) {
             $message = 
             'Delivery person is out for delivery and will reach you soon. Request you to keep Rs. '. $event->order->amount .'/- in cash ready. Please ignore if already paid online.';
             $response = sendSMS($event->order->user->phone, $message);
         } elseif($status == 4) {
-            $message = 'Your order has been delivered. Congratulations, you have got Foodoor cash of amount Rs. '. ($event->order->amount * (5/100)) .'/-  !!. Use this cash in your next order and save your money.';
+
+            $message = 'Your order has been delivered. Congratulations, you have got Foodoor cash of amount Rs. '. ceil($event->order->amount * (5/100)) .'/- !!. Use this cash in your next order and save your money.';
+
             $response = sendSMS($event->order->user->phone, $message);
 
             \Mail::to($event->order->user)->send(new OrderDelivered($event->order));

@@ -19,7 +19,7 @@ class Coupon extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = [ 'code', 'promo_text', 'discount_type', 'discount', 'restaurant_id', 'valid_from', 'valid_through', 'min_order', 'store_category'];
+    protected $fillable = [ 'code', 'promo_text', 'discount_type', 'discount', 'restaurant_id', 'valid_from', 'valid_through', 'min_order', 'store_category', 'applied_to_all'];
     // protected $hidden = [];
     // protected $dates = [];
 
@@ -35,7 +35,7 @@ class Coupon extends Model
 
     public function getRestaurantNameAttribute()
     {
-        return isset($this->restaurant) ? $this->restaurant->name : 'All Restaurants';
+        return $this->applied_to_all ?  'All Restaurants' : count($this->restaurants) . ' Restaurants';
     }
 
 

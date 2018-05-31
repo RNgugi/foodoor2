@@ -74,7 +74,20 @@ class CheckoutController extends Controller
 
 
 
-        $coupons = Coupon::all();
+        $couponsList = Coupon::all();
+
+        $coupons = [];
+
+        foreach ($couponsList as $key => $coupon) {
+            if(check_in_range($coupon->valid_from, $coupon->valid_through, date('Y-m-d')))
+            {
+                if($coupon->applied_to_all || $coupon->restaurants->contains($restaurant))
+                {
+                    $coupons[] = $coupon;
+                }
+            }
+        }
+
 
     	return view('checkout.index', compact('restaurant', 'lat', 'lng', 'sessionName', 'coupon', 'discount', 'coupons', 'total', 'gst', 'foodoorCash', 'deliveryCharge'));
     }
