@@ -27,7 +27,7 @@
 	 <div>
 
 	 	<div class="logo">
-	 		<img src="https://foodoor.in/images/logonew.png">
+	 		<img src="https://foodoor.in/images/logonew2.png">
 	 	</div>
 
 	 	<div class="mt-2">
