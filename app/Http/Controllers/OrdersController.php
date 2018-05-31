@@ -262,6 +262,10 @@ class OrdersController extends Controller
         $order->status = 4;
         $order->save();
 
+
+
+        
+
          event(new OrderStatusChanged($order));
 
 
