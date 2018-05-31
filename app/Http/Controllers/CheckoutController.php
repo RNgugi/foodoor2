@@ -22,7 +22,8 @@ class CheckoutController extends Controller
 
     public function index()
     {	
-
+        $suggestion = request('suggestion');
+        
     	$lat = request('lat');
     	$lng = request('lng');
     	$restaurant = Restaurant::findOrFail(request('restaurant_id'));
