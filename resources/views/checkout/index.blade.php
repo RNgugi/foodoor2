@@ -181,7 +181,7 @@
                                   <div class="form-group row no-gutter">
                                    
                                  
-                                       <input class="form-control" name="suggestions" style="background: #fcfcfc;color: #000;" type="text" placeholder="Any suggestions?"> 
+                                       <input class="form-control" name="suggestions" value="{{ request('suggestions') }}" style="background: #fcfcfc;color: #000;" type="text" placeholder="Any suggestions?"> 
 
 
                                  </div>

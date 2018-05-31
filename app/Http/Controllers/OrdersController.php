@@ -116,6 +116,8 @@ class OrdersController extends Controller
 
         $order->payment_status = 0;
 
+        $order->suggestions = request('suggestions');
+
         $order->save();
 
         auth()->user()->wallet_ballance = auth()->user()->wallet_ballance - $foodoorCash;

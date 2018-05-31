@@ -72,7 +72,7 @@ class CouponCrudController extends CrudController
             ]);
 
           $this->crud->addField([ // select_from_array
-                'name' => 'store_category',
+                'name' => 'applied_to_all',
                 'label' => 'Applies to All',
                 'type' => 'select2_from_array',
                 'options' => [0 => 'No', 1 => 'Yes'],
