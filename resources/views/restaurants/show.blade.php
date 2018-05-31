@@ -458,10 +458,10 @@
           if (document.body.scrollTop > 468 || document.documentElement.scrollTop > 468) {
               $('#fixedSidebar').css('position', 'fixed');
                $('#fixedSidebar').css('width', '287px');
-                 $('#fixedSidebar').css('top', '80px');
+                 $('#fixedSidebar').css('top', '30px');
                   $('#fixedCart').css('position', 'fixed');
                $('#fixedCart').css('width', '287px');
-                 $('#fixedCart').css('top', '80px');
+                 $('#fixedCart').css('top', '30px');
           } else {
              $('#fixedSidebar').css('position', 'absolute');
                $('#fixedSidebar').css('width', '287px');
