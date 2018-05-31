@@ -1825,7 +1825,8 @@ footer li a {
     color: #414551;
     display: block;
     font-weight: 500;
-    padding: 15px;
+        padding: 5px;
+    padding-left: 9px;
 }
 
 .main-block ul {
