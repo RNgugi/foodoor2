@@ -325,7 +325,8 @@
                               @foreach(Cart::instance('restaurant-'.$restaurant->id)->content() as $item)
                               <?php $customs = $item->options->has('customs') ? json_decode($item->options->customs) : null; ?>
                               <div class="order-row bg-white">
-                                 <div class="widget-body">
+                                 <div class="widget-body" style="padding: 10px;
+    padding-bottom: 0;">
                                     <div class="title-row"><span style="font-size: 14px;display: block;">  
                                              @if($item->model->is_veg)
                                                  <img src="/images/veg.png" style="width: 12px;height: 12px;margin-top: -2px;" >
