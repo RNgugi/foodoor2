@@ -106,6 +106,7 @@ Route::post('/contact', 'ContactController@store');
 Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'role'], 'namespace' => 'Admin'], function()
 {
 	CRUD::resource('orders', 'OrderCrudController');
+    CRUD::resource('customers', 'CustomerCrudController');
 	CRUD::resource('earnings', 'EarningsCrudController');
     CRUD::resource('history', 'HistoryCrudController');
     CRUD::resource('restaurants', 'RestaurantCrudController');
