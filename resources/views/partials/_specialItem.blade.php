@@ -65,7 +65,7 @@
                                                 <h5 style="font-weight: bold;margin-bottom: 18px;">Choose Size/Category</h5>
                                                 @foreach(json_decode($item->sizes) as $key => $size)
                                                    <label class="custom-control custom-radio  m-b-20">
-                                                          <input id="size" value="{{ $key }}" name="size" type="radio" class="custom-control-input"> <span class="custom-control-indicator"></span> <span class="custom-control-description">{{ $size->name }}(&#8377;{{ $size->price }})</span>
+                                                          <input id="size" value="{{ $key }}" required="true" name="size" type="radio" class="custom-control-input"> <span class="custom-control-indicator"></span> <span class="custom-control-description">{{ $size->name }}(&#8377;{{ $size->price }})</span>
                                                           </label>
                                                 @endforeach
                                                @foreach($item->additions as $addition)

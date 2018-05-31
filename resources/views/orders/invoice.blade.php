@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Invoice #{{$order->id}}</title>
+	<title>foodoor-order-{{$order->id}}</title>
 
 	<link href="https://foodoor.in/css/bootstrap.min.css" rel="stylesheet">
 
