@@ -54,8 +54,14 @@
                           </p>
 
 	 			</div>
+
+	 			<div class="col-md-12">
+	 				<p>Customer Suggestions : </p>
+	 				<p>{{$order->suggestions}}</p>
+	 			</div>
 	 		</div>
 
+	 		
 	 		<div class="mt-2">
 	 			<table class="table ">
 
