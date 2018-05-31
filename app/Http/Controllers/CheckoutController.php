@@ -23,7 +23,7 @@ class CheckoutController extends Controller
     public function index()
     {	
         $suggestion = request('suggestion');
-        
+
     	$lat = request('lat');
     	$lng = request('lng');
     	$restaurant = Restaurant::findOrFail(request('restaurant_id'));
@@ -66,6 +66,8 @@ class CheckoutController extends Controller
                 $coupon = Coupon::where('code',session($sessionName) )->first();
             
                 $discount = $coupon->discount_type == 0 ? $coupon->discount : (floatval(\Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', '')))  * ($coupon->discount / 100);
+
+                $discount = $discount > 150 ? 150 : $discount;
 
                 $total =  ceil((floatval(\Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', ''))) - $discount + $deliveryCharge + $gst) ;
              }
