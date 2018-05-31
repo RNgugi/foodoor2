@@ -159,7 +159,7 @@ class OrdersController extends Controller
 
             $response = sendSMS(auth()->user()->phone, $message);
 
-            $cashback = ceil($order->subtotal * (5/100)) > 100 ? 100 : ceil($order->subtotal * (5/100))
+            $cashback = ceil($order->subtotal * (5/100)) > 100 ? 100 : ceil($order->subtotal * (5/100));
 
             auth()->user()->wallet_ballance = auth()->user()->wallet_ballance + $cashback;
 
@@ -264,7 +264,7 @@ class OrdersController extends Controller
 
 
 
-        
+
 
          event(new OrderStatusChanged($order));
 
