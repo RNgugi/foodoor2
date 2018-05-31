@@ -79,7 +79,7 @@
                                <form method="GET" action="/restaurants/search">
                           <div class="form-group" style="margin-bottom: 0;">
                                 <div class="input-group" style="display: inline;">
-                                    <input style="width: 350px;border-color: #f30;margin-right: 20px;" name="query" type="text" class="form-control" autofocus="true" id="query" placeholder="Enter restaurant name.."> 
+                                    <input style="width: 250px;border-color: #f30;margin-right: 20px;" name="query" type="text" class="form-control" autofocus="true" id="query" placeholder="Enter restaurant name.."> 
                                        
                                    
                                 </div>
