@@ -76,7 +76,16 @@
                          </div>
                         <p></p>
                       <div class="col-sm-4">
-                             <a href="/restaurants/search" style="display: inline-block;float: right;" class="btn theme-btn">Search Restaurants</a>
+                               <form method="GET" action="/restaurants/search">
+                          <div class="form-group" style="margin-bottom: 0;">
+                                <div class="input-group" style="display: inline;">
+                                    <input style="width: 350px;border-color: #f30;margin-right: 20px;" name="query" value="{{$query}}" type="text" class="form-control" autofocus="true" id="query" placeholder="Enter restaurant name.."> 
+                                       
+                                   
+                                </div>
+                                 <button  style="display: inline-block;" type="submit" class="btn theme-btn">Search</button>
+                            </div>   
+                          </form>  
                         </div> 
                     </div>
                 </div>
@@ -243,10 +252,7 @@ $('#carouselBanners .carousel-item').each(function(){
   </script>
 
 
-   position: fixed;
-    width: 287px;
-    top: 80px;
-
+   
 
     <script type="text/javascript">
       window.onscroll = function() {myFunction()};
