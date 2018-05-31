@@ -4,7 +4,7 @@
 <li><a href="{{ '/restaurants-admin/orders' }}"><i class="fa fa-file-text"></i> <span>Today's Orders</span></a></li>
 <li><a href="{{ '/restaurants-admin/earnings' }}"><i class="fa fa-money"></i> <span>Earnings</span></a></li>
 <li><a href="{{ '/restaurants-admin/history' }}"><i class="fa fa-file-text"></i> <span>Orders History</span></a></li>
-<li><a href="{{ '/restaurants-admin/customers' }}"><i class="fa fa-users"></i> <span>Customers</span></a></li>
+
 <li><a href="{{ '/restaurants-admin/items' }}"><i class="fa fa-list-ul"></i> <span>Menu Items</span></a></li>
 <li><a href="{{ '/restaurants-admin/coupons' }}"><i class="fa fa-qrcode"></i> <span>Offer Coupons</span></a></li>
 <li><a href="{{ '/restaurants-admin/freedeliveries' }}"><i class="fa fa-qrcode"></i> <span>Free Delivery Coupons</span></a></li>
@@ -24,6 +24,7 @@
 @if(auth()->user()->can('manage_orders'))
 	<li><a href="{{ backpack_url('orders') }}"><i class="fa fa-file-text"></i> <span>Today's Orders</span></a></li>
 	<li><a href="{{ backpack_url('history') }}"><i class="fa fa-file-text"></i> <span>Orders History</span></a></li>
+	<li><a href="{{ '/restaurants-admin/customers' }}"><i class="fa fa-users"></i> <span>Customers</span></a></li>
 @endif
 
 @if(auth()->user()->can('manage_restaurants'))
