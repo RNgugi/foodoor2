@@ -89,7 +89,7 @@
                               </li>
 
                               <li class="{{ request('filter') == 'featured' ? 'active' : '' }}">
-                                 <a href="/restaurants/{{ $restaurant->id }}?lat={{request('lat')}}&lng={{request('lng')}}&filter=featured" class="scroll">Restaurant Special</a>
+                                 <a href="#restaurant-special" class="scroll">Restaurant Special</a>
                               </li>
 
                               @if(!$restaurant->is_veg)
@@ -146,6 +146,7 @@
                   <div class="col-xs-12 col-sm-8 col-md-8 col-lg-6">
 
                       @if(request()->has('filter') && request('filter') == 'featured')
+                          <div id="restaurant-special"></div>
                           <?php $items = $restaurant->items()->where('featured', 1)->get(); ?>
                        
                                 @foreach($items as $index => $item)
@@ -159,6 +160,7 @@
                       @else
 
                         @if(request('cuisine') == null && (request('filter') == 'all' || request('filter') == ''))
+                         <div id="restaurant-special"></div>
                         <?php $items = $restaurant->items()->where('featured', 1)->get(); ?>
                         <div class="row">
                                 @foreach($items as $index => $item)
@@ -180,7 +182,8 @@
                              @else
                                  <?php $items = $restaurant->items()->where('cuisine_id', $cuisine->id)->get(); ?>
                            @endif
-                           <div id="cuisine-{{$cuisine->id}}" class="menu-widget " style="background: #fff;margin-bottom: 8px;">
+                           <div id="cuisine-{{$cuisine->id}}"></div>
+                           <div  class="menu-widget " style="background: #fff;margin-bottom: 8px;">
                               <div class="widget-heading">
                                  <h3 class="widget-title text-dark">
                                     {{ $cuisine->name }} <a class="btn btn-link pull-right" data-toggle="collapse" href="#cuisine-{{ $cuisine->id }}" aria-expanded="true">
