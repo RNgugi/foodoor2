@@ -105,6 +105,7 @@ input[type=number]::-webkit-outer-spin-button {
                     $('#navbarSide').addClass('reveal');
                     $('.overlay').show();
                     $('.slick-arrow').hide();
+                    $('.sticky-top').hide();
                   });
 
                    // Close navbarSide when the outside of menu is clicked
@@ -112,6 +113,7 @@ input[type=number]::-webkit-outer-spin-button {
     $('#navbarSide').removeClass('reveal');
     $('.overlay').hide();
      $('.slick-arrow').show();
+     $('.sticky-top').show();
   });
 
                 });

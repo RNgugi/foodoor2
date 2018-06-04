@@ -86,14 +86,39 @@
 
 
 
-
-              $('.autoplay').slick({
+                $('.autoplay').slick({
                 slidesToShow: 4,
                 slidesToScroll: 1,
                 autoplay: true,
                 autoplaySpeed: 2000,
                 arrows: true
               });
+
+              $('.autoplay-resp').slick({
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 2000,
+                arrows: true
+              });
+
+               $( document ).ready(function() {
+                  $('#navbarSideButton').on('click', function() {
+                    $('#navbarSide').addClass('reveal');
+                    $('.overlay').show();
+                    $('.slick-arrow').hide();
+                    $('.sticky-top').hide();
+                  });
+
+                   // Close navbarSide when the outside of menu is clicked
+  $('.overlay').on('click', function(){
+    $('#navbarSide').removeClass('reveal');
+    $('.overlay').hide();
+     $('.slick-arrow').show();
+     $('.sticky-top').show();
+  });
+
+                });
 
 
     </script>

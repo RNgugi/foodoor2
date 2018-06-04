@@ -3094,7 +3094,7 @@ input.is-invalid {
   border-left: 2px solid #ccc;
   background-color: #fff;
   overflow-y: scroll;
-  z-index: 10001;
+  z-index: 1040000;
 }
 
  .navbar-side-item {
@@ -3106,6 +3106,9 @@ input.is-invalid {
 
 .side-link {
   padding-left: 1rem;
+      display: block;
+      padding-bottom: 4px;
+
 }
 
  .navbar-side {
@@ -3218,4 +3221,107 @@ input.is-invalid {
 .footer {
     padding-bottom: 0 !important;
 }
+
+.result-show {
+    padding-top: 12px !important;
+}
+
+.result-show input {
+        width: 60% !important;
+    border-color: #f30 !important;
+    border-radius: 0 !important;
+    font-size: 14px !important;
+}
+
+.result-show button {
+    display: inline-block !important;
+    width: 40% !important;
+    border-radius: 0px !important;
+    font-size: 14px !important;
+}   
+
+    .food-item-wrap {
+            margin-bottom: 0 !important;
+    }
+
+
+     .food-item-wrap .restaurant-image {
+        float: left !important;
+        display: inline !important;
+        width: 35% !important;
+        padding-right: 6px !important;
+    }
+
+     .food-item-wrap .restaurant-image img {
+        max-height: 70px !important;
+        height: 70px !important;
+        width: 100% !important;
+    }
+
+    .food-item-wrap .content {
+        padding-left: 5px !important;
+        width: 65% !important;
+        float: left !important;
+        padding-top: 0 !important;
+    }
+
+    .food-item-wrap .content h5 {
+            font-size: 8px !important;
+    margin-bottom: 0 !important;
+    }
+
+    .food-item-wrap .content h5 a{
+            font-size: 17px !important;
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+    }
+
+    .food-item-wrap .content .product-name
+    {
+            margin-top: 0 !important;
+        padding-top: 0 !important;
+        font-size: 14px !important;
+        margin-bottom: 7px !important;
+    }
+
+    .food-item-wrap .specs {
+    font-size: 12px !important;
+    }
+
+     .food-item-wrap .spec span 
+    {
+            padding: 2px !important;
+      font-size: 12px !important;
+    }
+
+
+    .filter-bottom {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+            color: rgb(51, 51, 102);
+    margin-top: 20px;
+    padding: 7px 0px 10px;
+    border-top: 1px solid rgb(234, 235, 235);
+    }
+
+    .filter-bottom a {
+        width: 100%;
+    }
+
+    .restaurant-filters {
+        position: fixed;
+        top: 0;
+        bottom: 0px;
+        left: 0;
+        right: 0;
+        background: #fff;
+        z-index: 1030000;
+    }
+
+
+    .restaurant-filters ul li{
+            padding: 7px !important;
+    }
 }

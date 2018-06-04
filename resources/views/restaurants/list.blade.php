@@ -68,14 +68,14 @@
                           <div class="form-group" style="margin-bottom: 0;">
                                 <div class="input-group" style="display: inline;">
                                     <input style="width: 350px;border-color: #f30;" type="text" class="form-control" autofocus="true" id="txtPlaces" placeholder="Enter your location"> 
-                                        <i class="fa fa-map-marker" style="position: relative;right: 29px;top: 0px;font-size: 17px; z-index: 10000;color: #848282 !important;" aria-hidden="true"></i>
+                                        <i class="fa fa-map-marker hidden-sm-down" style="position: relative;right: 29px;top: 0px;font-size: 17px; z-index: 10000;color: #848282 !important;" aria-hidden="true"></i>
                                    
                                 </div>
                                  <button onclick="codeAddress()" style="display: inline-block;" type="button" class="btn theme-btn">Change Location</button>
                             </div>   
                          </div>
                         <p></p>
-                      <div class="col-sm-4">
+                      <div class="col-sm-4 hidden-sm-down">
                                <form method="GET" action="/restaurants/search">
                           <div class="form-group" style="margin-bottom: 0;">
                                 <div class="input-group" style="display: inline;">
@@ -96,7 +96,7 @@
                 <div class="container">
                     <div class="row">
 
-                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3 ">
+                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3 hidden-sm-down">
                      <div id="fixedSidebar" class="sidebar clearfix m-b-20 ">
                         <div class="main-block">
                            <div class="sidebar-title white-txt">
@@ -188,6 +188,30 @@
            </div>
 
 
+           <div class="filter-bottom">
+               <button id="showFilter" class="btn btn-link" style="color: rgb(233, 78, 27);" >Filter Restaurants</button>
+           </div>
+
+           <div class="restaurant-filters" style="display: none;">
+              <div class="main-block">
+                           <div class="sidebar-title white-txt">
+                              <h6>Filter Restaurants</h6>
+                              <a id="closeFilters" style="color: #fff;" href="#"><i class="fa fa-close pull-right"></i></a> 
+                           </div>
+                           <ul>
+                              <li class="{{ request('filter') ==  'all'  ? 'active' : ''  }}"><a href="{{ currentUrl().'&filter=all' }}" class="scroll">All Restaurants</a></li>
+                              <li class="{{ request('filter') ==  'popular' ? 'active' : '' }}"><a href="{{ currentUrl().'&filter=popular' }}" class="scroll">Most Popular</a></li>
+                              <li class="{{ request('filter') ==  'budget'  ? 'active' : ''  }}"><a href="{{ currentUrl().'&filter=budget' }}" class="scroll">Pocket Friendly</a></li>
+                              <li class="{{ request('filter') ==  'veg'  ? 'active' : ''  }}"><a href="{{ currentUrl().'&filter=veg' }}" class="scroll">Pure Veg</a></li>
+                              <li class="{{ request('filter') ==  'nonveg'  ? 'active' : ''  }}"><a href="{{ currentUrl().'&filter=nonveg' }}" class="scroll">Non-Veg Special</a></li>
+
+                             
+                           </ul>
+                           <div class="clearfix"></div>
+                        </div>
+           </div>
+
+
 @endsection 
 
 
@@ -246,8 +270,15 @@ $('#carouselBanners .carousel-item').each(function(){
 });
 
 
+ $('#showFilter').on('click', function() {
+        $('.restaurant-filters').show();
+        });
 
+ $('#closeFilters').on('click', function(e) {
 
+        $('.restaurant-filters').hide();
+        e.preventDefault();
+        });
  
   </script>
 
