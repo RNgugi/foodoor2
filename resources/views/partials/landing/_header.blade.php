@@ -39,7 +39,7 @@
                     </div>
                 </div>
 
-                <ul class="navbar-side" id="navbarSide">
+                <ul class="navbar-side hidden-sm-up" id="navbarSide">
                   <li class="navbar-side-item">
                     @guest
                     <a href="{{ route('login') }}" class="side-link">Sign In</a>
