@@ -8,12 +8,16 @@ use Illuminate\Notifications\Notifiable;
 use Backpack\CRUD\CrudTrait;
 use Spatie\Permission\Traits\HasRoles;// <---------------------- and this one
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
     use Notifiable;
     use CrudTrait; // <----- this
     use HasRoles; // <------ and this
+    use SoftDeletes;
+
+    protected $dates = ['deleted_at'];
 
     /**
      * The attributes that are mass assignable.

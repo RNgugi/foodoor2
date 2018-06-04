@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Gloudemans\Shoppingcart\Contracts\Buyable;
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\CrudTrait;
@@ -10,6 +10,9 @@ use Backpack\CRUD\CrudTrait;
 class Item extends Model implements Buyable
 {
     use CrudTrait;
+    use SoftDeletes;
+
+    protected $dates = ['deleted_at'];
 
     /*
     |--------------------------------------------------------------------------

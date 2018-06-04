@@ -2,12 +2,16 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\CrudTrait;
 
 class Cuisine extends Model
 {
     use CrudTrait;
+    use SoftDeletes;
+
+    protected $dates = ['deleted_at'];
 
     /*
     |--------------------------------------------------------------------------

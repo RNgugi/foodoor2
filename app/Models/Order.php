@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\CrudTrait;
 use App\User;
@@ -9,6 +10,9 @@ use App\User;
 class Order extends Model
 {
     use CrudTrait;
+    use SoftDeletes;
+
+    protected $dates = ['deleted_at'];
 
     /*
     |--------------------------------------------------------------------------
@@ -31,7 +35,7 @@ class Order extends Model
 
     public function getRestaurantNameAttribute()
     {
-        return $this->restaurant->name;
+        return isset($this->restaurant) ? $this->restaurant->name : 'NOT EXIST';
     }
 
     public function user()

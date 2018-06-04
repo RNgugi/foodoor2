@@ -54,7 +54,7 @@
                                                                      <table role="presentation" cellpadding="0" cellspacing="0" style="border-collapse:collapse;border-spacing:0px;" align="left" border="0">
                                                                         <tbody>
                                                                            <tr>
-                                                                               <td style="width:195px;"><img alt="" title="" height="auto" src="https://foodoor.in/images/logonew.png" style="border:none;border-radius:0px;display:block;font-size:13px;outline:none;text-decoration:none;width:100%;height:auto;" width="195"></td>
+                                                                               <td style="width:195px;"><img alt="" title="" height="auto" src="https://foodoor.in/images/logonew2.png" style="border:none;border-radius:0px;display:block;font-size:13px;outline:none;text-decoration:none;width:100%;height:auto;" width="195"></td>
                                                                            </tr>
                                                                         </tbody>
                                                                      </table>

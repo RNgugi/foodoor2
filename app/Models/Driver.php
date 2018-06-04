@@ -2,14 +2,19 @@
 
 namespace App\Models;
 
+
 use App\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 use Backpack\CRUD\CrudTrait;
 
 class Driver extends Model
 {
     use CrudTrait;
+    use SoftDeletes;
 
+    protected $dates = ['deleted_at'];
     /*
     |--------------------------------------------------------------------------
     | GLOBAL VARIABLES

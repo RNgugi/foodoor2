@@ -3,13 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Backpack\CRUD\CrudTrait;
 
 use App\User;
 
 class Restaurant extends Model
 {
-    use CrudTrait;
+     use CrudTrait;
+
+     use SoftDeletes;
 
     /*
     |--------------------------------------------------------------------------
@@ -18,7 +21,7 @@ class Restaurant extends Model
     */
 
    
-
+    protected $dates = ['deleted_at'];
 
     protected $table = 'restaurants';
     // protected $primaryKey = 'id';
