@@ -125,7 +125,15 @@ class Item extends Model implements Buyable
         {
             return $this->discount_price;
         } else {
+
+            if(check_in_range($this->restaurant->valid_from, $this->restaurant->valid_through, date('Y-m-d')))
+            {
+               $discount = $this->restaurant->discount_type == 0 ? $this->restaurant->discount : $this->price * ($this->restaurant->discount / 100);
+
+               return ($this->price - $discount);
+            }
             return $this->price;
+            
         }
     }
 
