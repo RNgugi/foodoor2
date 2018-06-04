@@ -3082,3 +3082,140 @@ input.is-invalid {
     top:0;
     z-index:100;
 }
+
+.navbar-side {
+  height: 100%;
+  width: 55%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding: 0;
+  list-style: none;
+  border-left: 2px solid #ccc;
+  background-color: #fff;
+  overflow-y: scroll;
+  z-index: 10001;
+}
+
+ .navbar-side-item {
+  padding: 7px;
+
+  margin: 0;
+
+}
+
+.side-link {
+  padding-left: 1rem;
+}
+
+ .navbar-side {
+    // other code omitted
+  -webkit-transform: translateX(100%);
+  -ms-transform: translateX(100%);
+  transform: translateX(100%);
+  -webkit-transition: 300ms ease;
+  transition: 300ms ease;
+
+  @include media-breakpoint-up(xs) { width: 85%; } // Small
+  @include media-breakpoint-up(sm) { width: 50%; } // Medium
+  @include media-breakpoint-up(md) { width: 25%; } // Large
+}
+
+ .reveal {
+  -webkit-transform: translateX(0%);
+  -ms-transform: translateX(0%);
+  transform: translateX(0%);
+  -webkit-transition: 300ms ease;
+  transition: 300ms ease;
+}
+
+.overlay {
+  position: fixed;
+  display: none;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  cursor: pointer;
+  background-color: #ccc;
+  opacity: 0.6;
+  z-index: 990;
+}
+
+
+
+
+/* RESPONSIVE */
+
+@media (max-width: 62em) {
+
+    .left-text {
+        padding-top: 0 !important;
+    }
+
+    .hero-text h1 {
+        font-size: 1.6em !important;
+        padding-top: 0px !important;
+    }
+
+    .hero input {
+        width: 100% !important;
+        font-size: 17px !important;
+        padding: 9px !important;
+
+    }
+
+    .hero button {
+        margin-left: 0 !important;
+        width: 100% !important;
+
+    }
+
+    .slick-list{padding:0 20% 0 0;}
+
+    .featured-restaurants .slick-slide img {
+        height: 140px !important;
+        margin: 7px;
+    }
+
+    .inner-page-hero .slick-slide img {
+        height: 200px !important;
+    }
+
+    .inner-page-hero {
+        background: #fff !important;
+        padding-top: 7px !important;
+        padding-bottom: 7px;
+    }
+
+    .location-match{
+        padding-top: 0 !important;
+    }
+
+    .slick-arrow {
+        display: none !important;
+    }
+
+   .navbar-brand {
+    float: left; 
+}
+
+.navbar-brand img {
+    width: 120px !important;
+} 
+
+.navbar {
+    padding-left: 0;
+        padding-right: 0;
+}
+
+.navbar-light .navbar-toggler {
+    float: right;
+    background-image: url('');
+    border-color: rgba(0,0,0,.1);
+}
+
+.footer {
+    padding-bottom: 0 !important;
+}
+}

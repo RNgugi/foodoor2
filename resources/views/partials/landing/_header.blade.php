@@ -2,8 +2,9 @@
             <!-- .navbar -->
             <nav class="navbar navbar-light">
                 <div class="container">
-                    <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#mainNavbarCollapse">&#9776;</button>
                     <a class="navbar-brand" href="/"> <img class="img-rounded" style="width: 180px;" src="/images/logonew.png" alt=""> </a>
+
+                     <button class="navbar-toggler hidden-lg-up pull-xs-right" type="button" id="navbarSideButton">&#9776;</button>
                     <div class="collapse navbar-toggleable-md  float-lg-right" id="mainNavbarCollapse" style="margin-top: 10px;">
                         <ul class="nav navbar-nav">
                             
@@ -37,6 +38,15 @@
                         </ul>
                     </div>
                 </div>
+
+                <ul class="navbar-side" id="navbarSide">
+                  <li class="navbar-side-item">
+                    <a href="#" class="side-link">Signup</a>
+                  </li>
+                  <!-- insert more side-items if you so choose -->
+                </ul>
+
+                <div class="overlay"></div>
             </nav>
             <!-- /.navbar -->
         </header>

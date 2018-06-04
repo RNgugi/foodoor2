@@ -31,7 +31,28 @@
 
                 <div class="container"> 
 
-                <div class="autoplay"> 
+                <div class="autoplay hidden-sm-down"> 
+                  
+                    
+
+                      @foreach($allbanners as  $index => $homebanner)
+                       <div  class="col-md-3">
+                           
+                                <a href="{{ $homebanner->url }}" class="">
+                                    <img style="width: 100%;height: 270px;" src="{{ url($homebanner->image) }}">
+                                 </a>
+                            
+                           
+                       </div>
+
+                     @endforeach  
+                     
+                       
+                   
+
+                </div>
+
+                <div class="autoplay-resp hidden-sm-up"> 
                   
                     
 
@@ -76,8 +97,8 @@
                                 <label class="sr-only" for="exampleInputAmount">Search restaurants...</label>
                               
                                 <div class="input-group">
-                                    <input style="width: 500px;border-color: #e94e1b;" type="text" class="form-control form-control-lg hidden-md-down" id="txtPlaces" placeholder="Enter your delivery location" autofocus="true"> 
-                                        <i class="fa fa-map-marker"  onclick="getLocation()" style="position: relative;right: 22px;top: 14px;font-size: 20px; z-index: 10000;color: #2b2b2b !important;cursor: pointer;" aria-hidden="true"></i>
+                                    <input style="width: 500px;border-color: #e94e1b;" type="text" class="form-control form-control-lg" id="txtPlaces" placeholder="Enter your delivery location" autofocus="true"> 
+                                        <i class="fa fa-map-marker hidden-sm-down"  onclick="getLocation()" style="position: relative;right: 22px;top: 14px;font-size: 20px; z-index: 10000;color: #2b2b2b !important;cursor: pointer;" aria-hidden="true"></i>
                                    
                                 </div>
                             </div>
@@ -104,7 +125,24 @@
             <div class="container">
                  <h2 style="font-weight: bold;margin-bottom: 60px;text-align: center;">Our Exclusive Partners</h2>   
                 <!-- restaurants listing starts -->
-              <div class="autoplay">
+              <div class="autoplay hidden-sm-down">
+                 
+                        @foreach($restaurantlogos as $index => $restaurantLogo)
+                           
+                               <div class="col-md-3">
+                                 
+                                    <a href="/restaurants/{{$restaurantLogo->restaurant->id}}?lat={{$restaurantLogo->restaurant->latitude}}&lng={{$restaurantLogo->restaurant->longitude}}" >
+                                        <img style="width: 280px;height: 250px;" src="{{ url($restaurantLogo->image) }}">
+                                     </a>
+                                  
+                                   
+                               </div>
+                           
+                       @endforeach
+
+                </div>
+
+                 <div class="autoplay-resp hidden-sm-up">
                  
                         @foreach($restaurantlogos as $index => $restaurantLogo)
                            
@@ -208,50 +246,7 @@ function codeAddress() {
    
 </script>
 
-<script type="text/javascript">
-    
-  $('#carouselBanners').carousel({
-  interval: 4000
-})
 
-$('#carouselBanners .carousel-item').each(function(){
-  var next = $(this).next();
-  if (!next.length) {
-    next = $(this).siblings(':first');
-  }
-  next.children(':first-child').clone().appendTo($(this));
-
-  for (var i=0;i<2;i++) {
-    next=next.next();
-    if (!next.length) {
-      next = $(this).siblings(':first');
-    }
-
-    next.children(':first-child').clone().appendTo($(this));
-  }
-});
-
- $('#carouselRestaurants').carousel({
-  interval: 4000
-})
-
-$('#carouselRestaurants .carousel-item').each(function(){
-  var next = $(this).next();
-  if (!next.length) {
-    next = $(this).siblings(':first');
-  }
-  next.children(':first-child').clone().appendTo($(this));
-
-  for (var i=0;i<2;i++) {
-    next=next.next();
-    if (!next.length) {
-      next = $(this).siblings(':first');
-    }
-
-    next.children(':first-child').clone().appendTo($(this));
-  }
-});
-  </script>
 
 
 @endsection

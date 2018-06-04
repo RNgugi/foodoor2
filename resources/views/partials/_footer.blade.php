@@ -42,7 +42,7 @@
                 <!-- bottom footer statrs -->
                 <div class="bottom-footer" style="border-top:  1px solid #fff; padding-top: 20px;">
                     <div class="row">
-                        <div class="col-xs-12 col-sm-4 payment-options color-gray">
+                        <div class="col-xs-12 col-sm-4 payment-options color-gray hidden-sm-down">
                             <a href="#"> <img src="/images/logofooter.png" alt="Footer logo" style="width: 180px;"> </a>  
                         </div>
                         <div class="col-xs-12 col-sm-4 address color-gray" style="text-align: center;">
