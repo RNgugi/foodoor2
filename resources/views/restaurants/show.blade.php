@@ -5,11 +5,11 @@
 @section('content')
 
 
-            <section class="inner-page-hero"  style="background: #171a29;">
+            <section class="inner-page-hero restaurant-info"  style="background: #171a29;">
                <div class="profile">
                   <div class="container">
                      <div class="row">
-                        <div class="col-xs-12 col-sm-12  col-md-3 col-lg-4 profile-img">
+                        <div class="col-xs-12 col-sm-12  col-md-3 col-lg-4 profile-img hidden-sm-down">
                            <div class="image-wrap">
                               <figure><img src="{{ isset($restaurant->logo) ? url($restaurant->logo) : 'http://via.placeholder.com/350x250' }}" style="height: 160px;width: 100%;" alt="Profile Image"></figure>
                            </div>
@@ -54,7 +54,7 @@
 
          
 
-            <div class="breadcrumb " style="background: #fff;" >
+            <div class="breadcrumb  hidden-sm-down" style="background: #fff;" >
                <div class="container">
                   <ul>
                      <li><a href="/" class="active">Home</a></li>
@@ -66,7 +66,7 @@
 
             
 
-            <div class="container m-t-30" style="min-height: 1200px;margin-bottom: 80px;">
+            <div class="container m-t-30 resp-container" style="min-height: 1200px;margin-bottom: 80px;">
 
                @if(!$restaurant->is_open)
                  <div class="alert alert-warning" role="alert" >
@@ -75,7 +75,7 @@
                @endif
 
                <div class="row">
-                  <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3 ">
+                  <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3 hidden-sm-down">
                      <div id="fixedSidebar" class="sidebar clearfix m-b-20 " >
                         <div class="main-block">
                            <div class="sidebar-title white-txt">
@@ -150,7 +150,7 @@
                           <?php $items = $restaurant->items()->where('featured', 1)->get(); ?>
                        
                                 @foreach($items as $index => $item)
-                                  <div class="col-md-6">
+                                  <div class="col-xs-6">
                                     @include('partials._specialItem')
                                   </div>  
                                 @endforeach
@@ -164,7 +164,7 @@
                         <?php $items = $restaurant->items()->where('featured', 1)->get(); ?>
                         <div class="row">
                                 @foreach($items as $index => $item)
-                                  <div class="col-md-6">
+                                  <div class="col-xs-6">
                                     @include('partials._specialItem')
                                   </div>  
                                 @endforeach
@@ -212,7 +212,7 @@
                                           <div class="rest-descr" style="padding-left: 23px;">
                                              <h6 style="{{ 'margin-bottom: 8px;' }}"><a href="#">{{ $item->name }}</a></h6>
                                             
-                                              <p style="cursor: pointer;" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="{{ $item->description }}">{{ strlen($item->description) > 40 ? substr($item->description, 0, 40) . '...' : $item->description }}</p>
+                                              <p class="hidden-sm-down" style="cursor: pointer;" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="{{ $item->description }}">{{ strlen($item->description) > 40 ? substr($item->description, 0, 40) . '...' : $item->description }}</p>
                                              
                                           </div>
                                           <!-- end:Description -->
@@ -304,9 +304,9 @@
                      
                   </div>
                   <!-- end:Bar -->
-                  <div class="col-xs-12 col-md-12 col-lg-3">
+                  <div class="col-xs-12 col-md-12 col-lg-3 hidden-sm-down">
                      <div id="fixedCart" class="sidebar-wrap">
-                        <form method="GET" action="/checkout">
+                        <form id="cart-form" method="GET" action="/checkout">
                           
 
                            <input type="hidden" name="restaurant_id" value="{{$restaurant->id}}">
@@ -400,6 +400,87 @@
 
 
 
+
+           <div class="filter-bottom filter-bottom-menu">
+               <button id="showFilter" class="btn btn-link" style="color: rgb(233, 78, 27);" ><i class="fa fa-cutlery"></i> Menu</button>
+           </div>
+
+           <div class="restaurant-filters" style="display: none;">
+              <div class="main-block">
+                           <div class="sidebar-title white-txt">
+                              <h6>Choose Cusine</h6>
+                              <a class="closeFilters" style="color: #fff;" href="#"><i class="fa fa-close pull-right"></i></a> 
+                           </div>
+                           <ul>
+                              
+                              <li class="{{ request('filter') == 'all' ? 'active' : '' }}">
+                                 <a href="/restaurants/{{ $restaurant->id }}?lat={{request('lat')}}&lng={{request('lng')}}&filter=all" class="scroll">All Items</a>
+                              </li>
+
+                              <li class="{{ request('filter') == 'featured' ? 'active' : '' }}">
+                                 <a href="#restaurant-special" class="scroll closeFilters">Restaurant Special</a>
+                              </li>
+
+                              @if(!$restaurant->is_veg)
+                                 <li class="{{ request('filter') == 'veg' ? 'active' : '' }}">
+                                    <a href="/restaurants/{{ $restaurant->id }}?lat={{request('lat')}}&lng={{request('lng')}}&filter=veg" class="scroll">Veg Items</a>
+                                 </li>
+                                 
+                                 <li class="{{ request('filter') == 'nonveg' ? 'active' : '' }}">
+                                    <a href="/restaurants/{{ $restaurant->id }}?lat={{request('lat')}}&lng={{request('lng')}}&filter=nonveg" class="scroll">Non-Veg Items</a>
+                                 </li>
+                              @endif
+
+                              @foreach($cuisineMenu as $cuisine)
+                                @if($cuisine->parent_id == 0 || $cuisine->parent_id == null)
+                                 <li class="{{ request('cuisine') ==  $cuisine->id ? 'active' : '' }}">
+                                    
+                                    @if($cuisine->subs()->count())
+                                    <a data-toggle="collapse" aria-expanded="false" href="#cuisinemenu-{{ $cuisine->id }}" class="scroll">{{ $cuisine->name }}  <i style="margin-top: 5px;" class="fa fa-angle-right pull-right"></i>
+                                    <i style="margin-top: 5px;" class="fa fa-angle-down pull-right"></i></a>
+
+                                   
+                                     @else 
+
+                                      <a href="#cuisine-{{$cuisine->id}}" class="scroll closeFilters">{{ $cuisine->name }} </a>
+                                      @endif
+                                     
+
+                                 </li>
+                                 <li style="z-index: 103000000;">
+                                    <div style="z-index: 103000000;" class="collapse" id="cuisinemenu-{{ $cuisine->id }}">
+                                      <ul style="background-color: #fff;">
+                                          @foreach($cuisine->subs as $subCuisine)
+                                            @if($subCuisine->items()->where('restaurant_id', $restaurant->id)->count())
+                                              <li style="text-align: right;font-size: 15px;" class="{{ request('cuisine') ==  $cuisine->id ? 'active' : '' }}">
+                                               <a style="padding: 4px;" href="#cuisine-{{$subCuisine->id}}" class="scroll">{{ $subCuisine->name }}</a>
+                                              </li> 
+                                            @endif
+                                          @endforeach
+                                      </ul>    
+                                     </div>
+                                 </li>
+
+                                  @endif 
+
+                              @endforeach
+                          
+                           </ul>
+                           <div class="clearfix"></div>
+                        </div>
+           </div>
+
+
+           @if($restaurant->is_open && Cart::instance('restaurant-'.$restaurant->id)->count() && (floatval(\Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', ''))) > 99)
+            <div class="filter-bottom filter-bottom-cart">
+               <button id="showCart" class="btn btn-link" style="color: rgb(233, 78, 27);" ><i class="fa fa-shopping-bag"></i> View Cart</button>
+           </div>
+           @endif
+
+           
+
+
+
 @endsection
 
 
@@ -442,6 +523,8 @@
               window.location = '/cart/decrement/{{$item->rowId}}/{{$restaurant->id}}/newVal:' + newVal
          }
         });
+
+
       </script>
 
 
@@ -471,6 +554,34 @@
                  $('#fixedCart').css('top', '0px');
           }
       }
+
+
+
+        $('#showFilter').on('click', function() {
+        $('.restaurant-filters').show();
+        });
+
+       $('.closeFilters').on('click', function(e) {
+
+              $('.restaurant-filters').hide();
+              e.preventDefault();
+       
+       });
+
+       $('#showCart').on('click', function() {
+          // $('.resp-cart').show();
+          $('#cart-form').submit();
+        });
+
+       $('#closeCart').on('click', function() {
+        $('.resp-cart').hide();
+        });
+
+      
+
+      
+
+       
     </script>
    
 

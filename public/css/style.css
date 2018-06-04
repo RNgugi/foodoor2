@@ -3327,4 +3327,128 @@ input.is-invalid {
     .restaurant-filters ul li{
             padding: 7px !important;
     }
+
+    .restaurant-info {
+        border-bottom: 1px solid rgba(40,44,63,.1);
+    border-top: 1px solid rgba(40,44,63,.1);
+    padding-top: 16px !important;
+    }
+
+    .restaurant-info .profile-desc {
+            margin-left: 0;
+    padding-left: 0;
+    }
+
+    .restaurant-info .profile-desc h6 a
+    {
+            font-size: 26px;
+    line-height: 31px;
+    color: #3d4152;
+    font-weight: bold;
+    }
+
+    .restaurant-info .profile p {
+        color: #808080;
+    }
+
+
+    .restaurant-info .profile-desc .nav-item a {
+        color: #464646;
+    }
+
+    .special-item .product-image{
+        width: 100px !important;
+        height: 100px !important;
+        display: block !important;
+    }
+
+    .special-item .veg-indicator {
+        width: 11px !important;
+        height: 11px !important;
+
+    }
+
+    .special-item .content {
+        width: 100% !important;
+    }
+
+    .special-item .content h5 {
+        font-size: 14px !important;
+        margin-top: 13px !important;
+    }
+
+    .special-item .content .price {
+            padding: 2px !important;
+    font-size: 10px !important;
+    }
+
+    .special-item a.btn, .food-item a.btn {
+        padding: 7px;
+        font-size: 11px;
+        padding-top: 3px;
+        padding-bottom: 3px;
+        margin-top: 4px;
+
+    }
+
+    .food-item .price {
+        font-size: 14px !important;
+    margin-bottom: 10px !important;
+    color: grey !important;
+    margin-left: 23px !important;
+    margin-top: -5px !important;
+    }
+
+    .food-item a.btn {
+        margin-top: -7px;
+    }
+
+
+
+    .resp-container {
+        padding: 0 !important;
+    }
+
+
+    .filter-bottom-menu {
+        width: auto !important;
+        bottom: 66px !important;
+        left: 36% !important;
+        margin: 0 auto !important;
+        padding: 8px !important;
+        border-top: 0 !important;
+    }
+
+    .filter-bottom-menu button {
+        color: #fff !important;
+        background: rgb(233, 78, 27) !important;
+    }
+
+
+    .resp-cart {
+        position: fixed;
+        top: 0;
+        bottom: 0px;
+        left: 0;
+        right: 0;
+        background: #fff;
+        z-index: 1030000;
+    }
+
+
+    .resp-cart ul li{
+            padding: 7px !important;
+    }
+
+    .filter-bottom-cart {
+        background: rgb(130, 178, 28);
+        color: #fff;
+        margin-top: 0;
+        padding-top: 0;
+    }
+
+    .filter-bottom-cart button {
+        color: #fff !important;
+    }
+
 }

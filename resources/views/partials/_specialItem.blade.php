@@ -1,27 +1,27 @@
 
 
-<div class="food-item-wrap" style="background: #fff;border: none;">
+<div class="food-item-wrap special-item" style="background: #fff;border: none;">
 
 
 
-	<img src="{{ isset($item->photo) ? url($item->photo) : 'http://via.placeholder.com/350x250' }}" style="max-height: 200px;height: 200px;">
+<img class="product-image" src="{{ isset($item->photo) ? url($item->photo) : 'http://via.placeholder.com/350x250' }}" style="max-height: 200px;height: 200px;">
 	
 	
 
 	<div class="content" style="padding-left: 0;">
 	    <h5 style="font-size: 18px;">
 	    	@if($item->is_veg)
-             <img src="/images/veg.png" style="width: 15px;height: 15px;margin-top: 0px;" >
+             <img class="veg-indicator" src="/images/veg.png" style="width: 15px;height: 15px;margin-top: 0px;" >
             @else
-            <img src="/images/nonveg.png" style="width: 15px;height: 15px;margin-top: 0px;" >
+            <img class="veg-indicator" src="/images/nonveg.png" style="width: 15px;height: 15px;margin-top: 0px;" >
             @endif 
            {{ substr($item->name, 0, 25) }}</h5>
           
-  	       <div style="cursor: pointer;" class="product-name"  data-toggle="popover" data-trigger="hover" data-placement="top" data-content="{{ $item->description }}">{{  (strlen($item->description) > 50 ? substr($item->description, 0, 50) . '...' : $item->description) }}</div>
+  	       <div style="cursor: pointer;" class="product-name hidden-sm-down"  data-toggle="popover" data-trigger="hover" data-placement="top" data-content="{{ $item->description }}">{{  (strlen($item->description) > 50 ? substr($item->description, 0, 50) . '...' : $item->description) }}</div>
   	      
 
 	    	<div style="position: relative;margin-top: 5px;font-size: 14px;color: green">
-	    	<span style="background: green;color: #fff;padding: 4px;font-size: 12px;"><i class="fa fa-inr"></i> {{ $item->getPrice() }}</span>
+	    	<span class="price" style="background: green;color: #fff;padding: 4px;font-size: 12px;"><i class="fa fa-inr"></i> {{ $item->getPrice() }}</span>
 
 	    	<span>
 	    		 <?php $added = Cart::instance('restaurant-'.$restaurant->id)->search(function ($cartItem, $rowId) use ($item)  {
