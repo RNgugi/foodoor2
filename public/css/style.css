@@ -3451,4 +3451,10 @@ input.is-invalid {
         color: #fff !important;
     }
 
+
+    .user-addr, .user-map {
+        width: 100% !important;
+
+    }
+
 }

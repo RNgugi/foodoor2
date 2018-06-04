@@ -26,12 +26,12 @@
   
 
 
-     <div class="container " style="min-height: 900px;padding-top: 30px;">
+     <div class="container resp-container" style="min-height: 900px;padding-top: 30px;">
         <form id="placeorderform" method="POST" action="/orders">
         @csrf
         
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-8 col-sm-12 order-sm-12">
 
                 <div class="widget clearfix" style="background: #fff;">
                     <!-- /widget heading -->
@@ -53,10 +53,10 @@
                                            
                                         </div>
                                        
-                                        <div id="us3" style="width: 350px; height: 200px;"></div>
+                                      <div id="us3" class="user-map" style="width: 350px; height: 200px;"></div>
                                         
                                          <div class="">
-                                                <input type="text" style="width: 350px;margin-top: 0;padding: 18px;color: #000;font-weight: 500;"  class="form-control" id="address" name="address" />
+                                                <input type="text" style="width: 350px;margin-top: 0;padding: 18px;color: #000;font-weight: 500;"  class="form-control user-addr" id="address" name="address" />
                                             </div>
                                        
                                             
@@ -130,7 +130,7 @@
                     </div>
                 </div>
             </div>  
-            <div class="col-md-4">
+            <div class="col-md-4 col-sm-12 order-sm-1">
                 <div class="sidebar-wrap" >
                         
                            <input type="hidden" name="restaurant_id" value="{{$restaurant->id}}">
