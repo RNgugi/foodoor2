@@ -167,7 +167,7 @@ class OrdersController extends Controller
 
             auth()->user()->save();
 
-            $messageToRest = 'You have received a new order of Rs. '. $order->amount .'/-. Order Invoice : https://foodoor.in/orders/'. $order->id  .'/invoice';
+            $messageToRest = 'You have received a new order with order no. : ' . $order->id  .' and amount of Rs. '. $order->amount .'/-. Order Invoice : https://foodoor.in/orders/'. $order->id  .'/invoice';
 
             sendSMS($order->restaurant->contact_phone, $messageToRest);
 
