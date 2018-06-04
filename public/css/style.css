@@ -3357,7 +3357,7 @@ input.is-invalid {
     }
 
     .special-item .product-image{
-        width: 100px !important;
+        width: 100% !important;
         height: 100px !important;
         display: block !important;
     }
