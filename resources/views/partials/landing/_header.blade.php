@@ -41,7 +41,22 @@
 
                 <ul class="navbar-side" id="navbarSide">
                   <li class="navbar-side-item">
-                    <a href="#" class="side-link">Signup</a>
+                    @guest
+                    <a href="{{ route('login') }}" class="side-link">Sign In</a>
+                    <a href="{{ route('register') }}" class="side-link">Create Account</a>
+                    @else
+                        <a class="side-link" href="/home">Profile</a>  
+                        <a class="side-link" href="/orders">Orders</a> 
+
+                         <a class="side-link" href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
+                                         document.getElementById('logout-form').submit();">
+                             {{ __('Logout') }}
+                        </a>
+
+                                   
+                    @endguest
+                    <a href="/contact" class="side-link">Contact Us</a>
                   </li>
                   <!-- insert more side-items if you so choose -->
                 </ul>
