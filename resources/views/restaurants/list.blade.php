@@ -188,7 +188,7 @@
            </div>
 
 
-           <div class="filter-bottom">
+           <div class="filter-bottom hidden-sm-up">
                <button id="showFilter" class="btn btn-link" style="color: rgb(233, 78, 27);" >Filter Restaurants</button>
            </div>
 

@@ -401,7 +401,7 @@
 
 
 
-           <div class="filter-bottom filter-bottom-menu">
+           <div class="filter-bottom filter-bottom-menu hidden-sm-up">
                <button id="showFilter" class="btn btn-link" style="color: rgb(233, 78, 27);" ><i class="fa fa-cutlery"></i> Menu</button>
            </div>
 
@@ -447,13 +447,13 @@
                                      
 
                                  </li>
-                                 <li style="z-index: 103000000;">
-                                    <div style="z-index: 103000000;" class="collapse" id="cuisinemenu-{{ $cuisine->id }}">
+                                 <li>
+                                    <div class="collapse" id="cuisinemenu-{{ $cuisine->id }}">
                                       <ul style="background-color: #fff;">
                                           @foreach($cuisine->subs as $subCuisine)
                                             @if($subCuisine->items()->where('restaurant_id', $restaurant->id)->count())
                                               <li style="text-align: right;font-size: 15px;" class="{{ request('cuisine') ==  $cuisine->id ? 'active' : '' }}">
-                                               <a style="padding: 4px;" href="#cuisine-{{$subCuisine->id}}" class="scroll">{{ $subCuisine->name }}</a>
+                                               <a style="padding: 4px;" href="#cuisine-{{$subCuisine->id}}" class="scroll closeFilters">{{ $subCuisine->name }}</a>
                                               </li> 
                                             @endif
                                           @endforeach
@@ -472,7 +472,7 @@
 
 
            @if($restaurant->is_open && Cart::instance('restaurant-'.$restaurant->id)->count() && (floatval(\Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', ''))) > 99)
-            <div class="filter-bottom filter-bottom-cart">
+            <div class="filter-bottom filter-bottom-cart  hidden-sm-up">
                <button id="showCart" class="btn btn-link" style="color: rgb(233, 78, 27);" ><i class="fa fa-shopping-bag"></i> View Cart</button>
            </div>
            @endif
