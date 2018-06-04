@@ -3310,6 +3310,7 @@ input.is-invalid {
 
     .filter-bottom a {
         width: 100%;
+        font-weight: bold;
     }
 
     .restaurant-filters {
