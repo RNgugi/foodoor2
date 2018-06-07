@@ -43,7 +43,9 @@ class OrderStatusChangedListener
             $response = sendSMS($event->order->user->phone, $message);
         } elseif($status == 4) {
 
-            $message = 'Your order has been delivered. Congratulations, you have got Foodoor cash of amount Rs. '. ceil($event->order->amount * (5/100)) .'/- !!. Use this cash in your next order and save your money.';
+            $cashback = ceil($event->order->amount * (5/100)) > 100 ? 100 : ceil($event->order->amount * (5/100));
+
+            $message = 'Your order has been delivered. Congratulations, you have got Foodoor cash of amount Rs. '. $cashback .'/- !!. Use this cash in your next order and save your money.';
 
             $response = sendSMS($event->order->user->phone, $message);
 

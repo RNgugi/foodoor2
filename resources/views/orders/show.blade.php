@@ -5,7 +5,7 @@
 	 
     
 
-	<div style="background: #fbbf67;min-height: 1200px;">
+	<div id="order-data" style="background: #fbbf67;min-height: 1200px;">
 
     <div class="container" style="padding-top: 60px;">
 
@@ -30,7 +30,7 @@
                       <div class="clearfix"></div>
                         <h5 style="font-weight: bold;margin-top: 55px;">Delivery Details</h5>
                         <hr>
-                        <div style="width: 50%;">
+                        <div id="customer-info" style="width: 50%;">
                           <h5><b>{{ $order->user->name }}</b> | {{ $order->user->phone }}</h5>
                           <h5>{{ json_decode($order->delivery_address)->delivery_location }}</h5>
                           <h5>{{ json_decode($order->delivery_address)->door_no }} {{ json_decode($order->delivery_address)->landmark }}</h5>

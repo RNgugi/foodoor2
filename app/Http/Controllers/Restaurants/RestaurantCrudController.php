@@ -172,6 +172,8 @@ class RestaurantCrudController extends CrudController
 
              ['name' => 'website', 'label' => 'Website Link' , 'tab' => 'General'],
 
+             ['name' => 'commission', 'label' => 'Restaurant Commission', 'type' => 'hidden' , 'tab' => 'Banking'],
+
              ['name' => 'bank_name', 'label' => 'Bank Name' , 'tab' => 'Banking', 'attributes' => ["readonly" => true]],
 
              ['name' => 'bank_ifsc', 'label' => 'Bank IFSC Code', 'tab' => 'Banking', 'attributes' => ["readonly" => true]],

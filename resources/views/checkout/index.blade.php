@@ -31,7 +31,7 @@
         @csrf
         
         <div class="row">
-            <div class="col-md-8 col-sm-12 order-sm-12">
+            <div class="col-md-8 col-sm-12 hidden-sm-down">
 
                 <div class="widget clearfix" style="background: #fff;">
                     <!-- /widget heading -->
@@ -149,11 +149,11 @@
                                  <div class="widget-body" style="padding: 20px;
     padding-bottom: 3px;
     padding-top: 0px;">
-                                    <div class="title-row"><span style="font-size: 14px;">@if($item->model->is_veg)
+                                    <div class="title-row"><span class="item-name" style="font-size: 14px;">@if($item->model->is_veg)
                                                  <img src="/images/veg.png" style="width: 12px;height: 12px;margin-top: -2px;" >
                                                 @else
                                                 <img src="/images/nonveg.png" style="width: 12px;height: 12px;margin-top: -2px;" >
-                                                @endif  {{ $item->name }}  {!! $customs != null ? '<br><small>Size : ' . $customs->size . '</small>' : '' !!}</span> 
+                                                @endif  {{ $item->name }} <a href="/cart/remove/{{$item->rowId}}/{{$restaurant->id}}"><i class="fa fa-trash"></i></a>  {!! $customs != null ? '<br><small>Size : ' . $customs->size . '</small>' : '' !!}</span> 
 
                                     <p style="font-size:15px;margin-top: 2px;margin-left: 3px;" class="pull-right">&#8377; {{ $item->price * $item->qty }}</p>
                                     {{-- <a href="/cart/remove/{{$item->rowId}}/{{$restaurant->id}}">
@@ -280,6 +280,104 @@
                       
                      </div>
                   </div>
+
+                   <div class="col-md-8 col-sm-12 hidden-sm-up" style="position: relative;
+    margin-top: 549px;" id="mobile-checkout">
+
+                <div class="widget" style="background: #fff;">
+                    <!-- /widget heading -->
+                  
+                    <div class="widget-body checkout-form">
+                       
+                            <div class="row">
+                                <div class="col-sm-12 margin-b-30">
+                                    
+                                   <div class="row"> 
+                                      <div class="col-sm-12" >
+                                        <div class="form-group">
+
+                                           
+                                        </div>
+                                       
+                                      <div id="us4" class="user-map" style="width: 350px; height: 200px;"></div>
+                                        
+                                         <div class="">
+                                                <input type="text" style="width: 350px;margin-top: 0;padding: 18px;color: #000;font-weight: 500;"  class="form-control user-addr" id="address2" name="address" />
+                                            </div>
+                                       
+                                            
+                                                <input type="hidden" class="form-control" value="{{ old('latitude') }}" style="width: 110px" id="latitude2" name="latitude" />
+                                            
+                                           
+
+                                                <input type="hidden" class="form-control" value="{{ old('longitude') }}" style="width: 110px" id="longitude2" name="longitude" />
+                                           
+                                       <div class="clearfix">&nbsp;</div>
+                                       
+                                    </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Door No./ Flat No. <span style="color: red;">*</span></label>
+                                                <input type="text" name="door_no" value="{{ old('door_no') }}" class="form-control" placeholder="Ex. Flat no. 1" required=""> </div>
+                                            <!--/form-group-->
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Landmark <span style="color: red;">*</span></label>
+                                                <input type="text" name="landmark" value="{{ old('landmark') }}" class="form-control" placeholder="Nearby place" required=""> </div>
+                                            <!--/form-group-->
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Road Name</label>
+                                                <input type="text" name="road_name" value="{{ old('road_name') }}" class="form-control" placeholder="Ex. Thakkar Nagar"> </div>
+                                            <!--/form-group-->
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Alternate Mobile No.</label>
+                                                <input id="alt_mobile" onkeyup="checkPhone()" type="number" autocomplete="off"  name="alt_mobile" value="{{ old('alt_mobile') }}" class="form-control" placeholder="Alternate Contact Number" > 
+                                                   <span id="alt_mobile_feedback" class="invalid-feedback">
+                                                        
+                                                   </span>
+                                                </div>
+                                            <!--/form-group-->
+                                        </div>
+                                    </div>
+                                   
+                                </div>
+                               
+                            </div>
+                         <hr>
+                           <div class="payment-option">
+                                        <ul class=" list-unstyled">
+                                            <li>
+                                                <label class="custom-control custom-radio  m-b-20">
+                                                    <input id="radioStacked1" value="0" name="payment_mode" type="radio" class="custom-control-input" required=""> <span class="custom-control-indicator"></span> <span class="custom-control-description">Payment on delivery</span>
+                                                    </label>
+                                            </li>
+                                            <li>
+                                                <label class="custom-control custom-radio  m-b-10">
+                                                    <input name="payment_mode" type="radio" value="1" class="custom-control-input" required=""> <span class="custom-control-indicator"></span> <span class="custom-control-description">Pay Online</span><br> <span>Various online payment options like Visa, Mastercard, Rupay, Netbanking, etc. are available.</span>  </label>
+                                            </li>
+                                        </ul>
+                                        @if(session()->has($sessionName) && session($sessionName) != 'foodoorcash')
+                                          <input type="hidden" name="discount" value="{{ $discount }}">
+                                        @elseif(session()->has($sessionName) && session($sessionName) == 'foodoorcash')  
+                                          <input type="hidden" name="foodoorcash" value="{{ $foodoorCash }}">
+                                        @endif
+                                        <p class="text-xs-center"> <button id="place_order_btn" type="submit" class="btn btn-outline-success btn-block">Place Order</button> </p>
+                                    </div>
+                    </div>
+                </div>
+            </div>   
+
+
             </div>    
 
             </div> 
@@ -439,10 +537,35 @@
                                                     }
                                                 }
                                             });
+
+                                             $('#us4').locationpicker({
+                                                location: {
+                                                    latitude: {{ request('lat') }},
+                                                    longitude: {{ request('lng') }}
+                                                },
+                                                radius: 0,
+                                                inputBinding: {
+                                                    latitudeInput: $('#latitude2'),
+                                                    longitudeInput: $('#longitude2'),
+                                                    locationNameInput: $('#address2')
+                                                },
+                                                enableAutocomplete: true,
+                                                addressFormat: 'street_address',
+                                                onchanged: function (currentLocation, radius, isMarkerDropped) {
+                                                    if(getDistance(currentLocation) > 2500)
+                                                    {
+                                                        alert('Sorry, As of now we are not serving in this area.Please choose another location.');
+
+                                                        $('#us4').locationpicker("location", {latitude: {{ request('lat') }}, longitude:{{ request('lng') }} });
+                                                    }
+                                                }
+                                            });
                                         </script>
 
 
                                         <script type="text/javascript"> 
+
+                                              $('div:hidden input').attr("disabled",true);
 
                                                  function applyFoodoorCash(restaurantId)
                                                 {

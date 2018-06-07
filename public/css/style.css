@@ -3325,7 +3325,8 @@ input.is-invalid {
 
 
     .restaurant-filters ul li{
-            padding: 7px !important;
+            padding: 0px !important;
+            padding-right: 3px !important;
     }
 
     .restaurant-info {
@@ -3449,12 +3450,86 @@ input.is-invalid {
 
     .filter-bottom-cart button {
         color: #fff !important;
+         width: 100%;
+        display: block;
+        text-align: left;
+        font-weight: bold;
+
     }
 
+
+    .filter-bottom-cart button span {
+        float: right;
+    }
 
     .user-addr, .user-map {
         width: 100% !important;
 
     }
+
+
+    .progressbar li {
+        list-style-type: none;
+        width: 20%;
+        float: left;
+        font-size: 7px;
+        position: relative;
+        text-align: center;
+        text-transform: uppercase;
+        color: #000;
+        font-weight: bold;
+    }
+
+
+    .progressbar li:before {
+    width: 35px;
+    height: 35px;
+    content: counter(step);
+    counter-increment: step;
+    line-height: 32px;
+    border: 2px solid #8a8a8a;
+    display: block;
+    text-align: center;
+    margin: 0 auto 10px auto;
+    border-radius: 50%;
+    color: #8a8a8a;
+    font-size: 17px;
+    background-color: #fff;
+    z-index: 1000;
+}
+
+
+.progressbar li:after {
+    width: 100%;
+    height: 3px;
+    content: '';
+    position: absolute;
+    background-color: #7d7d7d;
+    top: 18px;
+    left: -40%;
+    z-index: -1;
+}
+
+
+#customer-info {
+    width: 100% !important;
+}
+
+#order-data h5 {
+    font-size: 14px !important;
+}
+
+
+#order-data table th {
+    font-size: 12px !important;
+}
+
+#order-data table td {
+    font-size: 11px !important;
+}
+
+.item-name {
+    display: block !important;
+}
 
 }

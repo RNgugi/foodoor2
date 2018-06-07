@@ -436,7 +436,7 @@
                                  <li class="{{ request('cuisine') ==  $cuisine->id ? 'active' : '' }}">
                                     
                                     @if($cuisine->subs()->count())
-                                    <a data-toggle="collapse" aria-expanded="false" href="#cuisinemenu-{{ $cuisine->id }}" class="scroll">{{ $cuisine->name }}  <i style="margin-top: 5px;" class="fa fa-angle-right pull-right"></i>
+                                    <a data-toggle="collapse" aria-expanded="true" href="#cuisinemenu-{{ $cuisine->id }}" class="scroll">{{ $cuisine->name }}  <i style="margin-top: 5px;" class="fa fa-angle-right pull-right"></i>
                                     <i style="margin-top: 5px;" class="fa fa-angle-down pull-right"></i></a>
 
                                    
@@ -448,7 +448,7 @@
 
                                  </li>
                                  <li>
-                                    <div class="collapse" id="cuisinemenu-{{ $cuisine->id }}">
+                                    <div class="collapse in" id="cuisinemenu-{{ $cuisine->id }}">
                                       <ul style="background-color: #fff;">
                                           @foreach($cuisine->subs as $subCuisine)
                                             @if($subCuisine->items()->where('restaurant_id', $restaurant->id)->count())
@@ -473,8 +473,17 @@
 
            @if($restaurant->is_open && Cart::instance('restaurant-'.$restaurant->id)->count() && (floatval(\Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', ''))) > 99)
             <div class="filter-bottom filter-bottom-cart  hidden-sm-up">
-               <button id="showCart" class="btn btn-link" style="color: rgb(233, 78, 27);" ><i class="fa fa-shopping-bag"></i> View Cart</button>
+               <button id="showCart" class="btn btn-link" style="color: rgb(233, 78, 27);" ><i class="fa fa-shopping-bag"></i> View Cart ( {{ Cart::instance('restaurant-'.$restaurant->id)->count() > 1 ? Cart::instance('restaurant-'.$restaurant->id)->count() . ' Items' : Cart::instance('restaurant-'.$restaurant->id)->count() . ' Item' }}  )
+
+               <span>&#8377; {{ floatval(\Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', '')) }}</span>
+               </button>
            </div>
+           @endif
+
+           @if(!$restaurant->is_open)
+              <div class="filter-bottom filter-bottom-cart  hidden-sm-up" style="background: red !important;">
+                 <button class="btn btn-link" style="color: rgb(233, 78, 27);" >Restaurant Closed</button>
+             </div>
            @endif
 
            
