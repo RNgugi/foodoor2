@@ -10,18 +10,18 @@ return [
     |   view    = File
     */
 
-    'gateway' => 'InstaMojo',                // Replace with the name of default gateway you want to use
+    'gateway' => 'ccavenue',                // Replace with the name of default gateway you want to use
 
-    'testMode'  => true,                   // True for Testing the Gateway [For production false]
+    'testMode'  => false,                   // True for Testing the Gateway [For production false]
 
     'ccavenue' => [                         // CCAvenue Parameters
-        'merchantId'  => env('INDIPAY_MERCHANT_ID', ''),
-        'accessCode'  => env('INDIPAY_ACCESS_CODE', ''),
-        'workingKey' => env('INDIPAY_WORKING_KEY', ''),
+        'merchantId'  => env('INDIPAY_MERCHANT_ID', '172808'),
+        'accessCode'  => env('INDIPAY_ACCESS_CODE', 'AVRA77FD36AT61ARTA'),
+        'workingKey' => env('INDIPAY_WORKING_KEY', '3D168E728ED6B65F6AB548F89124B299'),
 
         // Should be route address for url() function
-        'redirectUrl' => env('INDIPAY_REDIRECT_URL', 'indipay/response'),
-        'cancelUrl' => env('INDIPAY_CANCEL_URL', 'indipay/response'),
+        'redirectUrl' => env('INDIPAY_REDIRECT_URL', 'payments/response'),
+        'cancelUrl' => env('INDIPAY_CANCEL_URL', 'payments/response'),
 
         'currency' => env('INDIPAY_CURRENCY', 'INR'),
         'language' => env('INDIPAY_LANGUAGE', 'EN'),
