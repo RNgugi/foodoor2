@@ -79,7 +79,7 @@
                      <div id="fixedSidebar" class="sidebar clearfix m-b-20 " >
                         <div class="main-block">
                            <div class="sidebar-title white-txt">
-                              <h6>Choose Cusine</h6>
+                              <h6>Choose Cuisine</h6>
                               <i class="fa fa-cutlery pull-right"></i> 
                            </div>
                            <ul>
@@ -410,13 +410,13 @@
                <button id="showFilter" class="btn btn-link" style="color: rgb(233, 78, 27);" ><i class="fa fa-cutlery"></i> Menu</button>
            </div>
 
-           <div class="restaurant-filters" style="display: none;">
-              <div class="main-block">
+           <div class="restaurant-filters"  style="display: none;max-height: 500px;height: 500px;">
+              <div class="main-block" style="max-height: 500px;height: 500px;">
                            <div class="sidebar-title white-txt">
-                              <h6>Choose Cusine</h6>
+                              <h6>Choose Cuisine</h6>
                               <a class="closeFilters" style="color: #fff;" href="#"><i class="fa fa-close pull-right"></i></a> 
                            </div>
-                           <ul>
+                           <ul style="max-height: 500px;height: 500px;overflow-y: scroll;padding-bottom: 100px;">
                               
                               <li class="{{ request('filter') == 'all' ? 'active' : '' }}">
                                  <a href="/restaurants/{{ $restaurant->id }}?lat={{request('lat')}}&lng={{request('lng')}}&filter=all" class="scroll">All Items</a>

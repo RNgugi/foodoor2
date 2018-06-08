@@ -3315,7 +3315,7 @@ input.is-invalid {
 
     .restaurant-filters {
         position: fixed;
-        top: 0;
+        top: inherit;
         bottom: 0px;
         left: 0;
         right: 0;
