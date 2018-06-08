@@ -1,4 +1,4 @@
-<footer class="footer hidden-sm-down" style="background: #000 !important;padding: 60px 0;">
+<footer class="footer {{ request()->is('/') ? '' : 'hidden-sm-down' }}" style="background: #000 !important;padding: 60px 0;">
             <div class="container">
                 <!-- top footer statrs -->
                 <div class="row top-footer">
