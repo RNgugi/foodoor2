@@ -169,7 +169,8 @@
                                                                <tr>
                                                                   <td style="word-wrap:break-word;font-size:0px;padding:0px 20px 0px 20px;" align="left">
                                                                      <div style="cursor:auto;color:#000000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:11px;line-height:22px;text-align:left;">
-                                                                        <p><span style="font-size:18px;">Thanks for ordering with Foodoor. Your order #{{$order->id}} has been delivered. and congratulations, you have got Foodoor cash of amount Rs. {{ $order->amount * (5/100) }} /-!!. Use this cash in your next order and save your money.</span></p>
+                                                                       <?php $cashback = ceil($order->subtotal * (5/100)) > 100 ? 100 : ceil($order->subtotal * (5/100)); ?>
+                                                                        <p><span style="font-size:18px;">Thanks for ordering with Foodoor. Your order #{{$order->id}} has been delivered. and congratulations, you have got Foodoor cash of amount Rs. {{ $cashback }} /-!!. Use this cash in your next order and save your money.</span></p>
                                                                         <p></p>
                                                                         <p><span style="font-size:18px;">Regards,</span></p>
                                                                         <p><span style="font-size:18px;">Team Foodoor</span></p>

@@ -485,10 +485,18 @@
            </div>
            @endif
 
-           @if(!$restaurant->is_open)
+             @if(!$restaurant->is_open)
+                <div class="filter-bottom filter-bottom-cart  hidden-sm-up" style="background: red !important;">
+                   <button class="btn btn-link" style="color: rgb(233, 78, 27);" >Restaurant Closed</button>
+               </div>
+             @elseif($restaurant->is_open && (floatval(\Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', ''))) < 99)
+
               <div class="filter-bottom filter-bottom-cart  hidden-sm-up" style="background: red !important;">
-                 <button class="btn btn-link" style="color: rgb(233, 78, 27);" >Restaurant Closed</button>
-             </div>
+                   <button class="btn btn-link" style="color: rgb(233, 78, 27);" >Minimum Order Should be Rs. 99</button>
+               </div>
+
+
+             @endif
            @endif
 
            
