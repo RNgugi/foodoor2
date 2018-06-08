@@ -541,6 +541,25 @@
 
       </script>
 
+        <script>
+      $("#spinner3-{{$item->rowId}}")
+        .spinner('delay', 200) //delay in ms
+        .spinner('changed', function(e, newVal, oldVal) {
+          // trigger lazed, depend on delay option.
+        })
+        .spinner('changing', function(e, newVal, oldVal) {
+         if(newVal > oldVal)
+         {
+
+         window.location = '/cart/increment/{{$item->rowId}}/{{$restaurant->id}}/newVal:' + newVal
+         } else {
+              window.location = '/cart/decrement/{{$item->rowId}}/{{$restaurant->id}}/newVal:' + newVal
+         }
+        });
+
+
+      </script>
+
 
 
 
