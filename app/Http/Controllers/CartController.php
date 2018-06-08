@@ -102,7 +102,7 @@ class CartController extends Controller
         try{
 
           \Cart::instance('restaurant-'.$restaurant->id)->remove($item);
-        } catch(Exception $e)
+        } catch(InvalidRowIDException $e)
         {
             return back();
         }
