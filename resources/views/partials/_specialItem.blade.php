@@ -29,7 +29,7 @@
                                           }); ?>
 
                                         @if(count($added) && (count($item->additions) == 0 && ($item->sizes == null || count(json_decode($item->sizes)) == 0)))
-                                            <div data-trigger="spinner" id="spinner3-{{$item->rowId}}" style="display: inline;text-align: center;float: right;margin-right: 6px;" >
+                                            <div data-trigger="spinner" id="spinner3-{{$added->first()->rowId}}" style="display: inline;text-align: center;float: right;margin-right: 6px;" >
                                                  <a style="color: #f30; font-size: 18px;font-weight: bold;" href="javascript:;" data-spin="down">-</a>
                                                  <input type="text" style="width: 40px;text-align: center;" min="1" value="{{ $added->first()->qty }}" data-rule="quantity">
                                                  <a href="" style="color: #f30; font-size: 18px;font-weight: bold;" href="javascript:;" data-spin="up">+</a>
