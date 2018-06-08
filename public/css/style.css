@@ -3532,4 +3532,9 @@ input.is-invalid {
     display: block !important;
 }
 
+#profile-block {
+    min-height: 0 !important;
+}
+}
+
 }
