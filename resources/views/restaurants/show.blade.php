@@ -495,8 +495,6 @@
                    <button class="btn btn-link" style="color: rgb(233, 78, 27);" >Minimum Order Should be Rs. 99</button>
                </div>
 
-
-             @endif
            @endif
 
            
