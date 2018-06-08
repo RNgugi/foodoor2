@@ -147,28 +147,32 @@
 
                       @if(request()->has('filter') && request('filter') == 'featured')
                           <div id="restaurant-special"></div>
-                          <?php $items = $restaurant->items()->where('featured', 1)->get(); ?>
-                       
-                                @foreach($items as $index => $item)
-                                  <div class="col-xs-6">
-                                    @include('partials._specialItem')
-                                  </div>  
-                                @endforeach
-                              
+                         <?php $itemChunks = $restaurant->items()->where('featured', 1)->get()->chunk(2); ?>
+                        @foreach($itemChunks as $items)
+                           <div class="row">
+                                  @foreach($items as $index => $item)
+                                    <div class="col-xs-6">
+                                      @include('partials._specialItem')
+                                    </div>  
+                                  @endforeach
+                            </div> 
+                        @endforeach       
                           
                      
                       @else
 
                         @if(request('cuisine') == null && (request('filter') == 'all' || request('filter') == ''))
                          <div id="restaurant-special"></div>
-                        <?php $items = $restaurant->items()->where('featured', 1)->get(); ?>
-                        <div class="row">
-                                @foreach($items as $index => $item)
-                                  <div class="col-xs-6">
-                                    @include('partials._specialItem')
-                                  </div>  
-                                @endforeach
-                          </div>      
+                        <?php $itemChunks = $restaurant->items()->where('featured', 1)->get()->chunk(2); ?>
+                        @foreach($itemChunks as $items)
+                          <div class="row">
+                                  @foreach($items as $index => $item)
+                                    <div class="col-xs-6">
+                                      @include('partials._specialItem')
+                                    </div>  
+                                  @endforeach
+                            </div> 
+                          @endforeach     
                          @endif 
                               
 
@@ -194,9 +198,8 @@
                                  <div class="clearfix"></div>
                               </div>
                               <div class="collapse in" id="cuisine-{{ $cuisine->id }}">
-                              <?php $itemChunks = $items->chunk(2); ?>
-                              @foreach($itemChunks as $items)
-                              <div class="row">
+                              
+                              
                               @foreach($items as $index => $item)
                                  <div class="food-item {{ ($index+1) % 2 == 0 ? 'white' : '' }}">
                                     <div class="row">
@@ -294,8 +297,6 @@
                                     @endif
                                     <!-- end:row -->
                                  </div>
-                          @endforeach
-                          </div>
                           @endforeach
                           
                            </div>
