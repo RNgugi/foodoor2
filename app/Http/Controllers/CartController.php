@@ -99,10 +99,9 @@ class CartController extends Controller
      */
     public function remove($item, Restaurant $restaurant)
     {   
-        if(\Cart::get($item))
-        {
+        
           \Cart::instance('restaurant-'.$restaurant->id)->remove($item);
-        }
+        
         return back();
     }
 
