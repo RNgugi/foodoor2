@@ -16,7 +16,7 @@
                             </div>
 
                               <div class="col-xs-12 col-sm-5 right-image text-center">
-                                <figure> <img src="/images/app.webp" alt="Right Image" class="img-fluid"> </figure>
+                                <figure> <img src="/images/appphone.png" alt="Right Image" class="img-fluid"> </figure>
                             </div>
                         </div>
                     </div>

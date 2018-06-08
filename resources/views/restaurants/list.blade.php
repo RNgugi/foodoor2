@@ -119,7 +119,7 @@
                      
                   </div>
                       
-                        <div class="col-xs-12 col-sm-7 col-md-7 col-lg-9">
+                        <div class="col-xs-12 col-sm-7 col-md-7 col-lg-9" style="margin-bottom: 80px;">
                         <?php $restaurantChunks = array_chunk($restaurants, 3); ?>
                         @foreach($restaurantChunks as $restaurants)
                                <div class="row">

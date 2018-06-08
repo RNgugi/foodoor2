@@ -130,11 +130,11 @@
                     </div>
                 </div>
             </div>  
-            <div class="col-md-4 col-sm-12 order-sm-1">
+            <div class="col-md-4 col-sm-12 order-sm-1" >
                 <div class="sidebar-wrap" >
                         
                            <input type="hidden" name="restaurant_id" value="{{$restaurant->id}}">
-                           <div class="widget widget-cart" style="background: #fff;">
+                           <div class="widget widget-cart" style="background: #fff;" id="cart-items">
                              <div class="media" style="padding: 8px;padding-top: 18px;padding-left: 12px;">
                                 <img class="mr-1" style="width: 54px;height: 54px;float: left;" src="{{ isset($restaurant->logo) ? url($restaurant->logo) : 'http://via.placeholder.com/64x64' }}" alt="Generic placeholder image">
                                 <div class="media-body">
@@ -154,21 +154,23 @@
                                                 @else
                                                 <img src="/images/nonveg.png" style="width: 12px;height: 12px;margin-top: -2px;" >
                                                 @endif  {{ $item->name }} <a href="/cart/remove/{{$item->rowId}}/{{$restaurant->id}}"><i class="fa fa-trash"></i></a>  {!! $customs != null ? '<br><small>Size : ' . $customs->size . '</small>' : '' !!}</span> 
-
-                                    <p style="font-size:15px;margin-top: 2px;margin-left: 3px;" class="pull-right">&#8377; {{ $item->price * $item->qty }}</p>
+                                    <div style="display: block;margin-bottom: 0;margin-top: 5px;">
+                                   
                                     {{-- <a href="/cart/remove/{{$item->rowId}}/{{$restaurant->id}}">
                                      <i class="fa fa-trash pull-right"></i></a> --}} 
 
                                     
 
-                                    <div data-trigger="spinner" id="spinner-{{$item->rowId}}" style="display: inline;text-align: center;float: right;margin-right: 10px;" >
+                                    <div data-trigger="spinner" id="spinner-{{$item->rowId}}" style="display: inline;text-align: center;margin-right: 10px;" >
                                       <a style="color: #f30; font-size: 18px;font-weight: bold;
    " href="javascript:;" data-spin="down">-</a>
                                       <input type="text" style="width: 40px;text-align: center;" value="{{ $item->qty }}" data-rule="quantity">
                                       <a href="" style="color: #f30; font-size: 18px;font-weight: bold;" href="javascript:;" data-spin="up">+</a>
                                     </div>
+
+                                     <p style="font-size:15px;margin-top: 2px;margin-left: 3px;display: inline-block;margin-bottom: 0;" >&#8377; {{ $item->price * $item->qty }}</p>
                                     
-                                    
+                                    </div>
                                  </div>
                                     
                                 
@@ -566,6 +568,12 @@
                                         <script type="text/javascript"> 
 
                                               $('div:hidden input').attr("disabled",true);
+
+                                              var height = $('#cart-items').height() + 40;
+
+                                              console.log(height);
+
+                                              $('#mobile-checkout').css('margin-top',  height);
 
                                                  function applyFoodoorCash(restaurantId)
                                                 {
