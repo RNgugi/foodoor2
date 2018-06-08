@@ -194,6 +194,9 @@
                                  <div class="clearfix"></div>
                               </div>
                               <div class="collapse in" id="cuisine-{{ $cuisine->id }}">
+                              <?php $itemChunks = $items->chunk(2); ?>
+                              @foreach($itemChunks as $items)
+                              <div class="row">
                               @foreach($items as $index => $item)
                                  <div class="food-item {{ ($index+1) % 2 == 0 ? 'white' : '' }}">
                                     <div class="row">
@@ -292,7 +295,8 @@
                                     <!-- end:row -->
                                  </div>
                           @endforeach
-
+                          </div>
+                          @endforeach
                           
                            </div>
                            </div>
