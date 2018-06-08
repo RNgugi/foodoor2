@@ -23,7 +23,7 @@
                           <div class="widget-body">
                               <div class="col-md-8">
                                <div class="media" style="padding-top: 18px;">
-                                <img class="mr-1" style="width: 124px;height: 94px;float: left;" src="{{ isset($order->restaurant->logo) ? url($order->restaurant->logo) : 'http://via.placeholder.com/84x84' }}" alt="Generic placeholder image">
+                                <img class="mr-1 hidden-md-down" style="width: 124px;height: 94px;float: left;" src="{{ isset($order->restaurant->logo) ? url($order->restaurant->logo) : 'http://via.placeholder.com/84x84' }}" alt="Generic placeholder image">
                                 <div class="media-body">
                                   <h5 class="mt-0" style="font-size: 18px;font-weight: bold;margin-bottom: 1px;">{{ $order->restaurant->name }}</h5>
                                    <p style="font-size: 15px;color: #686b78;margin-bottom: 1px;">{{ $order->restaurant->area }}</p>
