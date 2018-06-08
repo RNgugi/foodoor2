@@ -125,7 +125,9 @@
                                         @elseif(session()->has($sessionName) && session($sessionName) == 'foodoorcash')  
                                           <input type="hidden" name="foodoorcash" value="{{ $foodoorCash }}">
                                         @endif
-                                        <p class="text-xs-center"> <button id="place_order_btn" type="submit" class="btn btn-outline-success btn-block">Place Order</button> </p>
+                                         @if($subtotal > 99)
+                                          <p class="text-xs-center"> <button id="place_order_btn" type="submit" class="btn btn-outline-success btn-block">Place Order</button> </p>
+                                         @endif
                                     </div>
                     </div>
                 </div>
@@ -373,7 +375,10 @@
                                         @elseif(session()->has($sessionName) && session($sessionName) == 'foodoorcash')  
                                           <input type="hidden" name="foodoorcash" value="{{ $foodoorCash }}">
                                         @endif
+
+                                        @if($subtotal > 99)
                                         <p class="text-xs-center"> <button id="place_order_btn" type="submit" class="btn btn-outline-success btn-block">Place Order</button> </p>
+                                        @endif
                                     </div>
                     </div>
                 </div>

@@ -36,6 +36,7 @@ class CheckoutController extends Controller
 
        // dd(\Cart::instance('restaurant-'.$restaurant->id)->content());
 
+        $subtotal = floatval(\Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', ''));
 
          $foodoorCash = 0;
 
@@ -91,8 +92,12 @@ class CheckoutController extends Controller
             }
         }
 
+        if($subtotal < 99)
+        {
+            $foodoorCash = 0;
+        }
 
-    	return view('checkout.index', compact('restaurant', 'lat', 'lng', 'sessionName', 'coupon', 'discount', 'coupons', 'total', 'gst', 'foodoorCash', 'deliveryCharge'));
+    	return view('checkout.index', compact('restaurant', 'lat', 'lng', 'sessionName', 'coupon', 'discount', 'coupons', 'total', 'gst', 'foodoorCash', 'deliveryCharge', 'subtotal'));
     }
 
 
