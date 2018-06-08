@@ -99,8 +99,13 @@ class CartController extends Controller
      */
     public function remove($item, Restaurant $restaurant)
     {   
-        
+        try{
+
           \Cart::instance('restaurant-'.$restaurant->id)->remove($item);
+        } catch(Exception $e)
+        {
+            return back();
+        }
         
         return back();
     }

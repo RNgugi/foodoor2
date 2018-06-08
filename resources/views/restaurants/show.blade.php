@@ -348,7 +348,7 @@
                                     </div>
 
                                     <p style="font-size:12px;font-weight: normal;margin-top: 2px;margin-left: 3px;display: inline;" class="">&#8377; {{ $item->price * $item->qty }} 
-                                             <a class="one-click-links" onclick="$('.one-click-links').attr('disabled', true)" href="/cart/remove/{{$item->rowId}}/{{$restaurant->id}}"><i class="fa fa-trash"></i></a></p>
+                                             <a class="one-click-links"  href="/cart/remove/{{$item->rowId}}/{{$restaurant->id}}"><i class="fa fa-trash"></i></a></p>
 
 
                                     {{-- <a href="/cart/remove/{{$item->rowId}}/{{$restaurant->id}}">
