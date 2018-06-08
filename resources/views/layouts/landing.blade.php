@@ -222,6 +222,8 @@ $('div.alert-flash').not('.alert-important').delay(3000).fadeOut(350);
 
   <script>
               $('#flash-overlay-modal').modal();
+
+              $('body').scrollTop(0);
           </script>
 
         @yield('scripts')
