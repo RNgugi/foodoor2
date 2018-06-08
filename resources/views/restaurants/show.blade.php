@@ -68,6 +68,8 @@
 
             <div class="container m-t-30 resp-container" style="min-height: 1200px;margin-bottom: 80px;">
 
+              <a href="/restaurants/explore?lat={{request('lat')}}&lng={{request('lng')}}"> <-- All Restaurants</a>
+
                @if(!$restaurant->is_open)
                  <div class="alert alert-warning" role="alert" >
                      This restaurant is currently closed. Please try other  <a class="alert-link" href="/restaurants/explore?lat={{request('lat')}}&lng={{request('lng')}}">restaurants</a>

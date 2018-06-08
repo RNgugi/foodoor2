@@ -27,6 +27,10 @@
 
 
      <div class="container resp-container" style="min-height: 900px;padding-top: 30px;">
+
+        <a href="/restaurants/explore?lat={{request('lat')}}&lng={{request('lng')}}"> <-- Back to Restaurant</a>
+
+
         <form id="placeorderform" method="POST" action="/orders">
         @csrf
         
