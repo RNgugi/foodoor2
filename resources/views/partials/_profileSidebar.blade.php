@@ -1,5 +1,5 @@
 <div class="sidebar clearfix m-b-20 ">
-                            <div class="main-block" style="min-height: 600px;">
+                            <div class="main-block" id="profile-block" style="min-height: 600px;">
                                <div class="sidebar-title white-txt">
                                   <h6>Manage Account</h6>
                                   <i class="fa fa-user pull-right"></i> 
