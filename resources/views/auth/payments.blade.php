@@ -14,7 +14,7 @@
 
         <div class="col-md-9">
             <h3 style="font-weight: 600;margin-bottom: 30px;">Payments</h3>
-            <div class="widget" style="width: 40%;">
+            <div class="widget" id="foodoor-cash" style="width: 40%;">
                <div class="widget-body" style="background: #fff;">
                      
                         <h4 style="font-weight: 400;padding-bottom: 0px;margin-bottom: 0px;font-size: 23px;">Foodoor Cash : <span>{{ auth()->user()->wallet_ballance }}</span></h4>

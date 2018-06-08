@@ -3535,6 +3535,9 @@ input.is-invalid {
 #profile-block {
     min-height: 0 !important;
 }
+
+#foodoor-cash {
+    width: 100% !important; 
 }
 
 }
