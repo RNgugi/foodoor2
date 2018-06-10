@@ -20,7 +20,7 @@ return [
         'workingKey' => env('CCAVENUE_WORKING_KEY', '3D168E728ED6B65F6AB548F89124B299'),
 
         // Should be route address for url() function
-        'redirectUrl' => env('CCAVENUE_REDIRECT_URL', 'payment/success'),
+        'redirectUrl' => env('CCAVENUE_REDIRECT_URL', 'payment/response'),
         'cancelUrl' => env('CCAVENUE_CANCEL_URL', 'payment/cancel'),
 
         'currency' => env('CCAVENUE_CURRENCY', 'INR'),
