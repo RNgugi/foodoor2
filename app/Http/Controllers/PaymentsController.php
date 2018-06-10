@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Mail\NewOrderCreated;
-use Softon\Indipay\Facades\Indipay;  
+use Appnings\Payment\Facades\Payment; 
 
 class PaymentsController extends Controller
 {
@@ -40,15 +40,17 @@ class PaymentsController extends Controller
           ];
  
           
-          $purchaseOrder = Indipay::prepare($parameters);
+          $purchaseOrder = Payment::prepare($parameters);
 
-          return Indipay::process($purchaseOrder);
+          return Payment::process($purchaseOrder);
 	}
 
     public function response(Request $request)
     {
         // For default Gateway
-        $response = Indipay::response($request);
+        $response = Payment::response($request);
+
+        dd($response);
 
         $orderId = $response->payment_request->purpose;
 
