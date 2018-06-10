@@ -29,14 +29,15 @@ class PaymentsController extends Controller
       
             'tid' => '1233221223322',
             
-            'order_id' => '1232212',
+            'order_id' => $orderId,
             
             'amount' => $amount,
             'purpose' => $orderId,
-            'buyer_name' => \Auth::user()->name,
-            'email' => \Auth::user()->email,
-            'phone' => \Auth::user()->phone,
-            
+            'billing_name' => \Auth::user()->name,
+            'billing_ email' => \Auth::user()->email,
+            'billing_ tel' => \Auth::user()->phone,
+            'billing_ country' => 'India',
+
           ];
  
           
@@ -50,9 +51,7 @@ class PaymentsController extends Controller
         // For default Gateway
         $response = Payment::response($request);
 
-        dd($response);
-
-        $orderId = $response->payment_request->purpose;
+        $orderId = $response->payment_request->order_id;
 
         $order = Order::findOrFail($orderId);
         
