@@ -32,7 +32,6 @@ class PaymentsController extends Controller
             'order_id' => $orderId,
             
             'amount' => $amount,
-            'purpose' => $orderId,
             'billing_name' => \Auth::user()->name,
             'billing_ email' => \Auth::user()->email,
             'billing_ tel' => \Auth::user()->phone,
