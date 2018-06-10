@@ -27,7 +27,7 @@ class PaymentsController extends Controller
 
            $parameters = [
       
-            'tid' => '1233221223322',
+            'tid' => '1001' . $order->id,
             
             'order_id' => $orderId,
             
