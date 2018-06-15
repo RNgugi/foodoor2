@@ -140,9 +140,10 @@ class OrdersController extends Controller
 
         if(request('payment_mode') == 1)
         {
-            \Cart::instance('restaurant-' . request('restaurant_id'))->destroy();
             return redirect('/orders/' . $order->id . '/pay');
         } else {
+            
+            \Cart::instance('restaurant-' . request('restaurant_id'))->destroy();
             
             $invoice = \PDF::loadView('orders.invoice', compact('order'));
 
