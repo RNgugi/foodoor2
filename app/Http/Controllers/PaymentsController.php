@@ -23,8 +23,9 @@ class PaymentsController extends Controller
 	{
 		  $orderId = $order->id;
 
-		  $amount = round($order->amount, 2);
+		 // $amount = round($order->amount, 2);
 
+      $amount = 1;
            $parameters = [
       
             'tid' => '1233221223322',
