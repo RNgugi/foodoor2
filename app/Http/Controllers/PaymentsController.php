@@ -61,11 +61,11 @@ class PaymentsController extends Controller
         {
            flash('You cancelled your payment!')->warning();
         	  
-           dd(json_decode($order->delivery_address));
+          
              
-           $lat = (json_decode($order->address))->lat;
+           $lat = (json_decode($order->delivery_address))->lat;
 
-           $lng = (json_decode($order->address))->lng;
+           $lng = (json_decode($order->delivery_address))->lng;
 
            $order->delete();
 
