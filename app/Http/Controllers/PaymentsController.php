@@ -51,6 +51,8 @@ class PaymentsController extends Controller
         // For default Gateway
         $response = Payment::response($request);
 
+        dd($response);
+
         $orderId = $response->payment_request->order_id;
 
         $order = Order::findOrFail($orderId);
