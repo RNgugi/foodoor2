@@ -63,9 +63,9 @@ class PaymentsController extends Controller
         	  
            dd(json_decode($order->delivery_address));
              
-           $lat = json_decode($order->address)['lat'];
+           $lat = (json_decode($order->address))->lat;
 
-           $lng = json_decode($order->address)['lat'];
+           $lng = (json_decode($order->address))->lng;
 
            $order->delete();
 
