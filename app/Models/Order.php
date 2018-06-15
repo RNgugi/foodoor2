@@ -45,7 +45,13 @@ class Order extends Model
 
     public function getCustomerNameAttribute()
     {
-        return $this->user->name;
+        if($this->user)
+        {
+            return $this->user->name;
+        } else {
+            return 'NOT EXIST';
+        }
+        
     }
 
      public function getBookingDateAttribute()

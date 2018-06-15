@@ -214,7 +214,7 @@
                                                         <td style="text-align: right;">&#8377;{{ floatval(Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', '')) }}</td>
                                                     </tr>
 
-                                                    @if(session()->has($sessionName) && session($sessionName) == 'foodoorcash')
+                                                    @if(session()->has($sessionName) && session($sessionName) == 'foodoorcash' && $foodoorCash > 0)
                                                     <tr>
                                                         <td>Foodoor Cash <a role="button" data-toggle="popover" data-container="body"  data-content="10% of your total foodoor cash is reduced from your billing amount."><i  class="fa fa-info-circle"></i></a></td>
                                                         <td style="text-align: right;">-&#8377;{{ $foodoorCash }}</td>

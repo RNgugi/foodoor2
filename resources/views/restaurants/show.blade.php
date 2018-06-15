@@ -69,7 +69,7 @@
             <div class="container m-t-30 resp-container" style="min-height: 1200px;margin-bottom: 80px;">
 
               <a  style="display: block;
-    margin-bottom: 25px;" href="/restaurants/explore?lat={{request('lat')}}&lng={{request('lng')}}"> <-- All Restaurants</a>
+    margin-bottom: 25px;" href="/restaurants/explore?lat={{request('lat')}}&lng={{request('lng')}}"> <i class="fa fa-arrow-left"></i> All Restaurants</a>
 
                @if(!$restaurant->is_open)
                  <div class="alert alert-warning" role="alert" >

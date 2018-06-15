@@ -23,9 +23,10 @@ class PaymentsController extends Controller
 	{
 		  $orderId = $order->id;
 
-		 // $amount = round($order->amount, 2);
+		 $amount = round($order->amount, 2);
 
-      $amount = 1;
+     // $amount = 1; for testing
+     
            $parameters = [
       
             'tid' => '1001' . $order->id,
@@ -61,7 +62,6 @@ class PaymentsController extends Controller
         {
            flash('You cancelled your payment!')->warning();
         	  
-          
              
            $lat = (json_decode($order->delivery_address))->lat;
 
