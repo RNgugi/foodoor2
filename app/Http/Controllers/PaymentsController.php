@@ -60,7 +60,9 @@ class PaymentsController extends Controller
         if($response['order_status'] == 'Aborted')
         {
            flash('You cancelled your payment!')->warning();
-        	 
+        	  
+           dd(json_decode($order->address));
+             
            $lat = json_decode($order->address)['lat'];
 
            $lng = json_decode($order->address)['lat'];
