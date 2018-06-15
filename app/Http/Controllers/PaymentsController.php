@@ -52,7 +52,7 @@ class PaymentsController extends Controller
         $response = Payment::response($request);
 
         
-        $orderId = $response->order_id;
+        $orderId = $response['order_id'];
 
         $order = Order::findOrFail($orderId);
         
