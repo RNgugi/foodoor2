@@ -32,7 +32,14 @@
 
 	 	<div class="mt-2">
 
-	 		<h3 style="font-weight: bold;">Order no. : #{{$order->id}}</h3>
+	 		<h3 style="font-weight: bold;">Order no. : #{{$order->id}} 
+
+	 			@if($order->payment_status)
+	 			<span class="badge badge-success">PAID</span>
+	 			@else
+	 			<span class="badge badge-danger">PAYMENT PENDING</span>
+	 			@endif
+	 		</h3>
 	 		<p>Thanks for choosing Foodoor, {{$order->user->name}}! </p>
 
 	 		<hr>
