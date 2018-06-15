@@ -74,7 +74,7 @@ Route::get('/orders/{order}/ready', 'OrdersController@ready');
 Route::get('/orders/{order}/picked', 'OrdersController@picked');
 Route::get('/orders/{order}/delivered', 'OrdersController@delivered');
 
-Route::get('/payments/response/', 'PaymentsController@response');
+Route::post('/payments/response/', 'PaymentsController@response');
 
 Route::get('/checkout', 'CheckoutController@index');
 
