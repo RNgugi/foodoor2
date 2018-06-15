@@ -98,9 +98,7 @@ class RestaurantsController extends Controller
         return redirect('/');
       }
 
-      session(['lat' => request('lat')]);
-
-      session(['lng' => request('lng')]);
+     
 
         $cuisines = Cuisine::limit(8)->get();
 

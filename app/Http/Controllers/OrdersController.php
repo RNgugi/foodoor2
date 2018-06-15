@@ -132,7 +132,7 @@ class OrdersController extends Controller
 
         //$order->load('items');
 
-        \Cart::instance('restaurant-' . request('restaurant_id'))->destroy();
+        
 
 
         session()->forget($sessionName);
@@ -140,6 +140,7 @@ class OrdersController extends Controller
 
         if(request('payment_mode') == 1)
         {
+            \Cart::instance('restaurant-' . request('restaurant_id'))->destroy();
             return redirect('/orders/' . $order->id . '/pay');
         } else {
             

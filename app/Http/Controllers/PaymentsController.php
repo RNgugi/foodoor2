@@ -55,19 +55,23 @@ class PaymentsController extends Controller
         $orderId = $response['order_id'];
 
         $order = Order::findOrFail($orderId);
+        $rid = $order->restaurant->id;
         
         if($response['order_status'] == 'Aborted')
         {
            flash('You cancelled your payment!')->warning();
         	 
-           $rid = $order->restaurant->id;
+           $lat = json_decode($order->address)['lat'];
+
+           $lng = json_decode($order->address)['lat'];
 
            $order->delete();
 
-           return redirect('/checkout?restaurant_id=' . $rid);
+           return redirect('/checkout?restaurant_id=' . $rid . '&lat=' . $lat . '&lng=' . $lng);
 
         }
         
+        \Cart::instance('restaurant-' . $rid)->destroy();
        
         // $order->status = 1;
 

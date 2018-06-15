@@ -28,7 +28,7 @@
 
      <div class="container resp-container" style="min-height: 900px;padding-top: 30px;">
 
-        <a style="padding-top: 20px;display: block;" href="/restaurants/{{$restaurant->id}}?lat={{session('lat')}}&lng={{session('lng')}}"> <-- Back to Restaurant</a>
+        <a style="padding-top: 20px;display: block;padding-bottom: 20px;" href="/restaurants/{{$restaurant->id}}?lat={{request('lat')}}&lng={{request('lng')}}"> <i class="fa fa-arrow-left"></i> Back to Restaurant</a>
 
 
         <form id="placeorderform" method="POST" action="/orders">
@@ -528,8 +528,8 @@
 
                                             $('#us3').locationpicker({
                                                 location: {
-                                                    latitude: {{ session('lat') }},
-                                                    longitude: {{ session('lng') }}
+                                                    latitude: {{ request('lat') }},
+                                                    longitude: {{ request('lng') }}
                                                 },
                                                 radius: 0,
                                                 inputBinding: {
@@ -544,15 +544,15 @@
                                                     {
                                                         alert('Sorry, As of now we are not serving in this area.Please choose another location.');
 
-                                                        $('#us3').locationpicker("location", {latitude: {{ session('lat') }}, longitude:{{ session('lng') }} });
+                                                        $('#us3').locationpicker("location", {latitude: {{ request('lat') }}, longitude:{{ request('lng') }} });
                                                     }
                                                 }
                                             });
 
                                              $('#us4').locationpicker({
                                                 location: {
-                                                    latitude: {{ session('lat') }},
-                                                    longitude: {{ session('lng') }}
+                                                    latitude: {{ request('lat') }},
+                                                    longitude: {{ request('lng') }}
                                                 },
                                                 radius: 0,
                                                 inputBinding: {
@@ -567,7 +567,7 @@
                                                     {
                                                         alert('Sorry, As of now we are not serving in this area.Please choose another location.');
 
-                                                        $('#us4').locationpicker("location", {latitude: {{ session('lat') }}, longitude:{{ session('lng') }} });
+                                                        $('#us4').locationpicker("location", {latitude: {{ request('lat') }}, longitude:{{ request('lng') }} });
                                                     }
                                                 }
                                             });
