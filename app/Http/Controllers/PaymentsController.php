@@ -56,7 +56,7 @@ class PaymentsController extends Controller
 
         $order = Order::findOrFail($orderId);
         
-        if($response->order_status == 'Aborted')
+        if($response['order_status'] == 'Aborted')
         {
            flash('You cancelled your payment!')->warning();
         	 
