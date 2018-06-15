@@ -51,15 +51,21 @@ class PaymentsController extends Controller
         // For default Gateway
         $response = Payment::response($request);
 
-        dd($response);
-
-        $orderId = $response->payment_request->order_id;
+        
+        $orderId = $response->order_id;
 
         $order = Order::findOrFail($orderId);
         
-        if(!$response->success)
+        if($response->order_status == 'Aborted')
         {
-        	return redirect('/orders/' . $order->id . '/failed');
+           flash('You cancelled your payment!')->warning();
+        	 
+           $rid = $order->restaurant->id;
+
+           $order->delete();
+
+           return redirect('/checkout?restaurant_id=' . $rid);
+
         }
         
        
