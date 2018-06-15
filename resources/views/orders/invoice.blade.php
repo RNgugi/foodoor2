@@ -35,9 +35,9 @@
 	 		<h3 style="font-weight: bold;">Order no. : #{{$order->id}} 
 
 	 			@if($order->payment_status)
-	 			<span class="badge badge-success">PAID</span>
+	 			<span style="font-size: 16px;background: green;padding: 3px;color: #fff;" PAID</span>
 	 			@else
-	 			<span class="badge badge-danger">PAYMENT PENDING</span>
+	 			<span style="font-size: 16px;background: red;padding: 3px;color: #fff;" >PAYMENT PENDING</span>
 	 			@endif
 	 		</h3>
 	 		<p>Thanks for choosing Foodoor, {{$order->user->name}}! </p>
