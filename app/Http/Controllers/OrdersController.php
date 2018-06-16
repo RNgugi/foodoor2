@@ -189,7 +189,7 @@ class OrdersController extends Controller
      */
     public function show(Order $order)
     {
-        dd($order->items()->first()->customs);
+       
         return view('orders.show', compact('order'));
     }
 
