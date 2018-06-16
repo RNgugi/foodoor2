@@ -81,7 +81,8 @@
 	 				</thead>
 	 				<tbody>
 	 				@foreach($order->items as $item)
-	 						 <?php $customs = json_decode($item->customs, true); unset($customs['price']) ?>
+	 						 <?php $customs = json_decode($item->pivot->customs, true); 
+                                    isset($customs['price']) ? unset($customs['price']) : '' ?>
                                     <tr>
                                         <td style="font-size: 14px;"> {{ $item->name }} 
                                         		<br> {{ isset($customs) ? 'Customisations : ' .  implode(',', $customs) : '' }}
