@@ -150,7 +150,7 @@
                               </div>
                               <div style="max-height: 300px;overflow: scroll;">
                               @foreach(Cart::instance('restaurant-'.$restaurant->id)->content() as $item)
-                              <?php $customs = $item->options->has('customs') ? json_decode($item->options->customs, true) : null; ?>
+                              <?php $customs = $item->options->has('customs') ? json_decode($item->options->customs, true) : null; unset($customs['price']); ?>
                               <div class="order-row bg-white" style="padding-top: 10px;">
                                  <div class="widget-body" style="padding: 20px;
     padding-bottom: 3px;
