@@ -11,7 +11,8 @@ use App\User;
 class Restaurant extends Model
 {
      use CrudTrait;
-
+     
+     use SoftDeletes;   
 
     /*
     |--------------------------------------------------------------------------
@@ -54,7 +55,7 @@ class Restaurant extends Model
         {
             return true;
         }
-        
+
         date_default_timezone_set('Asia/Kolkata');
         return getdate()['hours'] < $this->close_time && getdate()['hours'] >= $this->open_time;
     }
