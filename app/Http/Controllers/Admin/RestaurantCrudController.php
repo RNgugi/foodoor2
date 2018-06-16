@@ -137,7 +137,7 @@ class RestaurantCrudController extends CrudController
                               20 => '8:00 PM', 21 => '9:00 PM', 22 => '10:00 PM', 23 => '11:00 PM' ],
                 'allows_null' => false,
                 
-                , 'tab' => 'Timings'
+                'tab' => 'Timings'
                 // 'allows_multiple' => true, // OPTIONAL; needs you to cast this to array in your model;
              ],
 
@@ -151,7 +151,7 @@ class RestaurantCrudController extends CrudController
                               20 => '8:00 PM', 21 => '9:00 PM', 22 => '10:00 PM', 23 => '11:00 PM' ],
                 'allows_null' => false,
                
-                , 'tab' => 'Timings'
+               'tab' => 'Timings'
                 // 'allows_multiple' => true, // OPTIONAL; needs you to cast this to array in your model;
              ],
 

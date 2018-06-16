@@ -12,7 +12,6 @@ class Restaurant extends Model
 {
      use CrudTrait;
      
-     use SoftDeletes;   
 
     /*
     |--------------------------------------------------------------------------
