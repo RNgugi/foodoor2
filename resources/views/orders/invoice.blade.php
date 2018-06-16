@@ -81,10 +81,10 @@
 	 				</thead>
 	 				<tbody>
 	 				@foreach($order->items as $item)
-
+	 						 <?php $customs = json_decode($item->customs); ?>
                                     <tr>
                                         <td style="font-size: 14px;"> {{ $item->name }} 
-
+                                        		<br> {{ isset($customs) ? 'Size : ' $customs['size'] : '' }}
                                                 
                                                 </td>
                                         <td style="font-size: 14px;">{{ $item->pivot->qty }}</td>
