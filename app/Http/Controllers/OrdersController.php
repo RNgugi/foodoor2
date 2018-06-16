@@ -140,12 +140,15 @@ class OrdersController extends Controller
 
         if(request('payment_mode') == 1)
         {
-            return redirect('/orders/' . $order->id . '/pay');
-        } else {
-            
-            $order->flagged = 1;
+        
+            $order->flagged = 0;
 
             $order->save();
+
+            return redirect('/orders/' . $order->id . '/pay');
+        
+        } else {
+            
 
             \Cart::instance('restaurant-' . request('restaurant_id'))->destroy();
             

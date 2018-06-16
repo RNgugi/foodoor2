@@ -14,7 +14,7 @@ class AddFlaggedToOrders extends Migration
     public function up()
     {
         Schema::table('orders', function (Blueprint $table) {
-           $table->integer('flagged')->default(0);
+           $table->integer('flagged')->default(1);
         });
     }
 
