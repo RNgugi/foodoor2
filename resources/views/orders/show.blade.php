@@ -71,7 +71,7 @@
                                 <tbody>
                                 @foreach($order->items as $item)
                                    <?php $customs = json_decode($item->pivot->customs, true); 
-                                    isset($customs['price']) ? unset($customs['price']) : '' ?>
+                                     unset($customs['price']); ?>
                                     <tr>
                                         <td style="font-size: 18px;">@if($item->is_veg)
                                                  <img src="/images/veg.png" style="width: 12px;height: 12px;margin-top: -2px;" >
