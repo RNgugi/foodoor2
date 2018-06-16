@@ -143,6 +143,10 @@ class OrdersController extends Controller
             return redirect('/orders/' . $order->id . '/pay');
         } else {
             
+            $order->flagged = 1;
+
+            $order->save();
+
             \Cart::instance('restaurant-' . request('restaurant_id'))->destroy();
             
             $invoice = \PDF::loadView('orders.invoice', compact('order'));
@@ -189,7 +193,7 @@ class OrdersController extends Controller
      */
     public function show(Order $order)
     {
-       
+
         return view('orders.show', compact('order'));
     }
 

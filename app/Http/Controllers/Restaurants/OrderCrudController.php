@@ -64,6 +64,8 @@ class OrderCrudController extends CrudController
 
             $this->crud->addClause('where', 'status', '<', 4);
 
+            $this->crud->addClause('where', 'flagged', '=', 1);
+
             $this->crud->orderBy('created_at', 'DESC');
 
             $this->crud->addButtonFromModelFunction('line', 'confirm', 'confirmOrder', 'end');
