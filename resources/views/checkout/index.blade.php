@@ -540,7 +540,7 @@
                                                 enableAutocomplete: true,
                                                 addressFormat: 'street_address',
                                                 onchanged: function (currentLocation, radius, isMarkerDropped) {
-                                                    if(getDistance(currentLocation) > 2500)
+                                                    if(getDistance(currentLocation) > 5500)
                                                     {
                                                         alert('Sorry, As of now we are not serving in this area.Please choose another location.');
 
