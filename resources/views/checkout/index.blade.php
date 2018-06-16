@@ -150,7 +150,7 @@
                               </div>
                               <div style="max-height: 300px;overflow: scroll;">
                               @foreach(Cart::instance('restaurant-'.$restaurant->id)->content() as $item)
-                              <?php $customs = $item->options->has('customs') ? json_decode($item->options->customs) : null; ?>
+                              <?php $customs = $item->options->has('customs') ? json_decode($item->options->customs, true) : null; ?>
                               <div class="order-row bg-white" style="padding-top: 10px;">
                                  <div class="widget-body" style="padding: 20px;
     padding-bottom: 3px;
@@ -159,7 +159,7 @@
                                                  <img src="/images/veg.png" style="width: 12px;height: 12px;margin-top: -2px;" >
                                                 @else
                                                 <img src="/images/nonveg.png" style="width: 12px;height: 12px;margin-top: -2px;" >
-                                                @endif  {{ $item->name }} <a href="/cart/remove/{{$item->rowId}}/{{$restaurant->id}}"><i class="fa fa-trash"></i></a>  {!! $customs != null ? '<br><small>Size : ' . $customs->size . '</small>' : '' !!}</span> 
+                                                @endif  {{ $item->name }} <a href="/cart/remove/{{$item->rowId}}/{{$restaurant->id}}"><i class="fa fa-trash"></i></a>  {!! $customs != null ? '<br><small>Customisations : ' .  implode(',', $customs) . '</small>' : '' !!}</span> 
                                     <div style="display: block;margin-bottom: 0;margin-top: 5px;">
                                    
                                     {{-- <a href="/cart/remove/{{$item->rowId}}/{{$restaurant->id}}">

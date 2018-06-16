@@ -84,7 +84,7 @@
 	 						 <?php $customs = json_decode($item->customs); ?>
                                     <tr>
                                         <td style="font-size: 14px;"> {{ $item->name }} 
-                                        		<br> {{ isset($customs) ? 'Size : ' $customs['size'] : '' }}
+                                        		<br> {{ isset($customs) ? implode(',', $customs) : '' }}
                                                 
                                                 </td>
                                         <td style="font-size: 14px;">{{ $item->pivot->qty }}</td>
