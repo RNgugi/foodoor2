@@ -130,7 +130,7 @@
               <div class="autoplay hidden-sm-down">
                  
                         @foreach($restaurantlogos as $index => $restaurantLogo)
-                           
+                           @if(isset($restaurantLogo->restaurant))
                                <div class="col-md-3">
                                  
                                     <a href="/restaurants/{{$restaurantLogo->restaurant->id}}?lat={{$restaurantLogo->restaurant->latitude}}&lng={{$restaurantLogo->restaurant->longitude}}" >
@@ -139,7 +139,7 @@
                                   
                                    
                                </div>
-                           
+                           @endif
                        @endforeach
 
                 </div>
@@ -147,7 +147,7 @@
                  <div class="autoplay-resp hidden-sm-up">
                  
                         @foreach($restaurantlogos as $index => $restaurantLogo)
-                           
+                           @if(isset($restaurantLogo->restaurant))
                                <div class="col-md-3">
                                  
                                     <a href="/restaurants/{{$restaurantLogo->restaurant->id}}?lat={{$restaurantLogo->restaurant->latitude}}&lng={{$restaurantLogo->restaurant->longitude}}" >
@@ -156,7 +156,7 @@
                                   
                                    
                                </div>
-                           
+                           @endif
                        @endforeach
 
                 </div>
