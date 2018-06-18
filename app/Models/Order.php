@@ -83,12 +83,12 @@ class Order extends Model
 
     public function getCommissionEarnedAttribute()
     {
-        return $this->amount * ($this->restaurant->commission/100);
+        return $this->subtotal * ($this->restaurant->commission/100);
     }
 
     public function getAmountEarnedAttribute()
     {
-        return $this->amount - $this->commission_earned;
+        return $this->subtotal - $this->commission_earned;
     }
 
      public function confirmOrder($crud = false)

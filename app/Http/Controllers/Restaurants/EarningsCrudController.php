@@ -31,7 +31,7 @@ class EarningsCrudController extends CrudController
           $this->crud->addColumns([
             ['name' => 'id', 'label' => 'Order ID'],
             ['name' => 'customer_name', 'label' => 'Customer Name'],
-            ['name' => 'amount', 'label' => 'Order Amount (Rs.)'],
+            ['name' => 'subtotal', 'label' => 'Order Amount (Rs.)'],
             ['name' => 'amount_earned', 'label' => 'Amount Earned (Rs.)'],
             ['name' => 'booking_date', 'label' => 'Date'],
         ]);

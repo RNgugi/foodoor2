@@ -79,6 +79,8 @@ class PaymentsController extends Controller
 
         $order->payment_status = 1;
 
+         $order->flagged = 1;
+
         $order->save();
 
       /*  $invoice = \PDF::loadView('orders.download', compact('order'));

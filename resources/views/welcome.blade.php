@@ -97,7 +97,7 @@
                                 <label class="sr-only" for="exampleInputAmount">Search restaurants...</label>
                               
                                 <div class="input-group">
-                                    <input style="width: 500px;border-color: #e94e1b;" type="text" class="form-control form-control-lg" id="txtPlaces" placeholder="Enter your delivery location" autofocus="true"> 
+                                    <input style="width: 500px;border-color: #e94e1b;" type="text" class="form-control form-control-lg" id="txtPlaces" placeholder="Enter your delivery location"> 
                                         <i class="fa fa-map-marker hidden-sm-down"  onclick="getLocation()" style="position: relative;right: 22px;top: 14px;font-size: 20px; z-index: 10000;color: #2b2b2b !important;cursor: pointer;" aria-hidden="true"></i>
 
                                         <i class="fa fa-map-marker hidden-sm-up" onclick="getLocation()" style="position: absolute;right: 7px;top: 7px;font-size: 24px;z-index: 10000;color: #2b2b2b !important;cursor: pointer;" aria-hidden="true"></i>
@@ -130,7 +130,7 @@
               <div class="autoplay hidden-sm-down">
                  
                         @foreach($restaurantlogos as $index => $restaurantLogo)
-                           
+                           @if(isset($restaurantLogo->restaurant))
                                <div class="col-md-3">
                                  
                                     <a href="/restaurants/{{$restaurantLogo->restaurant->id}}?lat={{$restaurantLogo->restaurant->latitude}}&lng={{$restaurantLogo->restaurant->longitude}}" >
@@ -139,7 +139,7 @@
                                   
                                    
                                </div>
-                           
+                           @endif
                        @endforeach
 
                 </div>
@@ -147,7 +147,7 @@
                  <div class="autoplay-resp hidden-sm-up">
                  
                         @foreach($restaurantlogos as $index => $restaurantLogo)
-                           
+                           @if(isset($restaurantLogo->restaurant))
                                <div class="col-md-3">
                                  
                                     <a href="/restaurants/{{$restaurantLogo->restaurant->id}}?lat={{$restaurantLogo->restaurant->latitude}}&lng={{$restaurantLogo->restaurant->longitude}}" >
@@ -156,7 +156,7 @@
                                   
                                    
                                </div>
-                           
+                           @endif
                        @endforeach
 
                 </div>

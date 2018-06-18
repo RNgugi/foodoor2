@@ -32,7 +32,7 @@ class EarningsCrudController extends CrudController
             ['name' => 'id', 'label' => 'Order ID'],
             ['name' => 'customer_name', 'label' => 'Customer Name'],
             ['name' => 'restaurant_name', 'label' => 'Restaurant Name'],
-            ['name' => 'amount', 'label' => 'Order Amount (Rs.)'],
+            ['name' => 'subtotal', 'label' => 'Order Amount (Rs.)'],
             ['name' => 'amount_earned', 'label' => 'Amount Earned (Rs.)'],
             ['name' => 'booking_date', 'label' => 'Date'],
         ]);

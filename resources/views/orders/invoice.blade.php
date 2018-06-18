@@ -81,10 +81,15 @@
 	 				</thead>
 	 				<tbody>
 	 				@foreach($order->items as $item)
-
+	 						 <?php $customs = json_decode($item->pivot->customs, true); 
+                                     unset($customs['price']); ?>
                                     <tr>
                                         <td style="font-size: 14px;"> {{ $item->name }} 
+<<<<<<< HEAD
                                         		{!! getCustomsString(json_decode($item->pivot->customs)) !!}
+=======
+                                        		<br> {{ isset($customs) ? 'Customisations : ' .  implode(',', $customs) : '' }}
+>>>>>>> 7d5d203eb466b4fef4551132212d2cbcbd6772f0
                                                 
                                                 </td>
                                         <td style="font-size: 14px;">{{ $item->pivot->qty }}</td>

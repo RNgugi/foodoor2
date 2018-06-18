@@ -140,9 +140,16 @@ class OrdersController extends Controller
 
         if(request('payment_mode') == 1)
         {
+        
+            $order->flagged = 0;
+
+            $order->save();
+
             return redirect('/orders/' . $order->id . '/pay');
+        
         } else {
             
+
             \Cart::instance('restaurant-' . request('restaurant_id'))->destroy();
             
             $invoice = \PDF::loadView('orders.invoice', compact('order'));
@@ -169,7 +176,7 @@ class OrdersController extends Controller
 
             auth()->user()->save();
 
-            $messageToRest = 'You have received a new order with order no. : ' . $order->id  .' and amount of Rs. '. $order->amount .'/-. Order Invoice : https://foodoor.in/orders/'. $order->id  .'/invoice';
+             $messageToRest = 'You have received a new order of Rs. '. $order->amount .'/-. Order Invoice : https://foodoor.in/orders/'. $order->id  .'/invoice';
 
             sendSMS($order->restaurant->contact_phone, $messageToRest);
 
@@ -189,6 +196,7 @@ class OrdersController extends Controller
      */
     public function show(Order $order)
     {
+
         return view('orders.show', compact('order'));
     }
 
