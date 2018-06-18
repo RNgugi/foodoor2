@@ -77,7 +77,7 @@
                                     </a>
 
                                     <div class="content" style="padding-left: 0;">
-                                        <h5 style="font-size: 18px;"><a href="/restaurants/{{$restaurant->id}}?lat={{session('lat')}}&lng={{session('lng')}}">{{ $restaurant->name }}</a></h5>
+                                        <h5 style="font-size: 18px;"><a href="/restaurants/{{$restaurant->id}}?lat={{$restaurant->latitude}}&&lng={{$restaurant->longitude}}">{{ $restaurant->name }}</a></h5>
                                         <div class="product-name">{{ $restaurant->area }}</div>
                                         
                                           <div style="position: relative;margin-top: 5px;font-size: 14px;color: green">
