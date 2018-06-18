@@ -70,7 +70,7 @@
 
                                   <div class="food-item-wrap" style="background: #fff;border: none;">
 
-                                  <a href="/restaurants/{{$restaurant->id}}?lat={{session('lat')}}&lng={{session('lng')}}">
+                                  <a href="/restaurants/{{$restaurant->id}}?lat={{$restaurant->latitude}}&lng={{$restaurant->longitude}}">
 
                                     <img src="{{ isset($restaurant->logo) ? url($restaurant->logo) : 'http://via.placeholder.com/350x250' }}" style="max-height: 200px;height: 200px;width: 100%;">
                                     
