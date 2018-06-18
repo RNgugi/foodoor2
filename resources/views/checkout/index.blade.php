@@ -150,11 +150,10 @@
                               </div>
                               <div style="max-height: 300px;overflow: scroll;">
                               @foreach(Cart::instance('restaurant-'.$restaurant->id)->content() as $item)
-<<<<<<< HEAD
+
                               <?php $customs = $item->options->has('customs') ? json_decode($item->options->customs) : null;  ?>
-=======
-                              <?php $customs = $item->options->has('customs') ? json_decode($item->options->customs, true) : null; unset($customs['price']); ?>
->>>>>>> 7d5d203eb466b4fef4551132212d2cbcbd6772f0
+
+
                               <div class="order-row bg-white" style="padding-top: 10px;">
                                  <div class="widget-body" style="padding: 20px;
     padding-bottom: 3px;
@@ -163,11 +162,10 @@
                                                  <img src="/images/veg.png" style="width: 12px;height: 12px;margin-top: -2px;" >
                                                 @else
                                                 <img src="/images/nonveg.png" style="width: 12px;height: 12px;margin-top: -2px;" >
-<<<<<<< HEAD
+
                                                 @endif  {{ $item->name }} <a href="/cart/remove/{{$item->rowId}}/{{$restaurant->id}}"><i class="fa fa-trash"></i></a>  {!! getCustomsString($customs) !!}</span> 
-=======
-                                                @endif  {{ $item->name }} <a href="/cart/remove/{{$item->rowId}}/{{$restaurant->id}}"><i class="fa fa-trash"></i></a>  {!! $customs != null ? '<br><small>Customisations : ' .  implode(',', $customs) . '</small>' : '' !!}</span> 
->>>>>>> 7d5d203eb466b4fef4551132212d2cbcbd6772f0
+
+                                                
                                     <div style="display: block;margin-bottom: 0;margin-top: 5px;">
                                    
                                     {{-- <a href="/cart/remove/{{$item->rowId}}/{{$restaurant->id}}">

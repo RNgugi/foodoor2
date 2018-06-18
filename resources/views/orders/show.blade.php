@@ -80,11 +80,9 @@
                                                 @endif  {{ $item->name }} 
 
                                                 @if(isset($item->pivot->customs))
-<<<<<<< HEAD
+
                                                 <span style="font-size: 12px;"> {!! getCustomsString(json_decode($item->pivot->customs)) !!}</span>
-=======
-                                                <br> <span style="font-size: 12px;"> {{ isset($customs) ? 'Customisations : ' .  implode(',', $customs) : '' }}</span>
->>>>>>> 7d5d203eb466b4fef4551132212d2cbcbd6772f0
+
                                                 @endif
                                                 </td>
                                         <td style="font-size: 18px;">{{ $item->pivot->qty }}</td>

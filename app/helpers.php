@@ -75,10 +75,13 @@ function check_in_range($start_date, $end_date, $date_from_user)
 function getCustomsString($customs)
 { 
 
-  
+    if($customs != null) {
     $msg = '';
 
-    $msg = $msg . 'Size : ' . $customs->size . ' | '; 
+    if(property_exists($customs, 'size'))
+    {
+       $msg = $msg . 'Size : ' . $customs->size . ' | '; 
+    }
 
     foreach ($customs as $key => $custom) {
       
@@ -112,6 +115,8 @@ function getCustomsString($customs)
     
 
     return '<br><small>' . $msg . '</small>';
+
+  }
 }
 
 
