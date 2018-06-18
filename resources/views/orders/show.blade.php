@@ -79,7 +79,7 @@
                                                 @endif  {{ $item->name }} 
 
                                                 @if(isset($item->pivot->customs))
-                                                <br> <span style="font-size: 12px;"> {{ getCustomsString(json_decode($item->pivot->customs, TRUE)) }}</span>
+                                                <span style="font-size: 12px;"> {!! getCustomsString(json_decode($item->pivot->customs)) !!}</span>
                                                 @endif
                                                 </td>
                                         <td style="font-size: 18px;">{{ $item->pivot->qty }}</td>

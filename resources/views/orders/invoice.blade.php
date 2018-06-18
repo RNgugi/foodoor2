@@ -84,7 +84,7 @@
 
                                     <tr>
                                         <td style="font-size: 14px;"> {{ $item->name }} 
-
+                                        		{!! getCustomsString(json_decode($item->pivot->customs)) !!}
                                                 
                                                 </td>
                                         <td style="font-size: 14px;">{{ $item->pivot->qty }}</td>

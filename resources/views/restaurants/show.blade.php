@@ -340,7 +340,7 @@
                                                  <img src="/images/veg.png" style="width: 12px;height: 12px;margin-top: -2px;" >
                                                 @else
                                                 <img src="/images/nonveg.png" style="width: 12px;height: 12px;margin-top: -2px;" >
-                                                @endif {{ $item->name }} {!! $customs != null && isset($customs->size) ? '<br><small>Size : ' . $customs->size . '</small>' : '' !!}</span> 
+                                                @endif {{ $item->name }} {!! getCustomsString($customs) !!}</span> 
                                     <div style="margin-bottom: 7px;margin-top: 10px;">   
 
                                     <div data-trigger="spinner" id="spinner-{{$item->rowId}}" style="display: inline;text-align: center;margin-right: 6px;" >

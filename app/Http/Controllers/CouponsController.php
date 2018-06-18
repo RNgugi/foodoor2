@@ -63,6 +63,8 @@ class CouponsController extends Controller
 
         if(auth()->user()->wallet_ballance < 0) {
             flash('You don\'t have enough foodoor cash')->error();
+        } elseif ($amount < 99) {
+           flash('The order should be more than 99 for foodoor cash to apply!')->error();
         } else {
              $sessionName = 'restaurant-' . $restaurant->id . '-coupon';
              session([$sessionName   => 'foodoorcash']);

@@ -74,29 +74,44 @@ function check_in_range($start_date, $end_date, $date_from_user)
 
 function getCustomsString($customs)
 { 
+
   
     $msg = '';
-   /* foreach ($customs as $key => $custom) {
+
+    $msg = $msg . 'Size : ' . $customs->size . ' | '; 
+
+    foreach ($customs as $key => $custom) {
       
-      if($key != 'price')
+      if($key != 'price' && $key != 'size')
       {
-        if(array_key_exists('name', $custom))
+        if(!is_array($custom))
         { 
-           $msg = $msg . $key . ' : ' . $custom['name'] . ', ';
+           $msg = $msg . $key . ' : ' . $custom->name ;
+
+             if($custom != end($customs))
+             {
+                 $msg = $msg . ', ';
+             }
         } else {
           $msg = $msg . $key . ' : ';  
           foreach ($custom as $key => $choice) {
-             $msg = $msg . $choice['name'] . ', ';
+
+             $msg = $msg . $choice->name;
+
+             if($choice != end($custom))
+             {
+                 $msg = $msg . ', ';
+             }
           }
         }
        
       }
 
-    } */
+    } 
 
     
 
-    return $msg;
+    return '<br><small>' . $msg . '</small>';
 }
 
 

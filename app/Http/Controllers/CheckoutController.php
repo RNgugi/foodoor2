@@ -95,6 +95,11 @@ class CheckoutController extends Controller
         if($subtotal < 99)
         {
             $foodoorCash = 0;
+
+             if(session($sessionName) == 'foodoorcash')
+             {
+                session()->forget($sessionName);
+             }
         }
 
     	return view('checkout.index', compact('restaurant', 'lat', 'lng', 'sessionName', 'coupon', 'discount', 'coupons', 'total', 'gst', 'foodoorCash', 'deliveryCharge', 'subtotal'));
