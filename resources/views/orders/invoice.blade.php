@@ -49,7 +49,17 @@
 	 				<p>Delivery Details : </p>
 
 	 				<p><b>{{ $order->user->name }}</b> | {{ $order->user->phone }}<br>
-                          {{ json_decode($order->delivery_address)->delivery_location }}</p>
+                          {{ json_decode($order->delivery_address)->delivery_location }}<br>
+                      	  <b>Door no.  :</b> {{ json_decode($order->delivery_address)->door_no }}
+                      	  <b> | Landmark  :</b> {{ json_decode($order->delivery_address)->landmark }}<br>
+                      	  @if(isset(json_decode($order->delivery_address)->road_name))
+                      	  <b>Road Name :</b> {{ json_decode($order->delivery_address)->road_name }}
+                      	  @endif
+
+                      	  @if(isset(json_decode($order->delivery_address)->alt_mobile))
+                      	  	| <b>Alternate No. :</b> {{ json_decode($order->delivery_address)->alt_mobile }}
+                      	  @endif
+                          </p>
 
 	 			</div>
 
