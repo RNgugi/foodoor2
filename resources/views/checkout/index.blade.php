@@ -226,10 +226,12 @@
                                                         <td style="text-align: right;">-&#8377;{{ $foodoorCash }}</td>
                                                     </tr>
                                                     @endif
+                                                    @if($gst > 0)
                                                     <tr>
                                                         <td>GST</td>
                                                         <td style="text-align: right;">&#8377;{{ $gst }}</td>
                                                     </tr>
+                                                    @endif
                                                     <tr>
                                                         <td>Delivery Charges <a role="button" data-toggle="popover" data-container="body"  data-content="Your first 3 deliveries are on us."><i  class="fa fa-info-circle"></i></a></td>
                                                         <td style="text-align: right;">{{ $deliveryCharge == 0 ? 'FREE' :  $deliveryCharge }}</td>
@@ -386,8 +388,12 @@
                                           <input type="hidden" name="foodoorcash" value="{{ $foodoorCash }}">
                                         @endif
 
+                                        <input type="hidden" name="gst" value="{{ $gst }}">
+
                                         @if($subtotal > 99)
                                         <p class="text-xs-center"> <button id="place_order_btn" type="submit" class="btn btn-outline-success btn-block">Place Order</button> </p>
+                                        @else
+                                        <p class="text-xs-center">Minimum order amount should be more than Rs. 99</p>
                                         @endif
                                     </div>
                     </div>

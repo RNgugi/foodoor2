@@ -40,7 +40,13 @@ class CheckoutController extends Controller
 
          $foodoorCash = 0;
 
-         $gst = (floatval(\Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', ''))) * (5/100);
+         if($restaurant->apply_gst)
+         {
+             $gst = (floatval(\Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', ''))) * (5/100);
+         } else {
+            $gst = 0;
+         }
+          
 
          $total =  ceil((floatval(\Cart::instance('restaurant-'.$restaurant->id)->subtotal(2, '.', ''))) + $deliveryCharge + $gst);
 

@@ -123,12 +123,14 @@
                                                         <td style="font-size: 14px;">-Rs. {{ $order->foodoor_cash }}</td>
                                                     </tr>
                                                     @endif
+                                                    @if($order->tax > 0)
                                                     <tr style="text-align: right;">
                                                         <td style="font-size: 14px;"></td>
                                                         <td style="font-size: 14px;">GST</td>
                                                         
                                                         <td style="font-size: 14px;">Rs. {{ $order->tax }}</td>
                                                     </tr>
+                                                    @endif
                                                     <tr style="text-align: right;">
                                                      <td></td>
                                                         <td style="font-size: 14px;">Delivery Charges</td>
