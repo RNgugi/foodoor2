@@ -131,7 +131,9 @@
                                         @endif
                                          @if($subtotal > 99)
                                           <p class="text-xs-center"> <button id="place_order_btn" type="submit" class="btn btn-outline-success btn-block">Place Order</button> </p>
-                                         @endif
+                                         @else
+                                        <p class="text-xs-center">Minimum order amount should be more than Rs. 99</p>
+                                        @endif
                                     </div>
                     </div>
                 </div>
