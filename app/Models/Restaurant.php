@@ -27,7 +27,7 @@ class Restaurant extends Model
     // public $timestamps = false;
     // protected $guarded = ['id'];
     protected $fillable = [ 'name', 'slug', 'area', 'pincode', 'location', 'logo','contact_name', 'contact_phone', 'contact_email', 'website', 'city_id', 'open_time',
-        'close_time', 'bank_name', 'bank_ifsc', 'bank_acc_no', 'bank_acc_name', 'bank_acc_type', 'rating', 'promo_text', 'discount_type', 'discount', 'valid_from', 'valid_through', 'min_order', 'latitude', 'longitude', 'min_price', 'is_veg', 'store_category', 'timings', 'commission', 'days'];
+        'close_time', 'bank_name', 'bank_ifsc', 'bank_acc_no', 'bank_acc_name', 'bank_acc_type', 'rating', 'promo_text', 'discount_type', 'discount', 'valid_from', 'valid_through', 'min_order', 'latitude', 'longitude', 'min_price', 'is_veg', 'store_category', 'timings', 'commission', 'days', 'apply_gst'];
 
     protected $casts = [
         'photos' => 'array'
