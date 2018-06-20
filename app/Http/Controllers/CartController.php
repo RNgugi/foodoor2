@@ -16,8 +16,10 @@ class CartController extends Controller
      */
     public function add(Item $item)
     {
-        \Cart::instance('restaurant-'.$item->restaurant->id)->add($item, 1);
-        return back();
+            \Cart::instance('restaurant-'.$item->restaurant->id)->add($item, 1);
+            return back();
+            
+       
     }
 
     /**
@@ -117,8 +119,16 @@ class CartController extends Controller
      */
     public function increment($item, Restaurant $restaurant)
     {   
+        try{
+
         // $count = \Cart::instance('restaurant-'.$restaurant->id)->get($item)->qty + 1;
         \Cart::instance('restaurant-'.$restaurant->id)->update($item, request('newVal'));
+        }   
+        catch(\Exception $e)
+        {
+            flash('The cart you were trying to add items to was discarded.')->warning();
+            return redirect('/');
+        }
         return back();
     }
 
@@ -136,8 +146,16 @@ class CartController extends Controller
             $count = 0;
         }
 
-        \Cart::instance('restaurant-'.$restaurant->id)->update($item, $count);
+        try{
+
+            \Cart::instance('restaurant-'.$restaurant->id)->update($item, $count);
         
+        }  catch(\Exception $e)
+        {
+            flash('The cart you were trying to add items to was discarded.')->warning();
+            return redirect('/');
+        }
+
         return back();
     }
 }
