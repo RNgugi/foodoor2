@@ -144,7 +144,7 @@ class DriverCrudController extends CrudController
         $redirect_location = parent::storeCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
-        $user = User::where('email', $this->crud->entry->contact_email)->first();
+        $user = User::where('phone', $this->crud->entry->phone)->first();
 
         if($user != null)
         {
@@ -178,7 +178,7 @@ class DriverCrudController extends CrudController
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
 
-        $user = User::where('email', $this->crud->entry->contact_email)->first();
+        $user = User::where('phone', $this->crud->entry->phone)->first();
 
         if($user != null)
         {
@@ -191,7 +191,7 @@ class DriverCrudController extends CrudController
                 'name' => $request->get('contact_name'),
                 'email' => $request->get('contact_email'),
                 'phone' => $this->crud->entry->phone,
-                'password' => Hash::make('password'),
+                'password' => Hash::make(config('settings.default_password')),
                 'is_verified' => 1
             ]);
 
