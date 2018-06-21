@@ -4,6 +4,7 @@ namespace App;
 
 use App\Models\Restaurant;
 use App\Models\Order;
+use App\Models\Driver;
 use Illuminate\Notifications\Notifiable;
 use Backpack\CRUD\CrudTrait;
 use Spatie\Permission\Traits\HasRoles;// <---------------------- and this one
