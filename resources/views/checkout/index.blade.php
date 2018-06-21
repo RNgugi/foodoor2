@@ -129,6 +129,10 @@
                                         @elseif(session()->has($sessionName) && session($sessionName) == 'foodoorcash')  
                                           <input type="hidden" name="foodoorcash" value="{{ $foodoorCash }}">
                                         @endif
+
+                                         <input type="hidden" name="gst" value="{{ $gst }}">
+
+                                         
                                          @if($subtotal > 99)
                                           <p class="text-xs-center"> <button id="place_order_btn" type="submit" class="btn btn-outline-success btn-block">Place Order</button> </p>
                                          @else
