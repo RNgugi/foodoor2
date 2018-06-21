@@ -61,11 +61,11 @@ class LoginController extends Controller
    {  
 
     if($request->wantsJson()) {
-      if(request('email') == '')
+      if(request('phone') == '')
       {
         return response()->json([
                 'status' => 'failed',
-                'message' => 'Please enter email address!'
+                'message' => 'Please enter phone number!'
                 
             ]);
       } else if(request('password') == ''){
