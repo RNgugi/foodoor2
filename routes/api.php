@@ -13,6 +13,9 @@ use Illuminate\Http\Request;
 |
 */
 
+Route::post('login', 'Auth\LoginController@login');
+Route::post('logout', 'Auth\LoginController@logout');
+
 Route::post('/phone/sendotp', 'Api\ProfileController@sendOTP');
 Route::post('/phone/store', 'Api\ProfileController@store');
 
