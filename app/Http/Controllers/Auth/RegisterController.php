@@ -87,13 +87,32 @@ class RegisterController extends Controller
      */
     protected function registered(Request $request, $user)
     {
-        flash('Welcome to foodoor! Congratulations, You have received ' . $user->wallet_ballance . ' foodoor cash!')->success();
-
+        
         $message = 'Welcome to foodoor! Congratulations, You have received ' . $user->wallet_ballance . ' foodoor cash!';
 
         sendSMS($user->phone, $message);
 
-         \Mail::to($user)->send(new WelcomeMail());
+        \Mail::to($user)->send(new WelcomeMail());
+
+        if($request->wantsJson()) {
+            
+            $user->generateToken();
+
+            
+            return response()->json([
+                'status' => 'success',
+                'message' => 'User registered successfully!',
+                'data' => $user->toArray()], 201);
+
+           
+            
+
+        } else {
+
+            flash('Welcome to foodoor! Congratulations, You have received ' . $user->wallet_ballance . ' foodoor cash!')->success();
+
+            
+        }
 
 
     }

@@ -49,6 +49,93 @@ class LoginController extends Controller
         return 'phone';
     }
 
+    /**
+     * Handle a login request to the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Http\JsonResponse
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function login(Request $request)
+   {  
+
+    if($request->wantsJson()) {
+      if(request('email') == '')
+      {
+        return response()->json([
+                'status' => 'failed',
+                'message' => 'Please enter email address!'
+                
+            ]);
+      } else if(request('password') == ''){
+         return response()->json([
+                'status' => 'failed',
+                'message' => 'Please enter password!'
+                
+            ]);
+      }
+    } else {
+      $this->validateLogin($request);
+    }
+
+      
+
+     if ($this->attemptLogin($request)) {
+           
+            $user = $this->guard()->user();
+           
+            $user->generateToken();
+            
+            if($request->wantsJson()) {
+
+                $data = $user->toArray();
+
+                if($user->is_driver)
+                {
+                    $data['driver_details'] = $user->driver->toArray();
+                }
+
+                return response()->json([
+                    'status' => 'success',
+                    'message' => 'User Logged in successfully!',
+                    'data' => $data
+                ]);
+            }
+
+            return $this->sendLoginResponse($request);
+      } 
+
+      if($request->wantsJson()) {
+            return response()->json([
+                 'status' => 'failed',
+                'message' => 'User login failed! Please try again!'
+                
+            ]);
+        }
+       return $this->sendFailedLoginResponse($request);
+    }
+
+
+     public function logout(Request $request)
+    {
+        if($request->wantsJson()) {
+        $user = \Auth::guard('api')->user();
+        if ($user) {
+            $user->api_token = null;
+            $user->save();
+        }
+        return response()->json(['status' => 'success',
+                'message' => 'User logged out'], 200);
+       } else {
+         $this->guard()->logout();
+        $request->session()->invalidate();
+        return redirect('/');
+       }
+    }
+
+
+
      /**
      * Validate the user login request.
      *
@@ -57,6 +144,7 @@ class LoginController extends Controller
      */
     protected function validateLogin(Request $request)
     {
+
         $this->validate($request, [
             $this->username() => 'required|string',
             'password' => 'required|string',

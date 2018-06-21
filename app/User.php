@@ -28,6 +28,8 @@ class User extends Authenticatable
         'name', 'email', 'password', 'phone', 'is_verified', 'wallet_ballance'
     ];
 
+    protected $appends = ['is_driver'];
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -42,6 +44,11 @@ class User extends Authenticatable
         return $this->hasOne(Restaurant::class, 'account_id');
     }
 
+    public function driver()
+    {
+        return $this->hasOne(Driver::class, 'user_id');
+    }
+
     public function isRestaurant()
     {
         return $this->restaurant != null;
@@ -50,5 +57,26 @@ class User extends Authenticatable
     public function orders()
     {
         return $this->hasMany(Order::class);
+    }
+
+     public function generateToken()
+    {
+        if($this->api_token == null) {
+        $token = substr(Password::getRepository()->createNewToken(), 0, 58);
+          if (User::where('api_token', '=', $token)->exists()) {
+                //Model Found -- call self.
+                self::generate($length, $modelClass, $fieldName);
+            } else {
+                $this->api_token = $token;
+                $this->save();
+            }
+       }
+        
+    }
+
+
+    public function getIsDriverAttribute()
+    {
+        return $this->driver != null;
     }
 }
