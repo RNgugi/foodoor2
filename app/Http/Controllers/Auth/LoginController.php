@@ -91,10 +91,7 @@ class LoginController extends Controller
 
                 $data = $user->toArray();
 
-                if($user->is_driver)
-                {
-                    $data['driver_details'] = $user->driver->toArray();
-                }
+                
 
                 return response()->json([
                     'status' => 'success',
