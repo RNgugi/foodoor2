@@ -91,13 +91,16 @@ class LoginController extends Controller
 
                 $data = $user->toArray();
 
-                
+               
+                 return response()->json([
+                        'status' => 'success',
+                        'message' => 'User Logged in successfully!',
+                        'data' => $data
+                    ]);
+                    
+              
 
-                return response()->json([
-                    'status' => 'success',
-                    'message' => 'User Logged in successfully!',
-                    'data' => $data
-                ]);
+               
             }
 
             return $this->sendLoginResponse($request);
@@ -106,7 +109,7 @@ class LoginController extends Controller
       if($request->wantsJson()) {
             return response()->json([
                  'status' => 'failed',
-                'message' => 'User login failed! Please try again!'
+                'message' => 'Invalid Credentials! Please try again.'
                 
             ]);
         }
