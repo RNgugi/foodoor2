@@ -160,11 +160,7 @@ class DriverController extends Controller
             return response(['status' => 'failed', 'message' => 'User should be delivery boy!']);
         }
 
-        if($order->driver_id != $user->driver->id)
-        {
-            return response(['status' => 'failed', 'message' => 'The order is assigned to another delivery boy!']);
-        }
-
+        
 
         $orders = Order::where('status', '<', 4)->where('driver_id', $user->driver->id)->get();
 
@@ -186,11 +182,7 @@ class DriverController extends Controller
             return response(['status' => 'failed', 'message' => 'User should be delivery boy!']);
         }
 
-        if($order->driver_id != $user->driver->id)
-        {
-            return response(['status' => 'failed', 'message' => 'The order is assigned to another delivery boy!']);
-        }
-
+        
 
         $orders = Order::where('status', 4)->where('driver_id', $user->driver->id)->get();
 
