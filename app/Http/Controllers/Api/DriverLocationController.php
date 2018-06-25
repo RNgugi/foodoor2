@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class DriverLocationController extends Controller
 {
@@ -24,7 +25,7 @@ class DriverLocationController extends Controller
     	$user->driver->lng = request('lng');
 
     	$user->driver->save();
-    	
+
 
     	return response(['status' => 'success', 'message' => 'Location updated successfully!']);
 
