@@ -6,6 +6,7 @@ use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Mail\NewOrderCreated;
 use Appnings\Payment\Facades\Payment; 
+use App\Notifications\NewDriverOrder;
 
 class PaymentsController extends Controller
 {
@@ -82,6 +83,10 @@ class PaymentsController extends Controller
          $order->flagged = 1;
 
         $order->save();
+
+         $drivers = findNearestDrivers($order->restaurant);
+
+          \Notification::send($drivers, new NewDriverOrder($order));
 
       /*  $invoice = \PDF::loadView('orders.download', compact('order'));
 

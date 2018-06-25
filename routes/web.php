@@ -96,6 +96,9 @@ Route::get('/coupons/apply/{restaurant}/foodoorcash', 'CouponsController@applyFo
 
 Route::get('/coupons/apply/{restaurant}/coupon:{code}/remove', 'CouponsController@remove');
 
+
+Route::get('/nearest_drivers/{restaurant}', 'Api\DriverController@nearest');
+
     
 
 

@@ -63,6 +63,17 @@ class Driver extends Model
     }
 
 
+    /**
+     * Route notifications for the FCM channel.
+     *
+     * @return string
+     */
+    public function routeNotificationForFcm()
+    {
+        return $this->device_token;
+    }
+
+
      /*
     |--------------------------------------------------------------------------
     | Methods for storing uploaded files (used in CRUD).

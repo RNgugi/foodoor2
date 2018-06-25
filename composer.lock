@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a208bfd83eff0529e44dc2c27b4e6aaf",
+    "content-hash": "d3bb1c0e259b0b7560db81871c950fba",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -238,16 +238,16 @@
         },
         {
             "name": "backpack/crud",
-            "version": "3.4.0",
+            "version": "3.4.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Backpack/CRUD.git",
-                "reference": "ade8b014f21b2c1e308a721cbd3edb6b2a3f31c2"
+                "reference": "049ebea96c1ef68db597e625989705f6746aad1b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Backpack/CRUD/zipball/ade8b014f21b2c1e308a721cbd3edb6b2a3f31c2",
-                "reference": "ade8b014f21b2c1e308a721cbd3edb6b2a3f31c2",
+                "url": "https://api.github.com/repos/Laravel-Backpack/CRUD/zipball/049ebea96c1ef68db597e625989705f6746aad1b",
+                "reference": "049ebea96c1ef68db597e625989705f6746aad1b",
                 "shasum": ""
             },
             "require": {
@@ -307,7 +307,7 @@
                 "read",
                 "update"
             ],
-            "time": "2018-03-22T13:49:02+00:00"
+            "time": "2018-05-24T15:32:35+00:00"
         },
         {
             "name": "backpack/logmanager",
@@ -673,6 +673,58 @@
                 "tinymce"
             ],
             "time": "2018-02-08T07:54:10+00:00"
+        },
+        {
+            "name": "benwilkins/laravel-fcm-notification",
+            "version": "v2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/benwilkins/laravel-fcm-notification.git",
+                "reference": "df69683f0dd5ae5b723e9780a7074cb54ededa60"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/benwilkins/laravel-fcm-notification/zipball/df69683f0dd5ae5b723e9780a7074cb54ededa60",
+                "reference": "df69683f0dd5ae5b723e9780a7074cb54ededa60",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^6.2",
+                "illuminate/config": "5.3.*|5.4.*|5.5.*|5.5.*|5.6.*",
+                "illuminate/notifications": "5.3.*|5.4.*|5.5.*|5.5.*|5.6.*",
+                "illuminate/queue": "5.3.*|5.4.*|5.5.*|5.5.*|5.6.*",
+                "illuminate/support": "5.3.*|5.4.*|5.5.*|5.5.*|5.6.*",
+                "php": ">=5.6.4"
+            },
+            "require-dev": {
+                "mockery/mockery": "~1.0",
+                "phpunit/phpunit": "~6.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Benwilkins\\FCM\\FcmNotificationServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Benwilkins\\FCM\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ben Wilkins",
+                    "email": "bentwilkins@gmail.com"
+                }
+            ],
+            "description": "Laravel FCM (Firebase Cloud Messaging) Notification Channel",
+            "time": "2018-03-06T16:52:21+00:00"
         },
         {
             "name": "cocur/slugify",
@@ -2334,16 +2386,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.6.24",
+            "version": "v5.6.26",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "56290edeb0d8051826d40b4cbd8ed3c30348b2b5"
+                "reference": "7047df295e77cecb6a2f84736a732af66cc6789c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/56290edeb0d8051826d40b4cbd8ed3c30348b2b5",
-                "reference": "56290edeb0d8051826d40b4cbd8ed3c30348b2b5",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/7047df295e77cecb6a2f84736a732af66cc6789c",
+                "reference": "7047df295e77cecb6a2f84736a732af66cc6789c",
                 "shasum": ""
             },
             "require": {
@@ -2469,7 +2521,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2018-06-04T14:51:03+00:00"
+            "time": "2018-06-20T14:21:11+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -3275,16 +3327,16 @@
         },
         {
             "name": "psy/psysh",
-            "version": "v0.9.5",
+            "version": "v0.9.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "0951e91ac04ca28cf317f3997a0adfc319e80106"
+                "reference": "4a2ce86f199d51b6e2524214dc06835e872f4fce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/0951e91ac04ca28cf317f3997a0adfc319e80106",
-                "reference": "0951e91ac04ca28cf317f3997a0adfc319e80106",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/4a2ce86f199d51b6e2524214dc06835e872f4fce",
+                "reference": "4a2ce86f199d51b6e2524214dc06835e872f4fce",
                 "shasum": ""
             },
             "require": {
@@ -3343,7 +3395,7 @@
                 "interactive",
                 "shell"
             ],
-            "time": "2018-06-02T16:39:22+00:00"
+            "time": "2018-06-10T17:57:20+00:00"
         },
         {
             "name": "ramsey/uuid",
@@ -3579,16 +3631,16 @@
         },
         {
             "name": "spatie/laravel-backup",
-            "version": "5.8.0",
+            "version": "5.9.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-backup.git",
-                "reference": "4d666be08c107c62216f126119d7986cd4456d5f"
+                "reference": "ad85988480db742937345c8b086346a30959e814"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-backup/zipball/4d666be08c107c62216f126119d7986cd4456d5f",
-                "reference": "4d666be08c107c62216f126119d7986cd4456d5f",
+                "url": "https://api.github.com/repos/spatie/laravel-backup/zipball/ad85988480db742937345c8b086346a30959e814",
+                "reference": "ad85988480db742937345c8b086346a30959e814",
                 "shasum": ""
             },
             "require": {
@@ -3648,7 +3700,7 @@
                 "laravel-backup",
                 "spatie"
             ],
-            "time": "2018-06-08T22:28:28+00:00"
+            "time": "2018-06-19T21:20:28+00:00"
         },
         {
             "name": "spatie/laravel-permission",
@@ -4881,19 +4933,20 @@
     "packages-dev": [
         {
             "name": "backpack/generators",
-            "version": "1.1.13",
+            "version": "1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Backpack/Generators.git",
-                "reference": "fca62160c8d00e36a96ac4002100de13440eeae1"
+                "reference": "d70af210b9a8861483581172f9675d9d545ac093"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Backpack/Generators/zipball/fca62160c8d00e36a96ac4002100de13440eeae1",
-                "reference": "fca62160c8d00e36a96ac4002100de13440eeae1",
+                "url": "https://api.github.com/repos/Laravel-Backpack/Generators/zipball/d70af210b9a8861483581172f9675d9d545ac093",
+                "reference": "d70af210b9a8861483581172f9675d9d545ac093",
                 "shasum": ""
             },
             "require": {
+                "backpack/base": "^0.9.0",
                 "illuminate/console": ">=5.1",
                 "illuminate/support": ">=5.1",
                 "php": ">=5.5.0"
@@ -4939,7 +4992,7 @@
                 "request",
                 "view"
             ],
-            "time": "2018-02-13T19:21:53+00:00"
+            "time": "2018-06-22T12:50:18+00:00"
         },
         {
             "name": "doctrine/instantiator",
@@ -5273,16 +5326,16 @@
         },
         {
             "name": "myclabs/deep-copy",
-            "version": "1.8.0",
+            "version": "1.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/myclabs/DeepCopy.git",
-                "reference": "478465659fd987669df0bd8a9bf22a8710e5f1b6"
+                "reference": "3e01bdad3e18354c3dce54466b7fbe33a9f9f7f8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/478465659fd987669df0bd8a9bf22a8710e5f1b6",
-                "reference": "478465659fd987669df0bd8a9bf22a8710e5f1b6",
+                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/3e01bdad3e18354c3dce54466b7fbe33a9f9f7f8",
+                "reference": "3e01bdad3e18354c3dce54466b7fbe33a9f9f7f8",
                 "shasum": ""
             },
             "require": {
@@ -5317,20 +5370,20 @@
                 "object",
                 "object graph"
             ],
-            "time": "2018-05-29T17:25:09+00:00"
+            "time": "2018-06-11T23:09:50+00:00"
         },
         {
             "name": "nunomaduro/collision",
-            "version": "v2.0.2",
+            "version": "v2.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nunomaduro/collision.git",
-                "reference": "245958b02c6a9edf24627380f368333ac5413a51"
+                "reference": "b1f606399ae77e9479b5597cd1aa3d8ea0078176"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nunomaduro/collision/zipball/245958b02c6a9edf24627380f368333ac5413a51",
-                "reference": "245958b02c6a9edf24627380f368333ac5413a51",
+                "url": "https://api.github.com/repos/nunomaduro/collision/zipball/b1f606399ae77e9479b5597cd1aa3d8ea0078176",
+                "reference": "b1f606399ae77e9479b5597cd1aa3d8ea0078176",
                 "shasum": ""
             },
             "require": {
@@ -5341,7 +5394,8 @@
             },
             "require-dev": {
                 "laravel/framework": "5.6.*",
-                "phpunit/phpunit": "~7.0"
+                "phpstan/phpstan": "^0.9.2",
+                "phpunit/phpunit": "~7.2"
             },
             "type": "library",
             "extra": {
@@ -5379,7 +5433,7 @@
                 "php",
                 "symfony"
             ],
-            "time": "2018-03-21T20:11:24+00:00"
+            "time": "2018-06-16T22:05:52+00:00"
         },
         {
             "name": "phar-io/manifest",
@@ -5763,16 +5817,16 @@
         },
         {
             "name": "phpunit/php-file-iterator",
-            "version": "2.0.0",
+            "version": "2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-file-iterator.git",
-                "reference": "e20525b0c2945c7c317fff95660698cb3d2a53bc"
+                "reference": "cecbc684605bb0cc288828eb5d65d93d5c676d3c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-file-iterator/zipball/e20525b0c2945c7c317fff95660698cb3d2a53bc",
-                "reference": "e20525b0c2945c7c317fff95660698cb3d2a53bc",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-file-iterator/zipball/cecbc684605bb0cc288828eb5d65d93d5c676d3c",
+                "reference": "cecbc684605bb0cc288828eb5d65d93d5c676d3c",
                 "shasum": ""
             },
             "require": {
@@ -5806,7 +5860,7 @@
                 "filesystem",
                 "iterator"
             ],
-            "time": "2018-05-28T12:13:49+00:00"
+            "time": "2018-06-11T11:44:00+00:00"
         },
         {
             "name": "phpunit/php-text-template",
@@ -5949,16 +6003,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "7.2.4",
+            "version": "7.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "00bc0b93f0ff4f557e9ea766557fde96da9a03dd"
+                "reference": "400a3836ee549ae6f665323ac3f21e27eac7155f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/00bc0b93f0ff4f557e9ea766557fde96da9a03dd",
-                "reference": "00bc0b93f0ff4f557e9ea766557fde96da9a03dd",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/400a3836ee549ae6f665323ac3f21e27eac7155f",
+                "reference": "400a3836ee549ae6f665323ac3f21e27eac7155f",
                 "shasum": ""
             },
             "require": {
@@ -5974,7 +6028,7 @@
                 "php": "^7.1",
                 "phpspec/prophecy": "^1.7",
                 "phpunit/php-code-coverage": "^6.0.7",
-                "phpunit/php-file-iterator": "^2.0",
+                "phpunit/php-file-iterator": "^2.0.1",
                 "phpunit/php-text-template": "^1.2.1",
                 "phpunit/php-timer": "^2.0",
                 "sebastian/comparator": "^3.0",
@@ -6029,7 +6083,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2018-06-05T03:40:05+00:00"
+            "time": "2018-06-21T13:13:39+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
@@ -6078,16 +6132,16 @@
         },
         {
             "name": "sebastian/comparator",
-            "version": "3.0.0",
+            "version": "3.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/comparator.git",
-                "reference": "ed5fd2281113729f1ebcc64d101ad66028aeb3d5"
+                "reference": "591a30922f54656695e59b1f39501aec513403da"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/comparator/zipball/ed5fd2281113729f1ebcc64d101ad66028aeb3d5",
-                "reference": "ed5fd2281113729f1ebcc64d101ad66028aeb3d5",
+                "url": "https://api.github.com/repos/sebastianbergmann/comparator/zipball/591a30922f54656695e59b1f39501aec513403da",
+                "reference": "591a30922f54656695e59b1f39501aec513403da",
                 "shasum": ""
             },
             "require": {
@@ -6138,20 +6192,20 @@
                 "compare",
                 "equality"
             ],
-            "time": "2018-04-18T13:33:00+00:00"
+            "time": "2018-06-14T15:05:28+00:00"
         },
         {
             "name": "sebastian/diff",
-            "version": "3.0.0",
+            "version": "3.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/diff.git",
-                "reference": "e09160918c66281713f1c324c1f4c4c3037ba1e8"
+                "reference": "366541b989927187c4ca70490a35615d3fef2dce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/diff/zipball/e09160918c66281713f1c324c1f4c4c3037ba1e8",
-                "reference": "e09160918c66281713f1c324c1f4c4c3037ba1e8",
+                "url": "https://api.github.com/repos/sebastianbergmann/diff/zipball/366541b989927187c4ca70490a35615d3fef2dce",
+                "reference": "366541b989927187c4ca70490a35615d3fef2dce",
                 "shasum": ""
             },
             "require": {
@@ -6194,7 +6248,7 @@
                 "unidiff",
                 "unified diff"
             ],
-            "time": "2018-02-01T13:45:15+00:00"
+            "time": "2018-06-10T07:54:39+00:00"
         },
         {
             "name": "sebastian/environment",

@@ -30,3 +30,11 @@ Route::middleware('auth:api')->post('/driver/location/update', 'Api\DriverLocati
 
 Route::middleware('auth:api')->post('/driver/device_token', 'Api\DriverController@updateDeviceToken');
 
+Route::middleware('auth:api')->post('/driver/order/{order}/accept', 'Api\DriverController@acceptOrder');
+
+Route::middleware('auth:api')->post('/driver/order/{order}/reached_restaurant', 'Api\DriverController@reachedRestaurant');
+
+Route::middleware('auth:api')->post('/driver/order/{order}/picked', 'Api\DriverController@orderPicked');
+
+Route::middleware('auth:api')->post('/driver/order/{order}/delivered', 'Api\DriverController@orderDelivered');
+

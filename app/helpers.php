@@ -120,3 +120,22 @@ function getCustomsString($customs)
 }
 
 
+
+function findNearestDrivers($restaurant)
+{
+    $drivers = \DB::select("SELECT id,( 3959 * acos( cos( radians(". $restaurant->latitude .") ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(". $restaurant->longitude .") ) + sin( radians(". $restaurant->latitude .") ) * sin( radians( latitude ) ) ) ) AS distance FROM drivers HAVING distance < ". config('settings.driver_distance')  ."  ORDER BY distance" ); 
+
+
+    $driverModels = [];
+
+      foreach($drivers as $driver)
+      {
+          $res = \App\Models\Driver::findOrFail($driver->id);
+
+          $driverModels[] = $res;
+      }
+
+    return $driverModels;
+}
+
+

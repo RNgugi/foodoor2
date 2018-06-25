@@ -15,6 +15,7 @@
         "backpack/settings": "^2.0",
         "barryvdh/laravel-dompdf": "^0.8.2",
         "barryvdh/laravel-elfinder": "^0.3.12",
+        "benwilkins/laravel-fcm-notification": "^2.0",
         "cviebrock/eloquent-sluggable": "^4.5",
         "fideloper/proxy": "^4.0",
         "gloudemans/shoppingcart": "^2.5",

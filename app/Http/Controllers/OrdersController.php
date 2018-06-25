@@ -6,8 +6,10 @@ use App\Mail\OrderPlaced;
 use App\Mail\OrderDelivered;
 use App\Mail\NewOrderMail;
 use App\Models\Order;
+use App\Models\Driver;
 use Illuminate\Http\Request;
 use App\Events\OrderStatusChanged;
+use App\Notifications\NewDriverOrder;
 
 class OrdersController extends Controller
 {
@@ -151,6 +153,9 @@ class OrdersController extends Controller
         
         } else {
             
+            $drivers = findNearestDrivers($restaurant);
+
+            \Notification::send($drivers, new NewDriverOrder($order));
 
             \Cart::instance('restaurant-' . request('restaurant_id'))->destroy();
             

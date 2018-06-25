@@ -21,8 +21,8 @@ class DriverLocationController extends Controller
     		 return response(['status' => 'failed', 'message' => 'User should be delivery boy!']);
     	}
 
-    	$user->driver->lat = request('lat');
-    	$user->driver->lng = request('lng');
+    	$user->driver->latitude = request('lat');
+    	$user->driver->longitude = request('lng');
 
     	$user->driver->save();
 
