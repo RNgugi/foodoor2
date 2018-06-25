@@ -168,7 +168,7 @@ class DriverController extends Controller
 
         $orders = Order::where('status', '<', 4)->where('driver_id', $user->driver->id)->get();
 
-        return response(['status' => 'success', 'message' => 'Order Status Updated!', 'orders' => $orders]);
+        return response(['status' => 'success', 'message' => 'Order Status Updated!', 'orders' => $orders], 200);
 
     }
 
@@ -194,7 +194,7 @@ class DriverController extends Controller
 
         $orders = Order::where('status', 4)->where('driver_id', $user->driver->id)->get();
 
-        return response(['status' => 'success', 'message' => 'Order Status Updated!', 'orders' => $orders]);
+        return response(['status' => 'success', 'message' => 'Order Status Updated!', 'orders' => $orders], 200);
 
     }
 
