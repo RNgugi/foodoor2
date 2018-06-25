@@ -153,7 +153,7 @@ class OrdersController extends Controller
         
         } else {
             
-            $drivers = findNearestDrivers($restaurant);
+            $drivers = findNearestDrivers($order->restaurant);
 
             \Notification::send($drivers, new NewDriverOrder($order));
 
