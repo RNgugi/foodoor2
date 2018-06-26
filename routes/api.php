@@ -42,3 +42,5 @@ Route::middleware('auth:api')->post('/driver/orders/new', 'Api\DriverController@
 
 Route::middleware('auth:api')->post('/driver/orders/history', 'Api\DriverController@orderHistory');
 
+Route::middleware('auth:api')->post('/driver/orders/{order}', 'Api\DriverController@getOrder');
+
