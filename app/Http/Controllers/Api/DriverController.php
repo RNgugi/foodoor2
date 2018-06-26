@@ -208,6 +208,8 @@ class DriverController extends Controller
         {
             return response(['status' => 'failed', 'message' => 'The order is assigned to another delivery boy!']);
         }
+
+        $order->load('items');
         
 
         return response(['status' => 'success', 'message' => 'Order Details Sent!', 'order' => $order], 200);
