@@ -2,6 +2,15 @@
 
 
 @section('content')
+
+<div itemscope itemtype="http://schema.org/Person">
+   <span itemprop="name">Avinash Kumar</span>
+   <span itemprop="company">Foodoor</span>
+   <span itemprop="tel">08102814217</span>
+   <a itemprop="email" href="mailto:contact@foodoor.in">contact@foodoor.in</a>
+</div>
+
+
 <div style="background: #fbbf67;min-height: 900px;padding-top: 60px;" >
     
 

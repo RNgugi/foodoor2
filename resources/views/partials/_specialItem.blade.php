@@ -4,16 +4,16 @@
 
 
 
-<img class="product-image" src="{{ isset($item->photo) ? url($item->photo) : 'http://via.placeholder.com/350x250' }}" style="max-height: 200px;height: 200px;">
+<img class="product-image" src="{{ isset($item->photo) ? url($item->photo) : 'http://via.placeholder.com/350x250' }}" alt="foodoor {{ $item->name }}" style="max-height: 200px;height: 200px;">
 	
 	
 
 	<div class="content" style="padding-left: 0;">
 	    <h5 style="font-size: 18px;">
 	    	@if($item->is_veg)
-             <img class="veg-indicator" src="/images/veg.png" style="width: 15px;height: 15px;margin-top: 0px;" >
+             <img class="veg-indicator" src="/images/veg.png" alt="veg-indicator" style="width: 15px;height: 15px;margin-top: 0px;" >
             @else
-            <img class="veg-indicator" src="/images/nonveg.png" style="width: 15px;height: 15px;margin-top: 0px;" >
+            <img class="veg-indicator" src="/images/nonveg.png" alt="nonveg-indicator" style="width: 15px;height: 15px;margin-top: 0px;" >
             @endif 
            {{ substr($item->name, 0, 25) }}</h5>
           

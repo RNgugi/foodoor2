@@ -6,9 +6,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="Free food delivery online from the best restaurants near you in Ranchi. Restaurants, order food, order online, order food online, food, delivery, food delivery, home delivery." />
+    <meta name="keyword" content="restaurants, order food, order online, order food online, food, delivery, food delivery, home delivery, fast, hungry, quickly, offer, discount, takeaway, cuisine, pizza, burger, biryani, dessert, juice, dosa,pizza hut, mcd, mcdonalds, dominos, haagen dazs, baskin robbins, papa johns, kfc, haldiram, breakfast, lunch, dinner, snacks, restaurants near me" />
+    <meta name="revisit-after" content="7 days"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="distribution" content="india, global"/>  
+    <meta name="robots" content="index, follow"/> 
+    <meta name="googlebot" content="index, follow"/>
+      <meta name="language" content="en"/>
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1; user-scalable=1;"/>
+    <meta name="document-classification" content="internet"/>
+    <meta name="document-type" content="public"/>
+    <meta name="document-rating" content="safe for kids"/>
+    <meta name="generator" content="motive">        
+    <meta name="author" content="Trumpets Technologies Pvt. Ltd.">
+
     <link rel="icon" href="/images/fav.png">
+    
     <title>Foodoor | When you think food, Think foodoor</title>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <!-- Bootstrap core CSS -->

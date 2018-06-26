@@ -4,7 +4,7 @@
 
 <a class="restaurant-image" href="/restaurants/{{$restaurant->id}}?lat={{request('lat')}}&lng={{request('lng')}}">
 
-	<img src="{{ isset($restaurant->logo) ? url($restaurant->logo) : 'http://via.placeholder.com/350x250' }}" style="max-height: 200px;height: 200px;width: 100%;">
+	<img src="{{ isset($restaurant->logo) ? url($restaurant->logo) : 'http://via.placeholder.com/350x250' }}" alt="{{ $restaurant->name }} logo" style="max-height: 200px;height: 200px;width: 100%;">
 	
 	</a>
 

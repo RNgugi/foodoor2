@@ -39,7 +39,7 @@
                        <div  class="col-md-3">
                            
                                 <a href="{{ $homebanner->url }}" class="">
-                                    <img style="width: 100%;height: 270px;" src="{{ url($homebanner->image) }}">
+                                    <img style="width: 100%;height: 270px;" src="{{ url($homebanner->image) }}" alt="foodoor offer banner">
                                  </a>
                             
                            
@@ -60,7 +60,7 @@
                        <div  class="col-md-3">
                            
                                 <a href="{{ $homebanner->url }}" class="">
-                                    <img style="width: 100%;height: 270px;" src="{{ url($homebanner->image) }}">
+                                    <img style="width: 100%;height: 270px;" src="{{ url($homebanner->image) }}" alt="foodoor offer banner">
                                  </a>
                             
                            
@@ -134,7 +134,7 @@
                                <div class="col-md-3">
                                  
                                     <a href="/restaurants/{{$restaurantLogo->restaurant->id}}?lat={{$restaurantLogo->restaurant->latitude}}&lng={{$restaurantLogo->restaurant->longitude}}" >
-                                        <img style="width: 280px;height: 250px;" src="{{ url($restaurantLogo->image) }}">
+                                        <img style="width: 280px;height: 250px;" src="{{ url($restaurantLogo->image) }}" alt="foodoor--{{ $restaurantLogo->restaurant->name }}">
                                      </a>
                                   
                                    
@@ -151,7 +151,7 @@
                                <div class="col-md-3">
                                  
                                     <a href="/restaurants/{{$restaurantLogo->restaurant->id}}?lat={{$restaurantLogo->restaurant->latitude}}&lng={{$restaurantLogo->restaurant->longitude}}" >
-                                        <img style="width: 280px;height: 250px;" src="{{ url($restaurantLogo->image) }}">
+                                        <img style="width: 280px;height: 250px;" src="{{ url($restaurantLogo->image) }}" alt="foodoor--{{ $restaurantLogo->restaurant->name }}">
                                      </a>
                                   
                                    

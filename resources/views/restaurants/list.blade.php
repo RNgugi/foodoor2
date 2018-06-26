@@ -42,7 +42,7 @@
                        <div  class="col-md-3">
                            
                                 <a href="{{ $homebanner->url }}" class="">
-                                    <img style="width: 100%;height: 270px;" src="{{ url($homebanner->image) }}">
+                                    <img style="width: 100%;height: 270px;" src="{{ url($homebanner->image) }}" alt="foodoor offer banner">
                                  </a>
                             
                            

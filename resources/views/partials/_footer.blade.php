@@ -30,7 +30,7 @@
 
                      <div class="col-xs-12 col-sm-3 popular-locations color-gray" >
                         <a href="#bulkOrderModal" data-toggle="modal">
-                            <img src="/images/bulk.png" style="width: 120px;margin-bottom: 20px;">
+                            <img src="/images/bulk.png" alt="foodoor bulk order" style="width: 120px;margin-bottom: 20px;">
                         </a>
     
                         
@@ -43,7 +43,7 @@
                 <div class="bottom-footer" style="border-top:  1px solid #fff; padding-top: 20px;">
                     <div class="row">
                         <div class="col-xs-12 col-sm-4 payment-options color-gray hidden-sm-down">
-                            <a href="#"> <img src="/images/logofooter.png" alt="Footer logo" style="width: 180px;"> </a>  
+                            <a href="#"> <img src="/images/logofooter.png" alt="foodoor white logo" style="width: 180px;"> </a>  
                         </div>
                         <div class="col-xs-12 col-sm-4 address color-gray" style="text-align: center;">
                             <h4 style="color: #fff;margin-top: 7px;">&copy; {{ date('Y') }} Foodoor</h4>

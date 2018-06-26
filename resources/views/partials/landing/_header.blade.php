@@ -2,7 +2,7 @@
             <!-- .navbar -->
             <nav class="navbar navbar-light">
                 <div class="container">
-                    <a class="navbar-brand" href="/"> <img class="img-rounded" style="width: 180px;" src="/images/logonew.png" alt=""> </a>
+                    <a class="navbar-brand" href="/"> <img class="img-rounded" style="width: 180px;" src="/images/logonew.png" alt="Foodoor logo"> </a>
 
                      <button class="navbar-toggler hidden-lg-up pull-xs-right" type="button" id="navbarSideButton">&#9776;</button>
                     <div class="collapse navbar-toggleable-md  float-lg-right" id="mainNavbarCollapse" style="margin-top: 10px;">
