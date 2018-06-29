@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Models\Restaurant;
 use App\Models\Order;
+use App\Events\OrderStatusChanged;
 use App\Http\Controllers\Controller;
 
 class DriverController extends Controller
@@ -208,6 +209,8 @@ class DriverController extends Controller
         {
             return response(['status' => 'failed', 'message' => 'The order is assigned to another delivery boy!']);
         }
+
+        
 
         $order->load('items');
         
