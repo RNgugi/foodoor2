@@ -144,7 +144,7 @@ class DriverController extends Controller
 
         event(new OrderStatusChanged($order));
 
-        return response(['status' => 'success', 'message' => 'Order Status Updated!']);
+        return response(['status' => 'success', 'message' => 'Order Status Updated!', 'order' => $order]);
     }
 
     public function newOrders()
