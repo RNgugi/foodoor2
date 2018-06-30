@@ -165,7 +165,29 @@ class DriverController extends Controller
 
         $orders = Order::where('status', '<', 4)->where('driver_id', $user->driver->id)->with('restaurant')->with('user')->get();
 
-        return response(['status' => 'success', 'message' => 'Order Status Updated!', 'orders' => $orders], 200);
+        return response(['status' => 'success', 'message' => 'New Orders!', 'orders' => $orders], 200);
+
+    }
+
+    public function preOrders()
+    {
+        $user = request()->user();
+
+        if(!$user)
+        {
+            return response(['status' => 'failed', 'message' => 'User doesn\'t exist!']);
+        }
+
+        if(!$user->is_driver)
+        {
+            return response(['status' => 'failed', 'message' => 'User should be delivery boy!']);
+        }
+
+        
+
+        $orders = Order::where('status', 0)->where('driver_id', 0)->with('restaurant')->with('user')->get();
+
+        return response(['status' => 'success', 'message' => 'To be accepted orders!', 'orders' => $orders], 200);
 
     }
 
