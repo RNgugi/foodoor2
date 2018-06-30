@@ -54,6 +54,17 @@ class Order extends Model
         
     }
 
+      public function getPhoneNoAttribute()
+    {
+        if($this->user)
+        {
+            return $this->user->phone;
+        } else {
+            return 'NOT EXIST';
+        }
+        
+    }
+
      public function getBookingDateAttribute()
     {
         return $this->created_at->format('d/m/Y');
