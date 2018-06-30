@@ -89,6 +89,11 @@ class LoginController extends Controller
             
             if($request->wantsJson()) {
 
+                if($user->is_restaurant)
+                {
+                    $user->load('restaurant');
+                }
+
                 $data = $user->toArray();
 
                

@@ -28,7 +28,7 @@ class User extends Authenticatable
         'name', 'email', 'password', 'phone', 'is_verified', 'wallet_ballance'
     ];
 
-    protected $appends = ['is_driver'];
+    protected $appends = ['is_driver', 'is_restaurant'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -78,5 +78,10 @@ class User extends Authenticatable
     public function getIsDriverAttribute()
     {
         return $this->driver != null;
+    }
+
+    public function getIsRestaurantAttribute()
+    {
+        return $this->restaurant != null;
     }
 }

@@ -46,3 +46,19 @@ Route::middleware('auth:api')->post('/driver/orders/history', 'Api\DriverControl
 
 Route::middleware('auth:api')->post('/driver/orders/{order}', 'Api\DriverController@getOrder');
 
+Route::middleware('auth:api')->post('/driver/order/{order}/picked', 'Api\DriverController@orderPicked');
+
+Route::middleware('auth:api')->post('/driver/order/{order}/delivered', 'Api\DriverController@orderDelivered');
+
+
+Route::middleware('auth:api')->post('/restaurant/order/{order}/confirm', 'Api\RestaurantController@confirmOrder');
+
+Route::middleware('auth:api')->post('/restaurant/order/{order}/ready', 'Api\RestaurantController@orderReady');
+
+Route::middleware('auth:api')->post('/restaurant/orders', 'Api\RestaurantController@orders');
+
+Route::middleware('auth:api')->post('/restaurant/orders/history', 'Api\RestaurantController@history');
+
+
+
+
