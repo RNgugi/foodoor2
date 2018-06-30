@@ -34,6 +34,9 @@ class CustomerCrudController extends CrudController
              ['name' => 'phone', 'label' => 'Phone Number'],
         ]);
 
+        $this->crud->addClause('where', 'restaurant_id', '=', 0);
+
+         $this->crud->addClause('where', 'driver_id', '=', 0);
     
 
         

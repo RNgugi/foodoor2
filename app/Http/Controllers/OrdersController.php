@@ -171,6 +171,8 @@ class OrdersController extends Controller
 
             \Mail::to(auth()->user())->send($message);
 
+            \Mail::to('foodoor.order@gmail.com')->send(new NewOrderMail($order));
+
             \Mail::to($order->restaurant->contact_email)->send(new NewOrderMail($order));
             
             $message = 'Thanks for ordering with Foodoor. Your order no: '. $order->id . ' and bill amount : Rs. '. $order->amount .'/- . We are waiting for restaurant confirmation and will update you soon.';
