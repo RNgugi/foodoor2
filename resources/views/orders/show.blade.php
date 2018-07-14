@@ -1,6 +1,8 @@
 @extends('layouts.restaurants')
 
 
+
+
 @section('content')
 	 
     

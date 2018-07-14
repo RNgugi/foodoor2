@@ -169,7 +169,7 @@ input[type=number]::-webkit-outer-spin-button {
                                  
                                  </div>
 
-                                 <div class="row">
+                             {{--    <div class="row">
                                    <div class="col-sm-8">
                                      {!! NoCaptcha::display() !!}
 
@@ -179,7 +179,7 @@ input[type=number]::-webkit-outer-spin-button {
                                         </span>
                                     @endif
                                    </div>
-                                 </div>
+                                 </div> --}}
 
                                  <div class="row" style="margin-top: 30px;">
                                    <div class="col-sm-8">

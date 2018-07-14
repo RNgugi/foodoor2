@@ -1,5 +1,10 @@
 @extends('layouts.restaurants')
 
+@section('title',  $restaurant->name . ' | Home delivery | Order Food Online in Ranchi')
+
+@section('meta-desc',  'Order Food Online from ' . $restaurant->name . ' ' .  $restaurant->area  .'\'s menu for Home Delivery in Ranchi. Fastest delivery | No minimum order | GPS tracking.')
+
+@section('meta-keywords',  $restaurant->name . ' , menus, order food online ' . $restaurant->name .' ,' . $restaurant->area)
 
 
 @section('content')

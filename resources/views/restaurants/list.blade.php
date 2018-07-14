@@ -1,6 +1,9 @@
 @extends('layouts.restaurants')
 
 
+@section('title', 'Foodoor - Order Food Online in Ranchi | Use Foodoor10 & Get 10% Off')
+
+
 @section('styles')
   
   <style type="text/css">

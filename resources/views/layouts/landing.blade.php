@@ -6,8 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="Free food delivery online from the best restaurants near you in Ranchi. Restaurants, order food, order online, order food online, food, delivery, food delivery, home delivery." />
-    <meta name="keyword" content="restaurants, order food, order online, order food online, food, delivery, food delivery, home delivery, fast, hungry, quickly, offer, discount, takeaway, cuisine, pizza, burger, biryani, dessert, juice, dosa,pizza hut, mcd, mcdonalds, dominos, haagen dazs, baskin robbins, papa johns, kfc, haldiram, breakfast, lunch, dinner, snacks, restaurants near me" />
+    <meta name="description" content=" Order food online in Ranchi and get free delivery. Flat 10% off, amazing cashback and sign up bonus" />
+    <meta name="keywords" content="restaurants, order food, order online, order food online, food, delivery, food delivery, home delivery,
+    fast, hungry, quickly, offer, discount, takeaway, cuisine, pizza, burger, biryani, dessert, juice, dosa, Ranchi, Jaharkhand,
+    kareem, Kaveri, Birian, Moti Mahal, Seasons, The Best, Food Factory, Mezbaan, krshna, breakfast, lunch, dinner, snacks,
+    restaurants near me">
     <meta name="revisit-after" content="7 days"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="distribution" content="india, global"/>  
@@ -23,7 +26,7 @@
 
     <link rel="icon" href="/images/fav.png">
     
-    <title>Foodoor | When you think food, Think foodoor</title>
+    <title>Foodoor - Order Food Online in Ranchi | Use Foodoor10 & Get 10% Off</title>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">

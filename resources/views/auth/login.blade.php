@@ -59,7 +59,7 @@
                                 </div>
 
 
-                                 <div class="row">
+                               {{-- <div class="row">
                                    <div class="col-sm-8">
                                      {!! NoCaptcha::display() !!}
 
@@ -69,7 +69,7 @@
                                         </span>
                                     @endif
                                    </div>
-                                 </div>
+                                 </div> --}}
                                 
                                  <div class="row" style="margin-top: 20px;">
                                     <div class="col-sm-4">

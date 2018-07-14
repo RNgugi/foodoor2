@@ -31,12 +31,10 @@ class CustomerCrudController extends CrudController
         $this->crud->addColumns([
             ['name' => 'name', 'label' => 'Name'],
             ['name' => 'email', 'label' => 'Email Address'],
-             ['name' => 'phone', 'label' => 'Phone Number'],
+            ['name' => 'phone', 'label' => 'Phone Number'],
         ]);
 
-    
-
-        
+       
         $this->crud->ajax_table = false;
 
         // ------ CRUD FIELDS

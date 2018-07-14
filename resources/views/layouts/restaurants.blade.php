@@ -7,10 +7,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
+    
     <meta name="author" content="">
     <link rel="icon" href="/images/fav.png">
-    <title>Foodoor | When you think food, Think foodoor</title>
+    <title>@yield('title', 'Foodoor | When you think food, Think foodoor')</title>
+
+    <meta name="description" content="@yield('meta-desc')">
+
+    <meta name="keywords" content="@yield('meta-keywords')"><meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+
+    <meta property="og:type" content="website">
+
+    <meta property="og:description" content="Order food online from restaurants and get it delivered.
+      Serving in Bangalore, Hyderabad, Delhi, Gurgaon, Jaipur, Chandigarh, Ahemdabad, Noida, Mumbai, Pune, Kolkata and Chennai.
+      Order Pizzas, Burgers, Biryanis, Desserts or order from Subway, Pizza Hut, Dominos, KFC, McDonalds.">
+
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">

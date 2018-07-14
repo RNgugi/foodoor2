@@ -35,7 +35,7 @@ class OrderCrudController extends CrudController
             ['name' => 'customer_name', 'label' => 'Customer Name'],
             ['name' => 'phone_no', 'label' => 'Phone No.'],
             ['name' => 'restaurant_name', 'label' => 'Restaurant Name'],
-            ['name' => 'booking_date', 'label' => 'Date'],
+            ['name' => 'created_at', 'label' => 'Order Time'],
             ['name' => 'itemsCount', 'label' => 'Items Count'],
             ['name' => 'amount', 'label' => 'Amount (Rs.)'],
             ['name' => 'status_text', 'label' => 'Status'],
@@ -45,7 +45,7 @@ class OrderCrudController extends CrudController
 
         $this->crud->ajax_table = false;
    
-       // $this->crud->addClause('whereDate', 'created_at', '=', date('Y-m-d'));
+        $this->crud->addClause('whereDate', 'created_at', '=', date('Y-m-d'));
 
         $this->crud->addClause('where', 'status', '<', 4);
 
