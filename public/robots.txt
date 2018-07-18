@@ -2,6 +2,3 @@ User-Agent: *
 Disallow: 
 Disallow: /admin
 Disallow: /restaurant-admin
-Disallow: /login
-Disallow: /register
-Disallow: /home
