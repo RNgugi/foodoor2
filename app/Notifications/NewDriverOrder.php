@@ -36,19 +36,19 @@ class NewDriverOrder extends Notification
         return ['fcm'];
     }
 
-    public function toFcm($notifiable) 
+    public function toFcm($notifiable)
     {
         $message = new FcmMessage();
         $message->content([
-            'title'        => 'New Order Received', 
-            'body'         => 'You have received a new delivery order. Please respond to the order request.', 
-            'sound'        => '', // Optional 
+            'title'        => 'New Order Received',
+            'body'         => 'You have received a new delivery order. Please respond to the order request.',
+            'sound'        => '', // Optional
             'icon'         => '', // Optional
             'click_action' => '' // Optional
         ])->data([
             'order_id' => $this->order->id // Optional
         ])->priority(FcmMessage::PRIORITY_HIGH); // Optional - Default is 'normal'.
-        
+
         return $message;
     }
 
