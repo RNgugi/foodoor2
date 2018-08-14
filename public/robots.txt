@@ -1,4 +1,5 @@
 User-Agent: *
-Disallow: 
+Disallow:
 Disallow: /admin
 Disallow: /restaurant-admin
+sitemap : https://foodoor.in/sitemap.xml
