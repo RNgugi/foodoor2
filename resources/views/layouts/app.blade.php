@@ -10,7 +10,7 @@
 
     <link rel="icon" href="/images/logo.ico">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Demo Site - Foodoor</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>

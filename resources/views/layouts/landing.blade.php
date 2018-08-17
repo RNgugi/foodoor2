@@ -13,20 +13,20 @@
     restaurants near me">
     <meta name="revisit-after" content="7 days"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="distribution" content="india, global"/>  
-    <meta name="robots" content="index, follow"/> 
+    <meta name="distribution" content="india, global"/>
+    <meta name="robots" content="index, follow"/>
     <meta name="googlebot" content="index, follow"/>
       <meta name="language" content="en"/>
     <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1; user-scalable=1;"/>
     <meta name="document-classification" content="internet"/>
     <meta name="document-type" content="public"/>
     <meta name="document-rating" content="safe for kids"/>
-    <meta name="generator" content="motive">        
+    <meta name="generator" content="motive">
     <meta name="author" content="Trumpets Technologies Pvt. Ltd.">
 
     <link rel="icon" href="/images/fav.png">
-    
-    <title>Foodoor - Order Food Online in Ranchi | Use Foodoor10 & Get 10% Off</title>
+
+    <title>Demo Site | Foodoor - Order Food Online in Ranchi | Use Foodoor10 & Get 10% Off</title>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -36,17 +36,17 @@
 
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <!-- Custom styles for this template -->
-    <link href="/css/style.css" rel="stylesheet"> 
+    <link href="/css/style.css" rel="stylesheet">
 
 
 
   <style type="text/css">
-    input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
+    input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    margin: 0; 
+    margin: 0;
 }
   </style>
 
@@ -57,15 +57,15 @@ input[type=number]::-webkit-outer-spin-button {
     <div class="site-wrapper animsition" data-animsition-in="fade-in" data-animsition-out="fade-out">
          @include('flash::message')
          @include('partials.landing._header')
-       
+
          <div class="page-wrapper">
           @yield('content')
          </div>
-        
 
-   
+
+
         @include('partials._footer')
-       
+
     </div>
     <!--/end:Site wrapper -->
     <!-- Bootstrap core JavaScript
@@ -77,7 +77,7 @@ input[type=number]::-webkit-outer-spin-button {
     <script src="/js/bootstrap-slider.min.js"></script>
     <script src="/js/jquery.isotope.min.js"></script>
     <script src="/js/headroom.js"></script>
-    <script src="/js/foodpicky.min.js"></script> 
+    <script src="/js/foodpicky.min.js"></script>
      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 
@@ -85,8 +85,8 @@ input[type=number]::-webkit-outer-spin-button {
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABIlUStLsr84EGUomykEKJeNPIuWbT854&v=3.exp&sensor=false&libraries=places"></script>
-        
-         
+
+
 
            <script src="/js/locationpicker.jquery.js"></script>
         <script type="text/javascript">
@@ -144,7 +144,7 @@ input[type=number]::-webkit-outer-spin-button {
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                 <form method="POST" action="/bulk-orders">
-                   @csrf 
+                   @csrf
                   <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Fill up the details below and we will get back to you soon</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -152,7 +152,7 @@ input[type=number]::-webkit-outer-spin-button {
                     </button>
                   </div>
                   <div class="modal-body">
-                    
+
                         <div class="form-group">
                             <label>Name <span style="color: red;">*</span></label>
                             <input type="text" name="name"  class="form-control" placeholder="Enter contact name" required="">
@@ -173,8 +173,8 @@ input[type=number]::-webkit-outer-spin-button {
                             <label>Message</label>
                             <textarea class="form-control" cols="3" name="message" placeholder="Your order purpose/details" required=""></textarea>
                         </div>
-                        
-                    
+
+
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -192,7 +192,7 @@ input[type=number]::-webkit-outer-spin-button {
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                 <form method="POST" action="/new-restaurant">
-                   @csrf 
+                   @csrf
                   <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Fill up the details below and we will get back to you soon</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -200,7 +200,7 @@ input[type=number]::-webkit-outer-spin-button {
                     </button>
                   </div>
                   <div class="modal-body">
-                    
+
                         <div class="form-group">
                             <label>Name <span style="color: red;">*</span></label>
                             <input type="text" name="name"  class="form-control" placeholder="Enter contact name" required="">
@@ -221,8 +221,8 @@ input[type=number]::-webkit-outer-spin-button {
                             <label>Message</label>
                             <textarea class="form-control" cols="3" name="message" placeholder="Any specific details" required=""></textarea>
                         </div>
-                        
-                    
+
+
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
