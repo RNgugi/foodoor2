@@ -14,8 +14,8 @@ class MakePhotoInItemsNullable extends Migration
     public function up()
     {
         Schema::table('items', function (Blueprint $table) {
-           
-            $table->integer('featured')->default(0);
+
+           // $table->integer('featured')->default(0);
             $table->string('photo')->nullable()->change();
         });
     }
@@ -28,8 +28,8 @@ class MakePhotoInItemsNullable extends Migration
     public function down()
     {
         Schema::table('items', function (Blueprint $table) {
-           
-             $table->dropColumn('featured');
+
+             //$table->dropColumn('featured');
              $table->string('photo')->change();
         });
     }
