@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    
+
     <meta name="author" content="">
     <link rel="icon" href="/images/fav.png">
     <title>@yield('title', 'Foodoor | When you think food, Think foodoor')</title>
@@ -31,7 +31,17 @@
 
      <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <!-- Custom styles for this template -->
-    <link href="/css/style.css" rel="stylesheet"> 
+    <link href="/css/style.css" rel="stylesheet">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-124203918-1"></script>
+
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-124203918-1');
+    </script>
 
     @yield('styles')
 
@@ -42,17 +52,17 @@
 <body class="home">
 
     <div class="site-wrapper animsition" data-animsition-in="fade-in" data-animsition-out="fade-out">
-         @include('flash::message')   
+         @include('flash::message')
          @include('partials._header')
-       
+
          <div class="page-wrapper">
           @yield('content')
          </div>
-        
 
-   
+
+
         @include('partials._footer')
-       
+
     </div>
     <!--/end:Site wrapper -->
     <!-- Bootstrap core JavaScript
@@ -74,9 +84,9 @@
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABIlUStLsr84EGUomykEKJeNPIuWbT854&v=3.exp&sensor=false&libraries=places"></script>
-        
 
-         
+
+
 
      <script src="/js/locationpicker.jquery.js"></script>
     <script type="text/javascript">
@@ -153,7 +163,7 @@ $(document).ready(function(){
       $('html, body').animate({
         scrollTop: $(hash).offset().top
       }, 800, function(){
-   
+
         // Add hash (#) to URL when done scrolling (default click behavior)
         window.location.hash = hash;
       });
@@ -167,7 +177,7 @@ $(document).ready(function(){
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                 <form method="POST" action="/bulk-orders">
-                   @csrf 
+                   @csrf
                   <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Fill up the details below and we will get to you soon</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -175,7 +185,7 @@ $(document).ready(function(){
                     </button>
                   </div>
                   <div class="modal-body">
-                    
+
                         <div class="form-group">
                             <label>Name</label>
                             <input type="text" name="name"  class="form-control" placeholder="Enter contact name" required="">
@@ -196,8 +206,8 @@ $(document).ready(function(){
                             <label>Message</label>
                             <textarea class="form-control" cols="3" name="message" placeholder="Your order purpose/details" required=""></textarea>
                         </div>
-                        
-                    
+
+
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

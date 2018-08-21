@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 
 class RestaurantController extends Controller
 {
-    
+
     public function confirmOrder(Order $order)
     {
         $user = request()->user();
@@ -41,7 +41,7 @@ class RestaurantController extends Controller
     }
 
 
-    
+
 
     public function orderReady(Order $order)
     {
@@ -73,7 +73,29 @@ class RestaurantController extends Controller
 
     }
 
-    
+    public function readyOrders()
+    {
+        $user = request()->user();
+
+        if(!$user)
+        {
+            return response(['status' => 'failed', 'message' => 'User doesn\'t exist!']);
+        }
+
+        if(!$user->is_restaurant)
+        {
+            return response(['status' => 'failed', 'message' => 'User should be a restaurant!']);
+        }
+
+
+
+        $orders = Order::where('status', '=', 2)->where('restaurant_id', $user->restaurant->id)->with('restaurant')->with('user')->get();
+
+        return response(['status' => 'success', 'message' => 'All Ready Orders!', 'orders' => $orders], 200);
+
+    }
+
+
     public function orders()
     {
         $user = request()->user();
@@ -88,7 +110,7 @@ class RestaurantController extends Controller
             return response(['status' => 'failed', 'message' => 'User should be a restaurant!']);
         }
 
-        
+
 
         $orders = Order::where('status', '<', 4)->where('restaurant_id', $user->restaurant->id)->with('restaurant')->with('user')->get();
 
@@ -110,7 +132,7 @@ class RestaurantController extends Controller
             return response(['status' => 'failed', 'message' => 'User should be a restaurant!']);
         }
 
-        
+
 
         $orders = Order::where('status', 4)->where('restaurant_id', $user->restaurant->id)->with('restaurant')->with('user')->get();
 
@@ -118,5 +140,5 @@ class RestaurantController extends Controller
 
     }
 
-    
+
 }

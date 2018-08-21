@@ -26,7 +26,7 @@
 
     <link rel="icon" href="/images/fav.png">
 
-    <title>Demo Site | Foodoor - Order Food Online in Ranchi | Use Foodoor10 & Get 10% Off</title>
+    <title>Foodoor - Order Food Online in Ranchi | Use Foodoor10 & Get 10% Off</title>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -51,6 +51,15 @@ input[type=number]::-webkit-outer-spin-button {
   </style>
 
   @yield('styles')
+
+   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-124203918-1"></script>
+
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-124203918-1');
+    </script>
 
    </head>
 <body class="home">
