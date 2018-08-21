@@ -80,11 +80,11 @@ class DriverController extends Controller
         {
             return response(['status' => 'failed', 'message' => 'The order is assigned to another delivery boy!']);
         }
-        
+
         $order->driver_reached = 1;
 
         $order->save();
-        
+
         // send user message;
 
         return response(['status' => 'success', 'message' => 'Order Status Updated!']);
@@ -108,13 +108,13 @@ class DriverController extends Controller
         {
             return response(['status' => 'failed', 'message' => 'The order is assigned to another delivery boy!']);
         }
-       
+
 
         $order->status = 3;
         $order->save();
 
         event(new OrderStatusChanged($order));
-        
+
         return response(['status' => 'success', 'message' => 'Order Status Updated!']);
 
     }
@@ -161,7 +161,7 @@ class DriverController extends Controller
             return response(['status' => 'failed', 'message' => 'User should be delivery boy!']);
         }
 
-        
+
 
         $orders = Order::where('status', '<', 4)->where('driver_id', $user->driver->id)->with('restaurant')->with('user')->get();
 
@@ -183,7 +183,7 @@ class DriverController extends Controller
             return response(['status' => 'failed', 'message' => 'User should be delivery boy!']);
         }
 
-        
+
 
         $orders = Order::where('status', 0)->where('driver_id', 0)->with('restaurant')->with('user')->get();
 
@@ -205,7 +205,7 @@ class DriverController extends Controller
             return response(['status' => 'failed', 'message' => 'User should be delivery boy!']);
         }
 
-        
+
 
         $orders = Order::where('status', 4)->where('driver_id', $user->driver->id)->with('restaurant')->with('user')->get();
 
@@ -232,10 +232,10 @@ class DriverController extends Controller
             return response(['status' => 'failed', 'message' => 'The order is assigned to another delivery boy!']);
         }
 
-        
+
 
         $order->load('items');
-        
+
 
         return response(['status' => 'success', 'message' => 'Order Details Sent!', 'order' => $order], 200);
 
@@ -243,6 +243,6 @@ class DriverController extends Controller
 
     public function nearest(Restaurant $restaurant)
     {
-          return findNearestDrivers($restaurant);  
+          return findNearestDrivers($restaurant);
     }
 }

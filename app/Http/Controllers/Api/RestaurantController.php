@@ -95,6 +95,26 @@ class RestaurantController extends Controller
 
     }
 
+    public function newOrders()
+    {
+        $user = request()->user();
+
+        if(!$user)
+        {
+            return response(['status' => 'failed', 'message' => 'User doesn\'t exist!']);
+        }
+
+        if(!$user->is_restaurant)
+        {
+            return response(['status' => 'failed', 'message' => 'User should be a restaurant!']);
+        }
+
+
+
+        $orders = Order::where('status', '=', 0)->where('restaurant_id', $user->restaurant->id)->with('restaurant')->with('user')->get();
+
+        return response(['status' => 'success', 'message' => 'All New Orders to be confirmed!', 'orders' => $orders], 200);
+    }
 
     public function orders()
     {
