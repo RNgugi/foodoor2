@@ -30,6 +30,8 @@ class Order extends Model
 
     protected $with = ['user', 'restaurant'];
 
+    protected $appends = ['paying_status', 'order_status', 'payable_amount', 'total_amount', 'tax_amount'];
+
     public function restaurant()
     {
         return $this->belongsTo(Restaurant::class);
@@ -134,6 +136,7 @@ class Order extends Model
 
     }
 
+
     public function invoice($crud = false)
     {
 
@@ -142,6 +145,43 @@ class Order extends Model
 
 
 
+    }
+
+    public function getPayableAmountAttribute()
+    {
+        return $this->amount;
+    }
+
+    public function getTotalAmountAttribute()
+    {
+        return $this->subtotal;
+    }
+
+    public function getTaxAmountAttribute()
+    {
+        return $this->tax;
+    }
+
+    public function getPayingStatusAttribute()
+    {
+        return $this->payment_mode == 0 ? 'cod' : 'online';
+    }
+
+    public function getOrderStatusAttribute()
+    {
+        if($this->status == 1)
+        {
+            return 'confirmed';
+        } else if($this->status == 2)
+        {
+            return 'ready';
+        } else if($this->status == 3)
+        {
+            return 'picked';
+        } else if($this->status == 4)
+        {
+            return 'delivered';
+        }
     }
 
 }
