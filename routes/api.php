@@ -62,8 +62,8 @@ Route::middleware('auth:api')->post('/restaurant/orders/ready', 'Api\RestaurantC
 Route::middleware('auth:api')->post('/restaurant/orders/history', 'Api\RestaurantController@history');
 
 
-Route::middleware('auth:api')->post('password/email', 'Auth\ForgotPasswordController@getResetToken');
-Route::middleware('auth:api')->post('password/reset', 'Auth\ResetPasswordController@reset');
+Route::post('password/email', 'Auth\ForgotPasswordController@getResetToken');
+Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 
 
