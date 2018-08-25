@@ -84,9 +84,9 @@ class PaymentsController extends Controller
 
         $order->save();
 
-         $drivers = findNearestDrivers($order->restaurant);
+       //  $drivers = findNearestDrivers($order->restaurant);
 
-          \Notification::send($drivers, new NewDriverOrder($order));
+       //   \Notification::send($drivers, new NewDriverOrder($order));
 
       /*  $invoice = \PDF::loadView('orders.download', compact('order'));
 
