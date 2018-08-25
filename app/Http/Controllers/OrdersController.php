@@ -153,9 +153,9 @@ class OrdersController extends Controller
         
         } else {
             
-            $drivers = findNearestDrivers($order->restaurant);
+           // $drivers = findNearestDrivers($order->restaurant);
 
-            \Notification::send($drivers, new NewDriverOrder($order));
+           // \Notification::send($drivers, new NewDriverOrder($order));
 
             \Cart::instance('restaurant-' . request('restaurant_id'))->destroy();
             
