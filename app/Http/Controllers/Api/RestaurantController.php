@@ -25,7 +25,7 @@ class RestaurantController extends Controller
             return response(['status' => 'failed', 'message' => 'User should be a restaurant!']);
         }
 
-        if($order->restaurant_id != 0)
+        if($order->restaurant_id != $user->restaurant->id)
         {
             return response(['status' => 'failed', 'message' => 'The order belongs to other restaurant!']);
         }
@@ -57,7 +57,7 @@ class RestaurantController extends Controller
             return response(['status' => 'failed', 'message' => 'User should be a restaurant!']);
         }
 
-        if($order->restaurant_id != 0)
+        if($order->restaurant_id != $user->restaurant->id)
         {
             return response(['status' => 'failed', 'message' => 'The order belongs to other restaurant!']);
         }
@@ -132,7 +132,7 @@ class RestaurantController extends Controller
 
 
 
-        $orders = Order::where('status', '<', 4)->where('restaurant_id', $user->restaurant->id)->with('restaurant')->with('user')->get();
+        $orders = Order::where('status', '<', 4)->where('status', '>', 0)->where('restaurant_id', $user->restaurant->id)->with('restaurant')->with('user')->get();
 
         return response(['status' => 'success', 'message' => 'All New Orders!', 'orders' => $orders], 200);
 
@@ -147,7 +147,7 @@ class RestaurantController extends Controller
             return response(['status' => 'failed', 'message' => 'User doesn\'t exist!']);
         }
 
-        if(!$user->is_driver)
+        if(!$user->is_restaurant)
         {
             return response(['status' => 'failed', 'message' => 'User should be a restaurant!']);
         }

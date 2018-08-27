@@ -140,6 +140,7 @@ class DriverController extends Controller
 
 
         $order->status = 4;
+        $order->amount_collected = request('amount_collected');
         $order->save();
 
         event(new OrderStatusChanged($order));

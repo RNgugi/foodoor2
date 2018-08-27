@@ -30,7 +30,7 @@ class Order extends Model
 
     protected $with = ['user', 'restaurant'];
 
-    protected $appends = ['paying_status', 'order_status', 'payable_amount', 'total_amount', 'tax_amount'];
+    protected $appends = ['paying_status', 'order_status', 'payable_amount', 'total_amount', 'tax_amount', 'customer_address'];
 
     public function restaurant()
     {
@@ -182,6 +182,11 @@ class Order extends Model
         {
             return 'delivered';
         }
+    }
+
+    public function getCustomerAddressAttribute()
+    {
+        return json_decode($this->delivery_address)->delivery_location;
     }
 
 }
