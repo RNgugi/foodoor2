@@ -18,7 +18,7 @@ class OrdersController extends Controller
         $items = json_decode(request('items'));
 
 
-        dd($items);
+        dd(request('items'));
 
         if(!isset($items) || count($items) == 0)
         {
