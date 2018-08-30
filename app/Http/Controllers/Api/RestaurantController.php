@@ -186,4 +186,33 @@ class RestaurantController extends Controller
     }
 
 
+     public function getOrder(Order $order)
+    {
+        $user = request()->user();
+
+        if(!$user)
+        {
+            return response(['status' => 'failed', 'message' => 'User doesn\'t exist!']);
+        }
+
+        if(!$user->is_restaurant)
+        {
+            return response(['status' => 'failed', 'message' => 'User should be a restaurant!']);
+        }
+
+        if($order->restaurant_id != $user->restaurant->id)
+        {
+            return response(['status' => 'failed', 'message' => 'The order belongs to other restaurant!']);
+        }
+
+
+
+        $order->load('items');
+
+
+        return response(['status' => 'success', 'message' => 'Order Details Sent!', 'order' => $order], 200);
+
+    }
+
+
 }
