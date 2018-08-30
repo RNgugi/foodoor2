@@ -15,7 +15,7 @@ class RestaurantController extends Controller
     {
         $user = request()->user();
 
-        dd($user);
+
 
         if(!$user)
         {
@@ -27,6 +27,7 @@ class RestaurantController extends Controller
             return response(['status' => 'failed', 'message' => 'User should be a restaurant!']);
         }
 
+        dd($order);
         if($order->restaurant_id != $user->restaurant->id)
         {
             return response(['status' => 'failed', 'message' => 'The order belongs to other restaurant!']);
