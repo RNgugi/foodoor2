@@ -17,6 +17,9 @@ class OrdersController extends Controller
 
         $items = json_decode(request('items'));
 
+
+        dd($items);
+
         if(!isset($items) || count($items) == 0)
         {
             return response(['status' => 'failed', 'message' => 'You have no items in the cart!']);
