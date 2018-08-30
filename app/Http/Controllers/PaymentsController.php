@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Mail\NewOrderCreated;
-use Appnings\Payment\Facades\Payment; 
+use Appnings\Payment\Facades\Payment;
 use App\Notifications\NewDriverOrder;
 
 class PaymentsController extends Controller
@@ -19,7 +19,7 @@ class PaymentsController extends Controller
     {
         $this->middleware('auth')->except('response');
     }
-    
+
     public function addMoney(Request $request, Order $order)
 	{
 		  $orderId = $order->id;
@@ -27,13 +27,13 @@ class PaymentsController extends Controller
 		 $amount = round($order->amount, 2);
 
      // $amount = 1; for testing
-     
+
            $parameters = [
-      
+
             'tid' => '1001' . $order->id,
-            
+
             'order_id' => $orderId,
-            
+
             'amount' => $amount,
             'billing_name' => \Auth::user()->name,
             'billing_ email' => \Auth::user()->email,
@@ -41,8 +41,8 @@ class PaymentsController extends Controller
             'billing_ country' => 'India',
 
           ];
- 
-          
+
+
           $purchaseOrder = Payment::prepare($parameters);
 
           return Payment::process($purchaseOrder);
@@ -53,17 +53,18 @@ class PaymentsController extends Controller
         // For default Gateway
         $response = Payment::response($request);
 
-        
+       // dd($response);
+
         $orderId = $response['order_id'];
 
         $order = Order::findOrFail($orderId);
         $rid = $order->restaurant->id;
-        
-        if($response['order_status'] == 'Aborted')
+
+        if($response['order_status'] != 'Success')
         {
-           flash('You cancelled your payment!')->warning();
-        	  
-             
+           flash('The payment was not successfull! Please try again')->error();
+
+
            $lat = (json_decode($order->delivery_address))->lat;
 
            $lng = (json_decode($order->delivery_address))->lng;
@@ -73,9 +74,9 @@ class PaymentsController extends Controller
            return redirect('/checkout?restaurant_id=' . $rid . '&lat=' . $lat . '&lng=' . $lng);
 
         }
-        
+
         \Cart::instance('restaurant-' . $rid)->destroy();
-       
+
         // $order->status = 1;
 
         $order->payment_status = 1;
@@ -91,10 +92,10 @@ class PaymentsController extends Controller
       /*  $invoice = \PDF::loadView('orders.download', compact('order'));
 
         $invoiceData = $invoice->output();
-        
+
         $message = new NewOrderCreated($order);
 
-        $message->attachData($invoiceData, 'invoice.pdf', 
+        $message->attachData($invoiceData, 'invoice.pdf',
                     [
                         'mime' => 'application/pdf',
                     ]);
@@ -116,7 +117,7 @@ class PaymentsController extends Controller
         flash('We have placed your order and waiting for restaurant confirmation.')->success();
 
         return redirect('/orders/' . $order->id);
-    }  
+    }
 
 
 

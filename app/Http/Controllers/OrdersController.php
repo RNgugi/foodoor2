@@ -63,7 +63,6 @@ class OrdersController extends Controller
 
         $items = \Cart::instance('restaurant-' . request('restaurant_id'))->content();
 
-       // dd($items);
 
         $address = [];
 
