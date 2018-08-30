@@ -103,7 +103,7 @@ class OrdersController extends Controller
         foreach ($items as $key => $item)
         {
             $customs = isset($item->customs) ? $item->customs : null;
-            $order->items()->attach($item->id, ['qty' => $item->qty, 'price' => $item->price, 'customs' => $customs ]);
+            $order->items()->attach($item->id, ['qty' => $item->qty, 'price' => $item->price, 'customs' => json_encode($customs) ]);
         }
 
 
