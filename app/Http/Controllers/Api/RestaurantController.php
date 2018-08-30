@@ -72,7 +72,7 @@ class RestaurantController extends Controller
 
         // send user message;
 
-        return response(['status' => 'success', 'message' => 'Order Confirmed!']);
+        return response(['status' => 'success', 'message' => 'Order Ready!']);
 
     }
 
