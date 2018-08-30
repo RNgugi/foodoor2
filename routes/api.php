@@ -60,6 +60,8 @@ Route::middleware('auth:api')->post('/restaurant/orders', 'Api\RestaurantControl
 Route::middleware('auth:api')->post('/restaurant/orders/confirmed', 'Api\RestaurantController@confirmOrders');
 Route::middleware('auth:api')->post('/restaurant/orders/ready', 'Api\RestaurantController@readyOrders');
 
+Route::middleware('auth:api')->post('/restaurant/orders/create', 'Api\OrdersController@store');
+
 Route::middleware('auth:api')->post('/restaurant/orders/history', 'Api\RestaurantController@history');
 
 

@@ -59,6 +59,8 @@ class OrdersController extends Controller
 
         $user = auth()->user();
 
+
+
         $items = \Cart::instance('restaurant-' . request('restaurant_id'))->content();
 
         $address = [];
@@ -100,11 +102,11 @@ class OrdersController extends Controller
 
         if(request()->has('discount'))
         {
-            $discount = request('discount');    
-        }  
+            $discount = request('discount');
+        }
 
         $foodoorCash = 0;
-        
+
         if(request()->has('foodoorcash'))
         {
             $foodoorCash = request('foodoorcash');
@@ -128,7 +130,7 @@ class OrdersController extends Controller
 
         auth()->user()->save();
 
-        foreach ($items as $key => $item) 
+        foreach ($items as $key => $item)
         {
             $customs = $item->options->has('customs') ? $item->options->customs : null;
             $order->items()->attach($item->id, ['qty' => $item->qty, 'price' => $item->price, 'customs' => $customs ]);
@@ -136,33 +138,33 @@ class OrdersController extends Controller
 
         //$order->load('items');
 
-        
+
 
 
         session()->forget($sessionName);
-        
+
 
         if(request('payment_mode') == 1)
         {
-        
+
             $order->flagged = 0;
 
             $order->save();
 
             return redirect('/orders/' . $order->id . '/pay');
-        
+
         } else {
-            
+
            // $drivers = findNearestDrivers($order->restaurant);
 
            // \Notification::send($drivers, new NewDriverOrder($order));
 
             \Cart::instance('restaurant-' . request('restaurant_id'))->destroy();
-            
+
             $invoice = \PDF::loadView('orders.invoice', compact('order'));
 
             $invoiceData = $invoice->output();
-            
+
             $message = new OrderPlaced($order);
 
             $message->attachData($invoiceData, 'invoice.pdf', [
@@ -174,7 +176,7 @@ class OrdersController extends Controller
             \Mail::to('foodoor.order@gmail.com')->send(new NewOrderMail($order));
 
             \Mail::to($order->restaurant->contact_email)->send(new NewOrderMail($order));
-            
+
             $message = 'Thanks for ordering with Foodoor. Your order no: '. $order->id . ' and bill amount : Rs. '. $order->amount .'/- . We are waiting for restaurant confirmation and will update you soon.';
 
             $response = sendSMS(auth()->user()->phone, $message);
@@ -190,7 +192,7 @@ class OrdersController extends Controller
             sendSMS($order->restaurant->contact_phone, $messageToRest);
 
             flash('We have received your order and waiting for restaurant confirmation.')->success();
-            
+
             return redirect('/orders/' . $order->id);
         }
 
