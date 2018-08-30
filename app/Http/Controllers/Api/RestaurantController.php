@@ -15,6 +15,8 @@ class RestaurantController extends Controller
     {
         $user = request()->user();
 
+        dd($user);
+
         if(!$user)
         {
             return response(['status' => 'failed', 'message' => 'User doesn\'t exist!']);
