@@ -57,6 +57,7 @@ Route::middleware('auth:api')->post('/restaurant/order/{order}/ready', 'Api\Rest
 
 Route::middleware('auth:api')->post('/restaurant/orders/new', 'Api\RestaurantController@newOrders');
 Route::middleware('auth:api')->post('/restaurant/orders', 'Api\RestaurantController@orders');
+Route::middleware('auth:api')->post('/restaurant/orders/confirmed', 'Api\RestaurantController@confirmOrders');
 Route::middleware('auth:api')->post('/restaurant/orders/ready', 'Api\RestaurantController@readyOrders');
 
 Route::middleware('auth:api')->post('/restaurant/orders/history', 'Api\RestaurantController@history');
