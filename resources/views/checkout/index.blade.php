@@ -2,14 +2,14 @@
 
 
 @section('styles')
-  
+
     <style type="text/css">
-    input[type=number]::-webkit-inner-spin-button, 
-      input[type=number]::-webkit-outer-spin-button { 
+    input[type=number]::-webkit-inner-spin-button,
+      input[type=number]::-webkit-outer-spin-button {
           -webkit-appearance: none;
           -moz-appearance: none;
           appearance: none;
-          margin: 0; 
+          margin: 0;
       }
   </style>
 
@@ -20,10 +20,10 @@
 
 
 @section('content')
-	
+
     <div style="background: #e9ecee;min-height: 1300px;">
-	
-  
+
+
 
 
      <div class="container resp-container" style="min-height: 900px;padding-top: 30px;">
@@ -33,7 +33,7 @@
 
         <form id="placeorderform" method="POST" action="/orders">
         @csrf
-        
+
         <div class="row">
             <div class="col-md-8 col-sm-12 hidden-sm-down">
 
@@ -46,32 +46,32 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="widget-body checkout-form">
-                       
+
                             <div class="row">
                                 <div class="col-sm-12 margin-b-30">
-                                    
-                                   <div class="row"> 
+
+                                   <div class="row">
                                       <div class="col-sm-12" >
                                         <div class="form-group">
 
-                                           
+
                                         </div>
-                                       
+
                                       <div id="us3" class="user-map" style="width: 350px; height: 200px;"></div>
-                                        
+
                                          <div class="">
                                                 <input type="text" style="width: 350px;margin-top: 0;padding: 18px;color: #000;font-weight: 500;"  class="form-control user-addr" id="address" name="address" />
                                             </div>
-                                       
-                                            
+
+
                                                 <input type="hidden" class="form-control" value="{{ old('latitude') }}" style="width: 110px" id="latitude" name="latitude" />
-                                            
-                                           
+
+
 
                                                 <input type="hidden" class="form-control" value="{{ old('longitude') }}" style="width: 110px" id="longitude" name="longitude" />
-                                           
+
                                        <div class="clearfix">&nbsp;</div>
-                                       
+
                                     </div>
                                     </div>
                                     <div class="row">
@@ -99,17 +99,17 @@
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>Alternate Mobile No.</label>
-                                                <input id="alt_mobile" onkeyup="checkPhone()" type="number" autocomplete="off"  name="alt_mobile" value="{{ old('alt_mobile') }}" class="form-control" placeholder="Alternate Contact Number" > 
+                                                <input id="alt_mobile" onkeyup="checkPhone()" type="number" autocomplete="off"  name="alt_mobile" value="{{ old('alt_mobile') }}" class="form-control" placeholder="Alternate Contact Number" >
                                                    <span id="alt_mobile_feedback" class="invalid-feedback">
-                                                        
+
                                                    </span>
                                                 </div>
                                             <!--/form-group-->
                                         </div>
                                     </div>
-                                   
+
                                 </div>
-                               
+
                             </div>
                          <hr>
                            <div class="payment-option">
@@ -126,25 +126,25 @@
                                         </ul>
                                         @if(session()->has($sessionName) && session($sessionName) != 'foodoorcash')
                                           <input type="hidden" name="discount" value="{{ $discount }}">
-                                        @elseif(session()->has($sessionName) && session($sessionName) == 'foodoorcash')  
+                                        @elseif(session()->has($sessionName) && session($sessionName) == 'foodoorcash')
                                           <input type="hidden" name="foodoorcash" value="{{ $foodoorCash }}">
                                         @endif
 
                                          <input type="hidden" name="gst" value="{{ $gst }}">
 
-                                         
+
                                          @if($subtotal > 99)
-                                          <p class="text-xs-center"> <button id="place_order_btn" type="submit" class="btn btn-outline-success btn-block">Place Order</button> </p>
+                                          <p class="text-xs-center"> <button id="place_order_btn" type="submit"  class="btn btn-outline-success btn-block btn-place-my-order">Place Order</button> </p>
                                          @else
                                         <p class="text-xs-center">Minimum order amount should be more than Rs. 99</p>
                                         @endif
                                     </div>
                     </div>
                 </div>
-            </div>  
+            </div>
             <div class="col-md-4 col-sm-12 order-sm-1" >
                 <div class="sidebar-wrap" >
-                        
+
                            <input type="hidden" name="restaurant_id" value="{{$restaurant->id}}">
                            <div class="widget widget-cart" style="background: #fff;" id="cart-items">
                              <div class="media" style="padding: 8px;padding-top: 18px;padding-left: 12px;">
@@ -169,15 +169,15 @@
                                                 @else
                                                 <img src="/images/nonveg.png" style="width: 12px;height: 12px;margin-top: -2px;" >
 
-                                                @endif  {{ $item->name }} <a href="/cart/remove/{{$item->rowId}}/{{$restaurant->id}}"><i class="fa fa-trash"></i></a>  {!! getCustomsString($customs) !!}</span> 
+                                                @endif  {{ $item->name }} <a href="/cart/remove/{{$item->rowId}}/{{$restaurant->id}}"><i class="fa fa-trash"></i></a>  {!! getCustomsString($customs) !!}</span>
 
-                                                
+
                                     <div style="display: block;margin-bottom: 0;margin-top: 5px;">
-                                   
-                                    {{-- <a href="/cart/remove/{{$item->rowId}}/{{$restaurant->id}}">
-                                     <i class="fa fa-trash pull-right"></i></a> --}} 
 
-                                    
+                                    {{-- <a href="/cart/remove/{{$item->rowId}}/{{$restaurant->id}}">
+                                     <i class="fa fa-trash pull-right"></i></a> --}}
+
+
 
                                     <div data-trigger="spinner" id="spinner-{{$item->rowId}}" style="display: inline;text-align: center;margin-right: 10px;" >
                                       <a style="color: #f30; font-size: 18px;font-weight: bold;
@@ -187,11 +187,11 @@
                                     </div>
 
                                      <p style="font-size:15px;margin-top: 2px;margin-left: 3px;display: inline-block;margin-bottom: 0;" >&#8377; {{ $item->price * $item->qty }}</p>
-                                    
+
                                     </div>
                                  </div>
-                                    
-                                
+
+
                               </div>
                               </div>
                               @endforeach
@@ -199,25 +199,25 @@
                               <div class="order-row">
                                  <div class="widget-body">
                                   <div class="form-group row no-gutter">
-                                   
-                                 
-                                       <input class="form-control" name="suggestions" value="{{ request('suggestions') }}" style="background: #fcfcfc;color: #000;" type="text" placeholder="Any suggestions?"> 
+
+
+                                       <input class="form-control" name="suggestions" value="{{ request('suggestions') }}" style="background: #fcfcfc;color: #000;" type="text" placeholder="Any suggestions?">
 
 
                                  </div>
-                                    
-                                    
+
+
                                  </div>
-                                    
-                                
+
+
                               </div>
 
-                             
-                            
-                            
+
+
+
                               <div class="widget-body">
                                 <div class="cart-totals margin-b-20">
-                                      
+
                                         <div class="cart-totals-fields">
                                             <table class="table">
                                                 <tbody>
@@ -242,13 +242,13 @@
                                                         <td>Delivery Charges <a role="button" data-toggle="popover" data-container="body"  data-content="Your first 3 deliveries are on us."><i  class="fa fa-info-circle"></i></a></td>
                                                         <td style="text-align: right;">{{ $deliveryCharge == 0 ? 'FREE' :  $deliveryCharge }}</td>
                                                     </tr>
-                                                    
+
                                                     @if(session()->has($sessionName) && session($sessionName) != 'foodoorcash')
                                                     <tr>
                                                         <td class="text-color"><strong>Order Total</strong></td>
-                                                       
+
                                                              <td style="text-align: right;" class="text-color"><strong>&#8377;{{ $total + $discount }}</strong></td>
-                                                     
+
                                                     </tr>
                                                     <tr>
                                                         <td class="text-color"><strong>Coupon Discount</strong></td>
@@ -258,9 +258,9 @@
 
                                                     <tr style="border-top: 1px solid #000;">
                                                         <td class="text-color"><strong>Total</strong></td>
-                                                        
+
                                                         <td style="text-align: right;" class="text-color"><strong>&#8377;{{ $total }}</strong></td>
-                                                        
+
                                                     </tr>
                                                     <tr>
                                                      @if(session()->has($sessionName) && session($sessionName) != 'foodoorcash' )
@@ -272,7 +272,7 @@
                                                               </div>
                                                             </td>
 
-                                                     @elseif(session()->has($sessionName) && session($sessionName) == 'foodoorcash') 
+                                                     @elseif(session()->has($sessionName) && session($sessionName) == 'foodoorcash')
                                                       <td colspan="2">
                                                              <div class="alert alert-info" role="alert" style="">
                                                                  Congratualtions! Foodoor cash applied to the bill. You have saved Rs {{ $foodoorCash }}.
@@ -281,25 +281,25 @@
                                                               </div>
                                                             </td>
 
-                                                     @else  
-                                                    
-                                                      <td colspan="2">  
-                                                          <button data-toggle="modal" data-target="#couponModal" class="btn btn-warning add-coupon-btn" type="button">Apply Coupon</button>   
+                                                     @else
+
+                                                      <td colspan="2">
+                                                          <button data-toggle="modal" data-target="#couponModal" class="btn btn-warning add-coupon-btn" type="button">Apply Coupon</button>
                                                        </td>
-                                                     @endif     
+                                                     @endif
                                                     </tr>
                                                 </tbody>
                                             </table>
 
-                                       
-                                
+
+
                                         </div>
                                     </div>
                                     <!--cart summary-->
-                                 
+
                               </div>
                            </div>
-                      
+
                      </div>
                   </div>
 
@@ -308,34 +308,34 @@
 
                 <div class="widget" style="background: #fff;">
                     <!-- /widget heading -->
-                  
+
                     <div class="widget-body checkout-form">
-                       
+
                             <div class="row">
                                 <div class="col-sm-12 margin-b-30">
-                                    
-                                   <div class="row"> 
+
+                                   <div class="row">
                                       <div class="col-sm-12" >
                                         <div class="form-group">
 
-                                           
+
                                         </div>
-                                       
+
                                       <div id="us4" class="user-map" style="width: 350px; height: 200px;"></div>
-                                        
+
                                          <div class="">
                                                 <input type="text" style="width: 350px;margin-top: 0;padding: 18px;color: #000;font-weight: 500;"  class="form-control user-addr" id="address2" name="address" />
                                             </div>
-                                       
-                                            
+
+
                                                 <input type="hidden" class="form-control" value="{{ old('latitude') }}" style="width: 110px" id="latitude2" name="latitude" />
-                                            
-                                           
+
+
 
                                                 <input type="hidden" class="form-control" value="{{ old('longitude') }}" style="width: 110px" id="longitude2" name="longitude" />
-                                           
+
                                        <div class="clearfix">&nbsp;</div>
-                                       
+
                                     </div>
                                     </div>
                                     <div class="row">
@@ -363,17 +363,17 @@
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>Alternate Mobile No.</label>
-                                                <input id="alt_mobile" onkeyup="checkPhone()" type="number" autocomplete="off"  name="alt_mobile" value="{{ old('alt_mobile') }}" class="form-control" placeholder="Alternate Contact Number" > 
+                                                <input id="alt_mobile" onkeyup="checkPhone()" type="number" autocomplete="off"  name="alt_mobile" value="{{ old('alt_mobile') }}" class="form-control" placeholder="Alternate Contact Number" >
                                                    <span id="alt_mobile_feedback" class="invalid-feedback">
-                                                        
+
                                                    </span>
                                                 </div>
                                             <!--/form-group-->
                                         </div>
                                     </div>
-                                   
+
                                 </div>
-                               
+
                             </div>
                          <hr>
                            <div class="payment-option">
@@ -390,27 +390,27 @@
                                         </ul>
                                         @if(session()->has($sessionName) && session($sessionName) != 'foodoorcash')
                                           <input type="hidden" name="discount" value="{{ $discount }}">
-                                        @elseif(session()->has($sessionName) && session($sessionName) == 'foodoorcash')  
+                                        @elseif(session()->has($sessionName) && session($sessionName) == 'foodoorcash')
                                           <input type="hidden" name="foodoorcash" value="{{ $foodoorCash }}">
                                         @endif
 
                                         <input type="hidden" name="gst" value="{{ $gst }}">
 
                                         @if($subtotal > 99)
-                                        <p class="text-xs-center"> <button id="place_order_btn" type="submit" class="btn btn-outline-success btn-block">Place Order</button> </p>
+                                        <p class="text-xs-center"> <button id="place_order_btn" type="submit" class="btn btn-outline-success btn-block btn-place-my-order">Place Order</button> </p>
                                         @else
                                         <p class="text-xs-center">Minimum order amount should be more than Rs. 99</p>
                                         @endif
                                     </div>
                     </div>
                 </div>
-            </div>   
+            </div>
 
 
-            </div>    
+            </div>
 
-            </div> 
-           </form>   
+            </div>
+           </form>
 
 
 
@@ -418,7 +418,7 @@
             <div class="modal fade" id="couponModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                
+
                   <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Available Coupons</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -426,8 +426,8 @@
                     </button>
                   </div>
                   <div class="modal-body">
-                      
-                      
+
+
                      <div class="list-group coupons-list scroll" style="max-height: 400px;
     overflow: scroll;">
                           <div class="list-group-item list-group-item-action">
@@ -453,15 +453,15 @@
                           @endforeach
                         </div>
 
-                      
-                      
-                        
-                    
+
+
+
+
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                   </div>
-               
+
                 </div>
               </div>
             </div>
@@ -472,7 +472,7 @@
 
 
 @section('scripts')
-  
+
   <script src="/js/jquery.spinner.js"></script>
      <script>
 
@@ -497,9 +497,9 @@
               $('#alt_mobile_feedback').html('');
               $('#place_order_btn').attr('disabled', false);
          }
-         } 
+         }
 
-         
+
      }
 
      restaurantloc = {'lat' : {{ $restaurant->latitude }}, 'lng' : {{ $restaurant->longitude }} };
@@ -522,11 +522,11 @@
         return d; // returns the distance in meter
       };
 
-     
+
 
     @foreach(Cart::instance('restaurant-'.$restaurant->id)->content() as $item)
 
-     
+
       $("#spinner-{{$item->rowId}}")
         .spinner('delay', 200) //delay in ms
         .spinner('changed', function(e, newVal, oldVal) {
@@ -592,7 +592,7 @@
                                         </script>
 
 
-                                        <script type="text/javascript"> 
+                                        <script type="text/javascript">
 
                                               $('div:hidden input').attr("disabled",true);
 
@@ -607,7 +607,7 @@
                                                     location.href = '/coupons/apply/' + restaurantId + '/foodoorcash?' + $('#placeorderform').serialize();
                                                 }
 
-                                                
+
                                                 function applyCoupon(restaurantId, code)
                                                 {
                                                     location.href = '/coupons/apply/' + restaurantId + '/coupon:' + code + '?' + $('#placeorderform').serialize();
@@ -617,9 +617,14 @@
                                                 {
                                                     location.href = '/coupons/apply/' + restaurantId + '/coupon:' + code + '/remove?' + $('#placeorderform').serialize();
                                                 }
+                                                $('.btn-place-my-order').on('click', function() {
+                                                    $('.btn-place-my-order').addClass('disabled');
+                                                })
 
 
                                         </script>
+
+
 
 
 @endsection
