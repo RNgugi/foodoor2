@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\User;
+use App\Models\Order;
+use App\Mail\OrderPlaced;
+use App\Mail\NewOrderMail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
