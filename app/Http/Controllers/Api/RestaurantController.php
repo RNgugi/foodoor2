@@ -159,7 +159,7 @@ class RestaurantController extends Controller
 
         $orders = Order::where('status', '<', 4)->where('status', '>', 0)->where('restaurant_id', $user->restaurant->id)->with('restaurant')->with('user')->get();
 
-        return response(['status' => 'success', 'message' => 'All New Orders!', 'orders' => $orders], 200);
+        return response(['status' => 'success', 'message' => 'All Running Orders!', 'orders' => $orders], 200);
 
     }
 
