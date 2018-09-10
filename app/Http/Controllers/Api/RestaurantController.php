@@ -43,6 +43,37 @@ class RestaurantController extends Controller
         return response(['status' => 'success', 'message' => 'Order Confirmed!']);
     }
 
+     public function cancelOrder(Order $order)
+    {
+        $user = request()->user();
+
+
+        if(!$user)
+        {
+            return response(['status' => 'failed', 'message' => 'User doesn\'t exist!']);
+        }
+
+        if(!$user->is_restaurant)
+        {
+            return response(['status' => 'failed', 'message' => 'User should be a restaurant!']);
+        }
+
+        // dd($user->restaurant->id);
+        if($order->restaurant_id != $user->restaurant->id)
+        {
+            return response(['status' => 'failed', 'message' => 'The order belongs to other restaurant!']);
+        }
+
+        $order->status = -1;
+        $order->save();
+
+        event(new OrderStatusChanged($order));
+
+        // send user message;
+
+        return response(['status' => 'success', 'message' => 'Order Cancelled!']);
+    }
+
 
 
 
@@ -76,8 +107,9 @@ class RestaurantController extends Controller
 
     }
 
-     public function confirmOrders()
+    public function confirmOrders()
     {
+
         $user = request()->user();
 
         if(!$user)
@@ -89,8 +121,6 @@ class RestaurantController extends Controller
         {
             return response(['status' => 'failed', 'message' => 'User should be a restaurant!']);
         }
-
-
 
         $orders = Order::where('status', '=', 1)->where('restaurant_id', $user->restaurant->id)->with('restaurant')->with('user')->get();
 

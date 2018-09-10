@@ -53,6 +53,8 @@ Route::middleware('auth:api')->post('/driver/order/{order}/delivered', 'Api\Driv
 
 Route::middleware('auth:api')->post('/restaurant/order/{order}/confirm', 'Api\RestaurantController@confirmOrder');
 
+Route::middleware('auth:api')->post('/restaurant/order/{order}/cancel', 'Api\RestaurantController@cancelOrder');
+
 Route::middleware('auth:api')->post('/restaurant/order/{order}/ready', 'Api\RestaurantController@orderReady');
 
 Route::middleware('auth:api')->post('/restaurant/orders/new', 'Api\RestaurantController@newOrders');

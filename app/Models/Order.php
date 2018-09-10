@@ -30,7 +30,7 @@ class Order extends Model
 
     protected $with = ['user', 'restaurant'];
 
-    protected $appends = ['paying_status', 'order_status', 'payable_amount', 'total_amount', 'tax_amount', 'customer_address'];
+    protected $appends = ['paying_status', 'order_status', 'payable_amount', 'total_amount', 'tax_amount', 'customer_address', 'door_no', 'landmark', 'alt_mobile', 'road_name', 'latitude', 'longitude'];
 
     public function restaurant()
     {
@@ -188,5 +188,39 @@ class Order extends Model
     {
         return json_decode($this->delivery_address)->delivery_location;
     }
+
+    public function getLandmarkAttribute()
+    {
+        return json_decode($this->delivery_address)->landmark;
+    }
+
+    public function getDoorNoAttribute()
+    {
+        return json_decode($this->delivery_address)->door_no;
+    }
+
+    public function getRoadNameAttribute()
+    {
+        return json_decode($this->delivery_address)->road_name;
+    }
+
+    public function getAltMobileAttribute()
+    {
+        return json_decode($this->delivery_address)->alt_mobile;
+    }
+
+     public function getLatitudeAttribute()
+    {
+        return json_decode($this->delivery_address)->lat;
+    }
+
+     public function getLongitudeAttribute()
+    {
+        return json_decode($this->delivery_address)->lng;
+    }
+
+
+
+
 
 }

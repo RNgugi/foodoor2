@@ -29,7 +29,12 @@ class OrderStatusChangedListener
     {
         $status = $event->order->status;
 
-        if($status == 1) {
+        if($status == -1) {
+
+            $message = 'Restaurant has cancelled your order. In case of any query please call: 9905585412.';
+            $response = sendSMS($event->order->user->phone, $message);
+
+        } elseif($status == 1) {
 
             $message = 'Restaurant has confirmed your order. In case of any query please call: 9905585412 .We will notify you once your order will be out for delivery.';
             $response = sendSMS($event->order->user->phone, $message);
@@ -38,7 +43,7 @@ class OrderStatusChangedListener
             //$message = 'Your order is ready to leave for delivery.';
             //$response = sendSMS($event->order->user->phone, $message);
         } elseif($status == 3) {
-            $message = 
+            $message =
             'Delivery person is out for delivery and will reach you soon. Request you to keep Rs. '. $event->order->amount .'/- in cash ready. Please ignore if already paid online.';
             $response = sendSMS($event->order->user->phone, $message);
         } elseif($status == 4) {
