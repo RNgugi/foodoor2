@@ -18,14 +18,14 @@ class OrdersController extends Controller
 
         $requestor = request()->user();
 
-        $items = json_decode(request('items'));
+        //$items = json_decode(request('items'));
 
 
 
-        if(!isset($items) || count($items) == 0)
+       /* if(!isset($items) || count($items) == 0)
         {
             return response(['status' => 'failed', 'message' => 'You have no items in the cart!']);
-        }
+        } */
 
         $address = [];
 
@@ -70,17 +70,17 @@ class OrdersController extends Controller
 
         $discount = 0;
 
-        if(request()->has('discount'))
-        {
-            $discount = request('discount');
-        }
+       // if(request()->has('discount'))
+       // {
+       //     $discount = request('discount');
+       // }
 
-        $foodoorCash = 0;
+       $foodoorCash = 0;
 
-        if(request()->has('foodoorcash'))
-        {
-            $foodoorCash = request('foodoorcash');
-        }
+       // if(request()->has('foodoorcash'))
+       // {
+        //    $foodoorCash = request('foodoorcash');
+       // }
 
         $order->amount =   ceil($order->subtotal +  $order->tax + $order->delivery_charges - $discount - $foodoorCash);
 
@@ -94,17 +94,23 @@ class OrdersController extends Controller
 
         $order->suggestions = request('suggestions');
 
+        $order->bill_no = request('bill_no');
+
+        $order->order_type = 'OF';
+
+        $order->status = 1;
+
         $order->save();
 
-        $user->wallet_ballance = $user->wallet_ballance - $foodoorCash;
+      //  $user->wallet_ballance = $user->wallet_ballance - $foodoorCash;
 
-        $user->save();
+     //   $user->save();
 
-        foreach ($items as $key => $item)
-        {
-            $customs = isset($item->customs) ? $item->customs : null;
-            $order->items()->attach($item->id, ['qty' => $item->qty, 'price' => $item->price, 'customs' => json_encode($customs) ]);
-        }
+    //    foreach ($items as $key => $item)
+     //   {
+    //        $customs = isset($item->customs) ? $item->customs : null;
+     //       $order->items()->attach($item->id, ['qty' => $item->qty, 'price' => $item->price, 'customs' => json_encode($customs) ]);
+     //   }
 
 
 
@@ -129,17 +135,17 @@ class OrdersController extends Controller
 
             \Mail::to($order->restaurant->contact_email)->send(new NewOrderMail($order));
 
-            $message = 'Thanks for ordering with Foodoor. Your order no: '. $order->id . ' and bill amount : Rs. '. $order->amount .'/- . We are waiting for restaurant confirmation and will update you soon.';
+            $message = 'Thanks for ordering with ' . $order->restaurant->name  . '. Your order no: OF'. $order->id . ' and bill amount : Rs. '. $order->amount .'/- .Delivery partner : Foodoor.';
 
             $response = sendSMS($user->phone, $message);
 
-            $cashback = ceil($order->subtotal * (5/100)) > 100 ? 100 : ceil($order->subtotal * (5/100));
+          //  $cashback = ceil($order->subtotal * (5/100)) > 100 ? 100 : ceil($order->subtotal * (5/100));
 
-            $user->wallet_ballance = $user->wallet_ballance + $cashback;
+          //  $user->wallet_ballance = $user->wallet_ballance + $cashback;
 
-            $user->save();
+          //  $user->save();
 
-             $messageToRest = 'You have received a new order of Rs. '. $order->amount .'/-. Order Invoice : https://foodoor.in/orders/'. $order->id  .'/invoice';
+            $messageToRest = 'You have received a new order of Rs. '. $order->amount .'/-. Order Invoice : https://foodoor.in/orders/'. $order->id  .'/invoice';
 
             sendSMS($order->restaurant->contact_phone, $messageToRest);
 

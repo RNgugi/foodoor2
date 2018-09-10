@@ -41,10 +41,10 @@ class OrderCrudController extends CrudController
             ['name' => 'status_text', 'label' => 'Status'],
         ]);
 
-          
+
 
         $this->crud->ajax_table = false;
-   
+
         $this->crud->addClause('whereDate', 'created_at', '=', date('Y-m-d'));
 
         $this->crud->addClause('where', 'status', '<', 4);
@@ -52,6 +52,8 @@ class OrderCrudController extends CrudController
         $this->crud->addClause('where', 'flagged', '=', 1);
 
         $this->crud->orderBy('created_at', 'DESC');
+
+        $this->crud->addClause('where', 'order_type', '!=', 'OF');
 
         $this->crud->addButtonFromModelFunction('line', 'confirm', 'confirmOrder', 'end');
 
