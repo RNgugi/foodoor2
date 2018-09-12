@@ -96,12 +96,6 @@ class OrdersController extends Controller
 
         $order->bill_no = request('bill_no');
 
-        $file = request()->file('bill_image');
-
-        if(!empty($file)) {
-          $order->bill_image = request()->file('bill_image')->store('bills');
-        }
-
         $order->order_type = 'OF';
 
         $order->status = 1;
@@ -159,6 +153,19 @@ class OrdersController extends Controller
             return response(['status' => 'success', 'message' => 'Order was successfully placed!', 'data' => $order], 200);
         }
 
+
+        public function storeBill(Order $order)
+        {
+            $file = request()->file('bill_image');
+
+            if(!empty($file)) {
+              $order->bill_image = "https://foodoor.in/storage/" . request()->file('bill_image')->store('bills');
+            }
+
+            $order->save();
+
+            return response(['url' => $order->bill_image], 200);
+        }
 
 
 
