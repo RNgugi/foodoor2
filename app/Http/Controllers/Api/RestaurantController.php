@@ -244,5 +244,8 @@ class RestaurantController extends Controller
 
     }
 
-
+    public function getItems(Restaurant $restaurant)
+    {
+        return response(['items' => $restaurant->items, 'cuisines' => $restaurant->cuisines, 200]);
+    }
 }

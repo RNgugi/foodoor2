@@ -70,6 +70,10 @@ Route::middleware('auth:api')->post('/restaurant/orders/{order}', 'Api\Restauran
 
 Route::middleware('auth:api')->post('/restaurant/orders/history', 'Api\RestaurantController@history');
 
+Route::middleware('auth:api')->post('/restaurant/{restaurant}/items', 'Api\RestaurantController@getItems');
+
+
+
 
 Route::post('password/email', 'Auth\ForgotPasswordController@getResetToken');
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');

@@ -28,6 +28,8 @@ class Item extends Model implements Buyable
     // protected $hidden = [];
     // protected $dates = [];
 
+    protected $with = ['cuisine', 'additions'];
+
     public function additions()
     {
         return $this->hasMany(Topping::class);
@@ -49,16 +51,16 @@ class Item extends Model implements Buyable
     }
 
     public function manageToppings($crud = false)
-    { 
-      
+    {
+
        if(auth()->user()->isRestaurant())
        {
             return '<a class="btn btn-xs btn-success" href="/restaurants-admin/toppings?item=' . $this->id . '" data-toggle="tooltip" title="View Options/Toppings"><i class="fa fa-list-ul"></i> Additions/Options</a>';
        } else {
             return '<a class="btn btn-xs btn-success" href="/admin/toppings?item=' . $this->id . '" data-toggle="tooltip" title="View Options/Toppings"><i class="fa fa-list-ul"></i> Additions/Options</a>';
        }
-        
-       
+
+
     }
 
 
@@ -133,11 +135,11 @@ class Item extends Model implements Buyable
                return ($this->price - $discount);
             }
             return $this->price;
-            
+
         }
     }
 
-    
+
      /*
     }
     |--------------------------------------------------------------------------
@@ -191,5 +193,5 @@ class Item extends Model implements Buyable
             $this->attributes[$attribute_name] = 'storage/' . $file_path;
         }
     }
-  
+
 }
