@@ -66,6 +66,8 @@ class OrdersController extends Controller
 
         $order->tax = request('gst');
 
+        $order->bill_image = request('bill_image');
+
         $order->delivery_charges = $user->orders()->count() >= 3 ? 30 : 0;
 
         $discount = 0;
@@ -158,13 +160,15 @@ class OrdersController extends Controller
         {
             $file = request()->file('bill_image');
 
+            $url = '';
+
             if(!empty($file)) {
-              $order->bill_image = "https://foodoor.in/storage/" . request()->file('bill_image')->store('bills');
+               $url = "https://foodoor.in/storage/" . request()->file('bill_image')->store('bills');
             }
 
-            $order->save();
+            // $order->save();
 
-            return response(['url' => $order->bill_image], 200);
+            return response(['url' => $url], 200);
         }
 
 
