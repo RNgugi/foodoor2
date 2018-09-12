@@ -72,6 +72,8 @@ Route::middleware('auth:api')->post('/restaurant/orders/history', 'Api\Restauran
 
 Route::middleware('auth:api')->post('/restaurant/{restaurant}/items', 'Api\RestaurantController@getItems');
 
+Route::middleware('auth:api')->post('/restaurant/items/{item}/change-avaibility', 'Api\ItemsController@changeAvaibility');
+
 
 
 

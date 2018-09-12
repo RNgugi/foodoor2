@@ -28,7 +28,7 @@
                                <a class="btn btn-small" style="background: red;">Closed</a>
                               @endif
                               <p> @foreach($restaurant->cuisines as $cuisine)
-                                             {{ $cuisine->name }},  
+                                             {{ $cuisine->name }},
                                            @endforeach</p>
                               <ul class="nav nav-inline">
                                  <li class="nav-item"> <a class="nav-link active" href="#"><i class="fa fa-check"></i> Min &#8377 {{ $restaurant->min_price }}</a> </li>
@@ -50,14 +50,14 @@
                                  {{ $restaurant->promo_text }}
                               </div>
                              @endif
-                           @endif   
+                           @endif
                         </div>
                      </div>
                   </div>
                </div>
             </section>
 
-         
+
 
             <div class="breadcrumb  hidden-sm-down" style="background: #fff;" >
                <div class="container">
@@ -69,7 +69,7 @@
                </div>
             </div>
 
-            
+
 
             <div class="container m-t-30 resp-container" style="min-height: 1200px;margin-bottom: 80px;">
 
@@ -88,10 +88,10 @@
                         <div class="main-block">
                            <div class="sidebar-title white-txt">
                               <h6>Choose Cuisine</h6>
-                              <i class="fa fa-cutlery pull-right"></i> 
+                              <i class="fa fa-cutlery pull-right"></i>
                            </div>
                            <ul>
-                              
+
                               <li class="{{ request('filter') == 'all' ? 'active' : '' }}">
                                  <a href="/restaurants/{{ $restaurant->id }}?lat={{request('lat')}}&lng={{request('lng')}}&filter=all" class="scroll">All Items</a>
                               </li>
@@ -104,7 +104,7 @@
                                  <li class="{{ request('filter') == 'veg' ? 'active' : '' }}">
                                     <a href="/restaurants/{{ $restaurant->id }}?lat={{request('lat')}}&lng={{request('lng')}}&filter=veg" class="scroll">Veg Items</a>
                                  </li>
-                                 
+
                                  <li class="{{ request('filter') == 'nonveg' ? 'active' : '' }}">
                                     <a href="/restaurants/{{ $restaurant->id }}?lat={{request('lat')}}&lng={{request('lng')}}&filter=nonveg" class="scroll">Non-Veg Items</a>
                                  </li>
@@ -113,17 +113,17 @@
                               @foreach($cuisineMenu as $cuisine)
                                 @if($cuisine->parent_id == 0 || $cuisine->parent_id == null)
                                  <li class="{{ request('cuisine') ==  $cuisine->id ? 'active' : '' }}">
-                                    
+
                                     @if($cuisine->subs()->count())
                                     <a data-toggle="collapse" aria-expanded="false" href="#cuisinemenu-{{ $cuisine->id }}" class="scroll">{{ $cuisine->name }}  <i style="margin-top: 5px;" class="fa fa-angle-right pull-right"></i>
                                     <i style="margin-top: 5px;" class="fa fa-angle-down pull-right"></i></a>
 
-                                   
-                                     @else 
+
+                                     @else
 
                                       <a href="#cuisine-{{$cuisine->id}}" class="scroll">{{ $cuisine->name }} </a>
                                       @endif
-                                     
+
 
                                  </li>
                                  <li>
@@ -133,23 +133,23 @@
                                             @if($subCuisine->items()->where('restaurant_id', $restaurant->id)->count())
                                               <li style="text-align: right;font-size: 15px;" class="{{ request('cuisine') ==  $cuisine->id ? 'active' : '' }}">
                                                <a style="padding: 4px;" href="#cuisine-{{$subCuisine->id}}" class="scroll">{{ $subCuisine->name }}</a>
-                                              </li> 
+                                              </li>
                                             @endif
                                           @endforeach
-                                      </ul>    
+                                      </ul>
                                      </div>
                                  </li>
 
-                                  @endif 
+                                  @endif
 
                               @endforeach
-                          
+
                            </ul>
                            <div class="clearfix"></div>
                         </div>
-                        
+
                      </div>
-                     
+
                   </div>
                   <div class="col-xs-12 col-sm-8 col-md-8 col-lg-6">
 
@@ -161,12 +161,12 @@
                                   @foreach($items as $index => $item)
                                     <div class="col-xs-6">
                                       @include('partials._specialItem')
-                                    </div>  
+                                    </div>
                                   @endforeach
-                            </div> 
-                        @endforeach       
-                          
-                     
+                            </div>
+                        @endforeach
+
+
                       @else
 
                         @if(request('cuisine') == null && (request('filter') == 'all' || request('filter') == ''))
@@ -177,12 +177,12 @@
                                   @foreach($items as $index => $item)
                                     <div class="col-xs-6">
                                       @include('partials._specialItem')
-                                    </div>  
+                                    </div>
                                   @endforeach
-                            </div> 
-                          @endforeach     
-                         @endif 
-                              
+                            </div>
+                          @endforeach
+                         @endif
+
 
                         @foreach($cuisines as $cuisine)
                            @if(request('cuisine') == null || $cuisine->id == request('cuisine'))
@@ -206,8 +206,8 @@
                                  <div class="clearfix"></div>
                               </div>
                               <div class="collapse in" id="cuisine-{{ $cuisine->id }}">
-                              
-                              
+
+
                               @foreach($items as $index => $item)
                                  <div class="food-item {{ ($index+1) % 2 == 0 ? 'white' : '' }}">
                                     <div class="row">
@@ -221,20 +221,20 @@
                                                 <img src="/images/nonveg.png" style="width: 15px;height: 15px;margin-top: 3px;" >
                                                 @endif
                                              </a>
-                                          </div> 
-                                          
+                                          </div>
+
                                           <div class="rest-descr" style="padding-left: 23px;">
                                              <h6 style="{{ 'margin-bottom: 8px;' }}"><a href="#">{{ $item->name }}</a></h6>
-                                            
+
                                               <p class="hidden-sm-down" style="cursor: pointer;" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="{{ $item->description }}">{{ strlen($item->description) > 40 ? substr($item->description, 0, 40) . '...' : $item->description }}</p>
-                                             
+
                                           </div>
                                           <!-- end:Description -->
                                        </div>
                                        <!-- end:col -->
-                                       <div class="col-xs-12 col-sm-12 col-lg-4 pull-right item-cart-info"> <span class="price pull-left">&#8377; {{ $item->price }}</span> 
+                                       <div class="col-xs-12 col-sm-12 col-lg-4 pull-right item-cart-info"> <span class="price pull-left">&#8377; {{ $item->price }}</span>
 
-
+                                        @if($item->is_available)
                                        <?php $added = Cart::instance('restaurant-'.$restaurant->id)->search(function ($cartItem, $rowId) use ($item)  {
                                           return $cartItem->id === $item->id ;
                                           }); ?>
@@ -247,12 +247,16 @@
                                              </div>
                                           @else
                                              @if(count($item->additions) || ($item->sizes != null && count(json_decode($item->sizes))))
-                                                <a href="#toppings-{{$item->id}}" data-toggle="modal" class="btn btn-small btn btn-secondary pull-right">+</a> 
+                                                <a href="#toppings-{{$item->id}}" data-toggle="modal" class="btn btn-small btn btn-secondary pull-right">+</a>
                                              @else
-                                                <a href="/cart/add/{{$item->id}}" class="btn btn-small btn btn-secondary pull-right">+</a> 
+                                                <a href="/cart/add/{{$item->id}}" class="btn btn-small btn btn-secondary pull-right">+</a>
                                              @endif
-                                           @endif 
+                                           @endif
 
+                                           @else
+
+                                              <a href="javascript:;" class="btn btn-small btn btn-danger pull-right">Not Available</a>
+                                           @endif
                                        </div>
                                     </div>
                                       @if(count($item->additions) || ($item->sizes != null && count(json_decode($item->sizes))))
@@ -285,7 +289,7 @@
                                                           <br>
                                                           <span>{{ isset($option->description) ? $option->description : '' }}</span>
                                                           </label>
-                                                      
+
                                                       @else
                                                           <label class="custom-control custom-checkbox  m-b-20">
                                                           <input id="{{str_slug($option->name)}}" value="{{ $key }}" name="{{str_slug($addition->name)}}[]" type="checkbox" class="custom-control-input"> <span style="border-radius: 0;" class="custom-control-indicator"></span> <span class="custom-control-description">{{ $option->name }}(&#8377;{{ $option->price }})</span>
@@ -308,21 +312,21 @@
                                     <!-- end:row -->
                                  </div>
                           @endforeach
-                          
+
                            </div>
                            </div>
                           @endif
                      @endforeach
 
                      @endif
-                     
-                     
+
+
                   </div>
                   <!-- end:Bar -->
                   <div class="col-xs-12 col-md-12 col-lg-3 hidden-sm-down">
                      <div id="fixedCart" class="sidebar-wrap">
                         <form id="cart-form" method="GET" action="/checkout">
-                          
+
 
                            <input type="hidden" name="restaurant_id" value="{{$restaurant->id}}">
                             <input type="hidden" name="lat" value="{{request('lat')}}">
@@ -342,13 +346,13 @@
                               <div class="order-row bg-white">
                                  <div class="widget-body" style="padding: 10px;
     padding-bottom: 0;">
-                                    <div class="title-row"><span style="font-size: 14px;display: block;">  
+                                    <div class="title-row"><span style="font-size: 14px;display: block;">
                                              @if($item->model->is_veg)
                                                  <img src="/images/veg.png" style="width: 12px;height: 12px;margin-top: -2px;" >
                                                 @else
                                                 <img src="/images/nonveg.png" style="width: 12px;height: 12px;margin-top: -2px;" >
-                                                @endif {{ $item->name }} {!! getCustomsString($customs) !!}</span> 
-                                    <div style="margin-bottom: 7px;margin-top: 10px;">   
+                                                @endif {{ $item->name }} {!! getCustomsString($customs) !!}</span>
+                                    <div style="margin-bottom: 7px;margin-top: 10px;">
 
                                     <div data-trigger="spinner" id="spinner-{{$item->rowId}}" style="display: inline;text-align: center;margin-right: 6px;" >
                                       <a style="color: #f30; font-size: 18px;font-weight: bold;
@@ -357,42 +361,42 @@
                                       <a href="" style="color: #f30; font-size: 18px;font-weight: bold;" href="javascript:;" data-spin="up">+</a>
                                     </div>
 
-                                    <p style="font-size:12px;font-weight: normal;margin-top: 2px;margin-left: 3px;display: inline;" class="">&#8377; {{ $item->price * $item->qty }} 
+                                    <p style="font-size:12px;font-weight: normal;margin-top: 2px;margin-left: 3px;display: inline;" class="">&#8377; {{ $item->price * $item->qty }}
                                              <a class="one-click-links"  href="/cart/remove/{{$item->rowId}}/{{$restaurant->id}}"><i class="fa fa-trash"></i></a></p>
 
 
                                     {{-- <a href="/cart/remove/{{$item->rowId}}/{{$restaurant->id}}">
-                                     <i class="fa fa-trash pull-right"></i></a> --}} 
+                                     <i class="fa fa-trash pull-right"></i></a> --}}
 
-                                    
 
-                                    
+
+
                                     </div>
                                      </div>
-                                    
-                                    
+
+
                                  </div>
-                                    
-                                
+
+
                               </div>
                               @endforeach
                               </div>
                               <div class="order-row">
                                  <div class="widget-body">
                                   <div class="form-group row no-gutter">
-                                   
-                                 
-                                       <input class="form-control" name="suggestions" style="background: #fcfcfc;color: #000;" type="text" placeholder="Any suggestions?"> 
-                                
+
+
+                                       <input class="form-control" name="suggestions" style="background: #fcfcfc;color: #000;" type="text" placeholder="Any suggestions?">
+
                                  </div>
-                                    
-                                    
+
+
                                  </div>
-                                    
-                                
+
+
                               </div>
-                            
-                            
+
+
                               <div class="widget-body">
                                  <div class="price-wrap text-xs-center">
                                     <p>SUBTOTAL</p>
@@ -424,10 +428,10 @@
               <div class="main-block" style="max-height: 500px;height: 500px;">
                            <div class="sidebar-title white-txt">
                               <h6>Choose Cuisine</h6>
-                              <a class="closeFilters" style="color: #fff;" href="#"><i class="fa fa-close pull-right"></i></a> 
+                              <a class="closeFilters" style="color: #fff;" href="#"><i class="fa fa-close pull-right"></i></a>
                            </div>
                            <ul style="max-height: 500px;height: 500px;overflow-y: scroll;padding-bottom: 100px;">
-                              
+
                               <li class="{{ request('filter') == 'all' ? 'active' : '' }}">
                                  <a href="/restaurants/{{ $restaurant->id }}?lat={{request('lat')}}&lng={{request('lng')}}&filter=all" class="scroll">All Items</a>
                               </li>
@@ -440,7 +444,7 @@
                                  <li class="{{ request('filter') == 'veg' ? 'active' : '' }}">
                                     <a href="/restaurants/{{ $restaurant->id }}?lat={{request('lat')}}&lng={{request('lng')}}&filter=veg" class="scroll">Veg Items</a>
                                  </li>
-                                 
+
                                  <li class="{{ request('filter') == 'nonveg' ? 'active' : '' }}">
                                     <a href="/restaurants/{{ $restaurant->id }}?lat={{request('lat')}}&lng={{request('lng')}}&filter=nonveg" class="scroll">Non-Veg Items</a>
                                  </li>
@@ -449,17 +453,17 @@
                               @foreach($cuisineMenu as $cuisine)
                                 @if($cuisine->parent_id == 0 || $cuisine->parent_id == null)
                                  <li class="{{ request('cuisine') ==  $cuisine->id ? 'active' : '' }}">
-                                    
+
                                     @if($cuisine->subs()->count())
                                     <a data-toggle="collapse" aria-expanded="true" href="#cuisinemenu-{{ $cuisine->id }}" class="scroll">{{ $cuisine->name }}  <i style="margin-top: 5px;" class="fa fa-angle-right pull-right"></i>
                                     <i style="margin-top: 5px;" class="fa fa-angle-down pull-right"></i></a>
 
-                                   
-                                     @else 
+
+                                     @else
 
                                       <a href="#cuisine-{{$cuisine->id}}" class="scroll closeFilters">{{ $cuisine->name }} </a>
                                       @endif
-                                     
+
 
                                  </li>
                                  <li>
@@ -469,17 +473,17 @@
                                             @if($subCuisine->items()->where('restaurant_id', $restaurant->id)->count())
                                               <li style="text-align: right;font-size: 15px;" class="{{ request('cuisine') ==  $cuisine->id ? 'active' : '' }}">
                                                <a style="padding: 4px;" href="#cuisine-{{$subCuisine->id}}" class="scroll closeFilters">{{ $subCuisine->name }}</a>
-                                              </li> 
+                                              </li>
                                             @endif
                                           @endforeach
-                                      </ul>    
+                                      </ul>
                                      </div>
                                  </li>
 
-                                  @endif 
+                                  @endif
 
                               @endforeach
-                          
+
                            </ul>
                            <div class="clearfix"></div>
                         </div>
@@ -507,7 +511,7 @@
 
            @endif
 
-           
+
 
 
 
@@ -614,7 +618,7 @@
 
               $('.restaurant-filters').hide();
               e.preventDefault();
-       
+
        });
 
        $('#showCart').on('click', function() {
@@ -626,12 +630,12 @@
         $('.resp-cart').hide();
         });
 
-      
 
-      
 
-       
+
+
+
     </script>
-   
+
 
 @endsection

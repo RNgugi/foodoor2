@@ -31,15 +31,15 @@ class ItemCrudController extends CrudController
         $this->crud->addColumns([
             ['name' => 'name', 'label' => 'Name'],
             ['name' => 'price', 'label' => 'Price'],
-            
-            
+
+
         ]);
 
         if(!auth()->user()->isRestaurant())
            {
               $this->crud->addColumn(['name' => 'restaurantName', 'label' => 'Restaurant Name']);
 
-            } 
+            }
 
         $this->crud->addColumn(['name' => 'cuisineName', 'label' => 'Cuisine']);
 
@@ -52,7 +52,7 @@ class ItemCrudController extends CrudController
                 'upload' => true,
                 'driver' => 'uploads', // if you store files in the /public folder, please ommit this; if you store them in /storage or S3, please specify it;,
                 'tab' => 'General'
-            ],   
+            ],
 
             ['name' => 'name', 'label' => 'Name *', 'tab' => 'General'],
 
@@ -73,7 +73,18 @@ class ItemCrudController extends CrudController
             ['name' => 'price', 'label' => 'Price <span style="color: red;">*</span>', 'tab' => 'General', 'type' => 'number', 'attributes' => ["min" => 1]],
 
              ['name' => 'discount_price', 'label' => 'Discount Price', 'tab' => 'General', 'type' => 'number', 'attributes' => ["min" => 1]],
-            
+
+              [ // select_from_array
+                'name' => 'is_available',
+                'label' => 'Is Available <span style="color: red;">*</span>',
+                'type' => 'select2_from_array',
+                'options' => [0 => 'No', 1 => 'Yes'],
+                'allows_null' => false,
+                'default' => 0,
+                'tab' => 'General'
+                // 'allows_multiple' => true, // OPTIONAL; needs you to cast this to array in your model;
+            ],
+
             [ // select_from_array
                 'name' => 'is_veg',
                 'label' => 'Veg or Non Veg  <span style="color: red;">*</span>',
@@ -107,7 +118,7 @@ class ItemCrudController extends CrudController
                 'tab' => 'Available Sizes'
             ],
 
-          
+
         ]);
 
 
@@ -127,7 +138,7 @@ class ItemCrudController extends CrudController
                 $this->crud->addField([  // Select2
                    'label' => "Restaurant",
                    'type' => 'hidden',
-                   'name' => 'restaurant_id', 
+                   'name' => 'restaurant_id',
                    'value' => auth()->user()->restaurant->id
                 ]);
             }
@@ -136,7 +147,7 @@ class ItemCrudController extends CrudController
        if(auth()->user()->isRestaurant())
        {
           $this->crud->addClause('where', 'restaurant_id', '=', auth()->user()->restaurant->id);
-       } 
+       }
 
        $this->crud->addButtonFromModelFunction('line', 'additions', 'manageToppings', 'end');
 
@@ -156,7 +167,7 @@ class ItemCrudController extends CrudController
              $this->crud->addClause('where', 'restaurant_id', $value);
         });
 
-      
+
     }
 
     public function store(StoreRequest $request)

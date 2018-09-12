@@ -24,7 +24,7 @@ class Item extends Model implements Buyable
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = ['name', 'slug', 'description', 'cuisine_id', 'restaurant_id', 'price', 'discount_price', 'photo', 'is_veg', 'toppings', 'sizes', 'featured'];
+    protected $fillable = ['name', 'slug', 'description', 'cuisine_id', 'restaurant_id', 'price', 'discount_price', 'photo', 'is_veg', 'is_available', 'toppings', 'sizes', 'featured'];
     // protected $hidden = [];
     // protected $dates = [];
 
