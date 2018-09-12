@@ -15,7 +15,7 @@
 
             <section class="contact-page inner-page" style="min-height: 900px;">
                <div class="container">
-                 <h2 style="font-weight: bold;margin-bottom: 22px;">Send Password Reset E-mail</h2>
+                 <h2 style="font-weight: bold;margin-bottom: 22px;">Reset your password</h2>
                   <div class="row">
                      <!-- REGISTER -->
                      <div class="col-md-8">
@@ -26,9 +26,9 @@
                                     <div class="alert alert-success">
                                         {{ session('status') }}
                                     </div>
-                                @endif   
+                                @endif
 
-                          
+
 
                              <form method="POST" action="{{ route('password.request') }}">
                                 @csrf
@@ -46,7 +46,7 @@
                                             </span>
                                         @endif
                                     </div>
-                                </div>
+
 
 
                                  <div class="form-group col-sm-12">
@@ -70,7 +70,7 @@
                                             </span>
                                         @endif
                                     </div>
-                                     
+
 
                                 <div class="form-group row mb-0">
                                     <div class="col-md-6 ">
@@ -79,19 +79,20 @@
                                         </button>
                                     </div>
                                 </div>
+                                </div>
                             </form>
                              </div>
 
                         </div>
-                        
+
                      </div>
-                     
+
                   </div>
 
                 </div>
-                
-            </section>      
-                           
+
+            </section>
+
 
 
 </div>
