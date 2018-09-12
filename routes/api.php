@@ -77,7 +77,7 @@ Route::middleware('auth:api')->post('/restaurant/items/{item}/change-avaibility'
 
 
 
-Route::post('password/email', 'Auth\ForgotPasswordController@getResetToken');
+Route::post('password/email', 'Api\ProfileController@sendResetLinkEmail');
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 

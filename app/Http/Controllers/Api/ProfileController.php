@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Auth\Passwords\PasswordBroker;
 use Illuminate\Contracts\Auth\PasswordBroker;
 
 
@@ -62,14 +62,14 @@ class ProfileController extends Controller
 
         return false;
 
-        
+
     }
 
     public function sendOTP(Request $request)
     {
         $phone = $request->get('phone');
 
-        if(User::where('phone', $phone)->exists()) 
+        if(User::where('phone', $phone)->exists())
         {
             return response(['status' => 'failed', 'message' => 'Phone number is already registered!']);
         }
@@ -91,16 +91,16 @@ class ProfileController extends Controller
         $phone = $request->get('phone');
 
         session(['phone-verified' => $phone]);
-        
+
         return response(['status' => 'success']);
     }
 
-    
-
-   
-
-    
 
 
-   
+
+
+
+
+
+
 }
