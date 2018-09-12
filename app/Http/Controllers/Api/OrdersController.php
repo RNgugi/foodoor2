@@ -96,7 +96,7 @@ class OrdersController extends Controller
 
         $order->bill_no = request('bill_no');
 
-        $file = $request->file('bill_image');
+        $file = request()->file('bill_image');
 
         if(!empty($file)) {
           $order->bill_image = $request->file('bill_image')->store('bills');
