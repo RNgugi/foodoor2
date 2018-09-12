@@ -99,7 +99,7 @@ class OrdersController extends Controller
         $file = request()->file('bill_image');
 
         if(!empty($file)) {
-          $order->bill_image = $request->file('bill_image')->store('bills');
+          $order->bill_image = request()->file('bill_image')->store('bills');
         }
 
         $order->order_type = 'OF';
