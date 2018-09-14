@@ -8,6 +8,7 @@ use App\Mail\OrderPlaced;
 use App\Mail\NewOrderMail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 
 
 
