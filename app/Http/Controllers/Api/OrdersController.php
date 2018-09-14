@@ -49,13 +49,17 @@ class OrdersController extends Controller
 
         $order = new Order;
 
-        $user = User::where('phone', request('user_phone'))->first();
+        $user = User::where('phone', request('user_phone'))->orWhere('email', request('user_email'))->first();
 
         if(!$user)
         {
            $user = User::create(['name' => request('user_name'),
                     'email' => request('user_email'), 'phone' => request('user_phone'), 'password' => Hash::make(config('settings.default_password')),  'is_verified' => 1]);
         }
+
+        $user->phone = request('user_phone');
+
+        $user->save();
 
         $order->user_id = $user->id;
 
