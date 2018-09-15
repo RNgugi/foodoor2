@@ -62,9 +62,9 @@
 
 @if(auth()->user()->can('manage_brandings'))
 	<li class="treeview">
-		
+
 		<a href="#"><i class="fa fa-image"></i> <span>Logos &amp; Banners</span> <i class="fa fa-angle-left pull-right"></i></a>
-		
+
 		<ul class="treeview-menu">
 			<li><a href="{{ backpack_url('homebanners') }}"><i class="fa fa-image"></i> <span>Home Banners</span></a></li>
 			<li><a href="{{ backpack_url('restaurantlogos') }}"><i class="fa fa-image"></i> <span>Restaurant Logos</span></a></li>
@@ -84,9 +84,9 @@
 	<li><a href="{{ backpack_url('backup') }}"><i class="fa fa-hdd-o"></i> <span>Backups</span></a></li>
 @endif
 
-@if(auth()->user()->can('manage_logs'))
-	<li><a href="{{ backpack_url('log') }}"><i class="fa fa-terminal"></i> <span>Logs</span></a></li>
-@endif
+
+<li><a href="{{ backpack_url('log') }}"><i class="fa fa-terminal"></i> <span>Logs</span></a></li>
+
 
 <!-- Users, Roles Permissions -->
 @if(auth()->user()->can('manage_users') || auth()->user()->hasRole('admin'))
