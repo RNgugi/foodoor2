@@ -239,6 +239,9 @@ class RestaurantController extends Controller
 
         $order->load('items');
 
+        foreach ($order->items as $key => $item) {
+            $item->custom_toppings = getCustomsString(json_decode($item->pivot->customs));
+        }
 
         return response(['status' => 'success', 'message' => 'Order Details Sent!', 'order' => $order], 200);
 

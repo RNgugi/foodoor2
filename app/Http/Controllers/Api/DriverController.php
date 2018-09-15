@@ -190,7 +190,7 @@ class DriverController extends Controller
 
     }
 
-     public function orderHistory()
+    public function orderHistory()
     {
         $user = request()->user();
 
@@ -203,8 +203,6 @@ class DriverController extends Controller
         {
             return response(['status' => 'failed', 'message' => 'User should be delivery boy!']);
         }
-
-
 
         $orders = Order::where('status', 4)->where('driver_id', $user->driver->id)->with('restaurant')->with('user')->latest()->get();
 
@@ -231,10 +229,11 @@ class DriverController extends Controller
             return response(['status' => 'failed', 'message' => 'The order is assigned to another delivery boy!']);
         }
 
-
-
         $order->load('items');
 
+        foreach ($order->items as $key => $item) {
+            $item->custom_toppings = getCustomsString(json_decode($item->pivot->customs));
+        }
 
         return response(['status' => 'success', 'message' => 'Order Details Sent!', 'order' => $order], 200);
 
