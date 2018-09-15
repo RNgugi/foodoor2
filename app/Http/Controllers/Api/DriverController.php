@@ -186,7 +186,7 @@ class DriverController extends Controller
 
 
 
-        $orders = Order::where('status', 0)->where('driver_id', 0)->with('restaurant')->with('user')->latest()->get();
+        $orders = Order::where('driver_id', 0)->with('restaurant')->with('user')->latest()->get();
 
         return response(['status' => 'success', 'message' => 'To be accepted orders!', 'orders' => $orders], 200);
 

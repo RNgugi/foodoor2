@@ -88,6 +88,7 @@ class Item extends Model implements Buyable
     {
         return $this->id;
     }
+
     /**
      * Get the description or title of the Buyable item.
      *

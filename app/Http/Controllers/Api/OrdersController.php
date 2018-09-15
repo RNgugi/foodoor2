@@ -57,9 +57,9 @@ class OrdersController extends Controller
                     'email' => request('user_email'), 'phone' => request('user_phone'), 'password' => Hash::make(config('settings.default_password')),  'is_verified' => 1]);
         }
 
-        $user->phone = request('user_phone');
+        //$user->phone = request('user_phone');
 
-        $user->save();
+        //$user->save();
 
         $order->user_id = $user->id;
 
