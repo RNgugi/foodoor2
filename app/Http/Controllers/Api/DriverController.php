@@ -184,7 +184,7 @@ class DriverController extends Controller
             return response(['status' => 'failed', 'message' => 'User should be delivery boy!']);
         }
 
-        $orders = Order::where('status', '<', 4)->where('driver_id', 0)->with('restaurant')->with('user')->latest()->get();
+        $orders = Order::where('status', '<', 4)->where('driver_id', 0)->whereDate('created_at', '=', date('Y-m-d'))->with('restaurant')->with('user')->latest()->get();
 
         return response(['status' => 'success', 'message' => 'To be accepted orders!', 'orders' => $orders], 200);
 
@@ -204,7 +204,7 @@ class DriverController extends Controller
             return response(['status' => 'failed', 'message' => 'User should be delivery boy!']);
         }
 
-        $orders = Order::where('status', 4)->where('driver_id', $user->driver->id)->with('restaurant')->with('user')->latest()->get();
+        $orders = Order::where('status', 4)->orWhere('status', -1)->where('driver_id', $user->driver->id)->with('restaurant')->with('user')->latest()->get();
 
         return response(['status' => 'success', 'message' => 'Order Status Updated!', 'orders' => $orders], 200);
 

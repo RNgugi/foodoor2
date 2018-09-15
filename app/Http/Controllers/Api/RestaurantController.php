@@ -65,6 +65,7 @@ class RestaurantController extends Controller
         }
 
         $order->status = -1;
+        $order->cancel_reason = request('cancel_reason');
         $order->save();
 
         event(new OrderStatusChanged($order));
@@ -166,7 +167,7 @@ class RestaurantController extends Controller
 
 
 
-        $orders = Order::where('status', '=', 0)->where('restaurant_id', $user->restaurant->id)->with('restaurant')->latest()->with('user')->get();
+        $orders = Order::where('status', '=', 0)->where('restaurant_id', $user->restaurant->id)->whereDate('created_at', '=', date('Y-m-d'))->with('restaurant')->latest()->with('user')->get();
 
         return response(['status' => 'success', 'message' => 'All New Orders to be confirmed!', 'orders' => $orders], 200);
     }
@@ -209,7 +210,7 @@ class RestaurantController extends Controller
 
 
 
-        $orders = Order::where('status', 4)->where('restaurant_id', $user->restaurant->id)->with('restaurant')->latest()->with('user')->get();
+        $orders = Order::where('status', 4)->orWhere('status', -1)->where('restaurant_id', $user->restaurant->id)->with('restaurant')->latest()->with('user')->get();
 
         return response(['status' => 'success', 'message' => 'Orders history!', 'orders' => $orders], 200);
 
