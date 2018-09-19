@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Restaurants;
+namespace App\Http\Controllers\Admin;
 
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
@@ -10,7 +10,7 @@ use App\Http\Requests\OrderRequest as UpdateRequest;
 
 use App\Events\OrderStatusChanged;
 
-class OrderCrudController extends CrudController
+class OfflineOrderCrudController extends CrudController
 {
     public function setup()
     {
@@ -21,7 +21,7 @@ class OrderCrudController extends CrudController
         |--------------------------------------------------------------------------
         */
         $this->crud->setModel('App\Models\Order');
-        $this->crud->setRoute('restaurants-admin'. '/orders');
+        $this->crud->setRoute(config('backpack.base.route_prefix') . '/orders');
         $this->crud->setEntityNameStrings('order', 'today\'s orders');
 
         /*
@@ -33,50 +33,35 @@ class OrderCrudController extends CrudController
           $this->crud->addColumns([
             ['name' => 'id', 'label' => 'Order ID'],
             ['name' => 'user_name', 'label' => 'Customer Name'],
-            ['name' => 'booking_date', 'label' => 'Date'],
+            ['name' => 'user_phone', 'label' => 'Phone No.'],
+            ['name' => 'restaurant_name', 'label' => 'Restaurant Name'],
+            ['name' => 'created_at', 'label' => 'Order Time'],
             ['name' => 'itemsCount', 'label' => 'Items Count'],
             ['name' => 'amount', 'label' => 'Amount (Rs.)'],
             ['name' => 'status_text', 'label' => 'Status'],
         ]);
 
-           $this->crud->addFields([
-
-            [ // select_from_array
-                'name' => 'status',
-                'label' => 'Order Status <span style="color: red;">*</span>',
-                'type' => 'select2_from_array',
-                'options' => [0 => 'Placed', 1 => 'Confirmed', 2 => 'Order Ready', 3 => 'Order Picked', 4 => 'Order Delivered'],
-                'allows_null' => false,
-                'default' => 0,
-                // 'allows_multiple' => true, // OPTIONAL; needs you to cast this to array in your model;
-            ],
-        ]);
-
-           $this->crud->ajax_table = false;
 
 
-           if(auth()->user()->isRestaurant())
-           {
-              $this->crud->addClause('where', 'restaurant_id', '=', auth()->user()->restaurant->id);
-           }
+        $this->crud->ajax_table = false;
 
-           $this->crud->addClause('whereDate', 'created_at', '=', date('Y-m-d'));
+        $this->crud->addClause('whereDate', 'created_at', '=', date('Y-m-d'));
 
-            $this->crud->addClause('where', 'status', '<', 4);
+        $this->crud->addClause('where', 'status', '<', 4);
 
-            $this->crud->addClause('where', 'flagged', '=', 1);
+        $this->crud->addClause('where', 'flagged', '=', 1);
 
-            $this->crud->addClause('where', 'order_type', null);
+        $this->crud->orderBy('created_at', 'DESC');
 
-            $this->crud->orderBy('created_at', 'DESC');
+        $this->crud->addClause('where', 'order_type', 'OF');
 
-            $this->crud->addButtonFromModelFunction('line', 'confirm', 'confirmOrder', 'end');
+        $this->crud->addButtonFromModelFunction('line', 'confirm', 'confirmOrder', 'end');
 
-            $this->crud->addButtonFromModelFunction('line', 'viewOrder', 'viewOrder', 'end');
+        $this->crud->addButtonFromModelFunction('line', 'viewOrder', 'viewOrder', 'end');
 
-            $this->crud->addButtonFromModelFunction('line', 'invoice', 'invoice', 'end');
+        $this->crud->addButtonFromModelFunction('line', 'invoice', 'invoice', 'end');
 
-            $this->crud->setListView('admin.orders.list');
+        $this->crud->setListView('admin.orders.list');
 
         // ------ CRUD FIELDS
         // $this->crud->addField($options, 'update/create/both');

@@ -10,7 +10,7 @@ use App\Http\Requests\OrderRequest as UpdateRequest;
 
 use App\Events\OrderStatusChanged;
 
-class OrderCrudController extends CrudController
+class OfflineOrderCrudController extends CrudController
 {
     public function setup()
     {
@@ -66,7 +66,7 @@ class OrderCrudController extends CrudController
 
             $this->crud->addClause('where', 'flagged', '=', 1);
 
-            $this->crud->addClause('where', 'order_type', null);
+            $this->crud->addClause('where', 'order_type', 'OF');
 
             $this->crud->orderBy('created_at', 'DESC');
 

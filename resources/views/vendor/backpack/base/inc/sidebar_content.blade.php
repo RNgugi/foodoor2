@@ -2,6 +2,7 @@
 
 <li><a href="{{ '/restaurants-admin' }}"><i class="fa fa-dashboard"></i> <span>{{ trans('backpack::base.dashboard') }}</span></a></li>
 <li><a href="{{ '/restaurants-admin/orders' }}"><i class="fa fa-file-text"></i> <span>Today's Orders</span></a></li>
+<li><a href="{{ '/restaurants-admin/offline-orders' }}"><i class="fa fa-file-text"></i> <span>Offline Orders</span></a></li>
 <li><a href="{{ '/restaurants-admin/earnings' }}"><i class="fa fa-money"></i> <span>Earnings</span></a></li>
 <li><a href="{{ '/restaurants-admin/history' }}"><i class="fa fa-file-text"></i> <span>Orders History</span></a></li>
 
@@ -23,6 +24,7 @@
 
 @if(auth()->user()->can('manage_orders'))
 	<li><a href="{{ backpack_url('orders') }}"><i class="fa fa-file-text"></i> <span>Today's Orders</span></a></li>
+	<li><a href="{{ backpack_url('offline-orders') }}"><i class="fa fa-file-text"></i> <span>Offline Orders</span></a></li>
 	<li><a href="{{ backpack_url('history') }}"><i class="fa fa-file-text"></i> <span>Orders History</span></a></li>
 @endif
 

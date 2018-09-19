@@ -99,7 +99,7 @@ Route::get('/coupons/apply/{restaurant}/coupon:{code}/remove', 'CouponsControlle
 
 Route::get('/nearest_drivers/{restaurant}', 'Api\DriverController@nearest');
 
-    
+
 
 
 Route::post('/bulk-orders', 'BulkOrderController@store');
@@ -109,6 +109,7 @@ Route::post('/contact', 'ContactController@store');
 Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'role'], 'namespace' => 'Admin'], function()
 {
 	CRUD::resource('orders', 'OrderCrudController');
+    CRUD::resource('offline-orders', 'OfflineOrderCrudController');
     CRUD::resource('customers', 'CustomerCrudController');
 	CRUD::resource('earnings', 'EarningsCrudController');
     CRUD::resource('history', 'HistoryCrudController');
@@ -130,6 +131,7 @@ Route::group(['prefix' => 'restaurants-admin', 'middleware' => ['admin'], 'names
 {
 	Route::get('/', 'DashboardController@dashboard');
 	CRUD::resource('orders', 'OrderCrudController');
+    CRUD::resource('offline-orders', 'OfflineOrderCrudController');
     CRUD::resource('history', 'HistoryCrudController');
 	CRUD::resource('earnings', 'EarningsCrudController');
     CRUD::resource('restaurants', 'RestaurantCrudController');
