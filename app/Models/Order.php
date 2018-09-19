@@ -47,9 +47,6 @@ class Order extends Model
         if($this->user_id != 0)
         {
             return $this->belongsTo(User::class);
-        } else {
-            $user = new User;
-            $user->name =
         }
     }
 

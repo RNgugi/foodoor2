@@ -19,14 +19,7 @@ class OrdersController extends Controller
 
         $requestor = request()->user();
 
-        //$items = json_decode(request('items'));
 
-
-
-       /* if(!isset($items) || count($items) == 0)
-        {
-            return response(['status' => 'failed', 'message' => 'You have no items in the cart!']);
-        } */
 
         $address = [];
 
