@@ -62,17 +62,17 @@ class Order extends Model
 
     public function getUserNameAttribute()
     {
-        return isset($this->user_name) ?  $this->user_name : $this->customer_name;
+        return isset($this->attributes['user_name']) ?  $this->attributes['user_name'] : $this->getCustomerNameAttribute();
     }
 
     public function getUserPhoneAttribute()
     {
-        return isset($this->user_phone) ?  $this->user_phone : $this->user->phone;
+         return isset($this->attributes['user_phone']) ?  $this->attributes['user_phone'] : $this->user->phone;
     }
 
      public function getUserEmailAttribute()
     {
-        return isset($this->user_email) ?  $this->user_email : $this->user->email;
+         return isset($this->attributes['user_email']) ?  $this->attributes['user_email'] : $this->user->email;
     }
 
       public function getPhoneNoAttribute()

@@ -106,7 +106,7 @@ class OrdersController extends Controller
 
          //   \Mail::to('foodoor.order@gmail.com')->send(new NewOrderMail($order));
 
-        //    \Mail::to($order->restaurant->contact_email)->send(new NewOrderMail($order));
+           // \Mail::to($order->restaurant->contact_email)->send(new NewOrderMail($order));
 
             $message = 'Thanks for ordering with ' . $order->restaurant->name  . '. Your order no: OF'. $order->id . ' and bill amount : Rs. '. $order->amount .'/- .Delivery partner : Foodoor.';
 
