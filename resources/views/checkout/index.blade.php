@@ -1,5 +1,16 @@
 @extends('layouts.restaurants')
 
+@section('adwords')
+
+<!-- Event snippet for Check Out Food Order conversion page -->;
+<script>
+gtag('event', 'conversion', {
+'send_to': 'AW-792677172/x8XDCNSLzIkBELSW_fkC',
+'transaction_id': ''
+});
+</script>
+
+@endsection
 
 @section('styles')
 

@@ -1,8 +1,19 @@
 @extends('layouts.restaurants')
 
+@section('adwords')
+
+<!-- Event snippet for Order Completion conversion page -->;
+<script>
+gtag('event', 'conversion', {
+'send_to': 'AW-792677172/CInOCKv2tokBELSW_fkC',
+'transaction_id': ''
+});
+</script>
+
+@endsection
 
 @section('content')
-	 
+
 
 	<div style="background: #fbbf67;min-height: 900px;padding-top: 60px;padding-bottom: 60px;">
 
@@ -11,7 +22,7 @@
              <div class="col-md-3">
                 @include('partials._profileSidebar')
             </div>
-       
+
             <div class="col-md-9" style="z-index: 0;padding-top: 30px;">
               <div class="">
                <h4 style="font-weight: 600;padding-bottom: 20px;">Past Orders</h4>
@@ -19,7 +30,7 @@
              @foreach($orders as $order)
                <div class="widget clearfix " style="background: #fff;border: 1px solid #d4d5d9;">
                           <!-- /widget heading -->
-                          
+
                           <div class="widget-body">
                               <div class="col-md-8">
                                <div class="media" style="padding-top: 18px;">
@@ -33,20 +44,20 @@
                               </div>
                               </div>
                               <div class="col-md-4">
-                               
+
                               </div>
                               <div class="clearfix"></div>
                           </div>
 
-                  </div> 
+                  </div>
               @endforeach
 
-              </div> 
+              </div>
 
-       </div>   
+       </div>
     </div>
 
 
   </div>
-  
+
 @endsection

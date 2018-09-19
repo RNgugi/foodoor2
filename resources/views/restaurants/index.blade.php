@@ -1,11 +1,23 @@
 @extends('layouts.restaurants')
 
+@section('adwords')
+
+<!-- Event snippet for Search Restaurant conversion page -->;
+<script>
+gtag('event', 'conversion', {
+'send_to': 'AW-792677172/LyuVCL6izIkBELSW_fkC',
+'transaction_id': ''
+});
+</script>
+
+@endsection
+
 @section('content')
-        
+
         @include('partials._hero')
 
 
-{{-- 
+{{--
       <section class="popular">
             <div class="container">
                 <div class="title text-xs-center m-b-30">
@@ -20,7 +32,7 @@
                         <div class="main-block">
                            <div class="sidebar-title white-txt">
                               <h6>Filter Restaurants</h6>
-                              <i class="fa fa-cutlery pull-right"></i> 
+                              <i class="fa fa-cutlery pull-right"></i>
                            </div>
                            <ul>
                               <li><a href="#" class="scroll {{ request('cuisine') ==  '' }}">Most Popular</a></li>
@@ -36,9 +48,9 @@
                            </ul>
                            <div class="clearfix"></div>
                         </div>
-                        
+
                      </div>
-                     
+
                   </div>
 
                   <div class="col-xs-12 col-sm-8 col-md-8 col-lg-9">
@@ -49,16 +61,16 @@
                        </div>
                     @endforeach
 
-                  </div>  
-                    
+                  </div>
+
                 </div>
             </div>
         </section>
 --}}
-      
+
 
         @include('partials._appBanner')
-        
+
 @endsection
 
 
@@ -98,12 +110,12 @@ function codeLatLng(lat, lng) {
           if(results[1]) {
               //formatted address
               var address = results[0].formatted_address;
-          
+
 
               $('#userLocation').html(address);
 
                 var userLocation = { 'lat' : lat, 'lng' : lng, 'address' : address, 'city' :  results[1].long_name};
-             
+
 
                  localStorage.setItem("userLocation", JSON.stringify(userLocation));
 
@@ -123,9 +135,9 @@ function codeAddress() {
     var address = document.getElementById('txtPlaces').value;
     geocoder.geocode( { 'address': address}, function(results, status) {
       if (status == 'OK') {
-      
+
           var position = results[0].geometry.location
-        
+
           var userLocation = { 'lat' : position.lat(), 'lng' : position.lng(), 'address' : address, 'city' :  results[0].address_components[0].long_name};
            localStorage.setItem("userLocation", JSON.stringify(userLocation));
 
@@ -139,7 +151,7 @@ function codeAddress() {
 
 
 //getLocation();
-   
+
   </script>
 
 

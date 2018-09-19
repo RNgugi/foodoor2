@@ -38,7 +38,15 @@
     <!-- Custom styles for this template -->
     <link href="/css/style.css" rel="stylesheet">
 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-792677172"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-792677172');
+    </script>
 
+    @yield('adwords')
 
   <style type="text/css">
     input[type=number]::-webkit-inner-spin-button,

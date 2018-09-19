@@ -1,15 +1,27 @@
 @extends('layouts.restaurants')
 
+@section('adwords')
+
+<!-- Event snippet for Account Creation conversion page -->;
+<script>
+gtag('event', 'conversion', {
+'send_to': 'AW-792677172/9mEICNmPxIkBELSW_fkC',
+'transaction_id': ''
+});
+</script>
+
+@endsection
+
 @section('styles')
-  
+
 
   <style type="text/css">
-    input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
+    input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    margin: 0; 
+    margin: 0;
 }
   </style>
 
@@ -81,56 +93,56 @@ input[type=number]::-webkit-outer-spin-button {
                                             </span>
                                         @endif
                                     </div>
-                                    
-                                     
+
+
 
                                     <div id="verified-phone" class="{{ old('phone') ? '' : 'hidden' }}">
                                       <div class="form-group col-sm-8">
                                          <label for="stored-phone">Phone Number</label>
                                          <input id="stored-phone" type="number" readonly=""  placeholder="Enter contact number" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" value="{{ old('phone') }}">
 
-                                          
-                                              
-                                           
-                                        
+
+
+
+
                                       </div>
 
                                        <div class="col-sm-4">
-                                         <p style="margin-top: 32px;"> <button type="button" id="btn-change-number" class="btn theme-btn">Change Number</button> </p>     
+                                         <p style="margin-top: 32px;"> <button type="button" id="btn-change-number" class="btn theme-btn">Change Number</button> </p>
                                       </div>
                                     </div>
 
-                                    
+
 
                                        <div id="request-otp" class="{{ old('phone') ? 'hidden' : '' }}">
                                         <div class="form-group col-sm-8">
                                            <label for="phone">Phone Number <span style="color: red;">*</span></label>
                                            <input id="phone" type="number"  placeholder="Enter contact number" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" value="{{ old('phone') }}">
 
-                                            
-                                                
+
+
                                               <span id="request-feedback"  class="invalid-feedback">
-                                                 
+
                                               </span>
-                                          
-                                          
+
+
                                         </div>
 
                                          <div class="col-sm-4">
-                                           <p style="margin-top: 32px;"> <button type="button" id="btn-request-otp" class="btn theme-btn">Send OTP</button> </p>     
+                                           <p style="margin-top: 32px;"> <button type="button" id="btn-request-otp" class="btn theme-btn">Send OTP</button> </p>
                                         </div>
 
                                         <div class="col-sm-12 {{ old('phone') ? '' : 'hidden' }}" >
-                                         <a style="margin-top: 15px;" href="javascript:void(0)" id="btn-cancel" class="text-primary" >Cancel</a> 
+                                         <a style="margin-top: 15px;" href="javascript:void(0)" id="btn-cancel" class="text-primary" >Cancel</a>
                                         </div>
                                       </div>
 
 
-                                   
+
 
 
                                     <div id="verify-otp" class="hidden" >
-                                      
+
                                       <div >
                                       <div class="col-sm-12">
                                           <h4 class="text-primary"><i class="fa fa-check-circle"></i> OTP sent to <span id="user-phone"></span></h4>
@@ -138,22 +150,22 @@ input[type=number]::-webkit-outer-spin-button {
                                      </div>
 
                                       <div class="form-group col-sm-8" style="margin-bottom: 0;">
-                                         
+
                                          <input id="user-otp" type="number" placeholder="Enter 5-digit OTP" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="otp" >
 
                                               <span class="invalid-feedback" id="verify-feedback">
-                                                  
+
                                               </span>
-                                         
+
                                       </div>
 
                                        <div class="col-sm-4">
-                                         <p style="margin-bottom: 0;"> <button type="button" id="btn-verify-otp" class="btn theme-btn">Verify OTP</button> </p>     
+                                         <p style="margin-bottom: 0;"> <button type="button" id="btn-verify-otp" class="btn theme-btn">Verify OTP</button> </p>
                                       </div>
 
                                       <div class="col-sm-12">
-                                         <a style="margin-top: 15px;" href="javascript:void(0)" id="btn-resend-otp" class="text-primary" >Resend OTP</a> 
-                                         
+                                         <a style="margin-top: 15px;" href="javascript:void(0)" id="btn-resend-otp" class="text-primary" >Resend OTP</a>
+
                                       </div>
                                     </div>
 
@@ -164,9 +176,9 @@ input[type=number]::-webkit-outer-spin-button {
                                      </div>
 
 
-                                   
-                                  
-                                 
+
+
+
                                  </div>
 
                              {{--    <div class="row">
@@ -186,16 +198,16 @@ input[type=number]::-webkit-outer-spin-button {
                                      <input type="checkbox" required="true" name="terms"> <label> I agree to the <a target="_blank" href="/terms">Terms &amp; Conditions</a> of Foodoor.</label>
                                    </div>
                                  </div>
-                                 
-                                
+
+
                                  <div class="row" style="margin-top: 30px;">
                                     <div class="col-sm-8">
-                                       <p> <button type="submit" id="submitButton" {{ old('phone') ? '' : 'disabled'}} class="btn theme-btn">Create Account</button> 
-                                       <a href="/login" class="btn" >Use Existing Account</a> </p>     
+                                       <p> <button type="submit" id="submitButton" {{ old('phone') ? '' : 'disabled'}} class="btn theme-btn">Create Account</button>
+                                       <a href="/login" class="btn" >Use Existing Account</a> </p>
                                     </div>
                                  </div>
 
-                                
+
                               </form>
                            </div>
                            <!-- end: Widget -->
@@ -204,17 +216,17 @@ input[type=number]::-webkit-outer-spin-button {
                      </div>
                      <!-- WHY? -->
                      <div class="col-md-4">
-                        
+
                         <img src="/images/local.png" alt="" class="img-fluid">
-                        
-                        
+
+
                      </div>
                      <!-- /WHY? -->
                   </div>
                </div>
             </section>
             </div>
-            
+
 
 
 @endsection
@@ -222,27 +234,27 @@ input[type=number]::-webkit-outer-spin-button {
 
 @section('scripts')
 
-  
+
   <script type="text/javascript">
     var otp = '';
 
     var storedPhone = '';
 
   $('#btn-request-otp').on('click', function()
-  { 
+  {
         var phone = $('#phone').val();
         if(phone.length  < 10 || phone.length > 10)
         {
             message = 'Please enter correct 10 digit mobile number!';
-          
+
             $('#phone').addClass('is-invalid');
 
-            $('#request-feedback').html('<strong>'+message+'</strong>'); 
+            $('#request-feedback').html('<strong>'+message+'</strong>');
 
         } else {
 
             $.post('api/phone/sendotp', {'phone':  $('#phone').val() }).then(function(response) {
-              
+
               console.log(response);
 
               if(response.status == 'failed')
@@ -250,10 +262,10 @@ input[type=number]::-webkit-outer-spin-button {
 
                  $('#phone').addClass('is-invalid');
 
-                 $('#request-feedback').html('<strong>'+response.message+'</strong>'); 
-               
+                 $('#request-feedback').html('<strong>'+response.message+'</strong>');
+
               } else {
-                 
+
                  otp = response.otp;
 
                  $('#user-phone').html('+91' + phone);
@@ -269,20 +281,20 @@ input[type=number]::-webkit-outer-spin-button {
               }
             });
 
-           
+
 
 
         }
 
-        
 
-      
-        
+
+
+
   });
 
   $('#btn-resend-otp').on('click', function()
-  { 
-        
+  {
+
 
             $('#request-otp').removeClass('hidden');
             $('#btn-request-otp').removeClass('hidden');
@@ -293,13 +305,13 @@ input[type=number]::-webkit-outer-spin-button {
 
             $('#verify-otp').addClass('hidden');
 
-            
+
         });
 
 
    $('#btn-cancel').on('click', function()
-  { 
-        
+  {
+
             $('#verified-phone').removeClass('hidden');
             $('#request-otp').addClass('hidden');
             $('#btn-request-otp').addClass('hidden');
@@ -312,28 +324,28 @@ input[type=number]::-webkit-outer-spin-button {
 
             $('#phone').val(storedPhone);
 
-            
+
         });
 
   $('#btn-change-number').on('click', function()
-  {   
+  {
           storedPhone = $('#phone').val();
-        
+
             $('#verified-phone').addClass('hidden');
             $('#request-otp').removeClass('hidden');
             $('#btn-request-otp').removeClass('hidden');
-            
+
             $('#submitButton').attr('disabled', true);
 
             $('#request-feedback').html('');
             $('#verify-feedback').html('');
 
-           
 
-            
+
+
         });
 
-        
+
 
   $('#btn-verify-otp').on('click', function()
   {
@@ -355,7 +367,7 @@ input[type=number]::-webkit-outer-spin-button {
                   }
 
               });
-           
+
 
         } else {
              message = 'Please enter correct OTP!';

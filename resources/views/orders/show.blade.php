@@ -1,11 +1,21 @@
 @extends('layouts.restaurants')
 
+@section('adwords')
 
+<!-- Event snippet for Order Completion conversion page -->;
+<script>
+gtag('event', 'conversion', {
+'send_to': 'AW-792677172/CInOCKv2tokBELSW_fkC',
+'transaction_id': ''
+});
+</script>
+
+@endsection
 
 
 @section('content')
-	 
-    
+
+
 
 	<div id="order-data" style="background: #fbbf67;min-height: 1200px;">
 
@@ -20,7 +30,7 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="widget-body">
-                      
+
 
                         <ul class="progressbar" style="margin-top: 20px;">
                               <li class="{{ $order->status >= 0 ? 'active' : '' }}">order received</li>
@@ -37,7 +47,7 @@
                           <h5>{{ json_decode($order->delivery_address)->delivery_location }}</h5>
                           <h5>{{ json_decode($order->delivery_address)->door_no }} {{ json_decode($order->delivery_address)->landmark }}</h5>
                         </div>
-                        
+
                        <div class="clearfix"></div>
                         <div class="row" style="margin-top: 35px;">
                             <div class="col-sm-8">
@@ -51,11 +61,11 @@
                             <div class="col-sm-4">
                               @if(auth()->user()->hasRole('admin') || (auth()->user()->isRestaurant() && $order->restaurant_id == auth()->user()->restaurant->id))
 
-                               
+
                               @else
                               {{--   <button style="float: right;margin-right: 14px;margin-top: 7px;border-radius: 5px;" type="button" class="btn theme-btn btn-lg"><i class="fa fa-map-marker"></i> Track Your Order</button> --}}
                                <a href="/orders/{{$order->id}}/invoice" style="float: right;" class="btn btn-link"> Download Invoice</a>
-                              @endif  
+                              @endif
                             </div>
                             @endif
                         </div>
@@ -72,14 +82,14 @@
                                 </thead>
                                 <tbody>
                                 @foreach($order->items as $item)
-                                   <?php $customs = json_decode($item->pivot->customs, true); 
+                                   <?php $customs = json_decode($item->pivot->customs, true);
                                      unset($customs['price']); ?>
                                     <tr>
                                         <td style="font-size: 18px;">@if($item->is_veg)
                                                  <img src="/images/veg.png" style="width: 12px;height: 12px;margin-top: -2px;" >
                                                 @else
                                                 <img src="/images/nonveg.png" style="width: 12px;height: 12px;margin-top: -2px;" >
-                                                @endif  {{ $item->name }} 
+                                                @endif  {{ $item->name }}
 
                                                 @if(isset($item->pivot->customs))
 
@@ -94,59 +104,59 @@
 
 
                                 @endforeach
-                                 <tr style="font-size: 16px;"> 
+                                 <tr style="font-size: 16px;">
                                                          <td></td>
                                                         <td style="font-size: 18px;">Subtotal</td>
-                                                       
+
                                                         <td style="font-size: 18px;">&#8377; {{$order->subtotal }}</td>
                                                     </tr>
                                                     @if($order->foodoor_cash > 0)
                                                     <tr>
                                                         <td style="font-size: 18px;"></td>
                                                         <td style="font-size: 18px;">Foodoor Cash</td>
-                                                        
+
                                                         <td style="font-size: 18px;">-&#8377; {{ $order->foodoor_cash }}</td>
                                                     </tr>
                                                     @endif
                                                     <tr>
                                                         <td style="font-size: 18px;"></td>
                                                         <td style="font-size: 18px;">GST</td>
-                                                        
+
                                                         <td style="font-size: 18px;">&#8377; {{ $order->tax }}</td>
                                                     </tr>
                                                     <tr>
                                                      <td></td>
                                                         <td style="font-size: 18px;">Delivery Charges</td>
-                                                       
+
                                                         <td style="font-size: 18px;">&#8377; {{ $order->delivery_charges}}</td>
                                                     </tr>
                                                     @if($order->discounted_price != NULL)
                                                      <tr>
                                                      <td></td>
                                                         <td style="font-size: 18px;">Coupon Discount</td>
-                                                       
+
                                                         <td style="font-size: 18px;">&#8377; {{ $order->discounted_price}}</td>
                                                     </tr>
                                                     @endif
-                                                   
+
 
                                                     <tr>
                                                       <td></td>
                                                         <td style="font-size: 18px;" class="text-color"><strong>Total</strong></td>
-                                                        
+
                                                              <td style="font-size: 18px;" class="text-color"><strong>&#8377 {{ $order->amount }}</strong></td>
-                                                       
+
                                                     </tr>
                                 </tbody>
                             </table>
                         </div>
 
-                      
-                                    <!--cart summary-->
-                    </div> 
 
-             </div>            
+                                    <!--cart summary-->
+                    </div>
+
              </div>
-	 </div>  
+             </div>
+	 </div>
 
 @endsection
