@@ -70,10 +70,7 @@ class Order extends Model
          return isset($this->attributes['user_phone']) ?  $this->attributes['user_phone'] : $this->user->phone;
     }
 
-     public function getUserEmailAttribute()
-    {
-         return isset($this->attributes['user_email']) ?  $this->attributes['user_email'] : $this->user->email;
-    }
+
 
       public function getPhoneNoAttribute()
     {
