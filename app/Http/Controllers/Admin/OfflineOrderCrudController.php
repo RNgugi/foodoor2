@@ -22,7 +22,7 @@ class OfflineOrderCrudController extends CrudController
         */
         $this->crud->setModel('App\Models\Order');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/orders');
-        $this->crud->setEntityNameStrings('order', 'today\'s orders');
+        $this->crud->setEntityNameStrings('order', 'Offline orders');
 
         /*
         |--------------------------------------------------------------------------
@@ -45,13 +45,13 @@ class OfflineOrderCrudController extends CrudController
 
         $this->crud->ajax_table = false;
 
-        $this->crud->addClause('whereDate', 'created_at', '=', date('Y-m-d'));
+        //$this->crud->addClause('whereDate', 'created_at', '=', date('Y-m-d'));
 
         $this->crud->addClause('where', 'offline_order', '=', 1);
 
         $this->crud->addClause('where', 'status', '<', 4);
 
-        $this->crud->addClause('where', 'flagged', '=', 1);
+       // $this->crud->addClause('where', 'flagged', '=', 1);
 
 
         $this->crud->orderBy('created_at', 'DESC');
