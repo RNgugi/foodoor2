@@ -87,13 +87,16 @@ class OrdersController extends Controller
 
         $order->user_id = $user->id;
 
+        $order->user_name  = $user->name;
+        $order->user_email  = $user->email;
+
         $order->restaurant_id = request('restaurant_id');
 
         $order->delivery_address = $delivery_address;
 
         $order->subtotal = \Cart::instance('restaurant-' . request('restaurant_id'))->subtotal(2, '.', '');
 
-
+        $order->phone = request()->has('user_phone') ? request('user_phone') : $user->phone;
 
         $order->tax = request('gst');
 
@@ -134,7 +137,7 @@ class OrdersController extends Controller
         foreach ($items as $key => $item)
         {
             $customs = $item->options->has('customs') ? $item->options->customs : null;
-            $order->items()->attach($item->id, ['qty' => $item->qty, 'price' => $item->price, 'customs' => $customs ]);
+            $order->items()->attach($item->id, ['qty' => $item->qty, 'price' => $item->price, 'customs' => $customs, 'custom_toppings' => getCustomsStringApi($customs) ]);
         }
 
         //$order->load('items');

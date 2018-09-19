@@ -49,19 +49,23 @@ class OrdersController extends Controller
 
         $order = new Order;
 
-        $user = User::where('phone', request('user_phone'))->orWhere('email', request('user_email'))->first();
+       /* $user = User::where('phone', request('user_phone'))->orWhere('email', request('user_email'))->first();
 
         if(!$user)
         {
            $user = User::create(['name' => request('user_name'),
                     'email' => request('user_email'), 'phone' => request('user_phone'), 'password' => Hash::make(config('settings.default_password')),  'is_verified' => 1]);
-        }
+        } */
 
         //$user->phone = request('user_phone');
 
         //$user->save();
 
-        $order->user_id = $user->id;
+        $order->user_id = 0;
+
+        $order->user_name  = request('user_name');
+        $order->user_phone = request('user_phone');
+        $order->user_email  = request('user_email');
 
         $order->restaurant_id = $requestor->restaurant->id;
 
@@ -130,13 +134,13 @@ class OrdersController extends Controller
 
             $invoiceData = $invoice->output();
 
-            $message = new OrderPlaced($order);
+           // $message = new OrderPlaced($order);
 
-            $message->attachData($invoiceData, 'invoice.pdf', [
-                            'mime' => 'application/pdf',
-                        ]);
+           // $message->attachData($invoiceData, 'invoice.pdf', [
+                        //    'mime' => 'application/pdf',
+                  //      ]);
 
-            \Mail::to(auth()->user())->send($message);
+            //\Mail::to(auth()->user())->send($message);
 
             \Mail::to('foodoor.order@gmail.com')->send(new NewOrderMail($order));
 
@@ -144,7 +148,7 @@ class OrdersController extends Controller
 
             $message = 'Thanks for ordering with ' . $order->restaurant->name  . '. Your order no: OF'. $order->id . ' and bill amount : Rs. '. $order->amount .'/- .Delivery partner : Foodoor.';
 
-            $response = sendSMS($user->phone, $message);
+            $response = sendSMS($order->phone, $message);
 
           //  $cashback = ceil($order->subtotal * (5/100)) > 100 ? 100 : ceil($order->subtotal * (5/100));
 

@@ -44,7 +44,13 @@ class Order extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        if($this->user_id != 0)
+        {
+            return $this->belongsTo(User::class);
+        } else {
+            $user = new User;
+            $user->name =
+        }
     }
 
     public function getCustomerNameAttribute()
@@ -64,7 +70,7 @@ class Order extends Model
         {
             return $this->user->phone;
         } else {
-            return 'NOT EXIST';
+            return $this->phone;
         }
 
     }
@@ -76,8 +82,12 @@ class Order extends Model
 
     public function items()
     {
-        return $this->belongsToMany(Item::class, 'order_item')->withPivot(['price', 'qty', 'customs']);
+        return $this->belongsToMany(Item::class, 'order_item')->withPivot(['price', 'qty', 'customs', 'custom_toppings']);
     }
+
+
+
+
 
     public function getStatusTextAttribute()
     {

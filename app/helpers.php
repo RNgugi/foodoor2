@@ -26,17 +26,17 @@ function sendSMS($number, $message)
 {
   // Account details
   $apiKey = urlencode('RJItAyWpWRI-snoxrIANb5EnQ5Zq7UJ0bDcjk7lOYM');
-  
+
   // Message details
-  
+
   $sender = urlencode('FOODOR');
   $message = rawurlencode($message);
- 
+
   $number = '91' . $number;
-  
+
   // Prepare data for POST request
   $data = array('apikey' => $apiKey, 'numbers' => $number, "sender" => $sender, "message" => $message);
- 
+
   // Send the POST request with cURL
   $ch = curl_init('https://api.textlocal.in/send/');
   curl_setopt($ch, CURLOPT_POST, true);
@@ -44,7 +44,7 @@ function sendSMS($number, $message)
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
   $response = curl_exec($ch);
   curl_close($ch);
-  
+
   // Process your response here
   return $response;
 }
@@ -73,22 +73,22 @@ function check_in_range($start_date, $end_date, $date_from_user)
 }
 
 function getCustomsString($customs)
-{ 
+{
 
     if($customs != null) {
     $msg = '';
 
     if(property_exists($customs, 'size'))
     {
-       $msg = $msg . 'Size : ' . $customs->size . ' | '; 
+       $msg = $msg . 'Size : ' . $customs->size . ' | ';
     }
 
     foreach ($customs as $key => $custom) {
-      
+
       if($key != 'price' && $key != 'size')
       {
         if(!is_array($custom))
-        { 
+        {
            $msg = $msg . $key . ' : ' . $custom->name ;
 
              if($custom != end($customs))
@@ -96,7 +96,7 @@ function getCustomsString($customs)
                  $msg = $msg . ', ';
              }
         } else {
-          $msg = $msg . $key . ' : ';  
+          $msg = $msg . $key . ' : ';
           foreach ($custom as $key => $choice) {
 
              $msg = $msg . $choice->name;
@@ -107,14 +107,61 @@ function getCustomsString($customs)
              }
           }
         }
-       
+
       }
 
-    } 
+    }
 
-    
+
 
     return '<br><small>' . $msg . '</small>';
+
+  }
+}
+
+function getCustomsStringApi($customs)
+{
+
+    if($customs != null) {
+    $msg = '';
+
+    if(property_exists($customs, 'size'))
+    {
+       $msg = $msg . 'Size : ' . $customs->size . ' | ';
+    }
+
+    foreach ($customs as $key => $custom) {
+
+      if($key != 'price' && $key != 'size')
+      {
+        if(!is_array($custom))
+        {
+           $msg = $msg . $key . ' : ' . $custom->name ;
+
+             if($custom != end($customs))
+             {
+                 $msg = $msg . ', ';
+             }
+        } else {
+          $msg = $msg . $key . ' : ';
+          foreach ($custom as $key => $choice) {
+
+             $msg = $msg . $choice->name;
+
+             if($choice != end($custom))
+             {
+                 $msg = $msg . ', ';
+             }
+          }
+        }
+
+      }
+
+    }
+
+
+
+    return $msg;
 
   }
 }
@@ -123,7 +170,7 @@ function getCustomsString($customs)
 
 function findNearestDrivers($restaurant)
 {
-    $drivers = \DB::select("SELECT id,( 3959 * acos( cos( radians(". $restaurant->latitude .") ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(". $restaurant->longitude .") ) + sin( radians(". $restaurant->latitude .") ) * sin( radians( latitude ) ) ) ) AS distance FROM drivers HAVING distance < ". config('settings.driver_distance')  ."  ORDER BY distance" ); 
+    $drivers = \DB::select("SELECT id,( 3959 * acos( cos( radians(". $restaurant->latitude .") ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(". $restaurant->longitude .") ) + sin( radians(". $restaurant->latitude .") ) * sin( radians( latitude ) ) ) ) AS distance FROM drivers HAVING distance < ". config('settings.driver_distance')  ."  ORDER BY distance" );
 
 
     $driverModels = [];

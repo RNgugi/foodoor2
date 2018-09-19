@@ -32,12 +32,12 @@ class OrderStatusChangedListener
         if($status == -1) {
 
             $message = 'Restaurant has cancelled your order. In case of any query please call: 9905585412.';
-            $response = sendSMS($event->order->user->phone, $message);
+            $response = sendSMS($event->order->phone, $message);
 
         } elseif($status == 1) {
 
             $message = 'Restaurant has confirmed your order. In case of any query please call: 9905585412 .We will notify you once your order will be out for delivery.';
-            $response = sendSMS($event->order->user->phone, $message);
+            $response = sendSMS($event->order->phone, $message);
 
         } elseif($status == 2) {
             //$message = 'Your order is ready to leave for delivery.';
@@ -45,16 +45,16 @@ class OrderStatusChangedListener
         } elseif($status == 3) {
             $message =
             'Delivery person is out for delivery and will reach you soon. Request you to keep Rs. '. $event->order->amount .'/- in cash ready. Please ignore if already paid online.';
-            $response = sendSMS($event->order->user->phone, $message);
+            $response = sendSMS($event->order->phone, $message);
         } elseif($status == 4) {
 
             $cashback = ceil($event->order->amount * (5/100)) > 100 ? 100 : ceil($event->order->amount * (5/100));
 
             $message = 'Your order has been delivered. Congratulations, you have got Foodoor cash of amount Rs. '. $cashback .'/- !!. Use this cash in your next order and save your money.';
 
-            $response = sendSMS($event->order->user->phone, $message);
+            $response = sendSMS($event->order->phone, $message);
 
-            \Mail::to($event->order->user)->send(new OrderDelivered($event->order));
+            // \Mail::to($event->order->user)->send(new OrderDelivered($event->order));
         }
     }
 }
