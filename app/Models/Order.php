@@ -44,10 +44,9 @@ class Order extends Model
 
     public function user()
     {
-        if($this->user_id != 0)
-        {
-            return $this->belongsTo(User::class);
-        }
+
+        return $this->belongsTo(User::class);
+
     }
 
     public function getCustomerNameAttribute()
