@@ -49,17 +49,6 @@ class OrdersController extends Controller
 
         $order = new Order;
 
-       /* $user = User::where('phone', request('user_phone'))->orWhere('email', request('user_email'))->first();
-
-        if(!$user)
-        {
-           $user = User::create(['name' => request('user_name'),
-                    'email' => request('user_email'), 'phone' => request('user_phone'), 'password' => Hash::make(config('settings.default_password')),  'is_verified' => 1]);
-        } */
-
-        //$user->phone = request('user_phone');
-
-        //$user->save();
 
         $order->user_id = 0;
 
@@ -81,17 +70,11 @@ class OrdersController extends Controller
 
         $discount = 0;
 
-       // if(request()->has('discount'))
-       // {
-       //     $discount = request('discount');
-       // }
+
 
        $foodoorCash = 0;
 
-       // if(request()->has('foodoorcash'))
-       // {
-        //    $foodoorCash = request('foodoorcash');
-       // }
+
 
         $order->amount =   ceil($order->subtotal +  $order->tax + $order->delivery_charges - $discount - $foodoorCash);
 
@@ -113,15 +96,7 @@ class OrdersController extends Controller
 
         $order->save();
 
-      //  $user->wallet_ballance = $user->wallet_ballance - $foodoorCash;
 
-     //   $user->save();
-
-    //    foreach ($items as $key => $item)
-     //   {
-    //        $customs = isset($item->customs) ? $item->customs : null;
-     //       $order->items()->attach($item->id, ['qty' => $item->qty, 'price' => $item->price, 'customs' => json_encode($customs) ]);
-     //   }
 
 
 
