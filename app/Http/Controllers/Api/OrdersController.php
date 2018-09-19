@@ -59,7 +59,7 @@ class OrdersController extends Controller
 
         $order->bill_image = request('bill_image');
 
-        $order->delivery_charges = $user->orders()->count() >= 3 ? 30 : 0;
+        $order->delivery_charges =  30;
 
         $discount = 0;
 
@@ -102,13 +102,7 @@ class OrdersController extends Controller
 
             $invoiceData = $invoice->output();
 
-           // $message = new OrderPlaced($order);
 
-           // $message->attachData($invoiceData, 'invoice.pdf', [
-                        //    'mime' => 'application/pdf',
-                  //      ]);
-
-            //\Mail::to(auth()->user())->send($message);
 
             \Mail::to('foodoor.order@gmail.com')->send(new NewOrderMail($order));
 
@@ -118,11 +112,7 @@ class OrdersController extends Controller
 
             $response = sendSMS($order->phone, $message);
 
-          //  $cashback = ceil($order->subtotal * (5/100)) > 100 ? 100 : ceil($order->subtotal * (5/100));
 
-          //  $user->wallet_ballance = $user->wallet_ballance + $cashback;
-
-          //  $user->save();
 
             $messageToRest = 'You have received a new order of Rs. '. $order->amount .'/-. Order Invoice : https://foodoor.in/orders/'. $order->id  .'/invoice';
 
