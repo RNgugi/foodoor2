@@ -32,8 +32,8 @@ class OrderCrudController extends CrudController
 
           $this->crud->addColumns([
             ['name' => 'id', 'label' => 'Order ID'],
-            ['name' => 'customer_name', 'label' => 'Customer Name'],
-            ['name' => 'phone_no', 'label' => 'Phone No.'],
+            ['name' => 'user_name', 'label' => 'Customer Name'],
+            ['name' => 'user_phone', 'label' => 'Phone No.'],
             ['name' => 'restaurant_name', 'label' => 'Restaurant Name'],
             ['name' => 'created_at', 'label' => 'Order Time'],
             ['name' => 'itemsCount', 'label' => 'Items Count'],

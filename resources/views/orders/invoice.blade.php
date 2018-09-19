@@ -32,7 +32,7 @@
 
 	 	<div class="mt-2">
 
-	 		<h3 style="font-weight: bold;">Order no. : #{{$order->id}} 
+	 		<h3 style="font-weight: bold;">Order no. : #{{$order->id}}
 
 	 			@if($order->payment_status)
 	 			<span style="font-size: 14px;color: green;"> PAID</span>
@@ -48,7 +48,7 @@
 	 			<div class="col-md-6">
 	 				<p>Delivery Details : </p>
 
-	 				<p><b>{{ $order->user->name }}</b> | {{ $order->user->phone }}<br>
+	 				<p><b>{{ $order->user_name }}</b> | {{ $order->user_phone }}<br>
                           {{ json_decode($order->delivery_address)->delivery_location }}<br>
                       	  <b>Door no.  :</b> {{ json_decode($order->delivery_address)->door_no }}
                       	  <b> | Landmark  :</b> {{ json_decode($order->delivery_address)->landmark }}<br>
@@ -78,7 +78,7 @@
 	 			</div>
 	 		</div>
 
-	 		
+
 	 		<div class="mt-2">
 	 			<table class="table ">
 
@@ -91,15 +91,15 @@
 	 				</thead>
 	 				<tbody>
 	 				@foreach($order->items as $item)
-	 						 <?php $customs = json_decode($item->pivot->customs, true); 
+	 						 <?php $customs = json_decode($item->pivot->customs, true);
                                      unset($customs['price']); ?>
                                     <tr>
-                                        <td style="font-size: 14px;"> {{ $item->name }} 
+                                        <td style="font-size: 14px;"> {{ $item->name }}
 
                                         		{!! getCustomsString(json_decode($item->pivot->customs)) !!}
 
 
-                                                
+
                                                 </td>
                                         <td style="font-size: 14px;">{{ $item->pivot->qty }}</td>
                                         <td style="font-size: 14px;text-align: right;">Rs. {{ $item->pivot->price * $item->pivot->qty }}</td>
@@ -109,17 +109,17 @@
 
                                 @endforeach
 
-                                <tr style="font-size: 14px;text-align: right;"> 
+                                <tr style="font-size: 14px;text-align: right;">
                                                          <td></td>
                                                         <td style="font-size: 14px;">Subtotal</td>
-                                                       
+
                                                         <td style="font-size: 14px;">Rs. {{$order->subtotal }}</td>
                                                     </tr>
                                                     @if($order->foodoor_cash > 0)
                                                     <tr style="text-align: right;">
                                                         <td style="font-size: 14px;"></td>
                                                         <td style="font-size: 14px;">Foodoor Cash</td>
-                                                        
+
                                                         <td style="font-size: 14px;">-Rs. {{ $order->foodoor_cash }}</td>
                                                     </tr>
                                                     @endif
@@ -127,32 +127,32 @@
                                                     <tr style="text-align: right;">
                                                         <td style="font-size: 14px;"></td>
                                                         <td style="font-size: 14px;">GST</td>
-                                                        
+
                                                         <td style="font-size: 14px;">Rs. {{ $order->tax }}</td>
                                                     </tr>
                                                     @endif
                                                     <tr style="text-align: right;">
                                                      <td></td>
                                                         <td style="font-size: 14px;">Delivery Charges</td>
-                                                       
+
                                                         <td style="font-size: 14px;">Rs. {{ $order->delivery_charges}}</td>
                                                     </tr>
                                                     @if($order->discounted_price != NULL)
                                                      <tr style="text-align: right;">
                                                      <td></td>
                                                         <td style="font-size: 14px;">Coupon Discount</td>
-                                                       
+
                                                         <td style="font-size: 14px;">Rs. {{ $order->discounted_price}}</td>
                                                     </tr>
                                                     @endif
-                                                   
+
 
                                                     <tr style="text-align: right;">
                                                       <td></td>
                                                         <td style="font-size: 14px;" class="text-color"><strong>Total</strong></td>
-                                                        
+
                                                              <td style="font-size: 14px;" class="text-color"><strong>Rs. {{ $order->amount }}</strong></td>
-                                                       
+
                                                     </tr>
                                 </tbody>
 	 			</table>

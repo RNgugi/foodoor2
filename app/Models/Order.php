@@ -60,6 +60,21 @@ class Order extends Model
 
     }
 
+    public function getUserNameAttribute()
+    {
+        return isset($this->user_name) ?  $this->user_name : $this->user->name;
+    }
+
+    public function getUserPhoneAttribute()
+    {
+        return isset($this->user_phone) ?  $this->user_phone : $this->user->phone;
+    }
+
+     public function getUserEmailAttribute()
+    {
+        return isset($this->user_email) ?  $this->user_email : $this->user->email;
+    }
+
       public function getPhoneNoAttribute()
     {
         if($this->user)
