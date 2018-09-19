@@ -53,7 +53,7 @@ class OrderCrudController extends CrudController
 
         $this->crud->orderBy('created_at', 'DESC');
 
-        $this->crud->addClause('where', 'offline_order', 0);
+        $this->crud->addClause('where', 'offline_order', '=', 0);
 
         $this->crud->addButtonFromModelFunction('line', 'confirm', 'confirmOrder', 'end');
 
