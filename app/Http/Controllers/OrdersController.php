@@ -96,7 +96,7 @@ class OrdersController extends Controller
 
         $order->subtotal = \Cart::instance('restaurant-' . request('restaurant_id'))->subtotal(2, '.', '');
 
-        $order->phone = request()->has('user_phone') ? request('user_phone') : $user->phone;
+        $order->user_phone = request()->has('user_phone') ? request('user_phone') : $user->phone;
 
         $order->tax = request('gst');
 

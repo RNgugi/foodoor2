@@ -83,7 +83,7 @@ class OrdersController extends Controller
 
         $order->bill_no = request('bill_no');
 
-        $order->order_type = 'OF';
+        $order->offline_order = 1;
 
         $order->status = 1;
 
