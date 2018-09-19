@@ -40,7 +40,7 @@
 	 			<span style="font-size: 14px;color: red;" >PAYMENT PENDING</span>
 	 			@endif
 	 		</h3>
-	 		<p>Thanks for choosing Foodoor, {{$order->user->name}}! </p>
+	 		<p>Thanks for choosing Foodoor, {{$order->user_name}}! </p>
 
 	 		<hr>
 

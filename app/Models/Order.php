@@ -62,7 +62,7 @@ class Order extends Model
 
     public function getUserNameAttribute()
     {
-        return isset($this->user_name) ?  $this->user_name : $this->user->name;
+        return isset($this->user_name) ?  $this->user_name : $this->customer_name;
     }
 
     public function getUserPhoneAttribute()
