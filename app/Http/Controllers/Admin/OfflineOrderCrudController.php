@@ -36,7 +36,6 @@ class OfflineOrderCrudController extends CrudController
             ['name' => 'user_phone', 'label' => 'Phone No.'],
             ['name' => 'restaurant_name', 'label' => 'Restaurant Name'],
             ['name' => 'created_at', 'label' => 'Order Time'],
-            ['name' => 'itemsCount', 'label' => 'Items Count'],
             ['name' => 'amount', 'label' => 'Amount (Rs.)'],
             ['name' => 'status_text', 'label' => 'Status'],
         ]);
