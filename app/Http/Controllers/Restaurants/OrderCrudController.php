@@ -64,9 +64,9 @@ class OrderCrudController extends CrudController
 
             $this->crud->addClause('where', 'status', '<', 4);
 
-            $this->crud->addClause('where', 'flagged', '=', 1);
+            $this->crud->addClause('where', 'flagged', '==', 1);
 
-            $this->crud->addClause('where', 'offline_order', '=', 0);
+            $this->crud->addClause('where', 'offline_order', '==', 0);
 
             $this->crud->orderBy('created_at', 'DESC');
 

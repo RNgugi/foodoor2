@@ -47,7 +47,7 @@ class OfflineOrderCrudController extends CrudController
 
         //$this->crud->addClause('whereDate', 'created_at', '=', date('Y-m-d'));
 
-        $this->crud->addClause('where', 'offline_order', '=', 1);
+        $this->crud->addClause('where', 'offline_order', '==', 1);
 
         $this->crud->addClause('where', 'status', '<', 4);
 
