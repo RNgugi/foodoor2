@@ -137,7 +137,7 @@ class OrdersController extends Controller
         foreach ($items as $key => $item)
         {
             $customs = $item->options->has('customs') ? $item->options->customs : null;
-            $order->items()->attach($item->id, ['qty' => $item->qty, 'price' => $item->price, 'customs' => $customs, 'custom_toppings' => getCustomsStringApi($customs) ]);
+            $order->items()->attach($item->id, ['qty' => $item->qty, 'price' => $item->price, 'customs' => $customs, 'custom_toppings' => '' ]);
         }
 
         //$order->load('items');
